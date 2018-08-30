@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    tools:context=".activities.EdicionPalabraActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="85dp"
+        android:paddingBottom="85dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/img_palabra"
+                android:layout_width="300dp"
+                android:layout_height="190dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="fotografía"
+                android:src="@drawable/no_foto" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+
+                <ImageView
+                    android:id="@+id/camara"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="logo cámara"
+                    android:onClick="tomarFoto"
+                    android:src="@android:drawable/ic_menu_camera" />
+
+                <ImageView
+                    android:id="@+id/galeria"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="galeria"
+                    android:contentDescription="logo galería"
+                    android:src="@android:drawable/ic_menu_gallery" />
+            </LinearLayout>
+        </FrameLayout>
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/palabra"
+                android:layout_width="602dp"
+                android:layout_height="wrap_content"
+                android:hint="Palabra"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageViewPlay"
+                    android:layout_width="60dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_play"
+                    android:tint="@android:color/darker_gray"
+                    />
+                <ImageView
+                    android:id="@+id/imageViewStop"
+                    android:layout_width="60dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_stop"
+                    android:tint="@android:color/darker_gray"
+                    android:visibility="gone"/>
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="91dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+
+                <Chronometer
+                    android:id="@+id/chronometerTimer"
+                    android:layout_width="187dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="60sp"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/imageViewRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_microphone" />
+            </LinearLayout>
+
+
+
+            <RadioGroup
+                android:id="@+id/tipoPalabra"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alimento"
+                    android:id="@+id/rbAlimento"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="radioClicked"
+                    android:checked="false"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Peligro"
+                    android:id="@+id/rbPeligro"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="radioClicked"
+                    android:checked="false"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Limpieza"
+                    android:id="@+id/rbLimpieza"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="radioClicked"
+                    android:checked="false"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

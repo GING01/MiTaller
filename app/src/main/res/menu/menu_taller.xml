@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/borrar"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:orderInCategory="12"
+        android:title="Item"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/nuevoTaller"
+        android:title="Guardar"
+        android:icon="@android:drawable/ic_menu_add"
+        android:orderInCategory="11"
+        app:showAsAction="ifRoom"/>
+
+
+
+</menu>

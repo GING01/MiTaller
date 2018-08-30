@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    tools:context=".activities.EdicionTallerActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="85dp"
+        android:paddingBottom="85dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/img_historia"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="fotografía"
+                android:src="@drawable/no_foto" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+
+                <ImageView
+                    android:id="@+id/camara"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="logo cámara"
+                    android:onClick="tomarFoto"
+                    android:src="@android:drawable/ic_menu_camera" />
+
+                <ImageView
+                    android:id="@+id/galeria"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="galeria"
+                    android:contentDescription="logo galería"
+                    android:src="@android:drawable/ic_menu_gallery" />
+            </LinearLayout>
+        </FrameLayout>
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/nombreHistoria"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
+                android:hint="Nombre historia"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/descripcionHistoria"
+                android:layout_width="343dp"
+                android:layout_height="156dp"
+                android:hint="Descripción Historia"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/numLaminas"
+                android:layout_width="343dp"
+                android:layout_height="156dp"
+                android:hint="Numero de laminas"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/dificultad"
+                android:layout_width="343dp"
+                android:layout_height="156dp"
+                android:hint="Dificultad"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

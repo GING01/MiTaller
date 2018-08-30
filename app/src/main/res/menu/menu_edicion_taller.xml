@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/accion_guardar"
+        android:title="Guardar"
+        android:icon="@android:drawable/ic_menu_save"
+        android:orderInCategory="10"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/vocabulario"
+        android:title="Vocabulario" />
+
+    <item
+        android:id="@+id/historia"
+        android:title="Historia" />
+
+    <item
+        android:id="@+id/secuencia"
+        android:title="Secuencia" />
+
+</menu>
