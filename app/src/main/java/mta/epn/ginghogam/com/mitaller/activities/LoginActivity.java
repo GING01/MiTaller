@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private SQLiteDB sqLiteDB;
     private TutorDAO tutorDAO;
     private Tutor tutor;
+    private String pato="tu eres un pato";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
