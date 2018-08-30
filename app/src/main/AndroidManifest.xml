@@ -64,7 +64,8 @@
             android:label="@string/title_activity_menu_inicial"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.SwipeDataActivity" />
-        <activity android:name=".activities.EstudiantesActivity"></activity>
+        <activity android:name=".activities.EstudiantesActivity" />
+        <activity android:name=".activities.EdicionEstudianteActivity"></activity>
     </application>
 
 </manifest>
