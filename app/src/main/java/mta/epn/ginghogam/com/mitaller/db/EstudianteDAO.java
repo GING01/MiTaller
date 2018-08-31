@@ -35,30 +35,13 @@ public class EstudianteDAO extends SQLiteDB {
                 values);
     }
 
-    public Cursor retrieve(){
+    public Cursor retrieve(long id){
         SQLiteDatabase db = getReadableDatabase();
 
-        // Define a projection that specifies which columns from the database
-        // you will actually use after this query.
-        String[] projection = {
-                ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE,
-                ConstanteDB.COLUMN_APELLIDO_ESTUDIANTE,
-                ConstanteDB.COLUMN_EDAD_ESTUDIANTE,
-                ConstanteDB.COLUMN_FOTO_ESTUDIANTE};
+        String selectQuery = "SELECT  * FROM " + ConstanteDB.TABLE_ESTUDIANTE + " WHERE "
+                + ConstanteDB.COLUMN_ID_TUTOR_PK + " = " + id + " ORDER BY " + ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE;
 
-        // How you want the results sorted in the resulting Cursor
-        String sortOrder =
-                ConstanteDB.COLUMN_NOMBRE + " ASC";
-
-        Cursor c = db.query(
-                ConstanteDB.TABLE_ESTUDIANTE,                    // The table to query
-                projection,                                 // The columns to return
-                null,                                       // The columns for the WHERE clause
-                null,                                       // The values for the WHERE clause
-                null,                                       // don't group the rows
-                null,                                       // don't filter by row groups
-                sortOrder                                   // The sort order
-        );
+        Cursor c = db.rawQuery(selectQuery, null);
 
         return c;
     }
