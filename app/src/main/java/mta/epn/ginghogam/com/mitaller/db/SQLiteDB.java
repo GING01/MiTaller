@@ -88,7 +88,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
                     ConstanteDB.COLUMN_ID_ESTUDIANTE + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_APELLIDO_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
-                    ConstanteDB.COLUMN_EDAD_ESTUDIANTE+ TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_EDAD_ESTUDIANTE+ INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_FOTO_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_GENERO_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_PERFIL_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +

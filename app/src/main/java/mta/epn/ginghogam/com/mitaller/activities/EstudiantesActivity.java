@@ -116,8 +116,8 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.nuevaHistoria) {
-
+        if(id == R.id.nuevoEstudiante) {
+            EdicionEstudianteActivity.startE(EstudiantesActivity.this, tutor);
             return true;
         }
 
@@ -126,6 +126,6 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
 
     @Override
     public void onItemClick(int position, View view) {
-
+        EdicionEstudianteActivity.startE(this, estudianteListAdapter.getItem(position), tutor);
     }
 }

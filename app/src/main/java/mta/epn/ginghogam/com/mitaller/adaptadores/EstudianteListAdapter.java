@@ -55,7 +55,7 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
     }
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_palabras, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_estudiantes, parent, false);
 
         final ContactHolder contactHolder = new ContactHolder(view);
 
@@ -77,17 +77,19 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
     public void onBindViewHolder(ContactHolder holder, int position) {
         final Estudiante estudiante = estudianteList.get(position);
 
+
+
         holder.nombre.setText(estudiante.getNombreEstudiate());
         holder.apellido.setText(estudiante.getApellidoEstudiante());
-        holder.edad.setText(estudiante.getEdadEstudiante());
+        holder.edad.setText(Integer.toString(estudiante.getEdadEstudiante()));
 
 
         File file = new File(estudiante.getFotoEstudiante());
         if (!file.exists()) {
             Toast.makeText(context,"no Exist", Toast.LENGTH_LONG).show();
-            holder.imgEstudiante.setImageResource(R.drawable.no_foto);
+            holder.imagen.setImageResource(R.drawable.no_foto);
         }else {
-            holder.imgEstudiante.setImageBitmap(BitmapFactory.decodeFile(estudiante.getFotoEstudiante().toString()));
+            holder.imagen.setImageBitmap(BitmapFactory.decodeFile(estudiante.getFotoEstudiante().toString()));
         }
     }
 
@@ -101,15 +103,15 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
     }
 
     static class ContactHolder extends RecyclerView.ViewHolder {
-        ImageView imgEstudiante;
+        ImageView imagen;
         TextView nombre, apellido, edad;
 
         public ContactHolder(View itemView) {
             super(itemView);
-            imgEstudiante = (ImageView) itemView.findViewById(R.id.imgEstudiante);
-            nombre = (TextView) itemView.findViewById(R.id.nombreEstudiante);
-            apellido = (TextView) itemView.findViewById(R.id.apellidoEstudiante);
-            edad = (TextView) itemView.findViewById(R.id.edad);
+            imagen = (ImageView) itemView.findViewById(R.id.imgEstudiante);
+            nombre = (TextView) itemView.findViewById(R.id.nombreE);
+            apellido = (TextView) itemView.findViewById(R.id.apellidoE);
+            edad = (TextView) itemView.findViewById(R.id.edadE);
         }
     }
 }

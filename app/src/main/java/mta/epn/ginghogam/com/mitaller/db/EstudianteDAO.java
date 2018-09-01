@@ -55,8 +55,8 @@ public class EstudianteDAO extends SQLiteDB {
         values.put(ConstanteDB.COLUMN_APELLIDO_ESTUDIANTE, estudiante.getApellidoEstudiante());
         values.put(ConstanteDB.COLUMN_FOTO_ESTUDIANTE, estudiante.getFotoEstudiante());
         values.put(ConstanteDB.COLUMN_EDAD_ESTUDIANTE, estudiante.getEdadEstudiante());
-        values.put(ConstanteDB.COLUMN_PERFIL_ESTUDIANTE, estudiante.getFotoEstudiante());
-        values.put(ConstanteDB.COLUMN_GENERO_ESTUDIANTE, estudiante.getFotoEstudiante());
+        values.put(ConstanteDB.COLUMN_PERFIL_ESTUDIANTE, estudiante.getPerfilEstudiante());
+        values.put(ConstanteDB.COLUMN_GENERO_ESTUDIANTE, estudiante.getGeneroEstudiante());
 
         // Which row to update, based on the ID
         String selection = ConstanteDB.COLUMN_ID_ESTUDIANTE + " LIKE ?";
