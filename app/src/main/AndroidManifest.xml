@@ -65,7 +65,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.SwipeDataActivity" />
         <activity android:name=".activities.EstudiantesActivity" />
-        <activity android:name=".activities.EdicionEstudianteActivity"></activity>
+        <activity android:name=".activities.EdicionEstudianteActivity" />
+        <activity android:name=".activities.EleccionEstudianteEntrenamientoActivity"></activity>
     </application>
 
 </manifest>
