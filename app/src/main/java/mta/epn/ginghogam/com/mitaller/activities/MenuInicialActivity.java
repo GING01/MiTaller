@@ -1,6 +1,8 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -117,6 +119,9 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         } else if (id == R.id.evaluacion) {
 
         } else if (id == R.id.salir) {
+            SharedPreferences preferences = this.getSharedPreferences("mitaller.iniciosesion", Context.MODE_PRIVATE);
+            preferences.edit().clear().commit();
+            finish();
 
         }
 

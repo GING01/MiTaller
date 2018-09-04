@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +24,10 @@ public class LoginActivity extends AppCompatActivity {
     TextView usuario;
     TextView contraseña;
     private TutorDAO tutorDAO;
-    private Tutor tutor;
-    private String id;
+    private static  final String preference="mitaller.iniciosesion";
+    public String id;
+
+
 
 
     @Override
@@ -36,6 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         usuario =findViewById(R.id.txtUsuario);
         contraseña=findViewById(R.id.txtcontraseña);
+        if (obtenerEstado()){
+            startActivity(new Intent(LoginActivity.this,MenuInicialActivity.class));
+            finish();
+
+        }
 
     }
     public void registrarTutor(View view) {
@@ -48,9 +56,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void validar(View view) {
         if(validarUsuario()){
-            Intent intent = new Intent(LoginActivity.this,MenuInicialActivity.class);
-            intent.putExtra("tutor", tutor);
-            startActivity(intent);
+            startActivity(new Intent(LoginActivity.this,MenuInicialActivity.class));
+            guardarEstado();
+            finish();
 
         }
         else
@@ -58,21 +66,32 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void guardarEstado() {
+        SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
+        preferences.edit().putString("ID", String.valueOf(id)).commit();
+    }
+    private boolean obtenerEstado() {
+
+        SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
+        String restoredText = preferences.getString("ID", null);
+        if (restoredText != null) {
+            return true;
+        }
+        else
+            return false;
+
+    }
+
     private boolean validarUsuario() {
         tutorDAO =new TutorDAO(this);
-        tutor = new Tutor();
-
+        List<Tutor> tutorList = new ArrayList<>();
         String usr= "'"+usuario.getText().toString().trim()+"'";
         String pass = "'"+contraseña.getText().toString().trim()+"'";
         Cursor cursor = tutorDAO.retrieve(usr , pass);
         try {
             cursor.moveToFirst();
-            tutor.setIdTutor(cursor.getInt(0));
-            tutor.setNombreTutor(cursor.getString(1));
-            tutor.setApellidoTutor(cursor.getString(2));
-            tutor.setCiTutor(cursor.getString(3));
-            tutor.setUsuarioTutor(cursor.getString(4));
-            tutor.setContraseñaTutor(cursor.getString(5));
+            id = cursor.getString(0).trim();
+
             return true;
         }
         catch (Exception e){
@@ -88,3 +107,4 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
