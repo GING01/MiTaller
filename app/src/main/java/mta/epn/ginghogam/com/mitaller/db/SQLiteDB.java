@@ -82,6 +82,21 @@ public class SQLiteDB extends SQLiteOpenHelper {
     private static final String SQL_DELETE_TUTOR =
             "DROP TABLE IF EXISTS " + ConstanteDB.TABLE_TUTOR;
 
+    //Tabla ESTUDIANTE
+    private static final String SQL_CREATE_ESTUDIANTE =
+            "CREATE TABLE " + ConstanteDB.TABLE_ESTUDIANTE + " (" +
+                    ConstanteDB.COLUMN_ID_ESTUDIANTE + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_APELLIDO_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_EDAD_ESTUDIANTE+ INTEGER_ + COMMA_SEP +
+                    ConstanteDB.COLUMN_FOTO_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_GENERO_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_PERFIL_ESTUDIANTE + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_ID_TUTOR_PK + INTEGER_ + " )";
+
+    private static final String SQL_DELETE_ESTUDIANTE =
+            "DROP TABLE IF EXISTS " + ConstanteDB.TABLE_ESTUDIANTE;
+
 
     public SQLiteDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -89,6 +104,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(SQL_CREATE_ESTUDIANTE);
         db.execSQL(SQL_CREATE_SECUENCIA);
         db.execSQL(SQL_CREATE_HISTORIA);
         db.execSQL(SQL_CREATE_VOCABULARIO);
@@ -100,6 +116,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(SQL_DELETE_ESTUDIANTE);
         db.execSQL(SQL_DELETE_SECUENCIA);
         db.execSQL(SQL_DELETE_HISTORIA);
         db.execSQL(SQL_DELETE_VOCABULARIO);

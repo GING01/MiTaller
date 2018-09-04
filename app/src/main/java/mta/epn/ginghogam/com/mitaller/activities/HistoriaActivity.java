@@ -31,7 +31,7 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
     private HistoriaListAdapter historiaListAdapter;
     private LinearLayoutManager linearLayoutManager;
 
-    private SQLiteDB sqLiteDB;
+
     private HistoriaDAO historiaDAO;
 
 
@@ -67,7 +67,7 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
     }
 
     void loadData(){
-        sqLiteDB = new SQLiteDB(this);
+
         historiaDAO = new HistoriaDAO(this);
 
         List<Historia> histariaList = new ArrayList<>();

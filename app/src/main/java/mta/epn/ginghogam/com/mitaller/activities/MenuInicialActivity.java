@@ -14,18 +14,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
+import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 
-public class MenuInicialActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuInicialActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button pagerAct;
+    private Tutor tutor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Bundle extras = getIntent().getExtras();
+        tutor = extras.getParcelable("tutor");
+
+        //Toast.makeText(this, " tutor"+tutor.getApellidoTutor(), Toast.LENGTH_LONG).show();
+
 
         pagerAct = (Button)findViewById(R.id.pager_act);
         pagerAct.setOnClickListener(new View.OnClickListener() {
@@ -97,9 +108,11 @@ public class MenuInicialActivity extends AppCompatActivity
         if (id == R.id.talleres) {
             Intent i = new Intent(MenuInicialActivity.this, TallerActivity.class);
             startActivity(i);
-
             return true;
         } else if (id == R.id.estudiantes) {
+            Intent i = new Intent(MenuInicialActivity.this, EstudiantesActivity.class);
+            i.putExtra("tutor", tutor);
+            startActivity(i);
 
         } else if (id == R.id.evaluacion) {
 

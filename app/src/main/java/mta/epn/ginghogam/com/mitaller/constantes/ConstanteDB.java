@@ -1,5 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.constantes;
 
+import android.content.Intent;
+
 public class ConstanteDB {
 
     //Tabla TALLER
@@ -19,7 +21,7 @@ public class ConstanteDB {
     public static final String COLUMN_DIFICULTAD = "dificultad";
     public static final String COLUMN_ID_TALLER = "id_taller_fk";
 
-    //Tabla Vocabulario
+    //Tabla VOCABULARIO
     public static final String TABLE_VOCABULARIO = "vocabulario";
     public static final String COLUMN_ID_PALABRA = "palabra_id";
     public static final String COLUMN_PALABRA = "palabra";
@@ -27,7 +29,6 @@ public class ConstanteDB {
     public static final String COLUMN_SONIDO_PALABRA = "palabra_sonido";
     public static final String COLUMN_TIPO_PALABRA = "palabra_tipo";
     public static final String COLUMN_ID_TALLER_PK_VOCABULARIO = "vocabulario_taller_pk_id";
-
 
     //Tabla SECUENCIA
     public static final String TABLE_SECUENCIA = "secuencia";
@@ -45,6 +46,16 @@ public class ConstanteDB {
     public static final String COLUMN_USUARIO_TUTOR = "usuario_tutor";
     public static final String COLUMN_CONTRASEÑA_TUTOR = "contraseña_tutor";
 
+    //Tabla ESTUDIANTE
+    public static final String TABLE_ESTUDIANTE= "estudiante";
+    public static final String COLUMN_ID_ESTUDIANTE = "estudiante_id";
+    public static final String COLUMN_NOMBRE_ESTUDIANTE = "nombre_estudiante";
+    public static final String COLUMN_APELLIDO_ESTUDIANTE = "apellido_estudiante";
+    public static final String COLUMN_FOTO_ESTUDIANTE = "foto_estudiante";
+    public static final String COLUMN_GENERO_ESTUDIANTE = "genero_estudiante";
+    public static final String COLUMN_PERFIL_ESTUDIANTE = "perfil_estudiante";
+    public static final String COLUMN_EDAD_ESTUDIANTE = "edad_estudiante";
+    public static final String COLUMN_ID_TUTOR_PK = "estudiante_id_pk";
 
 
 

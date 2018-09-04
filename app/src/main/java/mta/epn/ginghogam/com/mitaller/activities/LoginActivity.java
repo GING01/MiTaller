@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView usuario;
     TextView contraseña;
     private TutorDAO tutorDAO;
+    private Tutor tutor;
 
 
     @Override
@@ -46,7 +47,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void validar(View view) {
         if(validarUsuario()){
-            startActivity(new Intent(LoginActivity.this,MenuInicialActivity.class));
+            Intent intent = new Intent(LoginActivity.this,MenuInicialActivity.class);
+            intent.putExtra("tutor", tutor);
+            startActivity(intent);
 
         }
         else
@@ -56,13 +59,19 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validarUsuario() {
         tutorDAO =new TutorDAO(this);
-        List<Tutor> tutorList = new ArrayList<>();
+        tutor = new Tutor();
+
         String usr= "'"+usuario.getText().toString().trim()+"'";
         String pass = "'"+contraseña.getText().toString().trim()+"'";
         Cursor cursor = tutorDAO.retrieve(usr , pass);
         try {
             cursor.moveToFirst();
-            cursor.getString(0);
+            tutor.setIdTutor(cursor.getInt(0));
+            tutor.setNombreTutor(cursor.getString(1));
+            tutor.setApellidoTutor(cursor.getString(2));
+            tutor.setCiTutor(cursor.getString(3));
+            tutor.setUsuarioTutor(cursor.getString(4));
+            tutor.setContraseñaTutor(cursor.getString(5));
             return true;
         }
         catch (Exception e){

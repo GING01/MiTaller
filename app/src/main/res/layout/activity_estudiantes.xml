@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context="mta.epn.ginghogam.com.mitaller.activities.EstudiantesActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerEstudiante"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
