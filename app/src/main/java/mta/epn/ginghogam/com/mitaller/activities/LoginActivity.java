@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView contraseña;
     private TutorDAO tutorDAO;
     private Tutor tutor;
+    private String id;
 
 
     @Override
