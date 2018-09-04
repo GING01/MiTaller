@@ -38,18 +38,16 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         setSupportActionBar(toolbar);
 
 
-       // Bundle extras = getIntent().getExtras();
-       // tutor = extras.getParcelable("tutor");
+        Bundle extras = getIntent().getExtras();
+        tutor = extras.getParcelable("tutor");
 
-        //SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        //String restoredText = preferences.getString("ID", null);
+        SharedPreferences preferences = this.getSharedPreferences("mitaller.iniciosesion", Context.MODE_PRIVATE);
 
-//        Gson gson = new Gson();
-//        String json = preferences.getString("tutor", "");
-//        tutor = gson.fromJson(json, Tutor.class);
         tutor = new Tutor();
-        tutor.setIdTutor(preferences.getInt("ID",33));
+
+
+        tutor.setIdTutor(preferences.getInt("ID",0));
+
         tutor.setNombreTutor(preferences.getString("nombre",null));
         tutor.setUsuarioTutor(preferences.getString("usuario",null));
         tutor.setContraseñaTutor(preferences.getString("contraseña",null));
@@ -58,7 +56,7 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         if(tutor == null){
             Toast.makeText(this, " PATO", Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(this, " contrase;a: "+tutor.getContraseñaTutor(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, " contrase;a: "+tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
         }
 
 
