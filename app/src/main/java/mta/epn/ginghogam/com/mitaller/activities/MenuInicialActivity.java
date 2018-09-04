@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
@@ -25,6 +27,8 @@ import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 public class MenuInicialActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button pagerAct;
     private Tutor tutor;
+    private static  final String preference="mitaller.iniciosesion";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,33 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         setSupportActionBar(toolbar);
 
 
-        Bundle extras = getIntent().getExtras();
-        tutor = extras.getParcelable("tutor");
+       // Bundle extras = getIntent().getExtras();
+       // tutor = extras.getParcelable("tutor");
 
-        //Toast.makeText(this, " tutor"+tutor.getApellidoTutor(), Toast.LENGTH_LONG).show();
+        //SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        //String restoredText = preferences.getString("ID", null);
+
+//        Gson gson = new Gson();
+//        String json = preferences.getString("tutor", "");
+//        tutor = gson.fromJson(json, Tutor.class);
+        tutor = new Tutor();
+        tutor.setIdTutor(preferences.getInt("ID",33));
+        tutor.setNombreTutor(preferences.getString("nombre",null));
+        tutor.setUsuarioTutor(preferences.getString("usuario",null));
+        tutor.setContraseñaTutor(preferences.getString("contraseña",null));
+
+
+        if(tutor == null){
+            Toast.makeText(this, " PATO", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, " contrase;a: "+tutor.getContraseñaTutor(), Toast.LENGTH_LONG).show();
+        }
+
+
+
+
+
 
 
         pagerAct = (Button)findViewById(R.id.pager_act);
