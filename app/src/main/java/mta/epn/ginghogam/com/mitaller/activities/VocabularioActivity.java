@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
     private SQLiteDB sqLiteDB;
     private VocabularioDAO vocabularioDAO;
     private Taller taller;
+    private Button aceptar,cancelar;
+    public boolean visible=false;
+    ArrayList<Vocabulario> seleccion= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +122,13 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
             EdicionPalabraActivity.startP(VocabularioActivity.this, taller);
             return true;
         }
+        if (id==R.id.borrar){
+            visible=true;
+            palabraListAdapter.notifyDataSetChanged();
+            aceptar.setVisibility(View.VISIBLE);
+            cancelar.setVisibility(View.VISIBLE);
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -125,5 +137,35 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         if(taller != null) {
             EdicionPalabraActivity.startP(this, palabraListAdapter.getItem(position), taller);
         }
+    }
+
+    public void cancelar(View view) {
+        visible=false;
+        palabraListAdapter.notifyDataSetChanged();
+        aceptar.setVisibility(View.GONE);
+        cancelar.setVisibility(View.GONE);
+    }
+
+    public void aceptar(View view) {
+        borrarElementos();
+        recreate();
+    }
+    public void prepararSeleccion(View view, int position){
+        if(((CheckBox)view).isChecked()){
+            seleccion.add(palabraListAdapter.getItem(position));
+        }
+        else{
+            seleccion.remove(palabraListAdapter.getItem(position));
+        }
+
+    }
+    public void borrarElementos(){
+        sqLiteDB = new SQLiteDB(this);
+        vocabularioDAO = new VocabularioDAO(this);
+        for(int i=0; i<seleccion.size();i++){
+            vocabularioDAO.delete((Integer)seleccion.get(i).getIdTaller());
+        }
+
+
     }
 }

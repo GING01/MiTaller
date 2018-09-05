@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.adaptadores.HistoriaListAdapter;
 import mta.epn.ginghogam.com.mitaller.db.HistoriaDAO;
 import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
+import mta.epn.ginghogam.com.mitaller.db.TallerDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Historia;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
@@ -32,7 +35,11 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
     private LinearLayoutManager linearLayoutManager;
 
 
+    private SQLiteDB sqLiteDB;
     private HistoriaDAO historiaDAO;
+    private Button aceptar,cancelar;
+    public boolean visible=false;
+    ArrayList<Historia> seleccion= new ArrayList<>();
 
 
 
@@ -53,6 +60,8 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         linearLayoutManager = new LinearLayoutManager(this);
         historiaListAdapter = new HistoriaListAdapter(this);
         historiaListAdapter.setOnItemClickListener(this);
+        aceptar=findViewById(R.id.aceptar);
+        cancelar =findViewById(R.id.cancelar);
 
         recyclerHistoria.setLayoutManager(linearLayoutManager);
         recyclerHistoria.setAdapter(historiaListAdapter);
@@ -114,6 +123,13 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
             EdicionHistoriaActivity.startH(HistoriaActivity.this, taller);
             return true;
         }
+        if (id==R.id.borrar){
+            visible=true;
+            historiaListAdapter.notifyDataSetChanged();
+            aceptar.setVisibility(View.VISIBLE);
+            cancelar.setVisibility(View.VISIBLE);
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -126,6 +142,37 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
 
             EdicionHistoriaActivity.startH(this, historiaListAdapter.getItem(position), taller);
         }
+    }
+
+    public void aceptar(View view) {
+        borrarElementos();
+        recreate();
+    }
+
+    public void cancelar(View view) {
+        visible=false;
+        historiaListAdapter.notifyDataSetChanged();
+        aceptar.setVisibility(View.GONE);
+        cancelar.setVisibility(View.GONE);
+    }
+
+    public void prepararSeleccion(View view, int position){
+        if(((CheckBox)view).isChecked()){
+            seleccion.add(historiaListAdapter.getItem(position));
+        }
+        else{
+            seleccion.remove(historiaListAdapter.getItem(position));
+        }
+
+    }
+    public void borrarElementos(){
+        sqLiteDB = new SQLiteDB(this);
+        historiaDAO = new HistoriaDAO(this);
+        for(int i=0; i<seleccion.size();i++){
+            historiaDAO.delete((Integer)seleccion.get(i).getIdTaller());
+        }
+
+
     }
 }
 

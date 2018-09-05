@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,19 +16,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.activities.VocabularioActivity;
 import mta.epn.ginghogam.com.mitaller.entidades.Vocabulario;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
-public class PalabraListAdapter extends RecyclerView.Adapter<PalabraListAdapter.ContactHolder>{
+public class PalabraListAdapter extends RecyclerView.Adapter<PalabraListAdapter.ContactHolder> implements View.OnClickListener{
 
     private List<Vocabulario> vocabularioList;
     private Context context;
+    VocabularioActivity vocabularioActivity;
 
     private RecyclerItemClickListener recyclerItemClickListener;
+    protected View.OnClickListener onClickListener;
 
     public PalabraListAdapter(Context context) {
         this.context = context;
         this.vocabularioList = new ArrayList<>();
+        vocabularioActivity=(VocabularioActivity) context;
     }
     private void add(Vocabulario item) {
         vocabularioList.add(item);
@@ -56,7 +61,7 @@ public class PalabraListAdapter extends RecyclerView.Adapter<PalabraListAdapter.
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_palabras, parent, false);
-
+        view.setOnClickListener(onClickListener);
         final ContactHolder contactHolder = new ContactHolder(view);
 
         contactHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +92,13 @@ public class PalabraListAdapter extends RecyclerView.Adapter<PalabraListAdapter.
         }else {
             holder.imgPalabra.setImageBitmap(BitmapFactory.decodeFile(vocabulario.getImagenPalabra().toString()));
         }
+        if(!vocabularioActivity.visible){
+            holder.checkBox.setVisibility(View.GONE);
+        }
+        else {
+            holder.checkBox.setVisibility(View.VISIBLE);
+            holder.checkBox.setChecked(false);
+        }
     }
 
     @Override
@@ -98,14 +110,29 @@ public class PalabraListAdapter extends RecyclerView.Adapter<PalabraListAdapter.
         this.recyclerItemClickListener = recyclerItemClickListener;
     }
 
-    static class ContactHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onClick(View v) {
+        if(onClickListener!=null){
+            onClickListener.onClick(v);
+        }
+    }
+
+    class ContactHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imgPalabra;
         TextView palabra;
+        CheckBox checkBox;
 
         public ContactHolder(View itemView) {
             super(itemView);
             imgPalabra = (ImageView) itemView.findViewById(R.id.img_palabra_V);
             palabra = (TextView) itemView.findViewById(R.id.palabra_V);
+            checkBox=(CheckBox) itemView.findViewById(R.id.seleccionar);
+            checkBox.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            vocabularioActivity.prepararSeleccion(v,getAdapterPosition());
         }
     }
 }

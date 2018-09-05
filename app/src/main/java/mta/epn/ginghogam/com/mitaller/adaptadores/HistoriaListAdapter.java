@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,20 +16,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.activities.HistoriaActivity;
 import mta.epn.ginghogam.com.mitaller.entidades.Historia;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
-public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapter.ContactHolder>{
+public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapter.ContactHolder> implements View.OnClickListener{
 
     private List<Historia> historiaList;
     private Context context;
+    HistoriaActivity historiaActivity;
 
     private RecyclerItemClickListener recyclerItemClickListener;
+    protected View.OnClickListener onClickListener;
 
     public HistoriaListAdapter(Context context) {
         this.context = context;
         this.historiaList = new ArrayList<>();
+        historiaActivity=(HistoriaActivity) context;
     }
     private void add(Historia item) {
         historiaList.add(item);
@@ -56,8 +61,8 @@ public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapte
     }
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_historias, parent, false);
-
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_historias, null, false);
+        view.setOnClickListener(onClickListener);
         final ContactHolder contactHolder = new ContactHolder(view);
 
         contactHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +77,9 @@ public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapte
             }
         });
         return contactHolder;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -90,6 +98,13 @@ public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapte
         }else {
             holder.imgHistoria.setImageBitmap(BitmapFactory.decodeFile(historia.getImagenHistoria().toString()));
         }
+        if(!historiaActivity.visible){
+            holder.checkBox.setVisibility(View.GONE);
+        }
+        else {
+            holder.checkBox.setVisibility(View.VISIBLE);
+            holder.checkBox.setChecked(false);
+        }
     }
 
     @Override
@@ -101,9 +116,17 @@ public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapte
         this.recyclerItemClickListener = recyclerItemClickListener;
     }
 
-    static class ContactHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onClick(View v) {
+        if(onClickListener!=null){
+            onClickListener.onClick(v);
+        }
+    }
+
+    public class ContactHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imgHistoria;
         TextView nombreHistoria, descripcionHistoria, numLaminas, dificultad;
+        CheckBox checkBox;
 
         public ContactHolder(View itemView) {
             super(itemView);
@@ -112,6 +135,13 @@ public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapte
             descripcionHistoria = (TextView) itemView.findViewById(R.id.descripcion_historia);
             numLaminas = (TextView) itemView.findViewById(R.id.num_laminas);
             dificultad = (TextView) itemView.findViewById(R.id.dificultad);
+            checkBox=(CheckBox) itemView.findViewById(R.id.seleccionar);
+            checkBox.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            historiaActivity.prepararSeleccion(v,getAdapterPosition());
         }
     }
 }

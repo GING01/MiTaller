@@ -31,6 +31,12 @@
                 android:textAlignment="center"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+            <CheckBox
+                android:id="@+id/seleccionar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Seleccionar"
+                android:visibility="gone"/>
         </LinearLayout>
 
 
