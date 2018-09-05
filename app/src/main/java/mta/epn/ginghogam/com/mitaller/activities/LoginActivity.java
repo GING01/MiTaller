@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "PAto", Toast.LENGTH_LONG).show();
 
         }else{
-            Toast.makeText(LoginActivity.this,"id: "+ id, Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this,"datos"+ id, Toast.LENGTH_LONG).show();
 
         }
 
