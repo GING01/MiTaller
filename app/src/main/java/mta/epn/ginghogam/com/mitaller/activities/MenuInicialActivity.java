@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
@@ -25,6 +27,8 @@ import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 public class MenuInicialActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button pagerAct;
     private Tutor tutor;
+    private static  final String preference="mitaller.iniciosesion";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,28 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
 
-        //Toast.makeText(this, " tutor"+tutor.getApellidoTutor(), Toast.LENGTH_LONG).show();
+        SharedPreferences preferences = this.getSharedPreferences("mitaller.iniciosesion", Context.MODE_PRIVATE);
+
+        tutor = new Tutor();
+
+
+        tutor.setIdTutor(preferences.getInt("ID",0));
+
+        tutor.setNombreTutor(preferences.getString("nombre",null));
+        tutor.setUsuarioTutor(preferences.getString("usuario",null));
+        tutor.setContraseñaTutor(preferences.getString("contraseña",null));
+
+
+        if(tutor == null){
+            Toast.makeText(this, " PATO", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, " contrase;a: "+tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
+        }
+
+
+
+
+
 
 
         pagerAct = (Button)findViewById(R.id.pager_act);

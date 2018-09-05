@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     TextView contraseña;
     private TutorDAO tutorDAO;
     private static  final String preference="mitaller.iniciosesion";
-    public String id;
+    public Integer id;
+    private String nombre, apellido, ci, user, password;
 
+    private Tutor tutor;
 
 
 
@@ -39,10 +43,11 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         usuario =findViewById(R.id.txtUsuario);
         contraseña=findViewById(R.id.txtcontraseña);
-        if (obtenerEstado()){
-            startActivity(new Intent(LoginActivity.this,MenuInicialActivity.class));
+        if (obtenerEstado(tutor)){
+            Intent i = new Intent(LoginActivity.this,MenuInicialActivity.class);
+            i.putExtra("tutor",tutor);
+            startActivity(i);
             finish();
-
         }
 
     }
@@ -56,8 +61,11 @@ public class LoginActivity extends AppCompatActivity {
 
     public void validar(View view) {
         if(validarUsuario()){
-            startActivity(new Intent(LoginActivity.this,MenuInicialActivity.class));
+            Intent intent = new Intent(LoginActivity.this,MenuInicialActivity.class);
+
             guardarEstado();
+            intent.putExtra("tutor", tutor);
+            startActivity(intent);
             finish();
 
         }
@@ -67,14 +75,35 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void guardarEstado() {
-        SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
-        preferences.edit().putString("ID", String.valueOf(id)).commit();
+
+        SharedPreferences preferences =  getSharedPreferences(preference, MODE_PRIVATE);
+
+
+        preferences.edit().putInt("ID", Integer.valueOf(id)).commit();
+        preferences.edit().putString("nombre", String.valueOf(nombre)).commit();
+        preferences.edit().putString("apellido", String.valueOf(apellido)).commit();
+        preferences.edit().putString("usuario", String.valueOf(user)).commit();
+        preferences.edit().putString("contraseña", String.valueOf(password)).commit();
+        preferences.edit().putString("ci", String.valueOf(ci)).commit();
+
+
+
+        if(tutor==null){
+            Toast.makeText(LoginActivity.this, "PAto", Toast.LENGTH_LONG).show();
+
+        }else{
+            Toast.makeText(LoginActivity.this,"id: "+ id, Toast.LENGTH_LONG).show();
+
+        }
+
     }
-    private boolean obtenerEstado() {
+    private boolean obtenerEstado(Tutor tutor) {
 
         SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
-        String restoredText = preferences.getString("ID", null);
-        if (restoredText != null) {
+        Integer restoredText = preferences.getInt("ID", 0);
+
+
+        if (restoredText != 0) {
             return true;
         }
         else
@@ -84,13 +113,18 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validarUsuario() {
         tutorDAO =new TutorDAO(this);
-        List<Tutor> tutorList = new ArrayList<>();
+        tutor = new Tutor();
         String usr= "'"+usuario.getText().toString().trim()+"'";
         String pass = "'"+contraseña.getText().toString().trim()+"'";
         Cursor cursor = tutorDAO.retrieve(usr , pass);
         try {
             cursor.moveToFirst();
-            id = cursor.getString(0).trim();
+            id = cursor.getInt(0);
+            nombre = cursor.getString(1);
+            apellido = cursor.getString(2);
+            ci = cursor.getString(3);
+            user = cursor.getString(4);
+            password = cursor.getString(5);
 
             return true;
         }
