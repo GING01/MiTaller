@@ -142,8 +142,24 @@ public class RegistroTutorActivity extends AppCompatActivity {
                    tutor.setCiTutor(ci.getText().toString());
                    tutor.setUsuarioTutor(usuario.getText().toString());
                    tutor.setContraseñaTutor(contraseña.getText().toString());
-                   tutorDAO.create(tutor);
-                    finish();
+                   if (contraseña.getText().toString().equals(contraseña2.getText().toString())){
+
+                       if(!nombre.getText().toString().equals("") && !apellido.getText().toString().equals("") && !ci.getText().toString().equals("") &&
+                               !usuario.getText().toString().equals("") &&
+                               !contraseña.getText().toString().equals("")){
+                           tutorDAO.create(tutor);
+                           finish();
+                       }
+                       else{
+                           Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_LONG).show();
+                       }
+                   }
+                   else {
+                       Toast.makeText(RegistroTutorActivity.this, "Las contraseñas tienen que ser iguales", Toast.LENGTH_SHORT).show();
+
+                   }
+
+
                 }
                 catch (Exception e)
                 {
@@ -168,12 +184,27 @@ public class RegistroTutorActivity extends AppCompatActivity {
                     tutor.setCiTutor(ci.getText().toString());
                     tutor.setUsuarioTutor(usuario.getText().toString());
                     tutor.setContraseñaTutor(contraseña.getText().toString());
-                    tutorDAO.update(tutor);
-                    finish();
+                    if (contraseña.getText().toString().equals(contraseña2.getText().toString())){
+
+                        if(!nombre.getText().toString().equals("") && !apellido.getText().toString().equals("") && !ci.getText().toString().equals("") &&
+                                !usuario.getText().toString().equals("") &&
+                                !contraseña.getText().toString().equals("")){
+                            tutorDAO.update(tutor);
+                            finish();
+                        }
+                        else{
+                            Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
+                        Toast.makeText(RegistroTutorActivity.this, "Las contraseñas tienen que ser iguales", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(RegistroTutorActivity.this, "No se pudo registrar", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistroTutorActivity.this, "No se pudo actualizar", Toast.LENGTH_LONG).show();
 
                 }
 
