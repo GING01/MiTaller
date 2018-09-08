@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,29 +16,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.activities.EstudiantesActivity;
+import mta.epn.ginghogam.com.mitaller.activities.TallerActivity;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
-public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAdapter.ContactHolder>{
+public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAdapter.ContactHolder> implements View.OnClickListener {
 
     private List<Estudiante> estudianteList;
     private Context context;
+    EstudiantesActivity estudianteActivity;
 
     private RecyclerItemClickListener recyclerItemClickListener;
+    protected View.OnClickListener onClickListener;
 
     public EstudianteListAdapter(Context context) {
         this.context = context;
         this.estudianteList = new ArrayList<>();
+        estudianteActivity = (EstudiantesActivity) context;
     }
+
     private void add(Estudiante item) {
         estudianteList.add(item);
         notifyItemInserted(estudianteList.size() - 1);
     }
+
     public void addAll(List<Estudiante> vocabularioList) {
         for (Estudiante item : vocabularioList) {
             add(item);
         }
     }
+
     public void remove(Estudiante item) {
         int position = estudianteList.indexOf(item);
         if (position > -1) {
@@ -45,18 +54,21 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
             notifyItemRemoved(position);
         }
     }
+
     public void clear() {
         while (getItemCount() > 0) {
             remove(getItem(0));
         }
     }
+
     public Estudiante getItem(int position) {
         return estudianteList.get(position);
     }
+
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_estudiantes, parent, false);
-
+        view.setOnClickListener(onClickListener);
         final ContactHolder contactHolder = new ContactHolder(view);
 
         contactHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +80,7 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
                         recyclerItemClickListener.onItemClick(adapterPos, contactHolder.itemView);
                     }
                 }
+
             }
         });
         return contactHolder;
@@ -78,7 +91,6 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
         final Estudiante estudiante = estudianteList.get(position);
 
 
-
         holder.nombre.setText(estudiante.getNombreEstudiate());
         holder.apellido.setText(estudiante.getApellidoEstudiante());
         holder.edad.setText(Integer.toString(estudiante.getEdadEstudiante()));
@@ -86,10 +98,17 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
 
         File file = new File(estudiante.getFotoEstudiante());
         if (!file.exists()) {
-            Toast.makeText(context,"no Exist", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "no Exist", Toast.LENGTH_LONG).show();
             holder.imagen.setImageResource(R.drawable.no_foto);
-        }else {
+        } else {
             holder.imagen.setImageBitmap(BitmapFactory.decodeFile(estudiante.getFotoEstudiante().toString()));
+        }
+        if(!estudianteActivity.visible){
+            holder.checkBox.setVisibility(View.GONE);
+        }
+        else {
+            holder.checkBox.setVisibility(View.VISIBLE);
+            holder.checkBox.setChecked(false);
         }
     }
 
@@ -102,9 +121,17 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
         this.recyclerItemClickListener = recyclerItemClickListener;
     }
 
-    static class ContactHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onClick(View v) {
+        if(onClickListener!=null){
+            onClickListener.onClick(v);
+        }
+    }
+
+    class ContactHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imagen;
         TextView nombre, apellido, edad;
+        CheckBox checkBox;
 
         public ContactHolder(View itemView) {
             super(itemView);
@@ -112,6 +139,15 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
             nombre = (TextView) itemView.findViewById(R.id.nombreE);
             apellido = (TextView) itemView.findViewById(R.id.apellidoE);
             edad = (TextView) itemView.findViewById(R.id.edadE);
+            checkBox = (CheckBox) itemView.findViewById(R.id.seleccionar);
+            checkBox.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            {
+                estudianteActivity.prepararSeleccion(v, getAdapterPosition());
+            }
         }
     }
 }

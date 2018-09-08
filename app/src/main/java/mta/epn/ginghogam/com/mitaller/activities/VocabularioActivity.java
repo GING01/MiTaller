@@ -163,7 +163,7 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         sqLiteDB = new SQLiteDB(this);
         vocabularioDAO = new VocabularioDAO(this);
         for(int i=0; i<seleccion.size();i++){
-            vocabularioDAO.delete((Integer)seleccion.get(i).getIdTaller());
+            vocabularioDAO.delete((Integer)seleccion.get(i).getIdpalabra());
         }
 
 

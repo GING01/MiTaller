@@ -169,7 +169,7 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         sqLiteDB = new SQLiteDB(this);
         historiaDAO = new HistoriaDAO(this);
         for(int i=0; i<seleccion.size();i++){
-            historiaDAO.delete((Integer)seleccion.get(i).getIdTaller());
+            historiaDAO.delete((Integer)seleccion.get(i).getIdHistoria());
         }
 
 
