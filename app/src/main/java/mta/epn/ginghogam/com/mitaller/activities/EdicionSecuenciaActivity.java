@@ -29,13 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
-import mta.epn.ginghogam.com.mitaller.db.HistoriaDAO;
 import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
 import mta.epn.ginghogam.com.mitaller.db.SecuenciaDAO;
-import mta.epn.ginghogam.com.mitaller.db.TallerDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Historia;
 import mta.epn.ginghogam.com.mitaller.entidades.Secuencia;
-import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.utilidades.RealPathUtil;
 
 import static android.Manifest.permission.CAMERA;
@@ -129,7 +126,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 bt1.setOnDragListener(dragListener);
                 bt1.setTag(i);
                 rootLayout.addView(bt1);
-                imagenes.add(null);
+                imagenes.add("");
 
 
             }
@@ -166,6 +163,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),v.getTag()+"?", Toast.LENGTH_SHORT).show();
                     if(pathArrastrar==null && fileImagen==null){
                         ((ImageView) v).setImageDrawable(imagen.getDrawable());
+                        imagenes.set((Integer) v.getTag(),"");
                     }
                     else if(fileImagen != null){
                         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -314,22 +312,37 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    private boolean comprobarImg(){
+        boolean lleno=false;
+    for(int j=0;j<numeroImg;j++){
+        if(imagenes.get(j).equals("") || imagenes.get(j)==null || imagenes.isEmpty()) {
+            lleno=true;
+        }
+    }
 
+        if(lleno==true) {
+        return false;
+        }
+                else {
+            return true;
+        }
+    }
     private void guardar(boolean edit ) {
-        if (edit==true){
-            for(int i= 0; i< numeroImg;i++){
-                secuencia = new Secuencia();//instanciar
-                secuencia.setIdSecuencia(secuenciaList.get(i).getIdSecuencia());
-                secuencia.setImagenSecuencia(imagenes.get(i));
-                secuencia.setOrdenImagenSecuencia((i));
-                secuencia.setIdHistoria(historia.getIdHistoria());
-                secuenciaDAO.update(secuencia);
 
+
+        if (edit==true && comprobarImg()){
+            for(int i= 0; i< numeroImg;i++){
+                    secuencia = new Secuencia();//instanciar
+                    secuencia.setIdSecuencia(secuenciaList.get(i).getIdSecuencia());
+                    secuencia.setImagenSecuencia(imagenes.get(i));
+                    secuencia.setOrdenImagenSecuencia((i));
+                    secuencia.setIdHistoria(historia.getIdHistoria());
+                    secuenciaDAO.update(secuencia);
             }
             finish();
 
         }
-        else {
+        else if(edit==false && comprobarImg()) {
 
             for(int i= 0; i< numeroImg;i++){
                     secuencia = new Secuencia();
@@ -341,6 +354,9 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             }
             finish();
 
+        }
+        else {
+            Toast.makeText(this, "revise si subio todas las imagenes para la secuencia", Toast.LENGTH_SHORT).show();
         }
 
     }
