@@ -71,8 +71,9 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
             @Override
             public void onClick(View view) {
 
-                Intent toswipe = new Intent(MenuInicialActivity.this, SwipeDataActivity.class);
-                startActivity(toswipe);
+                Intent intent = new Intent(MenuInicialActivity.this, EleccionEstudianteEntrenamientoActivity.class);
+                intent.putExtra("tutor", tutor);
+                startActivity(intent);
             }
         });
 
@@ -143,6 +144,9 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
             startActivity(i);
 
         } else if (id == R.id.evaluacion) {
+            Intent i = new Intent(MenuInicialActivity.this, EleccionEstudianteEstadisticaActivity.class);
+            i.putExtra("tutor", tutor);
+            startActivity(i);
 
         } else if (id == R.id.salir) {
             SharedPreferences preferences = this.getSharedPreferences("mitaller.iniciosesion", Context.MODE_PRIVATE);

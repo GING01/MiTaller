@@ -66,7 +66,8 @@
         <activity android:name=".activities.SwipeDataActivity" />
         <activity android:name=".activities.EstudiantesActivity" />
         <activity android:name=".activities.EdicionEstudianteActivity" />
-        <activity android:name=".activities.EleccionEstudianteEntrenamientoActivity"></activity>
+        <activity android:name=".activities.EleccionEstudianteEntrenamientoActivity" />
+        <activity android:name=".activities.EleccionEstudianteEstadisticaActivity"></activity>
     </application>
 
 </manifest>
