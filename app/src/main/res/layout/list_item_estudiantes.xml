@@ -12,98 +12,79 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="129dp"
-        android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical">
 
         <ImageView
             android:id="@+id/imgEstudiante"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@mipmap/ic_launcher" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:orientation="vertical">
-
+            android:layout_marginStart="5dp">
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <TableRow>
-
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:text="Nombre: "
-                        android:textColor="#000"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
-
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/nombreE"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:text="Name here"
-                        android:textColor="#000"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Apellido: "
-                        android:textColor="#000"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
-
+                        android:textColor="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Apellido: "
+                        android:textSize="20sp"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/apellidoE"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Edad: "
-                        android:textColor="#000"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
-
+                        android:textColor="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Edad: "
+                        android:textSize="20sp"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/edadE"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:visibility="gone">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Seleccionar: "
-                        android:textColor="#000"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
-
+                        android:textColor="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+                <TableRow>
                     <CheckBox
                         android:id="@+id/seleccionar"
+                        android:textSize="20sp"
+                        android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:textSize="20sp" />
+                        android:visibility="gone"
+                        android:text="Seleccionar: "/>
                 </TableRow>
             </TableLayout>
         </LinearLayout>

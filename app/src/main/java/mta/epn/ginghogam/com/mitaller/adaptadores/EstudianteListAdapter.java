@@ -67,7 +67,7 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
 
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_estudiantes, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_estudiantes, null, false);
         view.setOnClickListener(onClickListener);
         final ContactHolder contactHolder = new ContactHolder(view);
 
