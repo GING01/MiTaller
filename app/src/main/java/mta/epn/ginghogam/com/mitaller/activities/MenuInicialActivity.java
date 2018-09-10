@@ -151,7 +151,7 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         } else if (id == R.id.salir) {
             SharedPreferences preferences = this.getSharedPreferences("mitaller.iniciosesion", Context.MODE_PRIVATE);
             preferences.edit().clear().commit();
-            finish();
+            startActivity(new Intent(MenuInicialActivity.this, LoginActivity.class));
 
         }
 
