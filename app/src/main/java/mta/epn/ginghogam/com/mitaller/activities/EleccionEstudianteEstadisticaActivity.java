@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
-import mta.epn.ginghogam.com.mitaller.adaptadores.EstudianteEntrenamientoListAdapter;
 import mta.epn.ginghogam.com.mitaller.adaptadores.EstudianteEstadisticaListAdapter;
 import mta.epn.ginghogam.com.mitaller.db.EstudianteDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
@@ -102,7 +101,7 @@ public class EleccionEstudianteEstadisticaActivity extends AppCompatActivity imp
 
     @Override
     public void onItemClick(int position, View view) {
-        Intent intent = new Intent(EleccionEstudianteEstadisticaActivity.this, SwipeDataActivity.class);
+        Intent intent = new Intent(EleccionEstudianteEstadisticaActivity.this, SeleccionTallerEntrenamientoActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudianteEstadisticaListAdapter.getItem(position));
         startActivity(intent);

@@ -2,10 +2,13 @@ package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.utilidades.ShadowTransformer;
 
-public class SwipeDataActivity extends AppCompatActivity {
+public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private CardPagerAdapterS mCardAdapter;
@@ -35,7 +38,10 @@ public class SwipeDataActivity extends AppCompatActivity {
     private Estudiante estudiante;
     private Tutor tutor;
 
+    private TextView texto;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +81,10 @@ public class SwipeDataActivity extends AppCompatActivity {
                 mCardAdapter.addCardItemS(taller);
             }while (cursor.moveToNext());
         }
+
+        texto = findViewById(R.id.texto);
+
+        texto.setText(tutor.getNombreTutor());
 
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
         mViewPager.setAdapter(mCardAdapter);

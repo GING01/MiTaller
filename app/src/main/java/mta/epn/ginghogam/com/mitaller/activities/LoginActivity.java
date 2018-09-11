@@ -1,5 +1,6 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -50,6 +51,16 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"Adios!",Toast.LENGTH_LONG).show();
+        finish();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
     public void registrarTutor(View view) {
 

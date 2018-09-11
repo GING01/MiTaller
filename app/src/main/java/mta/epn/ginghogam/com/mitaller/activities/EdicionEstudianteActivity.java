@@ -229,9 +229,9 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(fileImagen.getPath().toString());
                 estudiante.setIdTutor(tutor.getIdTutor());
-                Toast.makeText(this, "edad: " + generoSelected, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "genero: " + generoSelected, Toast.LENGTH_LONG).show();
                 estudianteDAO.create(estudiante);
-                //finish();
+                finish();
             }
             if (pathGaleria != null) {
                 estudiante = new Estudiante();
@@ -257,8 +257,9 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
             case RESULTADO_FOTO:
                 if (resultCode == Activity.RESULT_OK ) {
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(fileImagen.getPath());
-                    foto.setImageBitmap(Bitmap.createScaledBitmap(bitmap,1024,1024, true));
+//                    Bitmap bitmap = BitmapFactory.decodeFile(fileImagen.getPath());
+//                    foto.setImageBitmap(Bitmap.createScaledBitmap(bitmap,500,500, true));
+                    foto.setImageBitmap(BitmapFactory.decodeFile(fileImagen.getPath()));
 
                     break;
                 } else
