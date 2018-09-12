@@ -63,11 +63,14 @@
             android:name=".activities.MenuInicialActivity"
             android:label="@string/title_activity_menu_inicial"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.SwipeDataActivity" />
+        <activity android:name=".activities.SeleccionTallerEntrenamientoActivity" />
         <activity android:name=".activities.EstudiantesActivity" />
         <activity android:name=".activities.EdicionEstudianteActivity" />
         <activity android:name=".activities.EleccionEstudianteEntrenamientoActivity" />
-        <activity android:name=".activities.EleccionEstudianteEstadisticaActivity"></activity>
+        <activity android:name=".activities.EleccionEstudianteEstadisticaActivity" />
+        <activity android:name=".activities.EntrenamientoVocabularioActivity" />
+        <activity android:name=".activities.SeleccionHistoriaEntrenamientoActivity" />
+        <activity android:name=".activities.SecuenciaEntrenamientoActivity"></activity>
     </application>
 
 </manifest>

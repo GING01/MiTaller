@@ -134,6 +134,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
         if (id==R.id.borrar){
             visible=true;
             estudianteListAdapter.notifyDataSetChanged();
+
             aceptar.setVisibility(View.VISIBLE);
             cancelar.setVisibility(View.VISIBLE);
 

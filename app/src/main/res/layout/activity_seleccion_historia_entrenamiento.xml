@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mta.epn.ginghogam.com.mitaller.activities.EleccionEstudianteEstadisticaActivity">
+    tools:context="mta.epn.ginghogam.com.mitaller.activities.SeleccionHistoriaEntrenamientoActivity">
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerEstudianteEstadistica"
+        android:id="@+id/recyclerHistoriaEntrenamiento"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
@@ -23,6 +23,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
 
 </android.support.constraint.ConstraintLayout>

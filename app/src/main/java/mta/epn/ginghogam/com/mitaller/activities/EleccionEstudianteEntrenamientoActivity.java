@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,9 +19,7 @@ import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.adaptadores.EstudianteEntrenamientoListAdapter;
-import mta.epn.ginghogam.com.mitaller.adaptadores.EstudianteListAdapter;
 import mta.epn.ginghogam.com.mitaller.db.EstudianteDAO;
-import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
@@ -137,7 +134,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
 
                 if(m_Text.equals(tutor.getContraseñaTutor())){
                     Toast.makeText(getApplicationContext(),"Password correcto", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(EleccionEstudianteEntrenamientoActivity.this, SwipeDataActivity.class);
+                    Intent intent = new Intent(EleccionEstudianteEntrenamientoActivity.this, SeleccionTallerEntrenamientoActivity.class);
                     intent.putExtra("tutor", tutor);
                     intent.putExtra("estudiante", estudianteEntrenamientoListAdapter.getItem(position));
                     startActivity(intent);

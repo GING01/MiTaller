@@ -84,9 +84,10 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
     }
 
     private void bind(final Taller item, final View view) {
-        TextView titleTextView = (TextView) view.findViewById(R.id.titleTextView);
+
         ImageView image = (ImageView) view.findViewById(R.id.imgPageTaller);
-        titleTextView.setText(item.getNombreTaller());;
+        Button taller = view.findViewById(R.id.irTaller);
+        taller.setText(item.getNombreTaller());
         image.setImageBitmap(BitmapFactory.decodeFile(item.getImagenTaller()));
 
 
