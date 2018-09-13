@@ -5,6 +5,7 @@ package mta.epn.ginghogam.com.mitaller.adaptadores.viewpager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -19,8 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.activities.EntrenamientoVocabularioActivity;
+import mta.epn.ginghogam.com.mitaller.activities.SeleccionTallerEntrenamientoActivity;
 import mta.epn.ginghogam.com.mitaller.activities.TallerActivity;
+import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
+import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 
 
 public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
@@ -29,16 +34,22 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
     private List<Taller> mData;
     private float mBaseElevation;
 
+    private Tutor tutor;
+    private Estudiante estudiante;
+
+
     public CardPagerAdapterS() {
         mData = new ArrayList<>();
         mViews = new ArrayList<>();
     }
 
-    public void addCardItemS(Taller item) {
+    public void addCardItemS(Taller item, Estudiante estudiante, Tutor tutor) {
         mViews.add(null);
         mData.add(item);
-    }
 
+        this.estudiante = estudiante;
+        this.tutor = tutor;
+    }
 
 
     public float getBaseElevation() {
@@ -65,7 +76,7 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.adapter, container, false);
         container.addView(view);
-        bind(mData.get(position), view);
+        bind(mData.get(position),estudiante, tutor, view);
         CardView cardView = (CardView) view.findViewById(R.id.cardView);
 
         if (mBaseElevation == 0) {
@@ -83,7 +94,7 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
         mViews.set(position, null);
     }
 
-    private void bind(final Taller item, final View view) {
+    private void bind(final Taller item, final Estudiante estudiante, final Tutor tutor, final View view) {
 
         ImageView image = (ImageView) view.findViewById(R.id.imgPageTaller);
         Button taller = view.findViewById(R.id.irTaller);
@@ -96,15 +107,19 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
             @Override
             public void onClick(View v) {
 
-                startActivity(view.getContext());
+                startActivity(view.getContext(), item, estudiante, tutor);
             }
         });
 
 
     }
 
-    public static void startActivity(Context context) {
-        context.startActivity(new Intent(context, TallerActivity.class));
+    public static void startActivity(Context context, Taller taller, Estudiante estudiante, Tutor tutor) {
+        Intent intent = new Intent(context, EntrenamientoVocabularioActivity.class);
+        intent.putExtra("taller", taller);
+        intent.putExtra("estudiante", estudiante);
+        intent.putExtra("tutor", tutor);
+        context.startActivity(intent);
     }
 
 
