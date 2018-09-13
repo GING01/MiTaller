@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -47,12 +49,15 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
 
     private String pathCamara, pathGaleria;
 
-    private EditText nombreHistoria, descripcionHistoria, numLaminas, dificultad;
+    private EditText nombreHistoria, descripcionHistoria;
     private ImageView imgHistoria, galeria;
+    private TextView dificultad;
+    private SeekBar seleccionDificultad;
 
     private Historia historia;
     private Taller taller;
     private SQLiteDB sqLiteDB;
+    int seekbarvalue=1;
     private HistoriaDAO historiaDAO;
 
 
@@ -79,13 +84,45 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
 
         nombreHistoria = (EditText) findViewById(R.id.nombreHistoria);
         descripcionHistoria = (EditText) findViewById(R.id.descripcionHistoria);
-        numLaminas = (EditText) findViewById(R.id.numLaminas);
-        dificultad = (EditText) findViewById(R.id.dificultad);
+        seleccionDificultad=(SeekBar)findViewById(R.id.seekBar2);
+        dificultad = (TextView) findViewById(R.id.dificultadtext);
         imgHistoria = (ImageView) findViewById(R.id.img_historia);
 
         Bundle extras = getIntent().getExtras();
         taller = extras.getParcelable("taller");
         validaPermiso();
+
+
+        seleccionDificultad.setMax(9);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            seleccionDificultad.setMin(1);
+        }
+
+        seleccionDificultad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(progress>=1 && progress <=3){
+                    seekbarvalue=progress;
+                    dificultad.setText("FACIL: "+progress+ " laminas");
+                }
+                if(progress>3 && progress <=6){
+                    dificultad.setText("MEDIO: "+progress+ " laminas");
+                }
+                if(progress>6 && progress <=9){
+                    dificultad.setText("DIFICIL: "+progress+ " laminas");
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
 
@@ -95,7 +132,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             Toast.makeText(this,"id t: "+taller.getIdTaller(), Toast.LENGTH_LONG).show();
             nombreHistoria.setText(historia.getNombreHistoria());
             descripcionHistoria.setText(historia.getDescripcionHistoria());
-            numLaminas.setText(historia.getNumeroLaminas());
+            seleccionDificultad.setProgress(Integer.parseInt(historia.getNumeroLaminas()));
             dificultad.setText(historia.getDificultad());
 
             File file = new File(historia.getImagenHistoria());
@@ -117,7 +154,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if(fileImagen != null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(numLaminas.getText().toString());
+                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
                 historia.setDificultad(dificultad.getText().toString());
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historiaDAO.update(historia);
@@ -126,7 +163,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria != null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(numLaminas.getText().toString());
+                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
                 historia.setDificultad(dificultad.getText().toString());
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 historiaDAO.update(historia);
@@ -135,7 +172,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria == null && fileImagen == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(numLaminas.getText().toString());
+                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
                 historia.setDificultad(dificultad.getText().toString());
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
@@ -144,7 +181,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(numLaminas.getText().toString());
+                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
                 historia.setDificultad(dificultad.getText().toString());
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
@@ -153,7 +190,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (fileImagen == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(numLaminas.getText().toString());
+                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
                 historia.setDificultad(dificultad.getText().toString());
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
@@ -167,7 +204,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia = new Historia();
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(numLaminas.getText().toString());
+                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
                 historia.setDificultad(dificultad.getText().toString());
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historia.setIdTaller(taller.getIdTaller());
@@ -178,7 +215,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia = new Historia();
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(numLaminas.getText().toString());
+                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
                 historia.setDificultad(dificultad.getText().toString());
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 historia.setIdTaller(taller.getIdTaller());

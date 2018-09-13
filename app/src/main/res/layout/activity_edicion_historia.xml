@@ -1,97 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
-    tools:context=".activities.EdicionTallerActivity">
+    tools:context=".activities.EdicionTallerActivity"
+    android:id="@+id/scrollView2">
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="85dp"
-        android:paddingBottom="85dp"
-        android:orientation="horizontal">
+        android:layout_width="557dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:layout_width="300dp"
-            android:layout_height="200dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
 
             <ImageView
                 android:id="@+id/img_historia"
-                android:layout_width="300dp"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
                 android:adjustViewBounds="true"
                 android:contentDescription="fotografía"
-                android:src="@drawable/no_foto" />
+                android:src="@drawable/no_foto"
+                tools:layout_conversion_absoluteHeight="200dp"
+                tools:layout_conversion_absoluteWidth="300dp"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="85dp"
+                android:layout_margin="5dp"/>
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/galeria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right">
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="23dp"
+                android:layout_weight="1"
+                android:contentDescription="logo galería"
+                android:onClick="galeria"
+                android:src="@android:drawable/ic_menu_gallery"
+                tools:layout_conversion_absoluteHeight="60dp"
+                tools:layout_conversion_absoluteWidth="60dp"
+                tools:layout_editor_absoluteX="227dp"
+                tools:layout_editor_absoluteY="53dp"
+                android:layout_alignParentRight="true"
+                tools:ignore="RtlCompat" />
 
-                <ImageView
-                    android:id="@+id/camara"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="logo cámara"
-                    android:onClick="tomarFoto"
-                    android:src="@android:drawable/ic_menu_camera" />
-
-                <ImageView
-                    android:id="@+id/galeria"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:onClick="galeria"
-                    android:contentDescription="logo galería"
-                    android:src="@android:drawable/ic_menu_gallery" />
-            </LinearLayout>
-        </FrameLayout>
-        <LinearLayout
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/nombreHistoria"
-                android:layout_width="343dp"
+            <ImageView
+                android:id="@+id/camara"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Nombre historia"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="67dp"
+                android:layout_weight="1"
+                android:contentDescription="logo cámara"
+                android:onClick="tomarFoto"
+                android:src="@android:drawable/ic_menu_camera"
+                tools:layout_conversion_absoluteHeight="60dp"
+                tools:layout_conversion_absoluteWidth="60dp"
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="53dp"
+                android:layout_alignParentRight="true"
+                tools:ignore="RtlCompat" />
+        </RelativeLayout>
 
-            <EditText
-                android:id="@+id/descripcionHistoria"
-                android:layout_width="343dp"
-                android:layout_height="156dp"
-                android:hint="Descripción Historia"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/numLaminas"
-                android:layout_width="343dp"
-                android:layout_height="156dp"
-                android:hint="Numero de laminas"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            tools:layout_editor_absoluteX="20dp">
 
-            <EditText
-                android:id="@+id/dificultad"
-                android:layout_width="343dp"
-                android:layout_height="156dp"
-                android:hint="Dificultad"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/nombreHistoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre historia"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="343dp"
+                    tools:layout_editor_absoluteX="295dp"
+                    tools:layout_editor_absoluteY="30dp" />
+
+                <EditText
+                    android:id="@+id/descripcionHistoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="141dp"
+                    android:hint="Descripción Historia"
+                    android:inputType="textMultiLine"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    tools:layout_conversion_absoluteHeight="156dp"
+                    tools:layout_conversion_absoluteWidth="343dp"
+                    tools:layout_editor_absoluteX="304dp"
+                    tools:layout_editor_absoluteY="85dp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Dificultad"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/dificultadtext"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginHorizontal="20dp"
+                    />
+
+                <SeekBar
+                    android:id="@+id/seekBar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
-</ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
