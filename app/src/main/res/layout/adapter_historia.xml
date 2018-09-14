@@ -3,73 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     app:cardUseCompatPadding="true">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/imgPageTaller"
-                    android:layout_width="300dp"
-                    android:layout_height="250dp"
-                    android:src="@drawable/ic_android_black_24dp"/>
-                android:visibility="gone"/>
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:gravity="center">
-                    <Button
-                        android:id="@+id/irTaller"
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/imgPageTaller"
+                        android:layout_width="290dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/ic_android_black_24dp"/>
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ir al taller!"/>
-                </LinearLayout>
+                        android:text="Historia"
+                        android:textAlignment="center"
+                        android:textSize="25dp" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/irTaller"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ir al taller!"/>
+                        <Button
+                            android:id="@+id/irTalle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ir al taller!"/>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
                 <TextView
-                    android:id="@+id/titleTextView"
+                    android:id="@+id/titleTextViewa"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Aqui va una descripcion de la historia que se desea practicar."
+                    android:textSize="25dp" />
+
+
 
             </LinearLayout>
 
-
-
-            <TextView
-                android:id="@+id/contentTextView"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:paddingEnd="5dp"
-                android:paddingRight="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingStart="5dp"
-                android:paddingHorizontal="5dp"
-                android:visibility="gone"/>
-
-
         </LinearLayout>
+
+
+
 
         <ImageView
             android:layout_width="wrap_content"
