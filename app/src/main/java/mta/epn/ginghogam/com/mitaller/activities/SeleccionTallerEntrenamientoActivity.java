@@ -174,13 +174,4 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
 
     }
 
-
-
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public Tutor getTutor() {
-        return tutor;
-    }
 }
