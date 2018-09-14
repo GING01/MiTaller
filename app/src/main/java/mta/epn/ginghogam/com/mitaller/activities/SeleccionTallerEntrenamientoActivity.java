@@ -50,6 +50,10 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     private ImageView guia;
 
     private TextToSpeech TtS;
+
+
+
+
     private Handler mHandler;
     private Runnable mRunnable;
     private int i = 0;
@@ -93,9 +97,12 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
                 taller.setDescripcionTaller(cursor.getString(2));
                 taller.setImagenTaller(cursor.getString(3));
                 tallerList.add(taller);
-                mCardAdapter.addCardItemS(taller);
+                mCardAdapter.addCardItemS(taller, estudiante, tutor);
             } while (cursor.moveToNext());
         }
+
+
+
 
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
@@ -165,5 +172,15 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         }
         else{}
 
+    }
+
+
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
     }
 }
