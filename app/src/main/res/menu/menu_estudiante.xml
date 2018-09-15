@@ -12,7 +12,13 @@
         android:title="Guardar"
         android:icon="@android:drawable/ic_menu_add"
         android:orderInCategory="10"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/buscar"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
 
 
 </menu>

@@ -3,15 +3,20 @@ package mta.epn.ginghogam.com.mitaller.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v4.view.ActionProvider;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,7 +29,7 @@ import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
-public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity implements RecyclerItemClickListener {
+public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity implements RecyclerItemClickListener, SearchView.OnQueryTextListener{
 
 
     private RecyclerView recyclerEstudiante;
@@ -34,6 +39,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
     private Tutor tutor;
 
     private String m_Text = "";
+    List<Estudiante> estudianteList;
 
 
 
@@ -74,12 +80,12 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
     void loadData(){
 
         estudianteDAO = new EstudianteDAO(this);
-        List<Estudiante> estudianteList = new ArrayList<>();
+
 
 
 
         long params = tutor.getIdTutor();
-
+        estudianteList = new ArrayList<>();
         Cursor cursor = estudianteDAO.retrieve(params);
         Estudiante estudiante;
 
@@ -105,6 +111,18 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
         estudianteEntrenamientoListAdapter.clear();
         estudianteEntrenamientoListAdapter.addAll(estudianteList);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_selecion_estudiante, menu);
+        MenuItem menuItem = menu.findItem(R.id.search);
+        SearchView searchView =(SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
+
+
 
     @Override
     public void onItemClick(final int position, final View view) {
@@ -148,5 +166,23 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
 
         builder.show();
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String userInput= newText.toLowerCase();
+        List<Estudiante> newlist = new ArrayList<>();
+        for(Estudiante estudiante: estudianteList){
+            if(estudiante.getNombreEstudiate().toLowerCase().contains(userInput)){
+                newlist.add(estudiante);
+            }
+        }
+        estudianteEntrenamientoListAdapter.setFilter(newlist);
+        return true;
     }
 }

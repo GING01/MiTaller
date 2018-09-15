@@ -136,4 +136,10 @@ public class EstudianteEntrenamientoListAdapter extends RecyclerView.Adapter<Est
         }
 
     }
+
+    public void setFilter(List<Estudiante> newlist){
+        this.estudianteList=new ArrayList<>();
+        this.estudianteList.addAll(newlist);
+        notifyDataSetChanged();
+    }
 }
