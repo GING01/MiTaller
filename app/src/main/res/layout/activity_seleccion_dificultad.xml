@@ -7,18 +7,19 @@
     tools:context="mta.epn.ginghogam.com.mitaller.activities.SeleccionDificultadActivity">
 
     <RelativeLayout
-        android:layout_width="369dp"
-        android:layout_height="138dp"
+        android:layout_width="982dp"
+        android:layout_height="198dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/ly2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textView4"
@@ -30,8 +31,8 @@
 
         <SeekBar
             android:id="@+id/seekbardificultad"
-            android:layout_width="268dp"
-            android:layout_height="36dp"
+            android:layout_width="401dp"
+            android:layout_height="65dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="12dp"
@@ -39,27 +40,23 @@
 
         <TextView
             android:id="@+id/dificultad"
-            android:layout_width="98dp"
-            android:layout_height="35dp"
+            android:layout_width="399dp"
+            android:layout_height="72dp"
             android:layout_centerInParent="true" />
 
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ly2"
-        android:layout_width="529dp"
-        android:layout_height="90dp"
+        android:layout_width="801dp"
+        android:layout_height="136dp"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/ly1"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
@@ -70,7 +67,7 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="887dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:ellipsize="marquee"
@@ -94,9 +91,9 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="48dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="95dp"
+        android:layout_height="96dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -104,7 +101,7 @@
         android:onClick="pasar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.895"
         app:layout_constraintStart_toEndOf="@+id/ly2"
         app:srcCompat="@drawable/arrow" />
 
