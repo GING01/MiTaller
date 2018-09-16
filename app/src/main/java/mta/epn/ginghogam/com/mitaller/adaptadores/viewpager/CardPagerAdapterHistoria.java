@@ -90,13 +90,12 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
 
     private void bind(final Taller item, final Estudiante estudiante, final Tutor tutor, final View view) {
 
-        ImageView image = (ImageView) view.findViewById(R.id.imgPageTaller);
-        Button taller = view.findViewById(R.id.irTaller);
-        taller.setText(item.getNombreTaller());
+      /*  ImageView image = (ImageView) view.findViewById(R.id.ivHistoria);
+
         image.setImageBitmap(BitmapFactory.decodeFile(item.getImagenTaller()));
 
 
-        Button fab = (Button) view.findViewById(R.id.irTaller);
+        Button fab = (Button) view.findViewById(R.id.play);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +103,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
                 startActivity(view.getContext(), item, estudiante, tutor);
             }
         });
-
+*/
 
     }
 

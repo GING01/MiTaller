@@ -1,5 +1,6 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -127,5 +128,12 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
             Log.e("LOG_TAG", "prepare() failed");
         }
 
+    }
+
+    public void pasar(View view) {
+        Intent intent = new Intent(EntrenamientoVocabularioActivity.this, SeleccionHistoriaEntrenamientoActivity.class);
+        intent.putExtra("tutor", tutor);
+        intent.putExtra("estudiante", estudiante);
+        startActivity(intent);
     }
 }
