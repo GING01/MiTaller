@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Handler;
@@ -57,6 +58,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     private Handler mHandler;
     private Runnable mRunnable;
     private int i = 0;
+    private String dificultad;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -69,6 +71,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
+        dificultad=extras.getParcelable("dificultad");
 
         Toast.makeText(this, "Estudiante: " + estudiante.getNombreEstudiate() + " - Tutor: " + tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
 
@@ -182,5 +185,11 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
 
     public Tutor getTutor() {
         return tutor;
+    }
+
+    public void pasar(View view) {
+        Intent intent = new Intent(SeleccionTallerEntrenamientoActivity.this, BienvenidaTallerActivity.class);
+        intent.putExtra("dificultad",lectura.getText());
+        startActivity(intent);
     }
 }

@@ -127,6 +127,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         Intent intent = new Intent(SeleccionDificultadActivity.this, SeleccionTallerEntrenamientoActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudiante);
+        intent.putExtra("dificultad",lectura.getText());
         startActivity(intent);
     }
 

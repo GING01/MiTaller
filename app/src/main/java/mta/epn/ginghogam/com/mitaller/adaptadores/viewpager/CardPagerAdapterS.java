@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.activities.BienvenidaTallerActivity;
 import mta.epn.ginghogam.com.mitaller.activities.EntrenamientoVocabularioActivity;
 import mta.epn.ginghogam.com.mitaller.activities.SeleccionTallerEntrenamientoActivity;
 import mta.epn.ginghogam.com.mitaller.activities.TallerActivity;
@@ -115,7 +116,7 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
     }
 
     public static void startActivity(Context context, Taller taller, Estudiante estudiante, Tutor tutor) {
-        Intent intent = new Intent(context, EntrenamientoVocabularioActivity.class);
+        Intent intent = new Intent(context, BienvenidaTallerActivity.class);
         intent.putExtra("taller", taller);
         intent.putExtra("estudiante", estudiante);
         intent.putExtra("tutor", tutor);

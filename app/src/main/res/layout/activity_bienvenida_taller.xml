@@ -4,47 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mta.epn.ginghogam.com.mitaller.activities.SeleccionDificultadActivity">
+    tools:context="mta.epn.ginghogam.com.mitaller.activities.BienvenidaTallerActivity">
 
-    <RelativeLayout
-        android:layout_width="982dp"
-        android:layout_height="198dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/ly2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="Seleccion de Dificultad" />
-
-        <SeekBar
-            android:id="@+id/seekbardificultad"
-            android:layout_width="401dp"
-            android:layout_height="65dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp"
-            android:thumbTint="#42a4f4" />
-
-        <TextView
-            android:id="@+id/dificultad"
-            android:layout_width="399dp"
-            android:layout_height="72dp"
-            android:layout_centerInParent="true" />
-
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ly2"
@@ -99,4 +60,46 @@
             tools:layout_editor_absoluteY="128dp"
             android:layout_weight="1"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/nTaller"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textColor="#4f4c24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/ly2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nTaller">
+
+        <ImageView
+            android:id="@+id/imagenTaller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:src="@mipmap/ic_launcher" />
+    </FrameLayout>
+
+
 </android.support.constraint.ConstraintLayout>
