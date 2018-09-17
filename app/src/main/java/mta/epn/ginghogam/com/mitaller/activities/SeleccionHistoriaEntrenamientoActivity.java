@@ -20,9 +20,11 @@ import java.util.Locale;
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.adaptadores.viewpager.CardPagerAdapterHistoria;
 import mta.epn.ginghogam.com.mitaller.adaptadores.viewpager.CardPagerAdapterS;
+import mta.epn.ginghogam.com.mitaller.db.HistoriaDAO;
 import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
 import mta.epn.ginghogam.com.mitaller.db.TallerDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
+import mta.epn.ginghogam.com.mitaller.entidades.Historia;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.utilidades.ShadowTransformer;
@@ -39,9 +41,9 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
     Context context;
 
-    private SQLiteDB sqLiteDB;
-    private TallerDAO tallerDAO;
+    private HistoriaDAO historiaDAO;
 
+    private Taller taller;
     private Estudiante estudiante;
     private Tutor tutor;
 
@@ -55,6 +57,8 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
     private Runnable mRunnable;
     private int i = 0;
 
+    String dificultadSeleccionada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +68,10 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
+        taller = extras.getParcelable("taller");
+        dificultadSeleccionada = extras.getString("dificultad");
 
-        Toast.makeText(this, "Estudiante: " + estudiante.getNombreEstudiate() + " - Tutor: " + tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
-
+//        Toast.makeText(this, "Dificultad: " +dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
         context = this;
 
@@ -74,34 +79,45 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
         mCardAdapter = new CardPagerAdapterHistoria();
 
-        sqLiteDB = new SQLiteDB(this);
-        tallerDAO = new TallerDAO(this);
+        historiaDAO = new HistoriaDAO(this);
 
-        List<Taller> tallerList = new ArrayList<>();
+        List<Historia> historiaList = new ArrayList<>();
 
-        Cursor cursor = tallerDAO.retrieve();
-        Taller taller;
+        long params = taller.getIdTaller();
+
+        Cursor cursor = historiaDAO.retrieveWithDificult(params, "'"+dificultadSeleccionada.toString().trim()+"'");
+//        Cursor cursor = historiaDAO.retrieve(params);
+
+        Historia historia;
 
         if (cursor.moveToFirst()) {
             do {
 
-                taller = new Taller();
+                historia = new Historia();
 
-                taller.setIdTaller(cursor.getInt(0));
-                taller.setNombreTaller(cursor.getString(1));
-                taller.setDescripcionTaller(cursor.getString(2));
-                taller.setImagenTaller(cursor.getString(3));
-                tallerList.add(taller);
-                mCardAdapter.addCardItemS(taller, estudiante, tutor);
+                historia.setIdHistoria(cursor.getInt(0));
+                historia.setNombreHistoria(cursor.getString(1));
+                historia.setDescripcionHistoria(cursor.getString(2));
+                historia.setImagenHistoria(cursor.getString(3));
+                historia.setNumeroLaminas(cursor.getString(4));
+                historia.setDificultad(cursor.getString(5));
+                historia.setIdTaller(cursor.getInt(6));
+                historiaList.add(historia);
+
+
+                Toast.makeText(this, "Historia: " +historia.getDificultad(), Toast.LENGTH_LONG).show();
+
+                mCardAdapter.addCardItemS(historia, estudiante, tutor,taller);
             } while (cursor.moveToNext());
         }
+
+
 
 
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
 
-        String msj = "Variación de una magnitud en función de la distancia, " +
-                "a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio.";
+        String msj = "Selecciona la historia";
         lectura.setText(msj);
         lectura.setTextColor(rgb(255, 192, 0));
 
@@ -120,10 +136,8 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
     }
 
     private void hablar() {
-        String msj = "Un gradiente es la variación de una magnitud en función de la distancia, " +
-                "a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio." +
-                " Variación de una magnitud en función de la distancia, \" +\n" +
-                "                \"a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio.";
+        String msj = "Selecciona la historia";
+
         final String texto = msj.toString();
 
         final String[] palabraResaltada = texto.split("\\s+");

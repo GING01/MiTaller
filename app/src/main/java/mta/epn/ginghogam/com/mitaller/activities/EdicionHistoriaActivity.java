@@ -60,6 +60,8 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
     int seekbarvalue=1;
     private HistoriaDAO historiaDAO;
 
+    private String dificultadSeleccionada;
+
 
     public static void startH(Context context, Taller taller){
         Intent intent = new Intent(context, EdicionHistoriaActivity.class);
@@ -104,12 +106,15 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 if(progress>=1 && progress <=3){
                     seekbarvalue=progress;
                     dificultad.setText("FACIL: "+progress+ " laminas");
+                    dificultadSeleccionada = "facil";
                 }
                 if(progress>3 && progress <=6){
                     dificultad.setText("MEDIO: "+progress+ " laminas");
+                    dificultadSeleccionada = "medio";
                 }
                 if(progress>6 && progress <=9){
                     dificultad.setText("DIFICIL: "+progress+ " laminas");
+                    dificultadSeleccionada = "dificil";
                 }
             }
 
@@ -129,7 +134,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         historia = getIntent().getParcelableExtra(EdicionHistoriaActivity.class.getSimpleName());
 
         if(historia != null){
-            Toast.makeText(this,"id t: "+taller.getIdTaller(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Dificultad" + historia.getDificultad(), Toast.LENGTH_LONG).show();
             nombreHistoria.setText(historia.getNombreHistoria());
             descripcionHistoria.setText(historia.getDescripcionHistoria());
             seleccionDificultad.setProgress(Integer.parseInt(historia.getNumeroLaminas()));
@@ -137,7 +142,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
 
             File file = new File(historia.getImagenHistoria());
             if (!file.exists()) {
-            Toast.makeText(this, "no Exist" + historia.getImagenHistoria(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "no Exist" + historia.getImagenHistoria(), Toast.LENGTH_LONG).show();
             imgHistoria.setImageResource(R.drawable.no_foto);
             } else {
                     imgHistoria.setImageBitmap(BitmapFactory.decodeFile(historia.getImagenHistoria().toString()));
@@ -205,7 +210,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setNumeroLaminas(String.valueOf(seekbarvalue));
-                historia.setDificultad(dificultad.getText().toString());
+                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historia.setIdTaller(taller.getIdTaller());
                 historiaDAO.create(historia);
@@ -216,7 +221,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setNumeroLaminas(String.valueOf(seekbarvalue));
-                historia.setDificultad(dificultad.getText().toString());
+                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 historia.setIdTaller(taller.getIdTaller());
                 Toast.makeText(this,"id taller: "+taller.getIdTaller(),Toast.LENGTH_LONG).show();

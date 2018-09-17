@@ -102,7 +102,6 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
 
         File file = new File(vocabulario.getImagenPalabra());
         if (!file.exists()) {
-            Toast.makeText(context,"no Exist", Toast.LENGTH_LONG).show();
             holder.imgPalabra.setImageResource(R.drawable.no_foto);
         }else {
             holder.imgPalabra.setImageBitmap(BitmapFactory.decodeFile(vocabulario.getImagenPalabra().toString()));

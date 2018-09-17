@@ -46,6 +46,19 @@ public class HistoriaDAO extends SQLiteDB  {
         return c;
     }
 
+    public Cursor retrieveWithDificult(long id, String dificultad){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + ConstanteDB.TABLE_HISTORIA + " WHERE "
+                + ConstanteDB.COLUMN_ID_TALLER + " = " + id +" AND " + ConstanteDB.COLUMN_DIFICULTAD +
+                " = " + dificultad;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        return c;
+    }
+
+
     public void update(Historia historia){
         SQLiteDatabase db = getReadableDatabase();
 

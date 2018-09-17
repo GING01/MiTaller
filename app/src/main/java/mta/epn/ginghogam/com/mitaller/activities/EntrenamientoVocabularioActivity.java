@@ -44,6 +44,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     private Estudiante estudiante;
     private List<Vocabulario> vocabularioList;
     private MediaPlayer mp;
+    String dificultadSeleccionada;
 
 
 
@@ -61,8 +62,9 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         taller = extras.getParcelable("taller");
         estudiante = extras.getParcelable("estudiante");
         tutor = extras.getParcelable("tutor");
+        dificultadSeleccionada = extras.getString("dificultad");
 
-        Toast.makeText(this,estudiante.getNombreEstudiate(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this,dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
         recyclerPalabra = (RecyclerView) findViewById(R.id.recyclerPalabraEntrenamiento);
 
@@ -134,6 +136,8 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         Intent intent = new Intent(EntrenamientoVocabularioActivity.this, SeleccionHistoriaEntrenamientoActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudiante);
+        intent.putExtra("dificultad", dificultadSeleccionada);
+        intent.putExtra("taller", taller);
         startActivity(intent);
     }
 }

@@ -37,6 +37,7 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Historia"
                         android:textAlignment="center"
                         android:textSize="25dp" />
@@ -51,13 +52,13 @@
                             android:id="@+id/play"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ir al taller!" />
+                            android:text="Play" />
 
                         <Button
                             android:id="@+id/irJuego"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ir al taller!" />
+                            android:text="Entrenar" />
 
                     </LinearLayout>
 
@@ -73,16 +74,18 @@
                     <TextView
                         android:id="@+id/tvDescripcionHistoria"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="348dp"
+                        android:layout_width="370dp"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="35dp"
                         android:text="Aqui va una descripcion de la historia que se desea practicar."
                         android:textSize="20dp" />
 
                     <ImageView
+                        android:id="@+id/siguiente"
                         android:layout_width="38dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_menu_camera" />
+                        android:src="@drawable/arrow" />
                 </LinearLayout>
 
             </LinearLayout>

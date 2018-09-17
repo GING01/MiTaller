@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -35,6 +36,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
     private int i = 0;
     private ImageView guia;
     private TextView lectura;
+    private String dificultadSeleccionada =  "facil";
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -57,16 +59,26 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         seekBarDificultad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress>=1 && progress <=3){
+
+
+                if(progress == 0 ){
                     seekbarvalue=progress;
-                    dificultad.setText("FACIL: "+progress+ " laminas");
+                    dificultadSeleccionada = "facil";
+                    dificultad.setText(dificultadSeleccionada.toUpperCase());
+
                 }
-                if(progress>3 && progress <=6){
-                    dificultad.setText("MEDIO: "+progress+ " laminas");
+                if(progress == 4){
+                    dificultadSeleccionada = "medio";
+                    dificultad.setText(dificultadSeleccionada.toUpperCase());
+
+
                 }
-                if(progress>6 && progress <=9){
-                    dificultad.setText("DIFICIL: "+progress+ " laminas");
+                if(progress == 9){
+                    dificultadSeleccionada = "dificil";
+                    dificultad.setText(dificultadSeleccionada.toUpperCase());
                 }
+                Toast.makeText(getApplicationContext(),""+progress,Toast.LENGTH_LONG).show();
+
             }
 
             @Override
@@ -127,6 +139,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         Intent intent = new Intent(SeleccionDificultadActivity.this, SeleccionTallerEntrenamientoActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudiante);
+        intent.putExtra("dificultad", dificultadSeleccionada);
         startActivity(intent);
     }
 
