@@ -71,7 +71,8 @@
         <activity android:name=".activities.EntrenamientoVocabularioActivity" />
         <activity android:name=".activities.SeleccionHistoriaEntrenamientoActivity" />
         <activity android:name=".activities.SecuenciaEntrenamientoActivity" />
-        <activity android:name=".activities.SeleccionDificultadActivity"></activity>
+        <activity android:name=".activities.SeleccionDificultadActivity" />
+        <activity android:name=".activities.BienvenidaTallerActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Handler;
@@ -43,7 +44,6 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     private SQLiteDB sqLiteDB;
     private TallerDAO tallerDAO;
 
-    private Taller taller;
     private Estudiante estudiante;
     private Tutor tutor;
 
@@ -58,7 +58,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     private Handler mHandler;
     private Runnable mRunnable;
     private int i = 0;
-    private String dificultadSeleccionada;
+    private String dificultad;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -71,10 +71,9 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
-        dificultadSeleccionada = extras.getString("dificultad");
+        dificultad=extras.getParcelable("dificultad");
 
-
-        Toast.makeText(this, "Dificultad " + dificultadSeleccionada, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Estudiante: " + estudiante.getNombreEstudiate() + " - Tutor: " + tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
 
 
         context = this;
@@ -89,6 +88,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         List<Taller> tallerList = new ArrayList<>();
 
         Cursor cursor = tallerDAO.retrieve();
+        Taller taller;
 
         if (cursor.moveToFirst()) {
             do {
@@ -100,7 +100,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
                 taller.setDescripcionTaller(cursor.getString(2));
                 taller.setImagenTaller(cursor.getString(3));
                 tallerList.add(taller);
-                mCardAdapter.addCardItemS(taller, estudiante, tutor, dificultadSeleccionada);
+                mCardAdapter.addCardItemS(taller, estudiante, tutor);
             } while (cursor.moveToNext());
         }
 
@@ -110,7 +110,8 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
 
-        String msj = "Selecciona el taller";
+        String msj = "Variación de una magnitud en función de la distancia, " +
+                "a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio.";
         lectura.setText(msj);
         lectura.setTextColor(rgb(255,192,0));
 
@@ -129,8 +130,10 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     }
 
     private void hablar() {
-        String msj = "Selecciona el taller";
-
+        String msj = "Un gradiente es la variación de una magnitud en función de la distancia, " +
+                "a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio." +
+                " Variación de una magnitud en función de la distancia, \" +\n" +
+                "                \"a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio.";
         final String texto= msj.toString();
 
         final String [] palabraResaltada = texto.split("\\s+");
@@ -174,4 +177,19 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
 
     }
 
+
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void pasar(View view) {
+        Intent intent = new Intent(SeleccionTallerEntrenamientoActivity.this, BienvenidaTallerActivity.class);
+        intent.putExtra("dificultad",lectura.getText());
+        startActivity(intent);
+    }
 }
