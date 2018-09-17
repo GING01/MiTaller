@@ -151,14 +151,12 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
                 m_Text = input.getText().toString();
 
                 if(m_Text.equals(tutor.getContraseñaTutor())){
-                    Toast.makeText(getApplicationContext(),"Password correcto", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(EleccionEstudianteEntrenamientoActivity.this, SeleccionDificultadActivity.class);
                     intent.putExtra("tutor", tutor);
                     intent.putExtra("estudiante", estudianteEntrenamientoListAdapter.getItem(position));
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Password incorrecto", Toast.LENGTH_LONG).show();
-
                 }
             }
         });

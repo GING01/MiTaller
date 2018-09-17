@@ -100,10 +100,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if(tutor==null){
-            Toast.makeText(LoginActivity.this, "PAto", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "", Toast.LENGTH_LONG).show();
 
         }else{
-            Toast.makeText(LoginActivity.this,"datos"+ id, Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this,""+ id, Toast.LENGTH_LONG).show();
 
         }
 

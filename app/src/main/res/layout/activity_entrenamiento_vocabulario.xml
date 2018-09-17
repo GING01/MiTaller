@@ -40,7 +40,7 @@
         <LinearLayout
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="center_vertical"
@@ -58,6 +58,14 @@
                 android:textStyle="bold"
                 />
         </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="114dp"
+            android:layout_height="match_parent"
+            android:onClick="pasar"
+            android:src="@drawable/arrow" />
 
     </LinearLayout>
 

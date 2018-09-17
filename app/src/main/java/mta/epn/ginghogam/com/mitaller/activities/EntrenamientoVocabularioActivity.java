@@ -1,5 +1,6 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     private Estudiante estudiante;
     private List<Vocabulario> vocabularioList;
     private MediaPlayer mp;
+    String dificultadSeleccionada;
 
 
 
@@ -60,8 +62,9 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         taller = extras.getParcelable("taller");
         estudiante = extras.getParcelable("estudiante");
         tutor = extras.getParcelable("tutor");
+        dificultadSeleccionada = extras.getString("dificultad");
 
-        Toast.makeText(this,estudiante.getNombreEstudiate(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this,dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
         recyclerPalabra = (RecyclerView) findViewById(R.id.recyclerPalabraEntrenamiento);
 
@@ -127,5 +130,14 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
             Log.e("LOG_TAG", "prepare() failed");
         }
 
+    }
+
+    public void pasar(View view) {
+        Intent intent = new Intent(EntrenamientoVocabularioActivity.this, SeleccionHistoriaEntrenamientoActivity.class);
+        intent.putExtra("tutor", tutor);
+        intent.putExtra("estudiante", estudiante);
+        intent.putExtra("dificultad", dificultadSeleccionada);
+        intent.putExtra("taller", taller);
+        startActivity(intent);
     }
 }
