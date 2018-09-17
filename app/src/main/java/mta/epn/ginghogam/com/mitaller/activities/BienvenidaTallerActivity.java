@@ -17,7 +17,7 @@ import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 public class BienvenidaTallerActivity extends AppCompatActivity {
     private Estudiante estudiante;
     private Tutor tutor;
-    private String dificultad;
+    private String dificultadSeleccionada;
     private Taller taller;
     TextView nombreTaller;
     ImageView imagenTaller;
@@ -31,15 +31,16 @@ public class BienvenidaTallerActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
-        dificultad=extras.getParcelable("dificultad");
-        taller=extras.getParcelable("taller");
+        taller = extras.getParcelable("taller");
+        dificultadSeleccionada = extras.getString("dificultad");
 
-        Toast.makeText(this, "dificultad: " + dificultad + " - Tutor: " + tutor.getNombreTutor(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "dificultad: " + dificultadSeleccionada, Toast.LENGTH_SHORT).show();
+
         nombreTaller=(TextView) findViewById(R.id.nTaller);
         imagenTaller=findViewById(R.id.imagenTaller);
         descripcionTaller=(TextView) findViewById(R.id.texto);
 
-       nombreTaller.setText(taller.getNombreTaller());
+        nombreTaller.setText(taller.getNombreTaller());
         imagenTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller()));
         descripcionTaller.setText(taller.getDescripcionTaller());
 
@@ -51,7 +52,7 @@ public class BienvenidaTallerActivity extends AppCompatActivity {
         Intent intent = new Intent(BienvenidaTallerActivity.this,EntrenamientoVocabularioActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudiante);
-        intent.putExtra("dificultad",dificultad);
+        intent.putExtra("dificultad",dificultadSeleccionada);
         intent.putExtra("taller",taller);
         startActivity(intent);
     }

@@ -36,6 +36,8 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
     private ImageView guia;
     private TextView lectura;
 
+    String dificultadSeleccionada = "facil";
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -60,12 +62,15 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
                 if(progress>=1 && progress <=3){
                     seekbarvalue=progress;
                     dificultad.setText("FACIL: "+progress+ " laminas");
+                    dificultadSeleccionada = "facil";
                 }
                 if(progress>3 && progress <=6){
                     dificultad.setText("MEDIO: "+progress+ " laminas");
+                    dificultadSeleccionada = "medio";
                 }
                 if(progress>6 && progress <=9){
                     dificultad.setText("DIFICIL: "+progress+ " laminas");
+                    dificultadSeleccionada = "dificil";
                 }
             }
 
@@ -127,7 +132,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         Intent intent = new Intent(SeleccionDificultadActivity.this, SeleccionTallerEntrenamientoActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudiante);
-        intent.putExtra("dificultad",lectura.getText());
+        intent.putExtra("dificultad",dificultadSeleccionada);
         startActivity(intent);
     }
 

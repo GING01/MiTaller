@@ -160,7 +160,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setNumeroLaminas(String.valueOf(seekbarvalue));
-                historia.setDificultad(dificultad.getText().toString());
+                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historiaDAO.update(historia);
                 finish();
@@ -169,7 +169,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setNumeroLaminas(String.valueOf(seekbarvalue));
-                historia.setDificultad(dificultad.getText().toString());
+                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 historiaDAO.update(historia);
                 finish();
@@ -178,7 +178,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setNumeroLaminas(String.valueOf(seekbarvalue));
-                historia.setDificultad(dificultad.getText().toString());
+                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
                 finish();
@@ -187,7 +187,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setNumeroLaminas(String.valueOf(seekbarvalue));
-                historia.setDificultad(dificultad.getText().toString());
+                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
                 finish();
@@ -196,7 +196,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setNumeroLaminas(String.valueOf(seekbarvalue));
-                historia.setDificultad(dificultad.getText().toString());
+                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
                 finish();

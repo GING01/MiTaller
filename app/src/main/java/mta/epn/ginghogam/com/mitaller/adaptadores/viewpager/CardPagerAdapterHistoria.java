@@ -45,12 +45,13 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
 
 
 
-    //variable karaoke
+
+    //variables karaoke
     private TextToSpeech TtS;
     private int j;
     int i=0;
     String[] s = {};
-    String manyDifferentStrings;
+    String manyDifferentStrings= "";
     String[] resul;
     List myList;
     ArrayList<String[]> l;
@@ -61,6 +62,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
     ImageView siguiente;
 
 
+
     public CardPagerAdapterHistoria() {
         mData = new ArrayList<>();
         mViews = new ArrayList<>();
@@ -69,11 +71,14 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
 
     public void addCardItemS(Historia item, Estudiante estudiante, Tutor tutor, Taller taller) {
         mViews.add(null);
+
         mData.add(item);
 
         this.taller = taller;
         this.estudiante = estudiante;
         this.tutor = tutor;
+
+
     }
 
 
@@ -108,8 +113,15 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
             mBaseElevation = cardView.getCardElevation();
         }
 
+
+
         cardView.setMaxCardElevation(mBaseElevation * MAX_ELEVATION_FACTOR);
         mViews.set(position, cardView);
+
+        TtS = new TextToSpeech(mViews.get(position).getContext(), (TextToSpeech.OnInitListener) view.getContext());
+
+
+
         return view;
     }
 
@@ -121,9 +133,10 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
 
     private void bind(final Historia item, final Estudiante estudiante, final Tutor tutor, final Taller taller, final View view) {
 
-        TtS = new TextToSpeech(view.getContext(), this);
 
-        manyDifferentStrings = item.getDescripcionHistoria();
+        final String manyDifferentStrings = item.getDescripcionHistoria();
+
+
 
         descripcionHistoria =  (TextView) view.findViewById(R.id.tvDescripcionHistoria);
         descripcionHistoria.setText(item.getDescripcionHistoria());
@@ -138,7 +151,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
         irJuego.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(view.getContext(), item, estudiante, tutor, taller);
+//                startActivity(view.getContext(), item, estudiante, tutor, taller);
             }
         });
 
@@ -146,7 +159,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(view.getContext(),"Aqui va el karaoke", Toast.LENGTH_LONG).show();
+//                Toast.makeText(view.getContext(),"Aqui va el karaoke", Toast.LENGTH_LONG).show();
             }
         });
         siguiente = (ImageView) view.findViewById(R.id.siguiente);
@@ -154,7 +167,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
             @Override
             public void onClick(View v) {
 
-                hablar();
+                hablar(manyDifferentStrings, view);
                 i++;
 
             }
@@ -171,7 +184,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
         context.startActivity(intent);
     }
 
-    private void hablar() {
+    private void hablar(String  manyDifferentStrings, View v) {
 
         ArrayList<String> texto = new ArrayList<>();
         Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
@@ -234,7 +247,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter implements CardAdapte
         if (text == TextToSpeech.SUCCESS) {
             int lenguaje = TtS.isLanguageAvailable(new Locale("spa", "ESP"));
             if (lenguaje == TextToSpeech.LANG_MISSING_DATA || lenguaje == TextToSpeech.LANG_NOT_SUPPORTED) {
-                hablar();
+                hablar(manyDifferentStrings, null);
             } else {
             }
         } else {

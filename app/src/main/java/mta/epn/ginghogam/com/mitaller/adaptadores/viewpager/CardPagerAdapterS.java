@@ -37,6 +37,8 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
 
     private Tutor tutor;
     private Estudiante estudiante;
+    private String dificultadSeleccionada;
+
 
 
     public CardPagerAdapterS() {
@@ -44,12 +46,13 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
         mViews = new ArrayList<>();
     }
 
-    public void addCardItemS(Taller item, Estudiante estudiante, Tutor tutor) {
+    public void addCardItemS(Taller item, Estudiante estudiante, Tutor tutor, String dificultadSeleccionada) {
         mViews.add(null);
         mData.add(item);
 
         this.estudiante = estudiante;
         this.tutor = tutor;
+        this.dificultadSeleccionada = dificultadSeleccionada;
     }
 
 
@@ -77,7 +80,7 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.adapter, container, false);
         container.addView(view);
-        bind(mData.get(position),estudiante, tutor, view);
+        bind(mData.get(position),estudiante, tutor, dificultadSeleccionada, view);
         CardView cardView = (CardView) view.findViewById(R.id.cardView);
 
         if (mBaseElevation == 0) {
@@ -95,7 +98,7 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
         mViews.set(position, null);
     }
 
-    private void bind(final Taller item, final Estudiante estudiante, final Tutor tutor, final View view) {
+    private void bind(final Taller item, final Estudiante estudiante, final Tutor tutor, final String dificultadSeleccionada, final View view) {
 
         ImageView image = (ImageView) view.findViewById(R.id.imgPageTaller);
         Button taller = view.findViewById(R.id.irTaller);
@@ -108,15 +111,16 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
             @Override
             public void onClick(View v) {
 
-                startActivity(view.getContext(), item, estudiante, tutor);
+                startActivity(view.getContext(), item, estudiante, tutor, dificultadSeleccionada);
             }
         });
 
 
     }
 
-    public static void startActivity(Context context, Taller taller, Estudiante estudiante, Tutor tutor) {
+    public static void startActivity(Context context, Taller taller, Estudiante estudiante, Tutor tutor, String dificultadSeleccionada) {
         Intent intent = new Intent(context, BienvenidaTallerActivity.class);
+        intent.putExtra("dificultad",dificultadSeleccionada);
         intent.putExtra("taller", taller);
         intent.putExtra("estudiante", estudiante);
         intent.putExtra("tutor", tutor);

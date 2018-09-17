@@ -58,7 +58,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     private Handler mHandler;
     private Runnable mRunnable;
     private int i = 0;
-    private String dificultad;
+    private String dificultadSeleccionada;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -71,9 +71,9 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
-        dificultad=extras.getParcelable("dificultad");
+        dificultadSeleccionada=extras.getString("dificultad");
 
-        Toast.makeText(this, "Estudiante: " + estudiante.getNombreEstudiate() + " - Tutor: " + tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Dificultad "+dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
 
         context = this;
@@ -100,18 +100,14 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
                 taller.setDescripcionTaller(cursor.getString(2));
                 taller.setImagenTaller(cursor.getString(3));
                 tallerList.add(taller);
-                mCardAdapter.addCardItemS(taller, estudiante, tutor);
+                mCardAdapter.addCardItemS(taller, estudiante, tutor, dificultadSeleccionada);
             } while (cursor.moveToNext());
         }
-
-
-
 
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
 
-        String msj = "Variación de una magnitud en función de la distancia, " +
-                "a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio.";
+        String msj = "Selecciona el taller";
         lectura.setText(msj);
         lectura.setTextColor(rgb(255,192,0));
 
@@ -130,10 +126,8 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     }
 
     private void hablar() {
-        String msj = "Un gradiente es la variación de una magnitud en función de la distancia, " +
-                "a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio." +
-                " Variación de una magnitud en función de la distancia, \" +\n" +
-                "                \"a partir de la línea en que esta variación es máxima en las magnitudes cuyo valor es distinto en los diversos puntos de una región del espacio.";
+        String msj = "Selecciona el taller";
+
         final String texto= msj.toString();
 
         final String [] palabraResaltada = texto.split("\\s+");
@@ -179,17 +173,11 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
 
 
 
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public Tutor getTutor() {
-        return tutor;
-    }
-
-    public void pasar(View view) {
-        Intent intent = new Intent(SeleccionTallerEntrenamientoActivity.this, BienvenidaTallerActivity.class);
-        intent.putExtra("dificultad",lectura.getText());
-        startActivity(intent);
-    }
+//    public void pasar(View view) {
+//        Intent intent = new Intent(SeleccionTallerEntrenamientoActivity.this, BienvenidaTallerActivity.class);
+//        intent.putExtra("dificultad",dificultadSeleccionada);
+//        intent.putExtra("tutor", tutor);
+//        intent.putExtra("estudiante", estudiante);
+//        startActivity(intent);
+//    }
 }
