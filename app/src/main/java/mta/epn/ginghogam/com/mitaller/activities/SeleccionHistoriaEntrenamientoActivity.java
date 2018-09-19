@@ -37,7 +37,11 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
     private ViewPager mViewPager;
     private CardPagerAdapterHistoria mCardAdapter;
-    private ShadowTransformerHistoria mCardShadowTransformer;
+    public ShadowTransformerHistoria mCardShadowTransformer;
+
+    public int valor;
+
+
 
     Context context;
 
@@ -71,7 +75,6 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         taller = extras.getParcelable("taller");
         dificultadSeleccionada = extras.getString("dificultad");
 
-       Toast.makeText(this, "Dificultad: " +dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
         context = this;
 
@@ -86,7 +89,6 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         long params = taller.getIdTaller();
 
        Cursor cursor = historiaDAO.retrieveWithDificult(params, "'"+dificultadSeleccionada.toString().trim()+"'");
- //       Cursor cursor = historiaDAO.retrieve(params);
 
         Historia historia;
 
@@ -104,8 +106,6 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
                 historia.setIdTaller(cursor.getInt(6));
                 historiaList.add(historia);
 
-
-//                Toast.makeText(this, "Historia: " +historia.getDificultad(), Toast.LENGTH_LONG).show();
 
                 mCardAdapter.addCardItemS(historia, estudiante, tutor,taller);
             } while (cursor.moveToNext());
@@ -164,6 +164,8 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
 
     }
+
+
 
     @Override
     public void onInit(int text) {
