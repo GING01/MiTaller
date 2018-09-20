@@ -2,6 +2,7 @@ package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,9 +43,11 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taller);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
 
         recyclerTaller = (RecyclerView) findViewById(R.id.recyclerTalleres);
 
@@ -97,6 +100,8 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_taller, menu);
+        getSupportActionBar().setCustomView(R.layout.menu_talleres_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM );
         return true;
     }
     @Override
@@ -154,4 +159,8 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
 
 
     }
+    public void llamarmenu(View view){
+        finish();
+    }
+
 }

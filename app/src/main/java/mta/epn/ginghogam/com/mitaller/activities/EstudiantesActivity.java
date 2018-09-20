@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.database.Cursor;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,18 +20,13 @@ import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.adaptadores.EstudianteListAdapter;
-import mta.epn.ginghogam.com.mitaller.adaptadores.HistoriaListAdapter;
 import mta.epn.ginghogam.com.mitaller.db.EstudianteDAO;
-import mta.epn.ginghogam.com.mitaller.db.HistoriaDAO;
 import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
-import mta.epn.ginghogam.com.mitaller.db.TallerDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
-import mta.epn.ginghogam.com.mitaller.entidades.Historia;
-import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
-public class EstudiantesActivity extends AppCompatActivity implements RecyclerItemClickListener {
+public class EstudiantesActivity extends AppCompatActivity implements RecyclerItemClickListener, SearchView.OnQueryTextListener {
 
     private RecyclerView recyclerEstudiante;
 
@@ -44,6 +41,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
     public boolean visible=false;
     ArrayList<Estudiante> seleccion= new ArrayList<>();
     private SQLiteDB sqLiteDB;
+    List<Estudiante> estudianteList;
 
 
     @Override
@@ -85,7 +83,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
 
         estudianteDAO = new EstudianteDAO(this);
 
-        List<Estudiante> estudianteList = new ArrayList<>();
+        estudianteList = new ArrayList<>();
 
 
 
@@ -121,6 +119,12 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_estudiante, menu);
+        getSupportActionBar().setCustomView(R.layout.menu_estudiantes_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM );
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        MenuItem menuItem = menu.findItem(R.id.buscar);
+        SearchView searchView =(SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(this);
         return true;
     }
     @Override
@@ -177,5 +181,27 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
         }
 
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String userInput= newText.toLowerCase();
+        List<Estudiante> newlist = new ArrayList<>();
+        for(Estudiante estudiante: estudianteList){
+            if(estudiante.getNombreEstudiate().toLowerCase().contains(userInput)){
+                newlist.add(estudiante);
+            }
+        }
+        estudianteListAdapter.setFilter(newlist);
+        return true;
+    }
+    public void llamarmenu(View view){
+
+        finish();
     }
 }
