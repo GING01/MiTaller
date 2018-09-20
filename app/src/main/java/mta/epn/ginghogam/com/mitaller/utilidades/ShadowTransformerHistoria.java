@@ -5,6 +5,7 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Toast;
 
+import mta.epn.ginghogam.com.mitaller.activities.SeleccionHistoriaEntrenamientoActivity;
 import mta.epn.ginghogam.com.mitaller.adaptadores.viewpager.CardAdapter;
 import mta.epn.ginghogam.com.mitaller.adaptadores.viewpager.CardPagerAdapterHistoria;
 
@@ -16,10 +17,19 @@ public class ShadowTransformerHistoria implements ViewPager.OnPageChangeListener
     private float mLastOffset;
     private boolean mScalingEnabled;
 
+
+
+    CardPagerAdapterHistoria cardPagerAdapterHistoria;
+
+    public ShadowTransformerHistoria() {
+
+    }
+
     public ShadowTransformerHistoria(ViewPager viewPager, CardPagerAdapterHistoria adapter) {
         mViewPager = viewPager;
         viewPager.addOnPageChangeListener(this);
         mAdapter = adapter;
+
     }
 
     public void enableScaling(boolean enable) {
@@ -38,6 +48,7 @@ public class ShadowTransformerHistoria implements ViewPager.OnPageChangeListener
                 currentCard.animate().scaleX(1.1f);
             }
         }
+
 
         mScalingEnabled = enable;
     }
@@ -100,14 +111,25 @@ public class ShadowTransformerHistoria implements ViewPager.OnPageChangeListener
         }
 
         mLastOffset = positionOffset;
+
+
+
+
     }
 
     @Override
     public void onPageSelected(int position) {
+
+//        cardPagerAdapterHistoria.changePage = true;
+
+//        Toast.makeText(mViewPager.getContext(),"position    : "+position+"i: "+ cardPagerAdapterHistoria.i+  " - j: "+cardPagerAdapterHistoria.j,Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
+
+        cardPagerAdapterHistoria.changePage = true;
 
     }
 }

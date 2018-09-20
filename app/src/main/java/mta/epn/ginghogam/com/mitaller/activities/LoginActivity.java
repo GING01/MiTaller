@@ -52,16 +52,16 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this,"Adios!",Toast.LENGTH_LONG).show();
-        finish();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Toast.makeText(this,"Adios!",Toast.LENGTH_LONG).show();
+//        finish();
+//        Intent intent = new Intent(Intent.ACTION_MAIN);
+//        intent.addCategory(Intent.CATEGORY_HOME);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
+//        finish();
+//    }
     public void registrarTutor(View view) {
 
         Intent intent = new Intent(LoginActivity.this, RegistroTutorActivity.class);
@@ -109,17 +109,14 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private boolean obtenerEstado(Tutor tutor) {
-
         SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
         Integer restoredText = preferences.getInt("ID", 0);
-
 
         if (restoredText != 0) {
             return true;
         }
         else
             return false;
-
     }
 
     private boolean validarUsuario() {

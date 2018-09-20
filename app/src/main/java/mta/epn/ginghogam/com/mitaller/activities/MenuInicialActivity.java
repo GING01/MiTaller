@@ -83,16 +83,16 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         navigationView.setNavigationItemSelectedListener(this);
 
     }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,6 +136,7 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
             SharedPreferences preferences = this.getSharedPreferences("mitaller.iniciosesion", Context.MODE_PRIVATE);
             preferences.edit().clear().commit();
             startActivity(new Intent(MenuInicialActivity.this, LoginActivity.class));
+            finish();
 
         }
 

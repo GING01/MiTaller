@@ -63,7 +63,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
             "CREATE TABLE " + ConstanteDB.TABLE_SECUENCIA + " (" +
                     ConstanteDB.COLUMN_ID_SECUENCIA + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     ConstanteDB.COLUMN_IMAGEN_SECUENCIA + TEXT_TYPE + COMMA_SEP +
-                    ConstanteDB.COLUMN_IMAGEN_ORDEN + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_IMAGEN_ORDEN + INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_ID_HISTORIA_PK + INTEGER_ + " )";
 
     private static final String SQL_DELETE_SECUENCIA =
