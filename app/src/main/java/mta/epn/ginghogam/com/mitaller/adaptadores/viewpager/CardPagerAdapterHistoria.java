@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.activities.EntrenamientoVocabularioActivity;
+import mta.epn.ginghogam.com.mitaller.activities.JuegoActivity;
 import mta.epn.ginghogam.com.mitaller.activities.SeleccionHistoriaEntrenamientoActivity;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Historia;
@@ -141,6 +142,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
         irJuego.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivityJuego(view.getContext(), mData.get(position), estudiante, tutor, taller);
 
             }
         });
@@ -208,8 +210,8 @@ public class CardPagerAdapterHistoria extends PagerAdapter
         mViews.set(position, null);
     }
 
-    public static void startActivity(Context context, Historia historia, Estudiante estudiante, Tutor tutor, Taller taller) {
-        Intent intent = new Intent(context, EntrenamientoVocabularioActivity.class);
+    public static void startActivityJuego(Context context, Historia historia, Estudiante estudiante, Tutor tutor, Taller taller) {
+        Intent intent = new Intent(context, JuegoActivity.class);
         intent.putExtra("historia", historia);
         intent.putExtra("estudiante", estudiante);
         intent.putExtra("tutor", tutor);

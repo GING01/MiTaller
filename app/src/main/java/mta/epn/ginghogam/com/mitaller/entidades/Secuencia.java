@@ -20,6 +20,11 @@ public class Secuencia implements Parcelable{
         }
         imagenSecuencia = in.readString();
         if (in.readByte() == 0) {
+            ordenImagenSecuencia = null;
+        } else {
+            ordenImagenSecuencia = in.readInt();
+        }
+        if (in.readByte() == 0) {
             idHistoria = null;
         } else {
             idHistoria = in.readInt();
@@ -54,6 +59,14 @@ public class Secuencia implements Parcelable{
         this.imagenSecuencia = imagenSecuencia;
     }
 
+    public Integer getOrdenImagenSecuencia() {
+        return ordenImagenSecuencia;
+    }
+
+    public void setOrdenImagenSecuencia(Integer ordenImagenSecuencia) {
+        this.ordenImagenSecuencia = ordenImagenSecuencia;
+    }
+
     public Integer getIdHistoria() {
         return idHistoria;
     }
@@ -76,19 +89,17 @@ public class Secuencia implements Parcelable{
             dest.writeInt(idSecuencia);
         }
         dest.writeString(imagenSecuencia);
+        if (ordenImagenSecuencia == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(ordenImagenSecuencia);
+        }
         if (idHistoria == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
             dest.writeInt(idHistoria);
         }
-    }
-
-    public Integer getOrdenImagenSecuencia() {
-        return ordenImagenSecuencia;
-    }
-
-    public void setOrdenImagenSecuencia(Integer ordenImagenSecuencia) {
-        this.ordenImagenSecuencia = ordenImagenSecuencia;
     }
 }
