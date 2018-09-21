@@ -61,6 +61,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
     private HistoriaDAO historiaDAO;
 
     private String dificultadSeleccionada;
+    private int numeroLaminas;
 
 
     public static void startH(Context context, Taller taller){
@@ -107,14 +108,19 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                     seekbarvalue=progress;
                     dificultad.setText("FACIL: "+progress+ " laminas");
                     dificultadSeleccionada = "facil";
+                    numeroLaminas = progress;
                 }
                 if(progress>3 && progress <=6){
                     dificultad.setText("MEDIO: "+progress+ " laminas");
                     dificultadSeleccionada = "medio";
+                    numeroLaminas = progress;
+
                 }
                 if(progress>6 && progress <=9){
                     dificultad.setText("DIFICIL: "+progress+ " laminas");
                     dificultadSeleccionada = "dificil";
+                    numeroLaminas = progress;
+
                 }
             }
 
@@ -142,7 +148,6 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
 
             File file = new File(historia.getImagenHistoria());
             if (!file.exists()) {
-//            Toast.makeText(this, "no Exist" + historia.getImagenHistoria(), Toast.LENGTH_LONG).show();
             imgHistoria.setImageResource(R.drawable.no_foto);
             } else {
                     imgHistoria.setImageBitmap(BitmapFactory.decodeFile(historia.getImagenHistoria().toString()));
@@ -159,7 +164,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if(fileImagen != null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
+                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historiaDAO.update(historia);
@@ -168,7 +173,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria != null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
+                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 historiaDAO.update(historia);
@@ -177,7 +182,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria == null && fileImagen == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
+                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
@@ -186,7 +191,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
+                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
@@ -195,7 +200,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (fileImagen == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
+                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
@@ -209,7 +214,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia = new Historia();
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
+                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historia.setIdTaller(taller.getIdTaller());
@@ -220,7 +225,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia = new Historia();
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(seekbarvalue));
+                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 historia.setIdTaller(taller.getIdTaller());
