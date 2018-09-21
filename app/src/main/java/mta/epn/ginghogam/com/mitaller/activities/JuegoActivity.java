@@ -35,6 +35,7 @@ import mta.epn.ginghogam.com.mitaller.entidades.Historia;
 import mta.epn.ginghogam.com.mitaller.entidades.Secuencia;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
+import mta.epn.ginghogam.com.mitaller.utilidades.RealPathUtil;
 
 import static android.graphics.Color.rgb;
 
@@ -113,7 +114,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             } while (cursor.moveToNext());
         }
 
-        Toast.makeText(this,""+lista.size(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
 
 
         for(int i=0; i< lista.size(); i++){
@@ -122,7 +123,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             itemLayout.setId(ITEM_ID+i);
             itemLayout.setOrientation(LinearLayout.VERTICAL);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(150, 120);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(190, 160);
 
             params.gravity = Gravity.CENTER;
             params.setMargins(10, 10,10,10);
@@ -138,15 +139,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             bt1.setText(""+(i+1));
             bt1.setLayoutParams(params);
             bt1.setId(lista.get(i).getOrdenImagenSecuencia());
-//            bt1.setImageBitmap(BitmapFactory.decodeFile(lista.get(i).getImagenSecuencia()));
             bt1.setBackgroundColor(Color.BLACK);
             bt1.setTextColor(Color.WHITE);
-
-
             bt1.setOnDragListener(dragListener);
             tg.addView(bt1);
-
-//             itemLayout.addView(bt1);
             target.addView(tg);
 
             rootLayout.addView(itemLayout);
@@ -166,7 +162,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             itemLayout.setId(ITEM_ID+i);
             itemLayout.setOrientation(LinearLayout.VERTICAL);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(190, 190);
             params.gravity = Gravity.CENTER;
             params.setMargins(10, 10,10,10);
 
@@ -174,17 +170,15 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
 
 
-            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom.get(i).getImagenSecuencia()), 150,
+            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom.get(i).getImagenSecuencia()), 190,
                     120, true);
 
-            bt2 = new ImageView(getApplicationContext());
-//            bt2.setText(lista.get(i).getOrdenImagenSecuencia());
 
+            bt2 = new ImageView(getApplicationContext());
             bt2.setId(listaRandom.get(i).getOrdenImagenSecuencia());
+            bt2.setLayoutParams(params);
             bt2.setBackgroundColor(Color.BLACK);
             bt2.setImageBitmap(newBitmap);
-
-//            bt2.setTextColor(Color.WHITE);
             btnTarget.addView(bt2);
             bt2.setOnLongClickListener(longClickListener);
 
@@ -315,4 +309,3 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
 
 }
-

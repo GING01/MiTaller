@@ -16,15 +16,15 @@
             android:id="@+id/layout_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <LinearLayout
                 android:id="@+id/target1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="5dp"/>
+                android:orientation="horizontal"/>
 
         </LinearLayout>
 
@@ -38,14 +38,14 @@
             android:id="@+id/layout_root2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:id="@+id/btnTarget"
-                android:padding="5dp">
+                android:id="@+id/btnTarget">
 
             </LinearLayout>
 

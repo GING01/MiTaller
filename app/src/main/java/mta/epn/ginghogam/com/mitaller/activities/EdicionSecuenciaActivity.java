@@ -16,9 +16,11 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,29 +45,27 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
     private Historia historia;
     private Secuencia secuencia;
-    private LinearLayout rootLayout,target;
+    private LinearLayout rootLayout, target;
 
-    ImageView  bt1,imagen, camara, galery;
+    ImageView bt1, imagen, camara, galery;
     Integer numeroImg;
     private File fileImagen;
     private String pathCamara, pathGaleria, pathArrastrar;
     Bitmap bitmap;
 
-    final static int RESULTADO_GALERIA= 2;
-    final static int RESULTADO_FOTO= 3;
+    final static int RESULTADO_GALERIA = 2;
+    final static int RESULTADO_FOTO = 3;
 
     private static final String DIRECTORIO_IMAGEN = "misImagenesApp/";
 
     private SQLiteDB sqLiteDB;
     private SecuenciaDAO secuenciaDAO;
-    private boolean editar =false;
-    private ArrayList<String> imagenes= new ArrayList<String>();
+    private boolean editar = false;
+    private ArrayList<String> imagenes = new ArrayList<String>();
     List<Secuencia> secuenciaList = new ArrayList<>();
 
 
-
-
-    public static void startSecuen(Context context, Historia historia){
+    public static void startSecuen(Context context, Historia historia) {
         Intent intent = new Intent(context, EdicionSecuenciaActivity.class);
         intent.putExtra(EdicionSecuenciaActivity.class.getSimpleName(), historia);
         context.startActivity(intent);
@@ -80,13 +80,12 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         historia = getIntent().getParcelableExtra(EdicionSecuenciaActivity.class.getSimpleName());
-        //Toast.makeText(this,"id historia: "+historia.getIdHistoria()+" \n"+"laminas: "+historia.getNumeroLaminas(),Toast.LENGTH_SHORT).show();
         validaPermiso();
-        numeroImg= Integer.valueOf(historia.getNumeroLaminas());
+        numeroImg = Integer.valueOf(historia.getNumeroLaminas());
         rootLayout = (LinearLayout) findViewById(R.id.layout_root);
-        imagen=findViewById(R.id.imagenfoto);
-        camara=findViewById(R.id.btncamara);
-        galery=findViewById(R.id.btngalery);
+        imagen = findViewById(R.id.imagenfoto);
+        camara = findViewById(R.id.btncamara);
+        galery = findViewById(R.id.btngalery);
         sqLiteDB = new SQLiteDB(this);
         secuenciaDAO = new SecuenciaDAO(this);
 
@@ -94,34 +93,47 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         long params = historia.getIdHistoria();
         Cursor cursor = secuenciaDAO.retrieve(params);
 
-            if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
 
 
-                do {
-                    secuencia = new Secuencia();
-                    secuencia.setIdSecuencia(cursor.getInt(0));
-                    secuencia.setImagenSecuencia(cursor.getString(1));
-                    secuencia.setOrdenImagenSecuencia(cursor.getInt(2));
-                    secuencia.setIdHistoria(cursor.getInt(3));
-                    secuenciaList.add(secuencia);
-                    imagenes.add(cursor.getString(1));
-                } while (cursor.moveToNext());
-                Toast.makeText(getApplicationContext(),"Imagen secuencia: "+secuencia.getImagenSecuencia(),Toast.LENGTH_LONG).show();
-                for(int i = 0; i<secuenciaList.size();i++){
-                    bt1 = new ImageView(getApplicationContext());
-                    bt1.setImageURI(Uri.parse(secuenciaList.get(i).getImagenSecuencia()));
-                    bt1.setOnDragListener(dragListener);
-                    bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
-                    rootLayout.addView(bt1);
-                }
-                editar=true;
-                imagen.setOnLongClickListener(longClickListener);
+            do {
+                secuencia = new Secuencia();
+                secuencia.setIdSecuencia(cursor.getInt(0));
+                secuencia.setImagenSecuencia(cursor.getString(1));
+                secuencia.setOrdenImagenSecuencia(cursor.getInt(2));
+                secuencia.setIdHistoria(cursor.getInt(3));
+                secuenciaList.add(secuencia);
+                imagenes.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+            Toast.makeText(getApplicationContext(), "Imagen secuencia: " + secuencia.getImagenSecuencia(), Toast.LENGTH_LONG).show();
+            for (int i = 0; i < secuenciaList.size(); i++) {
+                bt1 = new ImageView(getApplicationContext());
+
+                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(150, 150);
+                parametros.gravity = Gravity.CENTER;
+                parametros.setMargins(10, 10, 10, 10);
+
+                bt1.setLayoutParams(parametros);
+
+
+                bt1.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(i).getImagenSecuencia()));
+                bt1.setOnDragListener(dragListener);
+                bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
+                rootLayout.addView(bt1);
             }
-            else{
-            for(int i=0; i< numeroImg; i++){
+            editar = true;
+            imagen.setOnLongClickListener(longClickListener);
+        } else {
+            for (int i = 0; i < numeroImg; i++) {
 
 
                 bt1 = new ImageView(getApplicationContext());
+                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(150, 150);
+                parametros.gravity = Gravity.CENTER;
+                parametros.setMargins(10, 10, 10, 10);
+
+                bt1.setLayoutParams(parametros);
+
                 bt1.setImageResource(R.drawable.no_foto);
                 bt1.setOnDragListener(dragListener);
                 bt1.setTag(i);
@@ -136,51 +148,48 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
     }
 
-    View.OnLongClickListener longClickListener = new View.OnLongClickListener(){
+    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
-            ClipData data = ClipData.newPlainText("","");
+            ClipData data = ClipData.newPlainText("", "");
             View.DragShadowBuilder myShadowBuilder = new View.DragShadowBuilder(view);
-            view.startDrag(data, myShadowBuilder, view,0);
+            view.startDrag(data, myShadowBuilder, view, 0);
 
             return true;
         }
     };
 
-    View.OnDragListener dragListener = new View.OnDragListener(){
+    View.OnDragListener dragListener = new View.OnDragListener() {
         @Override
         public boolean onDrag(View v, DragEvent event) {
 
             int dragEvent = event.getAction();
             final View view = (View) event.getLocalState();
 
-            switch (dragEvent){
+            switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED:
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
                 case DragEvent.ACTION_DROP:
-                    Toast.makeText(getApplicationContext(),v.getTag()+"?", Toast.LENGTH_SHORT).show();
-                    if(pathArrastrar==null && fileImagen==null){
+                    Toast.makeText(getApplicationContext(), v.getTag() + "?", Toast.LENGTH_SHORT).show();
+                    if (pathArrastrar == null && fileImagen == null) {
                         ((ImageView) v).setImageDrawable(imagen.getDrawable());
-                        imagenes.set((Integer) v.getTag(),"");
-                    }
-                    else if(fileImagen != null){
+                        imagenes.set((Integer) v.getTag(), "");
+                    } else if (fileImagen != null) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inJustDecodeBounds = false;
                         options.inPreferredConfig = Bitmap.Config.RGB_565;
                         options.inDither = true;
                         Bitmap bitmap = BitmapFactory.decodeFile(pathArrastrar);
-                        ((ImageView) v).setImageBitmap(Bitmap.createScaledBitmap(bitmap,1024,1024, true));
-                        imagenes.set((Integer) v.getTag(),pathArrastrar);
+                        ((ImageView) v).setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1024, 1024, true));
+                        imagenes.set((Integer) v.getTag(), pathArrastrar);
 
+                    } else if (pathArrastrar != null && fileImagen == null) {
+
+                        ponerFoto((ImageView) v, pathArrastrar);
+                        imagenes.set((Integer) v.getTag(), RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathArrastrar)));
                     }
-                    else if (pathArrastrar!=null && fileImagen==null){
-
-                        ponerFoto((ImageView)v,pathArrastrar);
-                        imagenes.set((Integer) v.getTag(),pathArrastrar);
-                    }
-
 
 
                     break;
@@ -191,91 +200,91 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     };
 
 
-
     private boolean validaPermiso() {
-        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
-        if((checkSelfPermission(CAMERA)== PackageManager.PERMISSION_GRANTED)&&
-                (checkSelfPermission(WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)){
+        if ((checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED) &&
+                (checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
             return true;
-        }
-        else{
-            requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA},100);
+        } else {
+            requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE, CAMERA}, 100);
         }
         return false;
     }
+
     public void galeria(View view) {
         Intent intent;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-        }else{
+        } else {
             intent = new Intent(Intent.ACTION_GET_CONTENT);
         }
         intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent,""), RESULTADO_GALERIA);
-        fileImagen=null;
+        startActivityForResult(Intent.createChooser(intent, ""), RESULTADO_GALERIA);
+        fileImagen = null;
     }
 
     public void tomarFoto(View view) {
         File miFile = new File(Environment.getExternalStorageDirectory(), DIRECTORIO_IMAGEN);
-        String nombre="";
-        boolean isCreada=miFile.exists();
-        if(isCreada==false){
-            isCreada=miFile.mkdirs();
+        String nombre = "";
+        boolean isCreada = miFile.exists();
+        if (isCreada == false) {
+            isCreada = miFile.mkdirs();
         }
-        if(isCreada==true) {
+        if (isCreada == true) {
             Long consecutivo = System.currentTimeMillis() / 1000;
             nombre = consecutivo.toString() + ".jpg";
         }
-        pathCamara=Environment.getExternalStorageDirectory()+
-                miFile.separator+DIRECTORIO_IMAGEN+miFile.separator+nombre;
-        fileImagen=new File(pathCamara);
-        Intent intent=null;
+        pathCamara = Environment.getExternalStorageDirectory() +
+                miFile.separator + DIRECTORIO_IMAGEN + miFile.separator + nombre;
+        fileImagen = new File(pathCamara);
+        Intent intent = null;
         intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
-            String authorities=getApplicationContext().getPackageName()+".provider";
-            Uri imageUri= FileProvider.getUriForFile(this,authorities,fileImagen);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-        }else{
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(fileImagen));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            String authorities = getApplicationContext().getPackageName() + ".provider";
+            Uri imageUri = FileProvider.getUriForFile(this, authorities, fileImagen);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        } else {
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImagen));
 
         }
-        startActivityForResult(intent,RESULTADO_FOTO);
+        startActivityForResult(intent, RESULTADO_FOTO);
     }
 
     protected void ponerFoto(ImageView imageView, String uri) {
 
         Bitmap bitmap = BitmapFactory.decodeFile(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(uri)));
         if (uri != null && !uri.equals("null")) {
-            try{
-                imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmap,1024,1024, true));
-            }catch (Exception e){
-                Toast.makeText(getApplicationContext(),"No encontrado", Toast.LENGTH_LONG).show();
+            try {
+                imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1024, 1024, true));
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "No encontrado", Toast.LENGTH_LONG).show();
             }
 
-        } else{
+        } else {
             imageView.setImageBitmap(null);
         }
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent
             data) {
 
         switch (requestCode) {
             case RESULTADO_FOTO:
-                if (resultCode == Activity.RESULT_OK ) {
+                if (resultCode == Activity.RESULT_OK) {
 
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inJustDecodeBounds = false;
                     options.inPreferredConfig = Bitmap.Config.RGB_565;
                     options.inDither = true;
                     bitmap = BitmapFactory.decodeFile(fileImagen.getPath());
-                    imagen.setImageBitmap(Bitmap.createScaledBitmap(bitmap,1024,1024, true));
-                    pathArrastrar=fileImagen.getPath();
+                    imagen.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1024, 1024, true));
+                    pathArrastrar = fileImagen.getPath();
                     break;
                 } else
                     Toast.makeText(this, "Error en captura", Toast.LENGTH_LONG).show();
@@ -284,7 +293,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     pathGaleria = data.getDataString();
                     ponerFoto(imagen, pathGaleria);
-                    pathArrastrar=pathGaleria;
+                    pathArrastrar = pathGaleria;
 
                 } else
                     Toast.makeText(this, "Foto no cargada", Toast.LENGTH_LONG).show();
@@ -301,61 +310,61 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_secuencia, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.guardarsecuencia) {
+        if (id == R.id.guardarsecuencia) {
             guardar(editar);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-    private boolean comprobarImg(){
-        boolean lleno=false;
-    for(int j=0;j<numeroImg;j++){
-        if(imagenes.get(j).equals("") || imagenes.get(j)==null || imagenes.isEmpty()) {
-            lleno=true;
-        }
-    }
 
-        if(lleno==true) {
-        return false;
+    private boolean comprobarImg() {
+        boolean lleno = false;
+        for (int j = 0; j < numeroImg; j++) {
+            if (imagenes.get(j).equals("") || imagenes.get(j) == null || imagenes.isEmpty()) {
+                lleno = true;
+            }
         }
-                else {
+
+        if (lleno == true) {
+            return false;
+        } else {
             return true;
         }
     }
-    private void guardar(boolean edit ) {
+
+    private void guardar(boolean edit) {
 
 
-        if (edit==true && comprobarImg()){
-            for(int i= 0; i< numeroImg;i++){
-                    secuencia = new Secuencia();//instanciar
-                    secuencia.setIdSecuencia(secuenciaList.get(i).getIdSecuencia());
-                    secuencia.setImagenSecuencia(imagenes.get(i));
-                    secuencia.setOrdenImagenSecuencia((i));
-                    secuencia.setIdHistoria(historia.getIdHistoria());
-                    secuenciaDAO.update(secuencia);
+        if (edit == true && comprobarImg()) {
+            for (int i = 0; i < numeroImg; i++) {
+                secuencia = new Secuencia();//instanciar
+                secuencia.setIdSecuencia(secuenciaList.get(i).getIdSecuencia());
+                secuencia.setImagenSecuencia(imagenes.get(i));
+                secuencia.setOrdenImagenSecuencia((i));
+                secuencia.setIdHistoria(historia.getIdHistoria());
+                secuenciaDAO.update(secuencia);
             }
             finish();
 
-        }
-        else if(edit==false && comprobarImg()) {
+        } else if (edit == false && comprobarImg()) {
 
-            for(int i= 0; i< numeroImg;i++){
-                    secuencia = new Secuencia();
-                    secuencia.setImagenSecuencia(imagenes.get(i));
-                    secuencia.setOrdenImagenSecuencia((i));
-                    secuencia.setIdHistoria(historia.getIdHistoria());
-                    secuenciaDAO.create(secuencia);
+            for (int i = 0; i < numeroImg; i++) {
+                secuencia = new Secuencia();
+                secuencia.setImagenSecuencia(imagenes.get(i));
+                secuencia.setOrdenImagenSecuencia((i));
+                secuencia.setIdHistoria(historia.getIdHistoria());
+                secuenciaDAO.create(secuencia);
 
             }
             finish();
 
-        }
-        else {
+        } else {
             Toast.makeText(this, "revise si subio todas las imagenes para la secuencia", Toast.LENGTH_SHORT).show();
         }
 
