@@ -49,7 +49,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     private int i = 0;
 
 
-
     private TextView lectura;
     private ImageView guia;
 
@@ -117,16 +116,14 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
 
 
-        for(int i=0; i< lista.size(); i++){
+        for (int i = 0; i < lista.size(); i++) {
 
             LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
-            itemLayout.setId(ITEM_ID+i);
+            itemLayout.setId(ITEM_ID + i);
             itemLayout.setOrientation(LinearLayout.VERTICAL);
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(190, 160);
-
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER;
-            params.setMargins(10, 10,10,10);
+            params.setMargins(10, 10, 10, 10);
 
             itemLayout.setLayoutParams(params);
 
@@ -134,13 +131,15 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             tg = new LinearLayout(getApplicationContext());
 
 
-
             bt1 = new Button(getApplicationContext());
-            bt1.setText(""+(i+1));
+            bt1.setText("" + (i + 1));
             bt1.setLayoutParams(params);
             bt1.setId(lista.get(i).getOrdenImagenSecuencia());
-            bt1.setBackgroundColor(Color.BLACK);
+            bt1.setBackgroundColor(Color.DKGRAY);
             bt1.setTextColor(Color.WHITE);
+            bt1.setWidth(100);
+            bt1.setHeight(150);
+            bt1.setTextSize(75);
             bt1.setOnDragListener(dragListener);
             tg.addView(bt1);
             target.addView(tg);
@@ -156,22 +155,23 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         //rndm.setSeed(1); esto no sirve
         Collections.shuffle(listaRandom, rndm);
 
-        for(int i=0; i< lista.size(); i++){
+        for (int i = 0; i < lista.size(); i++) {
 
             LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
-            itemLayout.setId(ITEM_ID+i);
-            itemLayout.setOrientation(LinearLayout.VERTICAL);
+            itemLayout.setId(ITEM_ID + i);
+            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(190, 190);
+//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(190, 190);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
             params.gravity = Gravity.CENTER;
-            params.setMargins(10, 10,10,10);
+            params.setMargins(10, 10, 10, 10);
 
             itemLayout.setLayoutParams(params);
 
 
-
             Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom.get(i).getImagenSecuencia()), 190,
-                    120, true);
+                    190, true);
 
 
             bt2 = new ImageView(getApplicationContext());
@@ -179,14 +179,11 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             bt2.setLayoutParams(params);
             bt2.setBackgroundColor(Color.BLACK);
             bt2.setImageBitmap(newBitmap);
-            btnTarget.addView(bt2);
-            bt2.setOnLongClickListener(longClickListener);
 
+            bt2.setOnLongClickListener(longClickListener);
+            btnTarget.addView(bt2);
             rootLayout2.addView(itemLayout);
         }
-
-
-
 
 
         lectura = findViewById(R.id.texto);
@@ -206,33 +203,33 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
-    View.OnLongClickListener longClickListener = new View.OnLongClickListener(){
+    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
-            ClipData data = ClipData.newPlainText("","");
+            ClipData data = ClipData.newPlainText("", "");
             View.DragShadowBuilder myShadowBuilder = new View.DragShadowBuilder(view);
-            view.startDrag(data, myShadowBuilder, view,0);
+            view.startDrag(data, myShadowBuilder, view, 0);
 
             return true;
         }
     };
 
-    View.OnDragListener dragListener = new View.OnDragListener(){
+    View.OnDragListener dragListener = new View.OnDragListener() {
         @Override
         public boolean onDrag(View v, DragEvent event) {
 
             int dragEvent = event.getAction();
             final View view = (View) event.getLocalState();
 
-            switch (dragEvent){
+            switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED:
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
                 case DragEvent.ACTION_DROP:
 
-                    if(view.getId() == v.getId() ){
-                        Toast.makeText(getApplicationContext(),"Dropped", Toast.LENGTH_SHORT).show();
+                    if (view.getId() == v.getId()) {
+                        Toast.makeText(getApplicationContext(), "Dropped", Toast.LENGTH_SHORT).show();
 
                         LinearLayout oldparent = (LinearLayout) view.getParent();
                         oldparent.removeView(view);
@@ -242,14 +239,14 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         hola.addView(view);
 
                         correctas++;
-                    }else{
+                    } else {
 
 
                         inCorrectas++;
-                        Toast.makeText(getApplicationContext(),"Incorrecto"+" incorrecto"+ inCorrectas,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Incorrecto" + " incorrecto" + inCorrectas, Toast.LENGTH_SHORT).show();
                     }
-                    if(correctas==lista.size()){
-                        Toast.makeText(getApplicationContext(),"FELICIDADES LOS HAS LOGRADO"+" correctas"+ correctas+" incorrectas: " +inCorrectas ,Toast.LENGTH_SHORT).show();
+                    if (correctas == lista.size()) {
+                        Toast.makeText(getApplicationContext(), "FELICIDADES LOS HAS LOGRADO" + " correctas" + correctas + " incorrectas: " + inCorrectas, Toast.LENGTH_SHORT).show();
 
                     }
                     break;
@@ -272,8 +269,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                lectura.append(palabraResaltada[i] + " ");
-                lectura.setTextColor(rgb(255, 192, 0));
+//                lectura.append(palabraResaltada[i] + " ");
+//                lectura.setTextColor(rgb(255, 192, 0));
                 lectura.setMovementMethod(new ScrollingMovementMethod());
 
 
@@ -290,7 +287,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     }
 
 
-
     @Override
     public void onInit(int text) {
         if (text == TextToSpeech.SUCCESS) {
@@ -305,7 +301,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         }
 
     }
-
 
 
 }
