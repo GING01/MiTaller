@@ -18,6 +18,7 @@ import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -287,6 +288,17 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edicion_palabra, menu);
+        if(vocabulario==null){
+            getSupportActionBar().setCustomView(R.layout.menu_palabra_titulo_nuevo);
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        else{
+            getSupportActionBar().setCustomView(R.layout.menu_palabra_titulo_editar);
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        }
         return true;
     }
     @Override
@@ -296,6 +308,9 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         if(id == R.id.accion_guardar_palabra) {
             guardarPalabra();
             return true;
+        }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -567,6 +582,12 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         imageViewPlay.setImageResource(R.drawable.ic_play);
         chronometer.stop();
     }
-
+    public void llamarmenu(View view){
+        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
+    }
 
 }

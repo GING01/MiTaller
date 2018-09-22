@@ -5,9 +5,12 @@ import android.os.Build;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -136,6 +139,8 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         startActivity(intent);
     }
 
+
+
     @Override
     public void onInit(int text) {
         if(text==TextToSpeech.SUCCESS){
@@ -149,5 +154,29 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
             }
         }
         else{}
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+            getSupportActionBar().setCustomView(R.layout.menu_seleccion_dificultad_titulo);
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            return true;
+        }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    public void llamarmenu(View view){
+        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
     }
 }

@@ -3,11 +3,14 @@ package mta.epn.ginghogam.com.mitaller.activities;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -45,10 +48,6 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     private List<Vocabulario> vocabularioList;
     private MediaPlayer mp;
     String dificultadSeleccionada;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +131,23 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportActionBar().setCustomView(R.layout.menu_vocabulario_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void pasar(View view) {
         Intent intent = new Intent(EntrenamientoVocabularioActivity.this, SeleccionHistoriaEntrenamientoActivity.class);
         intent.putExtra("tutor", tutor);
@@ -139,5 +155,14 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         intent.putExtra("dificultad", dificultadSeleccionada);
         intent.putExtra("taller", taller);
         startActivity(intent);
+    }
+
+    public void llamarmenu(View view){
+        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
+
     }
 }

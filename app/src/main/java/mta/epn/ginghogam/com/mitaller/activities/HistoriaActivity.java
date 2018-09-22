@@ -1,6 +1,8 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -113,6 +115,9 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_historia, menu);
+        getSupportActionBar().setCustomView(R.layout.menu_historia_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
     @Override
@@ -130,6 +135,9 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
             cancelar.setVisibility(View.VISIBLE);
 
         }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -143,19 +151,16 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
             EdicionHistoriaActivity.startH(this, historiaListAdapter.getItem(position), taller);
         }
     }
-
     public void aceptar(View view) {
         borrarElementos();
         recreate();
     }
-
     public void cancelar(View view) {
         visible=false;
         historiaListAdapter.notifyDataSetChanged();
         aceptar.setVisibility(View.GONE);
         cancelar.setVisibility(View.GONE);
     }
-
     public void prepararSeleccion(View view, int position){
         if(((CheckBox)view).isChecked()){
             seleccion.add(historiaListAdapter.getItem(position));
@@ -173,6 +178,13 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         }
 
 
+    }
+    public void llamarmenu(View view){
+        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
     }
 }
 

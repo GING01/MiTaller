@@ -2,6 +2,7 @@ package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -112,6 +113,9 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_vocabulario, menu);
+        getSupportActionBar().setCustomView(R.layout.menu_vocabulario_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
     @Override
@@ -129,6 +133,9 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
             cancelar.setVisibility(View.VISIBLE);
 
         }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -138,14 +145,12 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
             EdicionPalabraActivity.startP(this, palabraListAdapter.getItem(position), taller);
         }
     }
-
     public void cancelar(View view) {
         visible=false;
         palabraListAdapter.notifyDataSetChanged();
         aceptar.setVisibility(View.GONE);
         cancelar.setVisibility(View.GONE);
     }
-
     public void aceptar(View view) {
         borrarElementos();
         recreate();
@@ -167,5 +172,13 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         }
 
 
+    }
+
+    public void llamarmenu(View view){
+        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
     }
 }

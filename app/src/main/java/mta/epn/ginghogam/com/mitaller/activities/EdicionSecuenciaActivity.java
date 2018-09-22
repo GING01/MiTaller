@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.DragEvent;
@@ -299,6 +300,10 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secuencia, menu);
+        getSupportActionBar().setCustomView(R.layout.menu_historia_titulo_editar);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         return true;
     }
     @Override
@@ -308,6 +313,9 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         if(id == R.id.guardarsecuencia) {
             guardar(editar);
             return true;
+        }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -360,6 +368,14 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         }
 
     }
+    public void llamarmenu(View view){
+        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
+    }
+
 
 
 }

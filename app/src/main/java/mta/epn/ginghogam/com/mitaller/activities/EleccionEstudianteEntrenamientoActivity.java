@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.view.ActionProvider;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -115,6 +116,8 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_selecion_estudiante, menu);
+        getSupportActionBar().setCustomView(R.layout.menu_estudiantes_entrenamiento_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM );
         MenuItem menuItem = menu.findItem(R.id.search);
         SearchView searchView =(SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
@@ -182,5 +185,9 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
         }
         estudianteEntrenamientoListAdapter.setFilter(newlist);
         return true;
+    }
+    public void llamarmenu(View view){
+
+        finish();
     }
 }

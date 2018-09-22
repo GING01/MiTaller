@@ -52,9 +52,9 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
+
 
         Toast.makeText(this,tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
 

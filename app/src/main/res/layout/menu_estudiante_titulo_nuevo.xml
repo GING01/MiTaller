@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <!-- TODO Fix width -->
+
+    <FrameLayout
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/homefield"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/ic_home"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="llamarmenu" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tallerEdicion"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="NUEVO ESTUDIANTE"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"/>
+
+</LinearLayout>
