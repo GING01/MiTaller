@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -59,7 +60,9 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         recyclerPalabra = (RecyclerView) findViewById(R.id.recyclerVocabulario);
 
 
-        linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
+
         palabraListAdapter = new PalabraListAdapter(this);
         palabraListAdapter.setOnItemClickListener(this);
 

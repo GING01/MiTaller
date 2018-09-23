@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -59,7 +60,9 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         recyclerHistoria = (RecyclerView) findViewById(R.id.recyclerHistoria);
 
 
-        linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
+
         historiaListAdapter = new HistoriaListAdapter(this);
         historiaListAdapter.setOnItemClickListener(this);
         aceptar=findViewById(R.id.aceptar);

@@ -166,7 +166,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         listaRandom = lista;
 
         Random rndm = new Random();
-        //rndm.setSeed(1); esto no sirve
         Collections.shuffle(listaRandom, rndm);
 
         for (int i = 0; i < lista.size(); i++) {
@@ -174,8 +173,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
             itemLayout.setId(ITEM_ID + i);
             itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(190, 190);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
             params.gravity = Gravity.CENTER;
@@ -203,7 +200,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
 
-        String msj = "Por favor, ordena las imagenes!";
+        String msj = "Por favor, ordena las imágenes!";
         lectura.setText(msj);
         lectura.setTextColor(rgb(255, 192, 0));
 
@@ -245,19 +242,14 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 case DragEvent.ACTION_DROP:
 
                     if (view.getId() == v.getId()) {
-                        Toast.makeText(getApplicationContext(), "Dropped", Toast.LENGTH_SHORT).show();
-
                         LinearLayout oldparent = (LinearLayout) view.getParent();
                         oldparent.removeView(view);
                         Button newParent = (Button) v;
                         LinearLayout hola = (LinearLayout) newParent.getParent();
                         v.setVisibility(View.GONE);
                         hola.addView(view);
-
                         correctas++;
                     } else {
-
-
                         inCorrectas++;
                         Toast.makeText(getApplicationContext(), "Incorrecto" + " incorrecto" + inCorrectas, Toast.LENGTH_SHORT).show();
                     }
@@ -285,8 +277,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-//                lectura.append(palabraResaltada[i] + " ");
-//                lectura.setTextColor(rgb(255, 192, 0));
+                lectura.append(palabraResaltada[i] + " ");
+                lectura.setTextColor(rgb(255, 192, 0));
                 lectura.setMovementMethod(new ScrollingMovementMethod());
 
 

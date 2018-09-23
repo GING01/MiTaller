@@ -88,7 +88,6 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
         final Taller taller = tallerList.get(position);
 
         holder.nombreTaller.setText(taller.getNombreTaller());
-        holder.descripcionTaller.setText(taller.getDescripcionTaller());
 
 
         if(taller != null) {
@@ -129,14 +128,12 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
     public class ContactHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgTaller;
         TextView nombreTaller;
-        TextView descripcionTaller;
         CheckBox checkBox;
 
         public ContactHolder(View itemView) {
             super(itemView);
             imgTaller = (ImageView) itemView.findViewById(R.id.img_taller);
             nombreTaller = (TextView) itemView.findViewById(R.id.nombre_taller);
-            descripcionTaller = (TextView) itemView.findViewById(R.id.descipcion_taller);
             checkBox=(CheckBox) itemView.findViewById(R.id.seleccionar);
             checkBox.setOnClickListener(this);
 

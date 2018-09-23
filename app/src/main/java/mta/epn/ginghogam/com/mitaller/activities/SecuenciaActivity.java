@@ -1,14 +1,11 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
-import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -47,7 +44,9 @@ public class SecuenciaActivity extends AppCompatActivity implements RecyclerItem
         Bundle extras = getIntent().getExtras();
         taller = extras.getParcelable("taller");
 
-        linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
+
         historiaListAdapter = new SecuenciaListAdapter(this);
         historiaListAdapter.setOnItemClickListener(this);
 
@@ -55,20 +54,21 @@ public class SecuenciaActivity extends AppCompatActivity implements RecyclerItem
         recyclerHistoria.setAdapter(historiaListAdapter);
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         loadData();
     }
 
-    void loadData(){
+    void loadData() {
         sqLiteDB = new SQLiteDB(this);
         historiaDAO = new HistoriaDAO(this);
 
         List<Historia> histariaList = new ArrayList<>();
 
-        if(taller != null){
-            long  params = taller.getIdTaller();
+        if (taller != null) {
+            long params = taller.getIdTaller();
             Cursor cursor = historiaDAO.retrieve(params);
             if (cursor.moveToFirst()) {
                 do {
@@ -83,47 +83,25 @@ public class SecuenciaActivity extends AppCompatActivity implements RecyclerItem
                     historia.setDificultad(cursor.getString(5));
                     historia.setIdTaller(cursor.getInt(6));
                     histariaList.add(historia);
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
             }
-        }else{
-            Toast.makeText(this,"No hay registros realizados", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "No hay registros realizados", Toast.LENGTH_LONG).show();
         }
 
 
         Historia historia;
 
 
-
         historiaListAdapter.clear();
         historiaListAdapter.addAll(histariaList);
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportActionBar().setCustomView(R.layout.menu_secuencia_titulo);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
     @Override
     public void onItemClick(int position, View view) {
         EdicionSecuenciaActivity.startSecuen(this, historiaListAdapter.getItem(position));
-      //  Toast.makeText(this,""+historiaListAdapter.getItem(position).getIdHistoria(),Toast.LENGTH_LONG).show();
+        //  Toast.makeText(this,""+historiaListAdapter.getItem(position).getIdHistoria(),Toast.LENGTH_LONG).show();
 
-    }
-
-    public void llamarmenu(View view){
-        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        startActivity(intent);
-        finish();
     }
 }
 
