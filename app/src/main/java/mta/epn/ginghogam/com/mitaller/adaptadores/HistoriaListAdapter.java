@@ -87,9 +87,6 @@ public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapte
         final Historia historia = historiaList.get(position);
 
         holder.nombreHistoria.setText(historia.getNombreHistoria());
-        holder.descripcionHistoria.setText(historia.getDescripcionHistoria());
-        holder.numLaminas.setText(historia.getNumeroLaminas());
-        holder.dificultad.setText(historia.getDificultad());
 
         File file = new File(historia.getImagenHistoria());
         if (!file.exists()) {
@@ -132,9 +129,6 @@ public class HistoriaListAdapter extends RecyclerView.Adapter<HistoriaListAdapte
             super(itemView);
             imgHistoria = (ImageView) itemView.findViewById(R.id.img_historia);
             nombreHistoria = (TextView) itemView.findViewById(R.id.nombre_historia);
-            descripcionHistoria = (TextView) itemView.findViewById(R.id.descripcion_historia);
-            numLaminas = (TextView) itemView.findViewById(R.id.num_laminas);
-            dificultad = (TextView) itemView.findViewById(R.id.dificultad);
             checkBox=(CheckBox) itemView.findViewById(R.id.seleccionar);
             checkBox.setOnClickListener(this);
         }

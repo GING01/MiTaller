@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -52,7 +53,9 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
         recyclerTaller = (RecyclerView) findViewById(R.id.recyclerTalleres);
 
 
-        linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
+
         tallerListAdapter = new TallerListAdapter(this);
         tallerListAdapter.setOnItemClickListener(this);
 
