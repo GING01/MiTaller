@@ -29,6 +29,7 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
 
     private RecyclerItemClickListener recyclerItemClickListener;
     protected View.OnClickListener onClickListener;
+    protected View.OnLongClickListener onLongClickListener;
 
     public EstudianteListAdapter(Context context) {
         this.context = context;
@@ -127,6 +128,7 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
             onClickListener.onClick(v);
         }
     }
+
 
     class ContactHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imagen;
