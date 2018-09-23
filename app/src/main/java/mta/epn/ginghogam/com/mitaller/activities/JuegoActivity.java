@@ -80,6 +80,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     private SecuenciaDAO secuenciaDAO;
     private Integer tiempo=1 ;
     private TextView ttiempo;
+    long start;
 
 
 
@@ -269,7 +270,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                     }
                     if (correctas == lista.size()) {
                         Toast.makeText(getApplicationContext(), "FELICIDADES LOS HAS LOGRADO" + " correctas" + correctas + " incorrectas: " + inCorrectas, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplicationContext(), "tiempo " + (System.currentTimeMillis()*0.01000)+ " segs", Toast.LENGTH_LONG).show();
+                        long end =System.currentTimeMillis();
+                        Toast.makeText(getApplicationContext(), "tiempo " + (end-start)/1000 + " segs", Toast.LENGTH_LONG).show();
 
                     }
                     break;
@@ -362,6 +364,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 tiempo = seekBar.getProgress()+1;
                 ttiempo.setText(tiempo+"");
                 cerraTiempo(tiempo*60000);
+                start =System.currentTimeMillis();
 
 
             }
