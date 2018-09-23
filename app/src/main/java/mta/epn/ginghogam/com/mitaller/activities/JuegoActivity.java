@@ -2,6 +2,7 @@ package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +23,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.db.SecuenciaDAO;
@@ -72,14 +78,15 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     private Historia historia;
     private Taller taller;
     private SecuenciaDAO secuenciaDAO;
-    private Integer tiempo=0 ;
+    private Integer tiempo=1 ;
+    private TextView ttiempo;
 
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        tiempo();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
 
@@ -87,11 +94,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-
-
-        if(tiempo == 11){
-            finish();
-        }
+        Bundle extras = getIntent().getExtras();
 
         TtS = new TextToSpeech(this, this);
 
@@ -101,12 +104,14 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         rootLayout2 = (LinearLayout) findViewById(R.id.layout_root2);
 
 
+
         secuenciaDAO = new SecuenciaDAO(this);
-        Bundle extras = getIntent().getExtras();
+
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
         historia = extras.getParcelable("historia");
         taller = extras.getParcelable("taller");
+
 
         long id = historia.getIdHistoria();
         Cursor cursor = secuenciaDAO.retrieve(id);
@@ -198,6 +203,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
 
         lectura = findViewById(R.id.texto);
+        ttiempo=(TextView) findViewById(R.id.tiempoedt);
         guia = findViewById(R.id.guia);
 
         String msj = "Por favor, ordena las imágenes!";
@@ -212,7 +218,15 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         });
 
 
+
     }
+
+    @Override
+    protected void onStart() {
+        tiempo();
+        super.onStart();
+    }
+
 
 
 
@@ -255,6 +269,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                     }
                     if (correctas == lista.size()) {
                         Toast.makeText(getApplicationContext(), "FELICIDADES LOS HAS LOGRADO" + " correctas" + correctas + " incorrectas: " + inCorrectas, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "tiempo " + (System.currentTimeMillis()*0.01000)+ " segs", Toast.LENGTH_LONG).show();
 
                     }
                     break;
@@ -264,6 +279,14 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         }
     };
 
+    public void cerraTiempo( Integer i){
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, i);
+    }
     private void hablar() {
         String msj = "Por favor, ordena las imagenes!";
 
@@ -294,7 +317,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
-
     @Override
     public void onInit(int text) {
         if (text == TextToSpeech.SUCCESS) {
@@ -312,25 +334,46 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     public void tiempo(){
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
-        View mView = getLayoutInflater().inflate(R.layout.dialog_tiempo, null);
-        Button boButton =mView.findViewById(R.id.button2);
-        boButton.setOnClickListener(new View.OnClickListener() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
+        final View mView = getLayoutInflater().inflate(R.layout.dialog_tiempo, null);
+        final SeekBar seekBar =mView.findViewById(R.id.seekBartiempo);
+        final TextView txttiempo= mView.findViewById(R.id.txttiempo);
+        seekBar.setMax(9);
+        txttiempo.setText((seekBar.getProgress()+1) + " minutos");
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View v) {
-              cancelar();
-              finish();
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txttiempo.setText((progress+1) + " minutos");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
         mBuilder.setView(mView);
+        mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                tiempo = seekBar.getProgress()+1;
+                ttiempo.setText(tiempo+"");
+                cerraTiempo(tiempo*60000);
+
+
+            }
+        });
+        mBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                finish();
+            }
+        });
         AlertDialog dialog = mBuilder.create();
         dialog.setCancelable(false);
         dialog.show();
-
     }
 
-    private void cancelar() {
-        tiempo =11;
-    }
 }

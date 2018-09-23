@@ -99,6 +99,14 @@
                 android:textSize="22dp"
                 android:textStyle="bold"
                 />
+
+            <TextView
+                android:id="@+id/tiempoedt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:visibility="gone"
+               />
         </LinearLayout>
 
     </LinearLayout>
