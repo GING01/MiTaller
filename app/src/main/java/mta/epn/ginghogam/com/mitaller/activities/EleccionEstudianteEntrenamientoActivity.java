@@ -124,9 +124,6 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
         return true;
     }
 
-
-
-
     @Override
     public void onItemClick(final int position, final View view) {
 

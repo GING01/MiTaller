@@ -1,6 +1,8 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.ClipData;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,11 +10,13 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.DragEvent;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -68,16 +72,26 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     private Historia historia;
     private Taller taller;
     private SecuenciaDAO secuenciaDAO;
+    private Integer tiempo=0 ;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        tiempo();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+
+
+        if(tiempo == 11){
+            finish();
+        }
 
         TtS = new TextToSpeech(this, this);
 
@@ -203,6 +217,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
+
+
     View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
@@ -302,5 +318,27 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
+    public void tiempo(){
 
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_tiempo, null);
+        Button boButton =mView.findViewById(R.id.button2);
+        boButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              cancelar();
+              finish();
+
+            }
+        });
+        mBuilder.setView(mView);
+        AlertDialog dialog = mBuilder.create();
+        dialog.setCancelable(false);
+        dialog.show();
+
+    }
+
+    private void cancelar() {
+        tiempo =11;
+    }
 }
