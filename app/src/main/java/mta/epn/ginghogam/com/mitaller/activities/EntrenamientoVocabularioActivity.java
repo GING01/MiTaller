@@ -118,14 +118,15 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     @Override
     public void onItemClick(int position, View view) {
 
-       String sonido =  vocabularioList.get(position).getSonidoPalabra().toString().trim();
         mp = new MediaPlayer();
         try {
+            String sonido =  vocabularioList.get(position).getSonidoPalabra().toString().trim();
+
 //fileName is global string. it contains the Uri to the recently recorded audio.
             mp.setDataSource(sonido);
             mp.prepare();
             mp.start();
-        } catch (IOException e) {
+        } catch (Exception e) {
             Log.e("LOG_TAG", "prepare() failed");
         }
 

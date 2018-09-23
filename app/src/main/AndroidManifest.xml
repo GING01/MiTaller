@@ -73,7 +73,8 @@
         <activity android:name=".activities.SecuenciaEntrenamientoActivity" />
         <activity android:name=".activities.SeleccionDificultadActivity" />
         <activity android:name=".activities.BienvenidaTallerActivity" />
-        <activity android:name=".activities.JuegoActivity"></activity>
+        <activity android:name=".activities.JuegoActivity" />
+        <activity android:name=".activities.ResultadosActivity"></activity>
     </application>
 
 </manifest>

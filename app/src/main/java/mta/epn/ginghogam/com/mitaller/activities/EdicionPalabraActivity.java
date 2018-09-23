@@ -62,7 +62,6 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
     private Chronometer chronometer;
     private ImageView imageViewRecord, imageViewPlay, imageViewStop;
     private SeekBar seekBar;
-    private LinearLayout linearLayoutRecorder, linearLayoutPlay;
     private MediaRecorder mRecorder;
     private MediaPlayer mPlayer;
     private String fileName = null;
@@ -88,7 +87,6 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
 
     private Vocabulario vocabulario;
     private Taller taller;
-    private SQLiteDB sqLiteDB;
     private VocabularioDAO vocabularioDAO;
 
     private String tipoPalabra="";
