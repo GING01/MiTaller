@@ -5,7 +5,7 @@
     android:layout_height="270dp"
     app:cardBackgroundColor="#fff"
     app:cardCornerRadius="3dp"
-    app:cardElevation="3dp"
+    app:cardElevation="10dp"
     app:cardUseCompatPadding="true"
     app:contentPadding="5dp">
 
