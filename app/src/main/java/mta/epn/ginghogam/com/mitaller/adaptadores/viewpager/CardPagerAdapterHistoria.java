@@ -179,8 +179,12 @@ public class CardPagerAdapterHistoria extends PagerAdapter
         }
 
 
+        if(mViews != null) {
+//            return view;
+            ((ViewPager) collection).addView(localView, position);
 
-        ((ViewPager) collection).addView(localView, position);
+        }
+
 
 
 
@@ -202,6 +206,8 @@ public class CardPagerAdapterHistoria extends PagerAdapter
         return localView;
 
     }
+
+
 
 
     @Override

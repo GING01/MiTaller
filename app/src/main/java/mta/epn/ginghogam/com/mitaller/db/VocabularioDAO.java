@@ -68,5 +68,12 @@ public class VocabularioDAO extends SQLiteDB {
     public void delete(int id){
         SQLiteDatabase db = getReadableDatabase();
 
+        // Define 'where' part of query.
+        String selection = ConstanteDB.COLUMN_ID_PALABRA + " LIKE ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { String.valueOf(id) };
+        // Issue SQL statement.
+        db.delete(ConstanteDB.TABLE_VOCABULARIO, selection, selectionArgs);
+
     }
 }

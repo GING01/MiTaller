@@ -71,6 +71,11 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
     }
 
     @Override
+    public float getPageWidth(int position) {
+        return (0.5f);
+    }
+
+    @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }

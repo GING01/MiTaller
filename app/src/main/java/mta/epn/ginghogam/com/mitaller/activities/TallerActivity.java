@@ -35,9 +35,18 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
 
     private SQLiteDB sqLiteDB;
     private TallerDAO tallerDAO;
-    private Button aceptar,cancelar;
-    public boolean visible=false;
-    ArrayList<Taller> seleccion= new ArrayList<>();
+    private Button aceptar, cancelar;
+    public boolean visible = false;
+    ArrayList<Taller> seleccion = new ArrayList<>();
+
+    //menu
+    MenuItem menuItem;
+    MenuItem cancelarMenu;
+    MenuItem ok;
+    MenuItem nuevo;
+    MenuItem borrar;
+
+    boolean isClicked = false;
 
 
     @Override
@@ -61,8 +70,8 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
 
         recyclerTaller.setLayoutManager(linearLayoutManager);
         recyclerTaller.setAdapter(tallerListAdapter);
-        aceptar=findViewById(R.id.aceptar);
-        cancelar =findViewById(R.id.cancelar);
+        aceptar = findViewById(R.id.aceptar);
+        cancelar = findViewById(R.id.cancelar);
 
 
     }
@@ -73,7 +82,7 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
         loadData();
     }
 
-    void loadData(){
+    void loadData() {
         sqLiteDB = new SQLiteDB(this);
         tallerDAO = new TallerDAO(this);
 
@@ -92,7 +101,7 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
                 taller.setDescripcionTaller(cursor.getString(2));
                 taller.setImagenTaller(cursor.getString(3));
                 tallerList.add(taller);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         tallerListAdapter.clear();
@@ -104,22 +113,40 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_taller, menu);
         getSupportActionBar().setCustomView(R.layout.menu_talleres_titulo);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM );
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+
+        cancelarMenu = menu.findItem(R.id.accion_cancelar);
+        ok = menu.findItem(R.id.accion_ok);
+        nuevo = menu.findItem(R.id.nuevoTaller);
+        borrar = menu.findItem(R.id.borrar);
+
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.nuevoTaller) {
+        if (id == R.id.nuevoTaller) {
             EdicionTallerActivity.start(TallerActivity.this);
-        return true;
-    }
-        if (id==R.id.borrar){
-            visible=true;
+            return true;
+        }
+        if (id == R.id.borrar) {
+            visible = true;
             tallerListAdapter.notifyDataSetChanged();
-            aceptar.setVisibility(View.VISIBLE);
-            cancelar.setVisibility(View.VISIBLE);
+            nuevo.setVisible(false);
+            borrar.setVisible(false);
+            ok.setVisible(true);
+            cancelarMenu.setVisible(true);
+            isClicked = true;
+        }
+        if (id == R.id.accion_ok) {
+            aceptar(null);
+
+        }
+        if (id == R.id.accion_cancelar) {
+            cancelar(null);
 
         }
 
@@ -129,40 +156,54 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
 
     @Override
     public void onItemClick(int position, View view) {
-        EdicionTallerActivity.start(this, tallerListAdapter.getItem(position));
+        if (!isClicked) {
+            EdicionTallerActivity.start(this, tallerListAdapter.getItem(position));
+        }
+    }
+
+    private void menu() {
+        nuevo.setVisible(true);
+        borrar.setVisible(true);
+        ok.setVisible(false);
+        cancelarMenu.setVisible(false);
     }
 
     public void aceptar(View view) {
         borrarElementos();
-        recreate();
+        loadData();
+        menu();
+        isClicked = false;
+        visible = false;
     }
 
     public void cancelar(View view) {
-        visible=false;
+        visible = false;
+        isClicked = false;
         tallerListAdapter.notifyDataSetChanged();
-        aceptar.setVisibility(View.GONE);
-        cancelar.setVisibility(View.GONE);
+        menu();
+
     }
 
-    public void prepararSeleccion(View view, int position){
-        if(((CheckBox)view).isChecked()){
+    public void prepararSeleccion(View view, int position) {
+        if (((CheckBox) view).isChecked()) {
             seleccion.add(tallerListAdapter.getItem(position));
-        }
-        else{
+        } else {
             seleccion.remove(tallerListAdapter.getItem(position));
         }
 
     }
-    public void borrarElementos(){
+
+    public void borrarElementos() {
         sqLiteDB = new SQLiteDB(this);
         tallerDAO = new TallerDAO(this);
-        for(int i=0; i<seleccion.size();i++){
-            tallerDAO.delete((Integer)seleccion.get(i).getIdTaller());
+        for (int i = 0; i < seleccion.size(); i++) {
+            tallerDAO.delete((Integer) seleccion.get(i).getIdTaller());
         }
 
 
     }
-    public void llamarmenu(View view){
+
+    public void llamarmenu(View view) {
         finish();
     }
 
