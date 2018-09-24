@@ -63,7 +63,7 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
 
 
 //        linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
+        linearLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false);
 
         tallerListAdapter = new TallerListAdapter(this);
         tallerListAdapter.setOnItemClickListener(this);
