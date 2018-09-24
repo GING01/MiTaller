@@ -266,7 +266,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         correctas++;
                     } else {
                         inCorrectas++;
-                        Toast.makeText(getApplicationContext(), "Incorrecto" + " incorrecto" + inCorrectas, Toast.LENGTH_SHORT).show();
+                    }
+                    if (correctas == lista.size() && inCorrectas==0) {
+                        Toast.makeText(getApplicationContext(), "SOS UN PRO", Toast.LENGTH_SHORT).show();
+
                     }
                     if (correctas == lista.size()) {
                         Toast.makeText(getApplicationContext(), "FELICIDADES LOS HAS LOGRADO" + " correctas" + correctas + " incorrectas: " + inCorrectas, Toast.LENGTH_SHORT).show();

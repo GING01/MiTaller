@@ -57,6 +57,27 @@ public class ConstanteDB {
     public static final String COLUMN_EDAD_ESTUDIANTE = "edad_estudiante";
     public static final String COLUMN_ID_TUTOR_PK = "estudiante_id_pk";
 
+    //Tabla SESION
+    public static final String TABLE_SESION= "sesion";
+    public static final String COLUMN_ID_SESION = "sesion_id";
+    public static final String COLUMN_FECHA = "fecha_sesion";
+    public static final String COLUMN_NOMBRE_TALLER = "nombre_taller_sesion";
+    public static final String COLUMN_NOMBRE_TUTOR_RESULTADOS= "nombre_tutor_resultados";
+    public static final String COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS = "nombre_tutor_resultados";
+    public static final String COLUMN_NOMBRE_HISTORIA_RESULTADOS = "nombre_historia_resultados";
+    public static final String COLUMN_ACIERTOS = "aciertos";
+    public static final String COLUMN_FALLOS = "fallos";
+    public static final String COLUMN_TIEMPO_EJERCICIO = "tiempo";
+    public static final String COLUMN_RESULTADO_EJERCICIO= "resultado_ejercicio";
+    public static final String COLUMN_OBSERVACION_RESULTADO = "observacion";
+    public static final String COLUMN_ID_ESTUDIANTE_FK = "id_estudiante_fk";
+
+
+
+
+
+
+
 
 
 }

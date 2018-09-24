@@ -97,6 +97,25 @@ public class SQLiteDB extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ESTUDIANTE =
             "DROP TABLE IF EXISTS " + ConstanteDB.TABLE_ESTUDIANTE;
 
+    //Tabla SESION
+    private static final String SQL_CREATE_SESION =
+            "CREATE TABLE " + ConstanteDB.TABLE_SESION + " (" +
+                    ConstanteDB.COLUMN_ID_SESION +" INTEGER PRIMARY KEY AUTOINCREMENT,"  +
+                    ConstanteDB.COLUMN_FECHA + " DATE " + COMMA_SEP +
+                    ConstanteDB.COLUMN_NOMBRE_TALLER + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_NOMBRE_TUTOR_RESULTADOS+ TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_NOMBRE_HISTORIA_RESULTADOS + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_ACIERTOS + INTEGER_ + COMMA_SEP +
+                    ConstanteDB.COLUMN_FALLOS + INTEGER_ + COMMA_SEP +
+                    ConstanteDB.COLUMN_TIEMPO_EJERCICIO + " FLOAT " + COMMA_SEP +
+                    ConstanteDB.COLUMN_RESULTADO_EJERCICIO + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_OBSERVACION_RESULTADO + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_ID_ESTUDIANTE_FK + INTEGER_ + " )";
+
+    private static final String SQL_DELETE_SESION =
+            "DROP TABLE IF EXISTS " + ConstanteDB.TABLE_ESTUDIANTE;
+
 
     public SQLiteDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -104,6 +123,8 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL(SQL_CREATE_SESION);
         db.execSQL(SQL_CREATE_ESTUDIANTE);
         db.execSQL(SQL_CREATE_SECUENCIA);
         db.execSQL(SQL_CREATE_HISTORIA);
@@ -116,6 +137,8 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        db.execSQL(SQL_DELETE_SESION);
         db.execSQL(SQL_DELETE_ESTUDIANTE);
         db.execSQL(SQL_DELETE_SECUENCIA);
         db.execSQL(SQL_DELETE_HISTORIA);
