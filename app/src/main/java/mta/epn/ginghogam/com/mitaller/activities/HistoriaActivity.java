@@ -45,6 +45,14 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
     ArrayList<Historia> seleccion= new ArrayList<>();
 
 
+    //Menu
+    MenuItem cancelarMenu;
+    MenuItem ok;
+    MenuItem nuevo;
+    MenuItem borrar;
+    boolean isClicked = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +129,12 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         getSupportActionBar().setCustomView(R.layout.menu_historia_titulo);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        cancelarMenu = menu.findItem(R.id.accion_cancelar);
+        ok = menu.findItem(R.id.accion_ok);
+        nuevo = menu.findItem(R.id.nuevaHistoria);
+        borrar = menu.findItem(R.id.borrar);
+
         return true;
     }
     @Override
@@ -134,8 +148,20 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         if (id==R.id.borrar){
             visible=true;
             historiaListAdapter.notifyDataSetChanged();
-            aceptar.setVisibility(View.VISIBLE);
-            cancelar.setVisibility(View.VISIBLE);
+            nuevo.setVisible(false);
+            borrar.setVisible(false);
+            ok.setVisible(true);
+            cancelarMenu.setVisible(true);
+
+            isClicked = true;
+
+        }
+        if (id == R.id.accion_ok) {
+            aceptar(null);
+
+        }
+        if (id == R.id.accion_cancelar) {
+            cancelar(null);
 
         }
         if (item.getItemId() == android.R.id.home) {
@@ -149,20 +175,30 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
     @Override
     public void onItemClick(int position, View view) {
 
-        if(taller != null) {
+        if(taller != null && !isClicked) {
 
             EdicionHistoriaActivity.startH(this, historiaListAdapter.getItem(position), taller);
         }
     }
     public void aceptar(View view) {
         borrarElementos();
-        recreate();
+        loadData();
+        menu();
+        isClicked = false;
+        visible = false;
     }
     public void cancelar(View view) {
         visible=false;
         historiaListAdapter.notifyDataSetChanged();
-        aceptar.setVisibility(View.GONE);
-        cancelar.setVisibility(View.GONE);
+        menu();
+        visible = false;
+        isClicked = false;
+    }
+    private void menu() {
+        nuevo.setVisible(true);
+        borrar.setVisible(true);
+        ok.setVisible(false);
+        cancelarMenu.setVisible(false);
     }
     public void prepararSeleccion(View view, int position){
         if(((CheckBox)view).isChecked()){

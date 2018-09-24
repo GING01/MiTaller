@@ -1,6 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/accion_cancelar"
+        android:title="Cancelar"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:orderInCategory="30"
+        android:visible="false"
+        app:showAsAction="always|withText"/>
+    <item
+        android:id="@+id/accion_ok"
+        android:title="BORRAR"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:orderInCategory="20"
+        android:visible="false"
+        app:showAsAction="always|withText"/>
+
     <item
         android:id="@+id/borrar"
         android:icon="@android:drawable/ic_menu_delete"
@@ -9,9 +25,9 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/nuevoTaller"
-        android:title="Guardar"
+        android:title="Nuevo"
         android:icon="@android:drawable/ic_menu_add"
-        android:orderInCategory="11"
+        android:orderInCategory="13"
         app:showAsAction="ifRoom"/>
 
 

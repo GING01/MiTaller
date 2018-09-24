@@ -42,10 +42,8 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
     private EstudianteDAO estudianteDAO;
     private Tutor tutor;
     public boolean visible = false;
-    boolean isClicked =  false;
     ArrayList<Estudiante> seleccion = new ArrayList<>();
     List<Estudiante> estudianteList;
-
 
 
     //Menu
@@ -54,6 +52,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
     MenuItem ok;
     MenuItem nuevo;
     MenuItem borrar;
+    boolean isClicked = false;
 
 
     @Override
@@ -77,7 +76,6 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
         linearLayoutManager = new LinearLayoutManager(this);
         estudianteListAdapter = new EstudianteListAdapter(this);
         estudianteListAdapter.setOnItemClickListener(this);
-
 
 
         recyclerEstudiante.setLayoutManager(linearLayoutManager);
@@ -182,7 +180,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
 
     @Override
     public void onItemClick(int position, View view) {
-        if(!isClicked) {
+        if (!isClicked) {
             EdicionEstudianteActivity.startE(this, estudianteListAdapter.getItem(position), tutor);
         }
     }
@@ -197,14 +195,14 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
     }
 
     public void cancelar(View view) {
-        visible = false;
-        isClicked = false;
         estudianteListAdapter.notifyDataSetChanged();
         menu();
+        visible = false;
+        isClicked = false;
 
     }
 
-    private void menu(){
+    private void menu() {
         menuItem.setVisible(true);
         nuevo.setVisible(true);
         borrar.setVisible(true);
@@ -227,7 +225,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
             estudianteDAO.delete((Integer) seleccion.get(i).getIdEstudiante());
         }
 
-       // recreate();
+        // recreate();
     }
 
     @Override

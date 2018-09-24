@@ -41,9 +41,16 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
     private SQLiteDB sqLiteDB;
     private VocabularioDAO vocabularioDAO;
     private Taller taller;
-    private Button aceptar,cancelar;
-    public boolean visible=false;
-    ArrayList<Vocabulario> seleccion= new ArrayList<>();
+    public boolean visible = false;
+    ArrayList<Vocabulario> seleccion = new ArrayList<>();
+
+
+    //Menu
+    MenuItem cancelarMenu;
+    MenuItem ok;
+    MenuItem nuevo;
+    MenuItem borrar;
+    boolean isClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,7 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         palabraListAdapter = new PalabraListAdapter(this);
         palabraListAdapter.setOnItemClickListener(this);
 
+
         recyclerPalabra.setLayoutManager(linearLayoutManager);
         recyclerPalabra.setAdapter(palabraListAdapter);
 
@@ -77,9 +85,8 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         loadData();
     }
 
-    void loadData(){
-        sqLiteDB = new SQLiteDB(this);
-        sqLiteDB = new SQLiteDB(this);
+    void loadData() {
+
         vocabularioDAO = new VocabularioDAO(this);
 
         List<Vocabulario> vocabularioList = new ArrayList<>();
@@ -102,9 +109,8 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
                 vocabularioList.add(vocabulario);
 
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
-
 
 
         palabraListAdapter.clear();
@@ -119,65 +125,100 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         getSupportActionBar().setCustomView(R.layout.menu_vocabulario_titulo);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        cancelarMenu = menu.findItem(R.id.accion_cancelar);
+        ok = menu.findItem(R.id.accion_ok);
+        nuevo = menu.findItem(R.id.nuevaPalabra);
+        borrar = menu.findItem(R.id.borrar);
+
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.nuevaPalabra) {
+        if (id == R.id.nuevaPalabra) {
             EdicionPalabraActivity.startP(VocabularioActivity.this, taller);
             return true;
         }
-        if (id==R.id.borrar){
-            visible=true;
+        if (id == R.id.borrar) {
+            visible = true;
             palabraListAdapter.notifyDataSetChanged();
-            aceptar.setVisibility(View.VISIBLE);
-            cancelar.setVisibility(View.VISIBLE);
+            nuevo.setVisible(false);
+            borrar.setVisible(false);
+            ok.setVisible(true);
+            cancelarMenu.setVisible(true);
+
+            isClicked = true;
 
         }
         if (item.getItemId() == android.R.id.home) {
             finish();
         }
 
+        if (id == R.id.accion_ok) {
+            aceptar(null);
+
+        }
+        if (id == R.id.accion_cancelar) {
+            cancelar(null);
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onItemClick(int position, View view) {
-        if(taller != null) {
+        if (taller != null && !isClicked) {
             EdicionPalabraActivity.startP(this, palabraListAdapter.getItem(position), taller);
         }
     }
-    public void cancelar(View view) {
-        visible=false;
-        palabraListAdapter.notifyDataSetChanged();
-        aceptar.setVisibility(View.GONE);
-        cancelar.setVisibility(View.GONE);
-    }
+
     public void aceptar(View view) {
         borrarElementos();
-        recreate();
+        loadData();
+        menu();
+        isClicked = false;
+        visible = false;
     }
-    public void prepararSeleccion(View view, int position){
-        if(((CheckBox)view).isChecked()){
+
+    public void cancelar(View view) {
+        visible = false;
+        palabraListAdapter.notifyDataSetChanged();
+        menu();
+        visible = false;
+        isClicked = false;
+    }
+
+    private void menu() {
+        nuevo.setVisible(true);
+        borrar.setVisible(true);
+        ok.setVisible(false);
+        cancelarMenu.setVisible(false);
+    }
+
+    public void prepararSeleccion(View view, int position) {
+        if (((CheckBox) view).isChecked()) {
             seleccion.add(palabraListAdapter.getItem(position));
-        }
-        else{
+        } else {
             seleccion.remove(palabraListAdapter.getItem(position));
         }
 
     }
-    public void borrarElementos(){
+
+    public void borrarElementos() {
         sqLiteDB = new SQLiteDB(this);
         vocabularioDAO = new VocabularioDAO(this);
-        for(int i=0; i<seleccion.size();i++){
-            vocabularioDAO.delete((Integer)seleccion.get(i).getIdpalabra());
+        for (int i = 0; i < seleccion.size(); i++) {
+            vocabularioDAO.delete((Integer) seleccion.get(i).getIdpalabra());
         }
 
 
     }
 
-    public void llamarmenu(View view){
+    public void llamarmenu(View view) {
         Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
