@@ -3,6 +3,8 @@ package mta.epn.ginghogam.com.mitaller.activities;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -46,8 +50,9 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     private Tutor tutor;
     private Estudiante estudiante;
     private List<Vocabulario> vocabularioList;
-    private MediaPlayer mp;
     String dificultadSeleccionada;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +68,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         tutor = extras.getParcelable("tutor");
         dificultadSeleccionada = extras.getString("dificultad");
 
-        Toast.makeText(this,dificultadSeleccionada, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
         recyclerPalabra = (RecyclerView) findViewById(R.id.recyclerPalabraEntrenamiento);
 
@@ -74,6 +79,9 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
 
         recyclerPalabra.setLayoutManager(linearLayoutManager);
         recyclerPalabra.setAdapter(palabraEntrenamientoListAdapter);
+
+
+
     }
 
     @Override
@@ -82,11 +90,11 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         loadData();
     }
 
-    void loadData(){
+    void loadData() {
 
         vocabularioDAO = new VocabularioDAO(this);
 
-         vocabularioList = new ArrayList<>();
+        vocabularioList = new ArrayList<>();
         long params = taller.getIdTaller();
         Cursor cursor = vocabularioDAO.retrieve(params);
 
@@ -106,31 +114,21 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
                 vocabularioList.add(vocabulario);
 
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
-
 
 
         palabraEntrenamientoListAdapter.clear();
         palabraEntrenamientoListAdapter.addAll(vocabularioList);
     }
 
+
+
     @Override
     public void onItemClick(int position, View view) {
 
-        mp = new MediaPlayer();
-        try {
-            String sonido =  vocabularioList.get(position).getSonidoPalabra().toString().trim();
-
-//fileName is global string. it contains the Uri to the recently recorded audio.
-            mp.setDataSource(sonido);
-            mp.prepare();
-            mp.start();
-        } catch (Exception e) {
-            Log.e("LOG_TAG", "prepare() failed");
-        }
-
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportActionBar().setCustomView(R.layout.menu_vocabulario_titulo);
@@ -138,10 +136,9 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
         if (item.getItemId() == android.R.id.home) {
             finish();
         }
@@ -158,7 +155,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         startActivity(intent);
     }
 
-    public void llamarmenu(View view){
+    public void llamarmenu(View view) {
         Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
