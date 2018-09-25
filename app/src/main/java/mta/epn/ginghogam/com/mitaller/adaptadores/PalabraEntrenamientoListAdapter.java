@@ -1,9 +1,12 @@
 package mta.epn.ginghogam.com.mitaller.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
@@ -45,7 +48,6 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
 
     private MediaPlayer mp;
     int contador;
-
 
 
     public PalabraEntrenamientoListAdapter(Context context) {
@@ -90,7 +92,6 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
         final ContactHolder contactHolder = new ContactHolder(view);
 
 
-
         contactHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,43 +112,63 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
 
         String tipoPalabra = vocabulario.getTipoPalabra().toString().trim();
 
-        if (tipoPalabra.equals("Alimento"))
-            holder.lyColor.setBackgroundColor(Color.DKGRAY);
-        if (tipoPalabra.equals("Peligro"))
-            holder.lyColor.setBackgroundColor(Color.BLUE);
-        if (tipoPalabra.equals("Limpieza"))
-            holder.lyColor.setBackgroundColor(Color.RED);
+        //use a GradientDrawable with only one color set, to make it a solid color
+        GradientDrawable border = new GradientDrawable();
+
+            if (tipoPalabra.equals("Alimento")) {
+                border.setColor(Color.WHITE); //white background
+                border.setStroke(6, Color.rgb(22, 239, 2)); //black border with full opacity
+                border.setCornerRadius(20);
+                holder.lyColor.setBackground(border);
+
+            }
+            if (tipoPalabra.equals("Peligro")) {
+                border.setColor(Color.WHITE); //white background
+                border.setStroke(6, Color.rgb(255, 89, 0)); //black border with full opacity
+                border.setCornerRadius(20);
+                holder.lyColor.setBackground(border);
+
+            }
+            if (tipoPalabra.equals("Limpieza")) {
+                border.setColor(Color.WHITE); //white background
+                border.setStroke(6, Color.rgb(2, 69, 239)); //black border with full opacity
+                border.setCornerRadius(20);
+                holder.lyColor.setBackground(border);
+
+            }
 
 
         holder.palabra.setText(vocabulario.getPalabra());
 
 
         File file = new File(vocabulario.getImagenPalabra());
+        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(file.getPath()), 512,
+                512, true);
         if (!file.exists()) {
             holder.imgPalabra.setImageResource(R.drawable.no_foto);
         } else {
-            holder.imgPalabra.setImageBitmap(BitmapFactory.decodeFile(vocabulario.getImagenPalabra().toString()));
+            holder.imgPalabra.setImageBitmap(newBitmap);
             holder.imgPalabra.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     contador++;
 
-                    Toast.makeText(context.getApplicationContext(),""+contador,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context.getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if(contador == 1){
+                            if (contador == 1) {
                                 reproducirSonido(position);
-                                contador = 0;
 
-                            }else {
+                            }
+                            if (contador >= 2) {
                                 contador = 0;
                             }
 
                         }
-                    },250);
+                    }, 500);
 
 
                 }
@@ -174,7 +195,7 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
             Log.e("LOG_TAG", "prepare() failed");
         }
 
-        if(mp.isPlaying() && mp != null) {
+        if (mp.isPlaying() && mp != null) {
 
         }
 
@@ -202,13 +223,13 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
     }
 
     class ContactHolder extends RecyclerView.ViewHolder {
-        ImageButton imgPalabra;
+        ImageView imgPalabra;
         TextView palabra;
         LinearLayout lyColor;
 
         public ContactHolder(View itemView) {
             super(itemView);
-            imgPalabra = (ImageButton) itemView.findViewById(R.id.img_palabra_V);
+            imgPalabra = (ImageView) itemView.findViewById(R.id.img_palabra_V);
             palabra = (TextView) itemView.findViewById(R.id.palabra_);
             lyColor = (LinearLayout) itemView.findViewById(R.id.lyColor);
 
