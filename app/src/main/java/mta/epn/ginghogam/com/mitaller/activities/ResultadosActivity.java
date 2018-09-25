@@ -2,6 +2,7 @@ package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ public class ResultadosActivity extends AppCompatActivity {
     private Taller taller;
     int correctas = 0;
     int inCorrectas = 0;
-    private Integer tiempo=1;
+    private Long tiempo;
     private Boolean logro =false;
     private TextView nombreTaller;
 
@@ -37,7 +38,7 @@ public class ResultadosActivity extends AppCompatActivity {
         taller = extras.getParcelable("taller");
         correctas = extras.getInt("correctas");
         inCorrectas = extras.getInt("incorrectas");
-        tiempo = extras.getInt("tiempo");
+        tiempo = extras.getLong("tiempo");
         logro = extras.getBoolean("logro");
 
         Toast.makeText(this,"nombreTaller:"+ taller.getNombreTaller(),Toast.LENGTH_SHORT).show();
@@ -51,7 +52,15 @@ public class ResultadosActivity extends AppCompatActivity {
         EditText observacion =findViewById(R.id.observaciones);
 
     nombreTaller.setText(taller.getNombreTaller().toString());
-//        nombrehistoria.setText(historia.getNombreHistoria().toString());
+    nombrehistoria.setText(historia.getNombreHistoria().toString());
+    aciertos.setText(Long.toString(tiempo) );
+
+    guardar.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    });
 
 
     }

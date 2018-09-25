@@ -57,6 +57,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     ImageView bt2;
     private TextToSpeech TtS;
     private int i = 0;
+    long tiempaso;
 
 
     private TextView lectura;
@@ -83,6 +84,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     long start;
     long end;
     private Boolean logro =false;
+    AlertDialog dialog;
+    Handler handler1;
 
 
 
@@ -278,9 +281,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         Toast.makeText(getApplicationContext(), "FELICIDADES LOS HAS LOGRADO" + " correctas" + correctas + " incorrectas: " + inCorrectas, Toast.LENGTH_SHORT).show();
                         end =System.currentTimeMillis();
                         logro=true;
-                        Toast.makeText(getApplicationContext(), "tiempo " + (end-start)/1000 + " segs", Toast.LENGTH_LONG).show();
+                         tiempaso =(end-start)/1000;
+                        Toast.makeText(getApplicationContext(), "tiempo " + tiempaso + " segs", Toast.LENGTH_LONG).show();
                         welldone();
-                        finish();
+
 
                     }
                     break;
@@ -291,8 +295,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     };
 
     public void cerraTiempo(final Integer i){
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        handler1 = new Handler();
+        handler1.postDelayed(new Runnable() {
             @Override
             public void run() {
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
@@ -311,13 +315,14 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         intent.putExtra("correctas",correctas);
                         intent.putExtra("incorrectas", inCorrectas);
                         startActivity(intent);
+                        dialog.dismiss();
                         finish();
 
 
                     }
                 });
                 mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
+                dialog = mBuilder.create();
                 dialog.setCancelable(false);
                 dialog.show();
 
@@ -419,9 +424,9 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     public void welldone(){
 
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
-        final View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
-       final ImageButton imageButton = mView.findViewById(R.id.welldoneico);
+         AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
+         View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
+        ImageButton imageButton = mView.findViewById(R.id.welldoneico);
        imageButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
@@ -430,19 +435,22 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
              intent.putExtra("estudiante", estudiante);
              intent.putExtra("tutor", tutor);
              intent.putExtra("taller", taller);
-             intent.putExtra("tiempo",(end-start)/1000);
+             intent.putExtra("tiempo",tiempaso);
              intent.putExtra("logro", logro);
              intent.putExtra("correctas",correctas);
              intent.putExtra("incorrectas", inCorrectas);
              startActivity(intent);
+             dialog.dismiss();
+             handler1.removeCallbacksAndMessages(null);
              finish();
 
          }
      });
         mBuilder.setView(mView);
-        AlertDialog dialog = mBuilder.create();
+        dialog = mBuilder.create();
         dialog.setCancelable(false);
         dialog.show();
+
     }
 
 
