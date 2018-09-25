@@ -290,26 +290,36 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     };
 
     public void cerraTiempo(final Integer i){
-        new Timer().schedule(new TimerTask() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-               logro=false;
-                Intent intent = new Intent(getApplicationContext(), ResultadosActivity.class);
-                intent.putExtra("historia", historia);
-                intent.putExtra("estudiante", estudiante);
-                intent.putExtra("tutor", tutor);
-                intent.putExtra("taller", taller);
-                intent.putExtra("tiempo",i);
-                intent.putExtra("logro", logro);
-                intent.putExtra("correctas",correctas);
-                intent.putExtra("incorrectas", inCorrectas);
-                startActivity(intent);
-                finish();
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
+                final View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado_negativo, null);
+                final ImageButton imageButton = mView.findViewById(R.id.baddoneico);
+                imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), ResultadosActivity.class);
+                        intent.putExtra("historia", historia);
+                        intent.putExtra("estudiante", estudiante);
+                        intent.putExtra("tutor", tutor);
+                        intent.putExtra("taller", taller);
+                        intent.putExtra("tiempo",tiempo*60000);
+                        intent.putExtra("logro", false);
+                        intent.putExtra("correctas",correctas);
+                        intent.putExtra("incorrectas", inCorrectas);
+                        startActivity(intent);
+                        finish();
 
-
+                    }
+                });
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.setCancelable(false);
+                dialog.show();
             }
         }, i);
-
     }
 
     private void hablar() {
@@ -428,6 +438,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         dialog.setCancelable(false);
         dialog.show();
     }
+
 
 
 }
