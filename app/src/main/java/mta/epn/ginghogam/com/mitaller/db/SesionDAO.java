@@ -19,15 +19,15 @@ public class SesionDAO extends SQLiteDB {
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(ConstanteDB.COLUMN_FECHA, sesion.getFallos());
+        values.put(ConstanteDB.COLUMN_FECHA, String.valueOf(sesion.getFechaSesion()));
         values.put(ConstanteDB.COLUMN_NOMBRE_TALLER, sesion.getNombretaller());
         values.put(ConstanteDB.COLUMN_NOMBRE_TUTOR_RESULTADOS, sesion.getNombretutor());
         values.put(ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS, sesion.getNombreEstudiate());
-        values.put(ConstanteDB.COLUMN_NOMBRE_HISTORIA, sesion.getNombrehistoria());
+        values.put(ConstanteDB.COLUMN_NOMBRE_HISTORIA_RESULTADOS, sesion.getNombrehistoria());
         values.put(ConstanteDB.COLUMN_ACIERTOS, sesion.getAciertos());
         values.put(ConstanteDB.COLUMN_FALLOS, sesion.getFallos());
         values.put(ConstanteDB.COLUMN_TIEMPO_EJERCICIO, sesion.getTiempo());
-        values.put(ConstanteDB.COLUMN_RESULTADO_EJERCICIO, sesion.getLogro());
+        values.put(ConstanteDB.COLUMN_RESULTADO_EJERCICIO, String.valueOf(sesion.getLogro()));
         values.put(ConstanteDB.COLUMN_OBSERVACION_RESULTADO, sesion.getObservacion());
         values.put(ConstanteDB.COLUMN_ID_ESTUDIANTE_FK, sesion.getIdEstudiante());
 

@@ -15,13 +15,14 @@ public class Sesion implements Parcelable {
     private String nombrehistoria;
     private Integer aciertos;
     private Integer fallos;
-    private Integer tiempo;
+    private Long tiempo;
     private Boolean logro;
     private String observacion;
     private Integer idEstudiante;
 
     public Sesion() {
     }
+
 
     protected Sesion(Parcel in) {
         if (in.readByte() == 0) {
@@ -46,7 +47,7 @@ public class Sesion implements Parcelable {
         if (in.readByte() == 0) {
             tiempo = null;
         } else {
-            tiempo = in.readInt();
+            tiempo = in.readLong();
         }
         byte tmpLogro = in.readByte();
         logro = tmpLogro == 0 ? null : tmpLogro == 1;
@@ -86,7 +87,7 @@ public class Sesion implements Parcelable {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeInt(tiempo);
+            dest.writeLong(tiempo);
         }
         dest.writeByte((byte) (logro == null ? 0 : logro ? 1 : 2));
         dest.writeString(observacion);
@@ -179,11 +180,11 @@ public class Sesion implements Parcelable {
         this.fallos = fallos;
     }
 
-    public Integer getTiempo() {
+    public Long getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(Integer tiempo) {
+    public void setTiempo(Long tiempo) {
         this.tiempo = tiempo;
     }
 

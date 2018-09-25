@@ -9,6 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import mta.epn.ginghogam.com.mitaller.constantes.ConstanteDB;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 
+import static java.sql.Types.BOOLEAN;
+import static java.sql.Types.LONGVARCHAR;
+import static java.util.Calendar.DATE;
+
 public class SQLiteDB extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
@@ -18,6 +22,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String INTEGER_ = " INTEGER";
+
 
 
     //Tabla TALLER
@@ -101,20 +106,20 @@ public class SQLiteDB extends SQLiteOpenHelper {
     private static final String SQL_CREATE_SESION =
             "CREATE TABLE " + ConstanteDB.TABLE_SESION + " (" +
                     ConstanteDB.COLUMN_ID_SESION +" INTEGER PRIMARY KEY AUTOINCREMENT,"  +
-                    ConstanteDB.COLUMN_FECHA + " DATE " + COMMA_SEP +
+                    ConstanteDB.COLUMN_FECHA +  TEXT_TYPE  + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_TALLER + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_TUTOR_RESULTADOS+ TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_HISTORIA_RESULTADOS + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_ACIERTOS + INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_FALLOS + INTEGER_ + COMMA_SEP +
-                    ConstanteDB.COLUMN_TIEMPO_EJERCICIO + " FLOAT " + COMMA_SEP +
+                    ConstanteDB.COLUMN_TIEMPO_EJERCICIO + INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_RESULTADO_EJERCICIO + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_OBSERVACION_RESULTADO + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_ID_ESTUDIANTE_FK + INTEGER_ + " )";
 
     private static final String SQL_DELETE_SESION =
-            "DROP TABLE IF EXISTS " + ConstanteDB.TABLE_ESTUDIANTE;
+            "DROP TABLE IF EXISTS " + ConstanteDB.TABLE_SESION;
 
 
     public SQLiteDB(Context context) {

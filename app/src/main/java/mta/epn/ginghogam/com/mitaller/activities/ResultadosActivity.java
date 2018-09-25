@@ -8,9 +8,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
+import mta.epn.ginghogam.com.mitaller.db.SesionDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Historia;
+import mta.epn.ginghogam.com.mitaller.entidades.Sesion;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 
@@ -19,15 +26,19 @@ public class ResultadosActivity extends AppCompatActivity {
     private Estudiante estudiante;
     private Historia historia;
     private Taller taller;
+    private Sesion sesion;
     int correctas = 0;
     int inCorrectas = 0;
     private Long tiempo;
     private Boolean logro =false;
     private TextView nombreTaller;
+    private SesionDAO sesionDAO;
+    Date c;
+    private SQLiteDB sqLiteDB;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
 
@@ -40,25 +51,50 @@ public class ResultadosActivity extends AppCompatActivity {
         inCorrectas = extras.getInt("incorrectas");
         tiempo = extras.getLong("tiempo");
         logro = extras.getBoolean("logro");
+        c = Calendar.getInstance().getTime();
+        sqLiteDB = new SQLiteDB(this);
+        sesionDAO = new SesionDAO(this);
 
         Toast.makeText(this,"nombreTaller:"+ taller.getNombreTaller(),Toast.LENGTH_SHORT).show();
 
        nombreTaller =(TextView)findViewById(R.id.nombretaller);
         TextView nombrehistoria =findViewById(R.id.nombrehistoriaResultado);
-        TextView logro =findViewById(R.id.resultado);
+        TextView logros =findViewById(R.id.resultado);
         TextView aciertos =findViewById(R.id.aciertos);
         TextView fallos =findViewById(R.id.fallos);
         ImageButton guardar= findViewById(R.id.guardar);
-        EditText observacion =findViewById(R.id.observaciones);
+        final EditText observacion =findViewById(R.id.observaciones);
 
     nombreTaller.setText(taller.getNombreTaller().toString());
     nombrehistoria.setText(historia.getNombreHistoria().toString());
-    aciertos.setText(Long.toString(tiempo) );
+    aciertos.setText(correctas+"" );
+    fallos.setText(inCorrectas+"");
+    if(logro){
+        logros.setText("si");
+    }
+    else logros.setText("no");
 
     guardar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+
+            sesion= new Sesion();
+
+            sesion.setFechaSesion(c);
+            sesion.setAciertos(correctas);
+            sesion.setFallos(inCorrectas);
+            sesion.setNombretaller(taller.getNombreTaller());
+            sesion.setNombrehistoria(historia.getNombreHistoria());
+            sesion.setLogro(logro);
+            sesion.setNombreEstudiate(estudiante.getNombreEstudiate()+ " "+ estudiante.getApellidoEstudiante());
+            sesion.setNombretutor(tutor.getNombreTutor()+" "+ tutor.getApellidoTutor());
+            sesion.setTiempo(tiempo);
+            sesion.setObservacion(observacion.getText().toString());
+            sesion.setIdEstudiante(estudiante.getIdEstudiante());
+            sesionDAO.create(sesion);
             finish();
+
         }
     });
 
