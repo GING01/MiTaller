@@ -424,7 +424,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     public void welldone(){
 
-         AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
+        handler1.removeCallbacksAndMessages(null);
+
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
          View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
         ImageButton imageButton = mView.findViewById(R.id.welldoneico);
        imageButton.setOnClickListener(new View.OnClickListener() {
@@ -441,7 +444,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
              intent.putExtra("incorrectas", inCorrectas);
              startActivity(intent);
              dialog.dismiss();
-             handler1.removeCallbacksAndMessages(null);
              finish();
 
          }
