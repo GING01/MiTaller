@@ -63,7 +63,7 @@ public class ConstanteDB {
     public static final String COLUMN_FECHA = "fecha_sesion";
     public static final String COLUMN_NOMBRE_TALLER = "nombre_taller_sesion";
     public static final String COLUMN_NOMBRE_TUTOR_RESULTADOS= "nombre_tutor_resultados";
-    public static final String COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS = "nombre_tutor_resultados";
+    public static final String COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS = "nombre_estudiante_resultados";
     public static final String COLUMN_NOMBRE_HISTORIA_RESULTADOS = "nombre_historia_resultados";
     public static final String COLUMN_ACIERTOS = "aciertos";
     public static final String COLUMN_FALLOS = "fallos";

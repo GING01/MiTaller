@@ -81,6 +81,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     private Integer tiempo=1 ;
     private TextView ttiempo;
     long start;
+    long end;
+    private Boolean logro =false;
 
 
 
@@ -95,7 +97,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        Bundle extras = getIntent().getExtras();
+
 
         TtS = new TextToSpeech(this, this);
 
@@ -108,6 +110,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
         secuenciaDAO = new SecuenciaDAO(this);
 
+        Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
         historia = extras.getParcelable("historia");
@@ -273,8 +276,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                     }
                     if (correctas == lista.size()) {
                         Toast.makeText(getApplicationContext(), "FELICIDADES LOS HAS LOGRADO" + " correctas" + correctas + " incorrectas: " + inCorrectas, Toast.LENGTH_SHORT).show();
-                        long end =System.currentTimeMillis();
+                        end =System.currentTimeMillis();
+                        logro=true;
                         Toast.makeText(getApplicationContext(), "tiempo " + (end-start)/1000 + " segs", Toast.LENGTH_LONG).show();
+                        welldone();
 
                     }
                     break;
@@ -284,14 +289,29 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         }
     };
 
-    public void cerraTiempo( Integer i){
+    public void cerraTiempo(final Integer i){
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
+               logro=false;
+                Intent intent = new Intent(getApplicationContext(), ResultadosActivity.class);
+                intent.putExtra("historia", historia);
+                intent.putExtra("estudiante", estudiante);
+                intent.putExtra("tutor", tutor);
+                intent.putExtra("taller", taller);
+                intent.putExtra("tiempo",i);
+                intent.putExtra("logro", logro);
+                intent.putExtra("correctas",correctas);
+                intent.putExtra("incorrectas", inCorrectas);
+                startActivity(intent);
                 finish();
+
+
             }
         }, i);
+
     }
+
     private void hablar() {
         String msj = "Por favor, ordena las imagenes!";
 
@@ -381,5 +401,33 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         dialog.setCancelable(false);
         dialog.show();
     }
+
+    public void welldone(){
+
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
+        final View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
+       final ImageButton imageButton = mView.findViewById(R.id.welldoneico);
+       imageButton.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             Intent intent = new Intent(getApplicationContext(), ResultadosActivity.class);
+             intent.putExtra("historia", historia);
+             intent.putExtra("estudiante", estudiante);
+             intent.putExtra("tutor", tutor);
+             intent.putExtra("taller", taller);
+             intent.putExtra("tiempo",(end-start)/1000);
+             intent.putExtra("logro", logro);
+             intent.putExtra("correctas",correctas);
+             intent.putExtra("incorrectas", inCorrectas);
+             startActivity(intent);
+             finish();
+         }
+     });
+        mBuilder.setView(mView);
+        AlertDialog dialog = mBuilder.create();
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
 
 }
