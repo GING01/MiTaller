@@ -280,6 +280,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         logro=true;
                         Toast.makeText(getApplicationContext(), "tiempo " + (end-start)/1000 + " segs", Toast.LENGTH_LONG).show();
                         welldone();
+                        finish();
 
                     }
                     break;
@@ -312,12 +313,14 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         startActivity(intent);
                         finish();
 
+
                     }
                 });
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.setCancelable(false);
                 dialog.show();
+
             }
         }, i);
     }
@@ -398,6 +401,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 ttiempo.setText(tiempo+"");
                 cerraTiempo(tiempo*60000);
                 start =System.currentTimeMillis();
+                dialog.dismiss();
 
 
             }
@@ -405,6 +409,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         mBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 finish();
+                dialog.dismiss();
             }
         });
         AlertDialog dialog = mBuilder.create();
@@ -431,6 +436,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
              intent.putExtra("incorrectas", inCorrectas);
              startActivity(intent);
              finish();
+
          }
      });
         mBuilder.setView(mView);
