@@ -3,6 +3,8 @@ package mta.epn.ginghogam.com.mitaller.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,7 +30,7 @@ import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 public class MenuInicialActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button pagerAct;
     private Tutor tutor;
-    private static  final String preference="mitaller.iniciosesion";
+    private static final String preference = "mitaller.iniciosesion";
 
 
     @Override
@@ -37,6 +39,7 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         setContentView(R.layout.activity_menu_inicial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        pagerAct = (Button) findViewById(R.id.pager_act);
 
 
         Bundle extras = getIntent().getExtras();
@@ -47,22 +50,30 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         tutor = new Tutor();
 
 
-        tutor.setIdTutor(preferences.getInt("ID",0));
+        tutor.setIdTutor(preferences.getInt("ID", 0));
 
-        tutor.setNombreTutor(preferences.getString("nombre",null));
-        tutor.setUsuarioTutor(preferences.getString("usuario",null));
-        tutor.setContraseñaTutor(preferences.getString("contraseña",null));
-        tutor.setCiTutor(preferences.getString("ci",null));
+        tutor.setNombreTutor(preferences.getString("nombre", null));
+        tutor.setUsuarioTutor(preferences.getString("usuario", null));
+        tutor.setContraseñaTutor(preferences.getString("contraseña", null));
+        tutor.setCiTutor(preferences.getString("ci", null));
 
 
-        if(tutor == null){
+
+
+        if (tutor == null) {
             Toast.makeText(this, " PATO", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this, "a: "+tutor.getCiTutor(), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "a: " + tutor.getCiTutor(), Toast.LENGTH_LONG).show();
         }
 
+        GradientDrawable border = new GradientDrawable();
 
-        pagerAct = (Button)findViewById(R.id.pager_act);
+        border.setColor(Color.RED); //white background
+        border.setStroke(3, Color.BLACK); //black border with full opacity
+        border.setCornerRadius(15);
+
+        pagerAct.setBackground(border);
+
         pagerAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +110,7 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_inicial, menu);
         getSupportActionBar().setCustomView(R.layout.menu_inicial_itulo);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM );
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
 
         return true;

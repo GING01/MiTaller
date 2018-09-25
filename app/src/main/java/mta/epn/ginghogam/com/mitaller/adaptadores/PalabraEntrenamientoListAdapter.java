@@ -1,19 +1,32 @@
 package mta.epn.ginghogam.com.mitaller.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.media.MediaPlayer;
+import android.os.Build;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +36,7 @@ import mta.epn.ginghogam.com.mitaller.activities.VocabularioActivity;
 import mta.epn.ginghogam.com.mitaller.entidades.Vocabulario;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
-public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<PalabraEntrenamientoListAdapter.ContactHolder> implements View.OnClickListener{
+public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<PalabraEntrenamientoListAdapter.ContactHolder> implements View.OnClickListener, MediaPlayer.OnCompletionListener {
 
     private List<Vocabulario> vocabularioList;
     private Context context;
@@ -33,20 +46,27 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
 
     protected View.OnClickListener onClickListener;
 
+    private MediaPlayer mp;
+    int contador;
+
+
     public PalabraEntrenamientoListAdapter(Context context) {
         this.context = context;
         this.vocabularioList = new ArrayList<>();
-        entrenamientoVocabularioActivity=(EntrenamientoVocabularioActivity) context;
+        entrenamientoVocabularioActivity = (EntrenamientoVocabularioActivity) context;
     }
+
     private void add(Vocabulario item) {
         vocabularioList.add(item);
         notifyItemInserted(vocabularioList.size() - 1);
     }
+
     public void addAll(List<Vocabulario> vocabularioList) {
         for (Vocabulario item : vocabularioList) {
             add(item);
         }
     }
+
     public void remove(Vocabulario item) {
         int position = vocabularioList.indexOf(item);
         if (position > -1) {
@@ -54,19 +74,23 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
             notifyItemRemoved(position);
         }
     }
+
     public void clear() {
         while (getItemCount() > 0) {
             remove(getItem(0));
         }
     }
+
     public Vocabulario getItem(int position) {
         return vocabularioList.get(position);
     }
+
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_palabras_entrenamiento, parent, false);
         view.setOnClickListener(onClickListener);
         final ContactHolder contactHolder = new ContactHolder(view);
+
 
         contactHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,28 +107,96 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
     }
 
     @Override
-    public void onBindViewHolder(ContactHolder holder, int position) {
+    public void onBindViewHolder(ContactHolder holder, final int position) {
         final Vocabulario vocabulario = vocabularioList.get(position);
-
 
         String tipoPalabra = vocabulario.getTipoPalabra().toString().trim();
 
-        if(tipoPalabra.equals("Alimento"))
-            holder.lyColor.setBackgroundColor(Color.DKGRAY);
-            if(tipoPalabra.equals("Peligro"))
-                holder.lyColor.setBackgroundColor(Color.BLUE);
-                if(tipoPalabra.equals("Limpieza"))
-                    holder.lyColor.setBackgroundColor(Color.RED);
+        //use a GradientDrawable with only one color set, to make it a solid color
+        GradientDrawable border = new GradientDrawable();
+
+            if (tipoPalabra.equals("Alimento")) {
+                border.setColor(Color.WHITE); //white background
+                border.setStroke(6, Color.rgb(22, 239, 2)); //black border with full opacity
+                border.setCornerRadius(20);
+                holder.lyColor.setBackground(border);
+
+            }
+            if (tipoPalabra.equals("Peligro")) {
+                border.setColor(Color.WHITE); //white background
+                border.setStroke(6, Color.rgb(255, 89, 0)); //black border with full opacity
+                border.setCornerRadius(20);
+                holder.lyColor.setBackground(border);
+
+            }
+            if (tipoPalabra.equals("Limpieza")) {
+                border.setColor(Color.WHITE); //white background
+                border.setStroke(6, Color.rgb(2, 69, 239)); //black border with full opacity
+                border.setCornerRadius(20);
+                holder.lyColor.setBackground(border);
+
+            }
 
 
         holder.palabra.setText(vocabulario.getPalabra());
 
 
         File file = new File(vocabulario.getImagenPalabra());
+        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(file.getPath()), 512,
+                512, true);
         if (!file.exists()) {
             holder.imgPalabra.setImageResource(R.drawable.no_foto);
-        }else {
-            holder.imgPalabra.setImageBitmap(BitmapFactory.decodeFile(vocabulario.getImagenPalabra().toString()));
+        } else {
+            holder.imgPalabra.setImageBitmap(newBitmap);
+            holder.imgPalabra.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    contador++;
+
+                    Toast.makeText(context.getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (contador == 1) {
+                                reproducirSonido(position);
+
+                            }
+                            if (contador >= 2) {
+                                contador = 0;
+                            }
+
+                        }
+                    }, 500);
+
+
+                }
+            });
+        }
+
+    }
+
+    private void reproducirSonido(int position) {
+
+        try {
+            mp = new MediaPlayer();
+            String sonido = vocabularioList.get(position).getSonidoPalabra().toString().trim();
+            mp.setDataSource(sonido);
+            mp.prepare();
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
+        } catch (Exception e) {
+            Log.e("LOG_TAG", "prepare() failed");
+        }
+
+        if (mp.isPlaying() && mp != null) {
+
         }
 
     }
@@ -120,12 +212,17 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
 
     @Override
     public void onClick(View v) {
-        if(onClickListener!=null){
+        if (onClickListener != null) {
             onClickListener.onClick(v);
         }
     }
 
-    class ContactHolder extends RecyclerView.ViewHolder{
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        mp.release();
+    }
+
+    class ContactHolder extends RecyclerView.ViewHolder {
         ImageView imgPalabra;
         TextView palabra;
         LinearLayout lyColor;

@@ -36,11 +36,10 @@
             android:id="@+id/pager_act"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
             android:padding="28dp"
             android:text="Comenzar"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="27sp"
             android:textStyle="bold"
             android:layout_centerInParent= "true"/>
 

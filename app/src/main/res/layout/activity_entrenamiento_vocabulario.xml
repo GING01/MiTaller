@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="20dp"
-    android:paddingLeft="20dp"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     tools:context="mta.epn.ginghogam.com.mitaller.activities.EntrenamientoVocabularioActivity">
@@ -14,7 +12,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerPalabraEntrenamiento"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true" />
 
 
