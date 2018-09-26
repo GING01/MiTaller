@@ -310,7 +310,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         intent.putExtra("estudiante", estudiante);
                         intent.putExtra("tutor", tutor);
                         intent.putExtra("taller", taller);
-                        intent.putExtra("tiempo",tiempaso);
+                        intent.putExtra("tiempo",(long) tiempo*60);
                         intent.putExtra("logro", false);
                         intent.putExtra("correctas",correctas);
                         intent.putExtra("incorrectas", inCorrectas);

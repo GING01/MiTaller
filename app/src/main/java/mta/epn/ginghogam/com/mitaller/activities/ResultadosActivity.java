@@ -55,7 +55,7 @@ public class ResultadosActivity extends AppCompatActivity {
         sqLiteDB = new SQLiteDB(this);
         sesionDAO = new SesionDAO(this);
 
-        Toast.makeText(this,"nombreTaller:"+ taller.getNombreTaller(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,historia.getNombreHistoria().toString(),Toast.LENGTH_SHORT).show();
 
        nombreTaller =(TextView)findViewById(R.id.nombretaller);
         TextView nombrehistoria =findViewById(R.id.nombrehistoriaResultado);
@@ -66,7 +66,7 @@ public class ResultadosActivity extends AppCompatActivity {
         final EditText observacion =findViewById(R.id.observaciones);
 
     nombreTaller.setText(taller.getNombreTaller().toString());
-    nombrehistoria.setText(historia.getNombreHistoria().toString());
+    nombrehistoria.setText(Long.toString(tiempo));
     aciertos.setText(correctas+"" );
     fallos.setText(inCorrectas+"");
     if(logro){
