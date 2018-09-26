@@ -6,45 +6,90 @@
     android:layout_height="match_parent"
     tools:context="mta.epn.ginghogam.com.mitaller.activities.SeleccionDificultadActivity">
 
-    <RelativeLayout
-        android:layout_width="982dp"
-        android:layout_height="198dp"
-        android:layout_marginBottom="8dp"
+
+    <LinearLayout
+        android:layout_width="699dp"
+        android:layout_height="227dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/ly2"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="20dp"
             android:layout_centerHorizontal="true"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="Seleccion de Dificultad" />
+            android:text="Dificultad"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="56dp" />
 
         <SeekBar
             android:id="@+id/seekbardificultad"
-            android:layout_width="401dp"
-            android:layout_height="65dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="500dp"
+            android:layout_height="76dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp"
-            android:thumbTint="#42a4f4" />
+            android:layout_margin="15dp"
+            android:thumbTint="#42a4f4"
+            tools:layout_editor_absoluteX="280dp"
+            tools:layout_editor_absoluteY="142dp" />
 
-        <TextView
-            android:id="@+id/dificultad"
-            android:layout_width="399dp"
-            android:layout_height="72dp"
-            android:layout_centerInParent="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="36dp"
+                android:text="Facil"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="317dp"
+                android:text="Medio"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="41dp"
+                android:text="Dificil"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/ly2"
@@ -74,7 +119,7 @@
             android:ellipsize="marquee"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:scrollHorizontally="true"
@@ -100,4 +145,5 @@
             tools:layout_editor_absoluteY="128dp"
             android:layout_weight="1"/>
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

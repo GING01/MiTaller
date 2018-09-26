@@ -53,6 +53,7 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
         tutor.setIdTutor(preferences.getInt("ID", 0));
 
         tutor.setNombreTutor(preferences.getString("nombre", null));
+        tutor.setApellidoTutor(preferences.getString("apellido",null));
         tutor.setUsuarioTutor(preferences.getString("usuario", null));
         tutor.setContraseñaTutor(preferences.getString("contraseña", null));
         tutor.setCiTutor(preferences.getString("ci", null));

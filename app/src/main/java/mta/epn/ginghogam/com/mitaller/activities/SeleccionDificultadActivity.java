@@ -50,8 +50,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         TtS=new TextToSpeech(this,this);
 
         seekBarDificultad=findViewById(R.id.seekbardificultad);
-        dificultad=findViewById(R.id.dificultad);
-        seekBarDificultad.setMax(9);
+        seekBarDificultad.setMax(2);
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
         estudiante = extras.getParcelable("estudiante");
@@ -62,17 +61,16 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         seekBarDificultad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress>=1 && progress <=3){
+                if(progress==0){
                     seekbarvalue=progress;
-                    dificultad.setText("FACIL: "+progress+ " laminas");
                     dificultadSeleccionada = "facil";
                 }
-                if(progress>3 && progress <=6){
-                    dificultad.setText("MEDIO: "+progress+ " laminas");
+                if(progress==1){
+
                     dificultadSeleccionada = "medio";
                 }
-                if(progress>6 && progress <=9){
-                    dificultad.setText("DIFICIL: "+progress+ " laminas");
+                if(progress==2){
+
                     dificultadSeleccionada = "dificil";
                 }
             }
