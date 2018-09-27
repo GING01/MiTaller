@@ -105,7 +105,7 @@ public class EleccionEstudianteEstadisticaActivity extends AppCompatActivity imp
 
     @Override
     public void onItemClick(int position, View view) {
-        Intent intent = new Intent(EleccionEstudianteEstadisticaActivity.this, SeleccionTallerEntrenamientoActivity.class);
+        Intent intent = new Intent(EleccionEstudianteEstadisticaActivity.this, TablaResultadosActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudianteEstadisticaListAdapter.getItem(position));
         startActivity(intent);

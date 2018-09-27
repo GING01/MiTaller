@@ -74,7 +74,8 @@
         <activity android:name=".activities.SeleccionDificultadActivity" />
         <activity android:name=".activities.BienvenidaTallerActivity" />
         <activity android:name=".activities.JuegoActivity" />
-        <activity android:name=".activities.ResultadosActivity"></activity>
+        <activity android:name=".activities.ResultadosActivity" />
+        <activity android:name=".activities.TablaResultadosActivity"></activity>
     </application>
 
 </manifest>
