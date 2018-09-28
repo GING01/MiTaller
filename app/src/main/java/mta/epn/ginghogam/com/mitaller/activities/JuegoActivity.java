@@ -52,7 +52,7 @@ import static android.graphics.Color.rgb;
 public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
 
-    private LinearLayout target, btnTarget, tg, tg2;
+    private LinearLayout target, btnTarget, tg;
     Button bt1;
     ImageView bt2;
     private TextToSpeech TtS;
@@ -73,7 +73,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     private LinearLayout rootLayout, rootLayout2;
 
-    private Secuencia secuencia;
     private Tutor tutor;
     private Estudiante estudiante;
     private Historia historia;
@@ -284,8 +283,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                          tiempaso =(end-start)/1000;
                         Toast.makeText(getApplicationContext(), "tiempo " + tiempaso + " segs", Toast.LENGTH_LONG).show();
                         welldone();
-
-
                     }
                     break;
             }
@@ -331,7 +328,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     }
 
     private void hablar() {
-        String msj = "Por favor, ordena las imagenes!";
+        String msj = "Por favor, ordena las imágenes!";
 
         final String texto = msj.toString();
 
