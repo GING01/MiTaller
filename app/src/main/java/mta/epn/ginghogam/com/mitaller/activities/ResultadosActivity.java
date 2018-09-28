@@ -52,6 +52,8 @@ public class ResultadosActivity extends AppCompatActivity {
         tiempo = extras.getLong("tiempo");
         logro = extras.getBoolean("logro");
         c = Calendar.getInstance().getTime();
+        SimpleDateFormat src = new SimpleDateFormat("yyyy/MM/dd");
+        final String fecha_format=src.format(c);
         sqLiteDB = new SQLiteDB(this);
         sesionDAO = new SesionDAO(this);
 
@@ -59,7 +61,7 @@ public class ResultadosActivity extends AppCompatActivity {
 
        nombreTaller =(TextView)findViewById(R.id.nombretaller);
         TextView nombrehistoria =findViewById(R.id.nombrehistoriaResultado);
-        TextView logros =findViewById(R.id.resultado);
+        final TextView logros =findViewById(R.id.resultado);
         TextView aciertos =findViewById(R.id.aciertos);
         TextView fallos =findViewById(R.id.fallos);
         ImageButton guardar= findViewById(R.id.guardar);
@@ -81,12 +83,12 @@ public class ResultadosActivity extends AppCompatActivity {
 
             sesion= new Sesion();
 
-            sesion.setFechaSesion(c.toString());
+            sesion.setFechaSesion(fecha_format);
             sesion.setAciertos(correctas);
             sesion.setFallos(inCorrectas);
             sesion.setNombretaller(taller.getNombreTaller());
             sesion.setNombrehistoria(historia.getNombreHistoria());
-            sesion.setLogro(logro);
+            sesion.setLogro(logros.getText().toString());
             sesion.setNombreEstudiate(estudiante.getNombreEstudiate()+ " "+ estudiante.getApellidoEstudiante());
             sesion.setNombretutor(tutor.getNombreTutor()+" "+ tutor.getApellidoTutor());
             sesion.setTiempo(tiempo);

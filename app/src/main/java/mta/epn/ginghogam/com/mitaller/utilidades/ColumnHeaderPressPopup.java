@@ -21,11 +21,7 @@ public class ColumnHeaderPressPopup extends PopupMenu implements PopupMenu
 
     // Sort states
     private static final int ASCENDING = 1;
-    private static final int DESCENDING = 2;
-    private static final int CLEAR = 3;
-    // Test menu items for showing / hiding row
-    private static final int ROW_HIDE = 4;
-    private static final int ROW_SHOW = 3;
+
 
     //
     private static final int TEST_ROW_INDEX = 4;
@@ -98,19 +94,6 @@ public class ColumnHeaderPressPopup extends PopupMenu implements PopupMenu
         switch (menuItem.getItemId()) {
             case ASCENDING:
                 m_iTableView.sortColumn(mXPosition, SortState.ASCENDING);
-                break;
-            case DESCENDING:
-                m_iTableView.sortColumn(mXPosition, SortState.DESCENDING);
-                break;
-            case ROW_HIDE:
-                // Hide 5. row for testing process
-                // index starts from 0. That's why TEST_ROW_INDEX is 4.
-                m_iTableView.hideRow(TEST_ROW_INDEX);
-                break;
-            case ROW_SHOW:
-                // Show 5. row for testing process
-                // index starts from 0. That's why TEST_ROW_INDEX is 4.
-                m_iTableView.showRow(TEST_ROW_INDEX);
                 break;
         }
 
