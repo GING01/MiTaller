@@ -68,7 +68,7 @@ public class TablaResultadosActivity extends AppCompatActivity {
                 String fecha = cursor.getString(1);
                 Date date = null;
                 Date date1=new Date();
-               SimpleDateFormat format= new SimpleDateFormat(" MM/dd/yyyy hh:mm:ss aa");
+                SimpleDateFormat format= new SimpleDateFormat(" MM/dd/yyyy hh:mm:ss aa");
                 SimpleDateFormat src = new SimpleDateFormat("yyyy/MM/dd");
                 SimpleDateFormat dest = new SimpleDateFormat("dd/MM/yyyy");
 

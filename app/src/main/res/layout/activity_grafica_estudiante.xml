@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mta.epn.ginghogam.com.mitaller.activities.GraficaEstudianteActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:id="@+id/nombreEstu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="82dp"
+            android:layout_marginStart="82dp"
+            android:text="Nombre Apellido" />
+
+        <Spinner
+            android:id="@+id/spnTaller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="431dp"
+            android:layout_alignParentLeft="true" />
+
+        <RadioGroup
+            android:id="@+id/rgFiltro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="82dp">
+
+            <RadioButton
+                android:id="@+id/rbAciertosyFallos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:selectAllOnFocus="true"
+                android:text="Aciertos y Fallos" />
+
+            <RadioButton
+                android:id="@+id/rbTiempo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiempo" />
+        </RadioGroup>
+
+
+    </RelativeLayout>
+
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="391dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="72dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="29dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:layout_alignParentLeft="true">
+
+        <Button
+            android:id="@+id/btnVerTabla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="320dp"
+            android:layout_marginStart="320dp"
+            android:text="Ver tabla" />
+
+        <Button
+            android:id="@+id/btnExportar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="320dp"
+            android:layout_marginRight="320dp"
+            android:text="Exportar" />
+    </RelativeLayout>
+
+</RelativeLayout>
