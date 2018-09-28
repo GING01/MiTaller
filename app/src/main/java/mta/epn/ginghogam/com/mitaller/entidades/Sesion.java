@@ -16,105 +16,12 @@ public class Sesion implements Parcelable {
     private Integer aciertos;
     private Integer fallos;
     private Long tiempo;
-    private Boolean logro;
+    private String logro;
     private String observacion;
     private Integer idEstudiante;
 
     public Sesion() {
     }
-
-
-    protected Sesion(Parcel in) {
-        if (in.readByte() == 0) {
-            idSesion = null;
-        } else {
-            idSesion = in.readInt();
-        }
-        nombretaller = in.readString();
-        nombretutor = in.readString();
-        nombreEstudiate = in.readString();
-        nombrehistoria = in.readString();
-        if (in.readByte() == 0) {
-            aciertos = null;
-        } else {
-            aciertos = in.readInt();
-        }
-        if (in.readByte() == 0) {
-            fallos = null;
-        } else {
-            fallos = in.readInt();
-        }
-        if (in.readByte() == 0) {
-            tiempo = null;
-        } else {
-            tiempo = in.readLong();
-        }
-        byte tmpLogro = in.readByte();
-        logro = tmpLogro == 0 ? null : tmpLogro == 1;
-        observacion = in.readString();
-        if (in.readByte() == 0) {
-            idEstudiante = null;
-        } else {
-            idEstudiante = in.readInt();
-        }
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        if (idSesion == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(idSesion);
-        }
-        dest.writeString(nombretaller);
-        dest.writeString(nombretutor);
-        dest.writeString(nombreEstudiate);
-        dest.writeString(nombrehistoria);
-        if (aciertos == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(aciertos);
-        }
-        if (fallos == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(fallos);
-        }
-        if (tiempo == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeLong(tiempo);
-        }
-        dest.writeByte((byte) (logro == null ? 0 : logro ? 1 : 2));
-        dest.writeString(observacion);
-        if (idEstudiante == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(idEstudiante);
-        }
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Sesion> CREATOR = new Creator<Sesion>() {
-        @Override
-        public Sesion createFromParcel(Parcel in) {
-            return new Sesion(in);
-        }
-
-        @Override
-        public Sesion[] newArray(int size) {
-            return new Sesion[size];
-        }
-    };
 
     public Integer getIdSesion() {
         return idSesion;
@@ -188,11 +95,11 @@ public class Sesion implements Parcelable {
         this.tiempo = tiempo;
     }
 
-    public Boolean getLogro() {
+    public String getLogro() {
         return logro;
     }
 
-    public void setLogro(Boolean logro) {
+    public void setLogro(String logro) {
         this.logro = logro;
     }
 
@@ -211,4 +118,97 @@ public class Sesion implements Parcelable {
     public void setIdEstudiante(Integer idEstudiante) {
         this.idEstudiante = idEstudiante;
     }
+
+    protected Sesion(Parcel in) {
+        if (in.readByte() == 0) {
+            idSesion = null;
+        } else {
+            idSesion = in.readInt();
+        }
+        fechaSesion = in.readString();
+        nombretaller = in.readString();
+        nombretutor = in.readString();
+        nombreEstudiate = in.readString();
+        nombrehistoria = in.readString();
+        if (in.readByte() == 0) {
+            aciertos = null;
+        } else {
+            aciertos = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            fallos = null;
+        } else {
+            fallos = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            tiempo = null;
+        } else {
+            tiempo = in.readLong();
+        }
+        logro = in.readString();
+        observacion = in.readString();
+        if (in.readByte() == 0) {
+            idEstudiante = null;
+        } else {
+            idEstudiante = in.readInt();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (idSesion == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idSesion);
+        }
+        dest.writeString(fechaSesion);
+        dest.writeString(nombretaller);
+        dest.writeString(nombretutor);
+        dest.writeString(nombreEstudiate);
+        dest.writeString(nombrehistoria);
+        if (aciertos == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(aciertos);
+        }
+        if (fallos == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(fallos);
+        }
+        if (tiempo == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(tiempo);
+        }
+        dest.writeString(logro);
+        dest.writeString(observacion);
+        if (idEstudiante == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idEstudiante);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Sesion> CREATOR = new Creator<Sesion>() {
+        @Override
+        public Sesion createFromParcel(Parcel in) {
+            return new Sesion(in);
+        }
+
+        @Override
+        public Sesion[] newArray(int size) {
+            return new Sesion[size];
+        }
+    };
 }

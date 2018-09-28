@@ -75,7 +75,7 @@ public class TablaResultadosActivity extends AppCompatActivity {
                 sesion.setAciertos(cursor.getInt(6));
                 sesion.setFallos(cursor.getInt(7));
                 sesion.setTiempo(cursor.getLong(8));
-                sesion.setLogro(Boolean.valueOf(cursor.getString(9)));
+                sesion.setLogro(cursor.getString(9));
                 sesion.setObservacion(cursor.getString(10));
                 sesion.setIdEstudiante(cursor.getInt(11));
 
