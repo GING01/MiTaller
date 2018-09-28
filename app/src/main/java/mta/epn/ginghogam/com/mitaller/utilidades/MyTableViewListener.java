@@ -1,12 +1,18 @@
 package mta.epn.ginghogam.com.mitaller.utilidades;
 
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.SeekBar;
 
 import com.evrencoskun.tableview.ITableView;
 import com.evrencoskun.tableview.listener.ITableViewListener;
 
+import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.activities.JuegoActivity;
+import mta.epn.ginghogam.com.mitaller.activities.TablaResultadosActivity;
 import mta.epn.ginghogam.com.mitaller.holder.ColumnHeaderViewHolder;
 
 
@@ -36,7 +42,8 @@ public class MyTableViewListener implements ITableViewListener {
     @Override
     public void onColumnHeaderClicked(@NonNull RecyclerView.ViewHolder columnHeaderView, int
             column) {
-        Log.d(LOG_TAG, "onColumnHeaderClicked has been clicked for " + column);
+
+
     }
 
     @Override
@@ -45,11 +52,11 @@ public class MyTableViewListener implements ITableViewListener {
         if (columnHeaderView != null && columnHeaderView instanceof ColumnHeaderViewHolder) {
 
             // Create Long Press Popup
-           /* ColumnHeaderLongPressPopup popup = new ColumnHeaderLongPressPopup(
+            ColumnHeaderLongPressPopup popup = new ColumnHeaderLongPressPopup(
                     (ColumnHeaderViewHolder) columnHeaderView, mTableView);
 
             // Show
-            popup.show();*/
+            popup.show();
         }
     }
 

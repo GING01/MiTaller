@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.evrencoskun.tableview.TableView;
+import com.evrencoskun.tableview.filter.Filter;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -33,6 +35,7 @@ public class TablaResultadosActivity extends AppCompatActivity {
     private MyTableViewAdapter mTableAdapter;
     private SesionDAO sesionDAO;
     List<Sesion> sesionList;
+    private Filter tableViewFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +43,22 @@ public class TablaResultadosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tabla_resultados);
         mTableView = findViewById(R.id.my_TableView);
 
+
         initializeTableView(mTableView);
+
         sesionDAO = new SesionDAO(this);
 
+
+
         sesionList = new ArrayList<>();
+        Bundle extra = getIntent().getExtras();
+        Estudiante estudiante;
+        estudiante=extra.getParcelable("estudiante");
 
 
 
 
-        Cursor cursor = sesionDAO.retrieve(1);
+        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
         cursor.moveToFirst();
         Sesion sesion;
         if (cursor.moveToFirst()) {
@@ -57,19 +67,23 @@ public class TablaResultadosActivity extends AppCompatActivity {
                 sesion = new Sesion();
                 String fecha = cursor.getString(1);
                 Date date = null;
-                SimpleDateFormat src = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
-                SimpleDateFormat dest = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+                Date date1=new Date();
+               SimpleDateFormat format= new SimpleDateFormat(" MM/dd/yyyy hh:mm:ss aa");
+                SimpleDateFormat src = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat dest = new SimpleDateFormat("dd/MM/yyyy");
+
 
 
                 try {
-                    date = src.parse(fecha);
+                    date1=format.parse(fecha);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
-                String result = dest.format(date);
+//               String result = dest.format(date);
                 sesion.setIdSesion(cursor.getInt(0));
-                sesion.setFechaSesion(date);
+                sesion.setFechaSesion(src.format(date1));
                 sesion.setNombretaller(cursor.getString(2));
                 sesion.setNombretutor(cursor.getString(3));
                 sesion.setNombreEstudiate(cursor.getString(4));
@@ -100,5 +114,11 @@ public class TablaResultadosActivity extends AppCompatActivity {
 
         // Create listener
         tableView.setTableViewListener(new MyTableViewListener(tableView));
+        tableViewFilter = new Filter(mTableView);
+        filterTableForGender("true");
+    }
+
+    public void filterTableForGender(String genderFilterKeyword) {
+        tableViewFilter.set(genderFilterKeyword);
     }
 }

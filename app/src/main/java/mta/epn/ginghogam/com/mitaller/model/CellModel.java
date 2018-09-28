@@ -1,12 +1,13 @@
 package mta.epn.ginghogam.com.mitaller.model;
 
+import com.evrencoskun.tableview.filter.IFilterableModel;
 import com.evrencoskun.tableview.sort.ISortableModel;
 
 /**
  * Created by evrencoskun on 27.11.2017.
  */
 
-public class CellModel implements ISortableModel {
+public class CellModel implements ISortableModel,IFilterableModel {
     private String mId;
     private Object mData;
 
@@ -29,4 +30,8 @@ public class CellModel implements ISortableModel {
         return mData;
     }
 
+    @Override
+    public String getFilterableKeyword() {
+        return null;
+    }
 }

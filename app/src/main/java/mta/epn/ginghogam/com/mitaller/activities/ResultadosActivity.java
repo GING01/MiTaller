@@ -81,7 +81,7 @@ public class ResultadosActivity extends AppCompatActivity {
 
             sesion= new Sesion();
 
-            sesion.setFechaSesion(c);
+            sesion.setFechaSesion(c.toString());
             sesion.setAciertos(correctas);
             sesion.setFallos(inCorrectas);
             sesion.setNombretaller(taller.getNombreTaller());

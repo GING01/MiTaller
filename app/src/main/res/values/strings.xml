@@ -7,4 +7,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="sort_ascending">Ordenar de menor a mayor</string>
+    <string name="sort_descending">Ordenar de mayor a menor</string>
+    <string name="clear_sorting">Clear</string>
 </resources>

@@ -8,7 +8,7 @@ import java.util.Date;
 public class Sesion implements Parcelable {
 
     private Integer idSesion;
-    private Date fechaSesion;
+    private String fechaSesion;
     private String nombretaller;
     private String nombretutor;
     private String nombreEstudiate;
@@ -124,11 +124,11 @@ public class Sesion implements Parcelable {
         this.idSesion = idSesion;
     }
 
-    public Date getFechaSesion() {
+    public String getFechaSesion() {
         return fechaSesion;
     }
 
-    public void setFechaSesion(Date fechaSesion) {
+    public void setFechaSesion(String fechaSesion) {
         this.fechaSesion = fechaSesion;
     }
 
