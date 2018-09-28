@@ -37,6 +37,7 @@ public class TablaResultadosActivity extends AppCompatActivity {
     List<Sesion> sesionList;
     private Filter tableViewFilter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,25 +66,8 @@ public class TablaResultadosActivity extends AppCompatActivity {
             do {
 
                 sesion = new Sesion();
-                String fecha = cursor.getString(1);
-                Date date = null;
-                Date date1=new Date();
-               SimpleDateFormat format= new SimpleDateFormat(" MM/dd/yyyy hh:mm:ss aa");
-                SimpleDateFormat src = new SimpleDateFormat("yyyy/MM/dd");
-                SimpleDateFormat dest = new SimpleDateFormat("dd/MM/yyyy");
-
-
-
-                try {
-                    date1=format.parse(fecha);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-//               String result = dest.format(date);
                 sesion.setIdSesion(cursor.getInt(0));
-                sesion.setFechaSesion(src.format(date1));
+                sesion.setFechaSesion(cursor.getString(1));
                 sesion.setNombretaller(cursor.getString(2));
                 sesion.setNombretutor(cursor.getString(3));
                 sesion.setNombreEstudiate(cursor.getString(4));

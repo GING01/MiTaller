@@ -52,6 +52,8 @@ public class ResultadosActivity extends AppCompatActivity {
         tiempo = extras.getLong("tiempo");
         logro = extras.getBoolean("logro");
         c = Calendar.getInstance().getTime();
+        SimpleDateFormat src = new SimpleDateFormat("yyyy/MM/dd");
+        final String fecha_format=src.format(c);
         sqLiteDB = new SQLiteDB(this);
         sesionDAO = new SesionDAO(this);
 
@@ -81,7 +83,7 @@ public class ResultadosActivity extends AppCompatActivity {
 
             sesion= new Sesion();
 
-            sesion.setFechaSesion(c.toString());
+            sesion.setFechaSesion(fecha_format);
             sesion.setAciertos(correctas);
             sesion.setFallos(inCorrectas);
             sesion.setNombretaller(taller.getNombreTaller());
