@@ -31,4 +31,5 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'org.kie.modules:com-google-code-gson:6.5.0.Final'
     implementation 'com.evrencoskun.library:tableview:0.8.8'
+    implementation 'com.jjoe64:graphview:4.2.2'
 }
