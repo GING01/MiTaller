@@ -32,4 +32,7 @@ dependencies {
     implementation 'org.kie.modules:com-google-code-gson:6.5.0.Final'
     implementation 'com.evrencoskun.library:tableview:0.8.8'
     implementation 'com.jjoe64:graphview:4.2.2'
+    implementation 'com.itextpdf:itextg:5.5.10'
+
+
 }

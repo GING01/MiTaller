@@ -52,7 +52,7 @@ public class ResultadosActivity extends AppCompatActivity {
         tiempo = extras.getLong("tiempo");
         logro = extras.getBoolean("logro");
         c = Calendar.getInstance().getTime();
-        SimpleDateFormat src = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat src = new SimpleDateFormat("yyyy/MM/dd H:mm:ss");
         final String fecha_format=src.format(c);
         sqLiteDB = new SQLiteDB(this);
         sesionDAO = new SesionDAO(this);
