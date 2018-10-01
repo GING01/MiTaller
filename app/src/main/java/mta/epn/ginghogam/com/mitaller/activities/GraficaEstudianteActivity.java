@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -123,15 +124,29 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getData());
 
         series.setColor(Color.rgb(244, 140, 70));
-        series.setThickness(3);
+        series.setThickness(1);
         series.setDrawBackground(true);
         series.setBackgroundColor(Color.argb(60, 95, 226, 156));
         series.setDrawDataPoints(true);
-        series.setDataPointsRadius(9);
+        series.setDataPointsRadius(5);
         series.setTitle("Fallos");
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
         graph.addSeries(series);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
+
+        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(getDataAcieros());
+
+        series2.setColor(Color.rgb(66, 134, 244));
+        series2.setThickness(1);
+        series2.setDrawBackground(true);
+        //series2.setBackgroundColor(Color.argb(60, 95, 226, 156));
+        series2.setDrawDataPoints(true);
+        series2.setDataPointsRadius(5);
+        series2.setTitle("Aciertos");
+
 
 
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -147,12 +162,17 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         });
 
 
-        graph.getGridLabelRenderer().setHumanRounding(false, false);
+//        graph.getGridLabelRenderer().setHumanRounding(false, false);
 
         graph.getGridLabelRenderer().setVerticalAxisTitle("ACIERTOS Y FALLOS");
         graph.getGridLabelRenderer().setVerticalLabelsColor(Color.BLUE);
         graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(18);
         graph.getGridLabelRenderer().setVerticalLabelsAlign(Paint.Align.CENTER);
+        graph.getGridLabelRenderer().setTextSize(14);
+
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Estudiante: "+nombreEstudiante);
+        graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.BLUE);
+        graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(12);
         graph.getGridLabelRenderer().setTextSize(14);
 
 
@@ -168,11 +188,32 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 //
 //        graph.getViewport().setYAxisBoundsManual(true);
 //        graph.getViewport().setXAxisBoundsManual(true);
+
+//        graph.getViewport().setMaxX(fechaList.size());
 //        graph.getViewport().setMaxY(fechaList.size());
+//
 //        graph.getViewport().setMinY(0);
 //        graph.getViewport().setMinX(0);
 
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+        graph.addSeries(series2);
 
+
+    }
+
+    private DataPoint[] getDataAcieros() {
+        sesionDAO = new SesionDAO(this);
+
+        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
+        DataPoint[] dp = new DataPoint[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToNext();
+            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(6));
+
+        }
+
+        return dp;
     }
 
 

@@ -3,6 +3,7 @@ package mta.epn.ginghogam.com.mitaller.adaptadores.viewpager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -119,7 +121,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
         final String manyDifferentStrings = mData.get(position).getDescripcionHistoria();
 
-        final Button plusmaxhp =  view.findViewById(R.id.play);
+        final ImageView plusmaxhp =  view.findViewById(R.id.play);
 
         final TextView maxhpdisplay = (TextView) view.findViewById(R.id.tvDescripcionHistoria);
 
@@ -133,9 +135,10 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
 
         ImageView image = (ImageView) view.findViewById(R.id.ivHistoria);
-        image.setImageBitmap(BitmapFactory.decodeFile(mData.get(position).getImagenHistoria()));
+        Bitmap bitmap = BitmapFactory.decodeFile(mData.get(position).getImagenHistoria());
+        image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 250, 220, true));
 
-        Button irJuego = (Button) view.findViewById(R.id.irJuego);
+        ImageView irJuego = (ImageView) view.findViewById(R.id.irJuego);
 
 
 
@@ -229,7 +232,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
 
         final TextView maxhpdisplay = (TextView) v.findViewById(R.id.tvDescripcionHistoria);
-        final Button plusmaxhp =  v.findViewById(R.id.play);
+        final ImageView plusmaxhp =  v.findViewById(R.id.play);
 
 
         switch (position){

@@ -33,15 +33,16 @@
 
         <ImageView
             android:id="@+id/guia"
-            android:layout_width="149dp"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:src="@drawable/buhoguia" />
 
         <LinearLayout
-            android:layout_width="701dp"
+            android:layout_width="565dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
+            android:layout_weight="2"
             android:background="@drawable/shape"
             android:ellipsize="marquee"
             android:focusable="false"
@@ -50,8 +51,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:layout_weight="2">
+            android:singleLine="true">
 
             <TextView
                 android:id="@+id/texto"
@@ -68,7 +68,7 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
+            android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:onClick="pasar"
             android:src="@drawable/arrow" />
