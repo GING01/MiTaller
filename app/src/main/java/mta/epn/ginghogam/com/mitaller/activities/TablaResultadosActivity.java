@@ -1,10 +1,15 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.evrencoskun.tableview.TableView;
 import com.evrencoskun.tableview.filter.Filter;
@@ -43,6 +48,7 @@ public class TablaResultadosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabla_resultados);
         mTableView = findViewById(R.id.my_TableView);
+       TextView name = findViewById(R.id.nombreestudiantetabla);
 
 
         initializeTableView(mTableView);
@@ -55,6 +61,7 @@ public class TablaResultadosActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         Estudiante estudiante;
         estudiante=extra.getParcelable("estudiante");
+        name.setText(estudiante.getNombreEstudiate().toUpperCase()+" "+estudiante.getApellidoEstudiante().toUpperCase());
 
 
 
@@ -99,10 +106,40 @@ public class TablaResultadosActivity extends AppCompatActivity {
         // Create listener
         tableView.setTableViewListener(new MyTableViewListener(tableView));
         tableViewFilter = new Filter(mTableView);
-        filterTableForGender("true");
+        filterTableForGender("si");
     }
 
     public void filterTableForGender(String genderFilterKeyword) {
         tableViewFilter.set(genderFilterKeyword);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        //getMenuInflater().inflate(R.menu.menu_secuencia, menu);
+        getSupportActionBar().setCustomView(R.layout.menu_tabla_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    public void llamarmenu(View view){
+        Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
     }
 }

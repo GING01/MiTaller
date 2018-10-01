@@ -12,13 +12,17 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -85,6 +89,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     private Boolean logro =false;
     AlertDialog dialog;
     Handler handler1;
+    private String titulo;
 
 
 
@@ -95,9 +100,12 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
 
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+
 
 
 
@@ -119,6 +127,9 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         taller = extras.getParcelable("taller");
 
 
+        //Toast.makeText(this, "taller" + taller.getNombreTaller(), Toast.LENGTH_SHORT).show();
+
+
         long id = historia.getIdHistoria();
         Cursor cursor = secuenciaDAO.retrieve(id);
         lista = new ArrayList<Secuencia>();
@@ -138,7 +149,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             } while (cursor.moveToNext());
         }
 
-//        Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
 
 
         for (int i = 0; i < lista.size(); i++) {
@@ -451,7 +462,41 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         dialog.show();
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        //getMenuInflater().inflate(R.menu.menu_secuencia, menu);
+        //getSupportActionBar().setCustomView(R.layout.menu_juego_taller_titulo);
+        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        //getSupportActionBar().setCustomView(R.layout.menu_juego_taller_titulo);
+        //getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+       Bundle extras = getIntent().getExtras();
+       taller = extras.getParcelable("taller");
+       getSupportActionBar().setTitle("Bienvenido al taller de: "+taller.getNombreTaller()+"");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (item.getItemId() == android.R.id.home) {
+            handler1.removeCallbacksAndMessages(null);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        handler1.removeCallbacksAndMessages(null);
+        finish();
+        super.onBackPressed();
+    }
 }

@@ -100,8 +100,8 @@ public class MyTableViewModel {
 
         // Create Column Headers
         list.add(new ColumnHeaderModel("Fecha Sesion"));
-        list.add(new ColumnHeaderModel("Id Estudiante"));
-        list.add(new ColumnHeaderModel("Nombre Estudiante"));
+       // list.add(new ColumnHeaderModel("Id Estudiante"));
+        //list.add(new ColumnHeaderModel("Nombre Estudiante"));
         list.add(new ColumnHeaderModel("Nombre Taller"));
         list.add(new ColumnHeaderModel("Nombre Historia"));
         list.add(new ColumnHeaderModel("Aciertos"));
@@ -127,16 +127,16 @@ public class MyTableViewModel {
             List<CellModel> list = new ArrayList<>();
 
             // The order should be same with column header list;
-            list.add(new CellModel("1-" + i, sesion.getFechaSesion()));          // "Id"
-            list.add(new CellModel("2-" + i, sesion.getIdEstudiante()));        // "Name"
-            list.add(new CellModel("3-" + i, sesion.getNombreEstudiate()));    // "Nickname"
-            list.add(new CellModel("4-" + i, sesion.getNombretaller()));       // "Email"
-            list.add(new CellModel("5-" + i, sesion.getNombrehistoria()));   // "BirthDay"
-            list.add(new CellModel("6-" + i, sesion.getAciertos()));      // "Gender"
-            list.add(new CellModel("7-" + i, sesion.getFallos()));         // "Age"
-            list.add(new CellModel("8-" + i, sesion.getLogro()));         // "Job"
-            list.add(new CellModel("9-" + i, sesion.getTiempo()));      // "Salary"
-            list.add(new CellModel("10-" + i, sesion.getObservacion())); // "CreatedAt"
+            list.add(new CellModel("1-" + i, sesion.getFechaSesion()));
+           // list.add(new CellModel("2-" + i, sesion.getIdEstudiante()));
+           // list.add(new CellModel("3-" + i, sesion.getNombreEstudiate()));
+            list.add(new CellModel("2-" + i, sesion.getNombretaller()));       // "Email"
+            list.add(new CellModel("3-" + i, sesion.getNombrehistoria()));   // "BirthDay"
+            list.add(new CellModel("4-" + i, sesion.getAciertos()));      // "Gender"
+            list.add(new CellModel("5-" + i, sesion.getFallos()));         // "Age"
+            list.add(new CellModel("6-" + i, sesion.getLogro()));         // "Job"
+            list.add(new CellModel("7-" + i, sesion.getTiempo()));      // "Salary"
+            list.add(new CellModel("8-" + i, sesion.getObservacion())); // "CreatedAt"
 
             // Add
             lists.add(list);
