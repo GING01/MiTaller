@@ -22,13 +22,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,6 +50,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     private TextView nombreApellido;
     private RadioButton aciertosFallos, tiempo;
     private Button verTabla, exportar;
+    private boolean checked;
 
     ImageView imageView;
 
@@ -78,12 +81,12 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         iniciarComponentes();
         llamarTabla();
         consultarDatosSesion();
-
-
         grafica();
+
+
         nombreApellido.setText(nombreEstudiante);
 
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.cap);
         exportar.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.KITKAT)
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -124,7 +127,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getData());
 
         series.setColor(Color.rgb(244, 140, 70));
-        series.setThickness(1);
+        series.setThickness(3);
         series.setDrawBackground(true);
         series.setBackgroundColor(Color.argb(60, 95, 226, 156));
         series.setDrawDataPoints(true);
@@ -140,13 +143,14 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(getDataAcieros());
 
         series2.setColor(Color.rgb(66, 134, 244));
-        series2.setThickness(1);
+        series2.setThickness(3);
         series2.setDrawBackground(true);
         //series2.setBackgroundColor(Color.argb(60, 95, 226, 156));
         series2.setDrawDataPoints(true);
         series2.setDataPointsRadius(5);
         series2.setTitle("Aciertos");
 
+        graph.addSeries(series2);
 
 
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -170,7 +174,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setVerticalLabelsAlign(Paint.Align.CENTER);
         graph.getGridLabelRenderer().setTextSize(14);
 
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Estudiante: "+nombreEstudiante);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Estudiante: " + nombreEstudiante);
         graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.BLUE);
         graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(12);
         graph.getGridLabelRenderer().setTextSize(14);
@@ -185,22 +189,18 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         graph.getViewport().setScrollableY(true); // enables vertical scrolling
         graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
         graph.getViewport().setScalableY(true); // enables vertical zooming and scrolling
-//
-//        graph.getViewport().setYAxisBoundsManual(true);
-//        graph.getViewport().setXAxisBoundsManual(true);
 
-//        graph.getViewport().setMaxX(fechaList.size());
-//        graph.getViewport().setMaxY(fechaList.size());
-//
-//        graph.getViewport().setMinY(0);
-//        graph.getViewport().setMinX(0);
 
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
-        graph.addSeries(series2);
+
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(135);
+
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
 
 
     }
+
 
     private DataPoint[] getDataAcieros() {
         sesionDAO = new SesionDAO(this);
@@ -250,14 +250,25 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         });
     }
 
+    int cont = 0;
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void exportarGrafica() {
-        graph.buildDrawingCache();
-        Bitmap bitmap = graph.getDrawingCache();
+        Bitmap bitmap = null;
+
+        cont++;
+
+            graph.setDrawingCacheEnabled(true);
+
+             bitmap = Bitmap.createBitmap(graph.getDrawingCache());//important to make copy of that bitmap.
+
+
+
+
 
         String path = Environment.getExternalStorageDirectory().toString();
-        File file = new File(path, "example1" + ".jpg"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
+        File file = new File(path, nombreEstudiante +new Date()+ ".jpg"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
 
         try (FileOutputStream out = new FileOutputStream(file)) {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
@@ -265,6 +276,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         PdfDocument pdfDocument = new PdfDocument();
         PdfDocument.PageInfo pi = new PdfDocument.PageInfo.Builder(bitmap.getWidth(), bitmap.getHeight(), 1).create();
@@ -285,12 +297,12 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         pdfDocument.finishPage(page);
 
-        File root = new File(Environment.getExternalStorageDirectory(), "PDF Folder 12");
+        File root = new File(Environment.getExternalStorageDirectory(), "Grafica estudiantes");
         if (!root.exists()) {
             root.mkdir();
         }
 
-        File file1 = new File(root, "picture2.pdf");
+        File file1 = new File(root, nombreEstudiante+" "+nombreTaller+"_"+new Date()+".pdf");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file1);
             pdfDocument.writeTo(fileOutputStream);
@@ -298,7 +310,12 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Toast.makeText(getApplicationContext(),"PDF generado", Toast.LENGTH_SHORT).show();
         pdfDocument.close();
+
+        graph.destroyDrawingCache();
+
+
 
     }
 
@@ -309,5 +326,109 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         exportar = findViewById(R.id.btnExportar);
         tiempo = findViewById(R.id.rbTiempo);
         graph = findViewById(R.id.graph);
+    }
+
+    public void onClick(View view) {
+        checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.rbAciertosyFallos:
+                if (checked) {
+                    graph.removeAllSeries();
+                    graph.setVisibility(View.VISIBLE);
+                    grafica();
+
+                }
+
+                break;
+            case R.id.rbTiempo:
+                if (checked) {
+                    graph.removeAllSeries();
+                    graficaTiempo();
+                }
+                break;
+
+
+        }
+
+    }
+
+    private void graficaTiempo() {
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataTiempo());
+
+        series.setColor(Color.rgb(65, 99, 64));
+        series.setThickness(3);
+        series.setDrawBackground(true);
+//        series.setBackgroundColor(Color.argb(60, 95, 226, 156));
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(5);
+        series.setTitle("Tiempo");
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+        graph.addSeries(series);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
+
+
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    return sdf.format(new Date((long) value));
+                } else {
+                    return "" + ((int) value);
+                }
+
+            }
+        });
+
+
+        graph.getGridLabelRenderer().setVerticalAxisTitle("Tiempo (segundos)");
+        graph.getGridLabelRenderer().setVerticalLabelsColor(Color.BLUE);
+        graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(18);
+        graph.getGridLabelRenderer().setVerticalLabelsAlign(Paint.Align.CENTER);
+        graph.getGridLabelRenderer().setTextSize(14);
+
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Estudiante: " + nombreEstudiante);
+        graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.BLUE);
+        graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(12);
+        graph.getGridLabelRenderer().setTextSize(14);
+
+
+        graph.setTitle("Taller: " + nombreTaller);
+        graph.setTitleTextSize(25);
+        graph.setTitleColor(Color.RED);
+
+
+        graph.getViewport().setScrollable(true); // enables horizontal scrolling
+        graph.getViewport().setScrollableY(true); // enables vertical scrolling
+        graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
+        graph.getViewport().setScalableY(true); // enables vertical zooming and scrolling
+
+
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(135);
+
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+
+
+    }
+
+    private DataPoint[] getDataTiempo() {
+        sesionDAO = new SesionDAO(this);
+
+        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
+        DataPoint[] dp = new DataPoint[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToNext();
+            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(8));
+
+        }
+
+        return dp;
     }
 }
