@@ -309,7 +309,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secuencia, menu);
-        getSupportActionBar().setCustomView(R.layout.menu_historia_titulo_editar);
+        getSupportActionBar().setCustomView(R.layout.menu_secuencia_titulo_editar);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="462dp"
-        android:layout_height="134dp"
+        android:layout_height="265dp"
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginLeft="15dp"
@@ -20,8 +20,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.394">
+        app:layout_constraintVertical_bias="0.394"
+        android:background="@drawable/shapesquare">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
+                android:src="@drawable/usuarioneutro" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Iniciar Sesion"
+                android:textAlignment="center"
+                android:textSize="20dp"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,9 +51,11 @@
                 android:id="@+id/text1"
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight=".4"
                 android:text="Usuario:"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/txtUsuario"
@@ -42,6 +64,7 @@
                 android:layout_weight=".6"
                 android:ems="10"
                 android:hint="Usuario"
+                android:layout_marginHorizontal="5dp"
                 android:inputType="textPersonName"
                 android:textSize="15dp" />
         </LinearLayout>
@@ -57,7 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".4"
                 android:text="Contraseña:"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/txtcontraseña"
@@ -66,8 +91,9 @@
                 android:layout_weight=".6"
                 android:ems="10"
                 android:hint="Contraseña"
-                android:inputType="textPersonName"
-                android:textSize="15dp" />
+                android:inputType="textPassword"
+                android:textSize="15dp"
+                android:layout_marginHorizontal="5dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -95,7 +121,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="Registrarse"
+        android:text="Crear una cuenta"
+        android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -112,6 +139,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:onClick="modificarDatos"
+        android:textSize="19dp"
         android:text="Olvidaste tu contraseña?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

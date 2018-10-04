@@ -3,8 +3,10 @@ package mta.epn.ginghogam.com.mitaller.activities;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,7 +77,7 @@ public class RegistroTutorActivity extends AppCompatActivity {
         }
         else{
             titulo=findViewById(R.id.Registro);
-            titulo.setText("Registrar");
+            titulo.setText("Unete a nuestros talleres");
         }
     }
 
@@ -128,46 +130,50 @@ public class RegistroTutorActivity extends AppCompatActivity {
         if(!tutorEditar){
             tutorDAO =new TutorDAO(this);
             if (buscarUsuario()){
+
                 Toast.makeText(RegistroTutorActivity.this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
             }
-            if(buscarcedula()){
-                Toast.makeText(RegistroTutorActivity.this, "Esta Ci ya existe", Toast.LENGTH_SHORT).show();
-            }
-
             else {
-                try {
-                    tutor = new Tutor();
-                   tutor.setNombreTutor(nombre.getText().toString());
-                   tutor.setApellidoTutor(apellido.getText().toString());
-                   tutor.setCiTutor(ci.getText().toString());
-                   tutor.setUsuarioTutor(usuario.getText().toString());
-                   tutor.setContraseñaTutor(contraseña.getText().toString());
-                   if (contraseña.getText().toString().equals(contraseña2.getText().toString())){
-
-                       if(!nombre.getText().toString().equals("") && !apellido.getText().toString().equals("") && !ci.getText().toString().equals("") &&
-                               !usuario.getText().toString().equals("") &&
-                               !contraseña.getText().toString().equals("")){
-                           tutorDAO.create(tutor);
-                           finish();
-                       }
-                       else{
-                           Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_LONG).show();
-                       }
-                   }
-                   else {
-                       Toast.makeText(RegistroTutorActivity.this, "Las contraseñas tienen que ser iguales", Toast.LENGTH_SHORT).show();
-
-                   }
-
-
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(RegistroTutorActivity.this, "No se pudo registrar", Toast.LENGTH_LONG).show();
-
+                if(buscarcedula()){
+                    Toast.makeText(RegistroTutorActivity.this, "Esta Ci ya existe", Toast.LENGTH_SHORT).show();
                 }
 
+                else {
+                    try {
+                        tutor = new Tutor();
+                        tutor.setNombreTutor(nombre.getText().toString());
+                        tutor.setApellidoTutor(apellido.getText().toString());
+                        tutor.setCiTutor(ci.getText().toString());
+                        tutor.setUsuarioTutor(usuario.getText().toString());
+                        tutor.setContraseñaTutor(contraseña.getText().toString());
+                        if (contraseña.getText().toString().equals(contraseña2.getText().toString())){
+
+                            if(!nombre.getText().toString().equals("") && !apellido.getText().toString().equals("") && !ci.getText().toString().equals("") &&
+                                    !usuario.getText().toString().equals("") &&
+                                    !contraseña.getText().toString().equals("")){
+                                tutorDAO.create(tutor);
+                                finish();
+                            }
+                            else{
+                                Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        else {
+                            Toast.makeText(RegistroTutorActivity.this, "Las contraseñas tienen que ser iguales", Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(RegistroTutorActivity.this, "No se pudo registrar", Toast.LENGTH_LONG).show();
+
+                    }
+
+                }
             }
+
         }
         else{
             tutorDAO =new TutorDAO(this);
@@ -218,10 +224,12 @@ public class RegistroTutorActivity extends AppCompatActivity {
         finish();
     }
     public boolean buscarUsuario(){
+
+        String usr= "'"+usuario.getText().toString().trim()+"'";
         tutorDAO =new TutorDAO(this);
 
         try {
-            cursor=tutorDAO.retrieveUsuario(usuario.getText().toString().trim());
+            cursor=tutorDAO.retrieveUsuario(usr);
             cursor.moveToFirst();
             cursor.getString(0);
             return true;
@@ -230,5 +238,13 @@ public class RegistroTutorActivity extends AppCompatActivity {
             Toast.makeText(RegistroTutorActivity.this, "No se encontro el usuario", Toast.LENGTH_LONG).show();
             return false;
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getSupportActionBar().setCustomView(R.layout.titulo_login);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+
+        return true;
     }
 }

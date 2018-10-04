@@ -47,8 +47,6 @@ public class TutorDAO extends SQLiteDB {
     public Cursor retrieveUsuario(String usuario){
         SQLiteDatabase db = getReadableDatabase();
 
-        // Define a projection that specifies which columns from the database
-        // you will actually use after this query.
         String selectQuery ="SELECT * FROM "+ConstanteDB.TABLE_TUTOR+" WHERE "
                 + ConstanteDB.COLUMN_USUARIO_TUTOR+ " = " + usuario;
         Cursor c = db.rawQuery(selectQuery,null);

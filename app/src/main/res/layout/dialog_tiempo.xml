@@ -5,7 +5,7 @@
     <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Seleccione El Tiempo"
+    android:text="Seleccione el tiempo"
     android:gravity="center"
     android:textSize="20dp"/>
     <TextView

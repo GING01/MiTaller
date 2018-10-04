@@ -91,13 +91,18 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         seleccionDificultad=(SeekBar)findViewById(R.id.seekBar2);
         dificultad = (TextView) findViewById(R.id.dificultadtext);
         imgHistoria = (ImageView) findViewById(R.id.img_historia);
+        seleccionDificultad.setProgress(2);
+        numeroLaminas=1;
+        dificultadSeleccionada="facil";
+        dificultad.setText("FACIL: "+3+ " laminas");
+
 
         Bundle extras = getIntent().getExtras();
         taller = extras.getParcelable("taller");
         validaPermiso();
 
 
-        seleccionDificultad.setMax(9);
+        seleccionDificultad.setMax(8);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             seleccionDificultad.setMin(1);
         }
@@ -105,22 +110,22 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         seleccionDificultad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress>=1 && progress <=3){
+                if(progress>=0 && progress <=3){
                     seekbarvalue=progress;
-                    dificultad.setText("FACIL: "+progress+ " laminas");
+                    dificultad.setText("FACIL: "+(progress+1)+ " laminas");
                     dificultadSeleccionada = "facil";
-                    numeroLaminas = progress;
+                    numeroLaminas = progress+1;
                 }
                 if(progress>3 && progress <=6){
-                    dificultad.setText("MEDIO: "+progress+ " laminas");
+                    dificultad.setText("MEDIO: "+(progress+1)+ " laminas");
                     dificultadSeleccionada = "medio";
-                    numeroLaminas = progress;
+                    numeroLaminas = progress+1;
 
                 }
                 if(progress>6 && progress <=9){
-                    dificultad.setText("DIFICIL: "+progress+ " laminas");
+                    dificultad.setText("DIFICIL: "+(progress+1)+ " laminas");
                     dificultadSeleccionada = "dificil";
-                    numeroLaminas = progress;
+                    numeroLaminas = progress+1;
 
                 }
             }

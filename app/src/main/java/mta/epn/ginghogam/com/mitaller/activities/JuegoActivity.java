@@ -390,11 +390,11 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         final SeekBar seekBar =mView.findViewById(R.id.seekBartiempo);
         final TextView txttiempo= mView.findViewById(R.id.txttiempo);
         seekBar.setMax(9);
-        txttiempo.setText((seekBar.getProgress()+1) + " minutos");
+        txttiempo.setText((seekBar.getProgress()+1) + " min");
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txttiempo.setText((progress+1) + " minutos");
+                txttiempo.setText((progress+1) + " min");
             }
 
             @Override

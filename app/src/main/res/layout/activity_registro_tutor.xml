@@ -5,31 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.RegistroTutorActivity">
+
     <LinearLayout
-        android:layout_width="525dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="40dp"
+
+        android:background="@drawable/shapesquare"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.476">
 
         <TextView
             android:id="@+id/Registro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registro"
+            android:background="@drawable/shapesquare"
+            android:text="Unete a nuestros talleres"
             android:textAlignment="center"
             android:textSize="30dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -39,11 +43,12 @@
                 android:layout_weight=".4"
                 android:text="CI:"
                 android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/idTutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/txtCI"
@@ -55,9 +60,10 @@
                 android:inputType="number"
                 android:textSize="15dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -81,7 +87,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -102,9 +108,11 @@
                 android:inputType="textPersonName"
                 android:textSize="15dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -118,7 +126,7 @@
             <EditText
                 android:id="@+id/txtUsuario"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="34dp"
                 android:layout_weight=".6"
                 android:ems="10"
                 android:hint="Usuario"
@@ -129,6 +137,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -146,13 +155,14 @@
                 android:layout_weight=".6"
                 android:ems="10"
                 android:hint="Contraseña"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -160,7 +170,7 @@
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".4"
-                android:text="Repetir Contraseña::"
+                android:text="Repetir Contraseña:"
                 android:textSize="15dp" />
 
             <EditText
@@ -170,20 +180,21 @@
                 android:layout_weight=".6"
                 android:ems="10"
                 android:hint="Contraseña"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnAceptar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
                 android:layout_weight=".5"
                 android:onClick="registrar"
                 android:text="Registrar" />
@@ -191,6 +202,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
                 android:layout_weight=".5"
                 android:onClick="cancelar"
                 android:text="Cancelar" />
