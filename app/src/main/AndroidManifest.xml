@@ -76,7 +76,7 @@
         <activity android:name=".activities.JuegoActivity" />
         <activity android:name=".activities.ResultadosActivity" />
         <activity android:name=".activities.TablaResultadosActivity" />
-        <activity android:name=".activities.GraficaEstudianteActivity"></activity>
+        <activity android:name=".activities.GraficaEstudianteActivity" android:hardwareAccelerated="true"></activity>
     </application>
 
 </manifest>

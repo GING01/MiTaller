@@ -28,6 +28,12 @@
             android:text="Nombre Apellido" />
 
 
+        <ImageView
+            android:id="@+id/cap"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+
         <Spinner
             android:id="@+id/spnTaller"
             android:layout_width="wrap_content"
@@ -50,12 +56,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:selectAllOnFocus="true"
+                android:onClick="onClick"
+                android:checked="true"
+
                 android:text="Aciertos y Fallos" />
 
             <RadioButton
                 android:id="@+id/rbTiempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onClick"
                 android:text="Tiempo" />
         </RadioGroup>
 
@@ -100,6 +110,7 @@
             android:layout_marginEnd="320dp"
             android:layout_marginRight="320dp"
             android:text="Exportar" />
+
     </RelativeLayout>
 
 </RelativeLayout>

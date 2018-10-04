@@ -19,6 +19,8 @@
         <item
             android:id="@+id/salir"
             android:icon="@drawable/ic_menu_manage"
+            android:orderInCategory="20"
+
             android:title="Salir" />
     </group>
 
