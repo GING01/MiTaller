@@ -1,7 +1,10 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.Build;
+import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.evrencoskun.tableview.TableView;
 import com.evrencoskun.tableview.filter.Filter;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +38,8 @@ import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Sesion;
 import mta.epn.ginghogam.com.mitaller.utilidades.MyTableViewListener;
 
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static java.security.AccessController.getContext;
 
 public class TablaResultadosActivity extends AppCompatActivity {
@@ -141,5 +150,80 @@ public class TablaResultadosActivity extends AppCompatActivity {
         intent.putExtra("EXIT", true);
         startActivity(intent);
         finish();
+    }
+
+    public void exportarXls(View view) {
+        validaPermiso();
+        try {
+            Bundle extra = getIntent().getExtras();
+            Estudiante estudiante;
+            estudiante=extra.getParcelable("estudiante");
+            Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
+            cursor.moveToFirst();
+            int rowcount = 0;
+            int colcount = 0;
+            File sdCardDir = Environment.getExternalStorageDirectory();
+            String filename = "MyBackUp.csv";
+            // the name of the file to export with
+            File saveFile = new File(sdCardDir, filename);
+            FileWriter fw = new FileWriter(saveFile);
+
+            BufferedWriter bw = new BufferedWriter(fw);
+            rowcount = cursor.getCount();
+            colcount = cursor.getColumnCount();
+            if (rowcount > 0) {
+                cursor.moveToFirst();
+
+                for (int i = 0; i < colcount; i++) {
+                    if (i != colcount - 1) {
+
+                        bw.write(cursor.getColumnName(i) + ";");
+
+                    } else {
+
+                        bw.write(cursor.getColumnName(i));
+
+                    }
+                }
+                bw.newLine();
+
+                for (int i = 0; i < rowcount; i++) {
+                    cursor.moveToPosition(i);
+
+                    for (int j = 0; j < colcount; j++) {
+                        if (j != colcount - 1)
+                            bw.write(cursor.getString(j) + ";");
+                        else
+                            bw.write(cursor.getString(j));
+                    }
+                    bw.newLine();
+                }
+                bw.flush();
+                Toast.makeText(getApplicationContext(), "Exportado satisfactoriamente ", Toast.LENGTH_SHORT).show();
+
+            }
+        } catch (Exception ex) {
+
+                Toast.makeText(getApplicationContext(), ex.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+
+
+        } finally {
+
+        }
+
+    }
+    private boolean validaPermiso() {
+        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.M){
+            return true;
+        }
+        if((checkSelfPermission(CAMERA)== PackageManager.PERMISSION_GRANTED)&&
+                (checkSelfPermission(WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)){
+            return true;
+        }
+        else{
+            requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA},100);
+        }
+        return false;
     }
 }
