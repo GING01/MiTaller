@@ -19,9 +19,68 @@ public class Sesion implements Parcelable {
     private String logro;
     private String observacion;
     private Integer idEstudiante;
+    private Integer idTaller;
+    private Integer idHistoria;
 
     public Sesion() {
     }
+
+    protected Sesion(Parcel in) {
+        if (in.readByte() == 0) {
+            idSesion = null;
+        } else {
+            idSesion = in.readInt();
+        }
+        fechaSesion = in.readString();
+        nombretaller = in.readString();
+        nombretutor = in.readString();
+        nombreEstudiate = in.readString();
+        nombrehistoria = in.readString();
+        if (in.readByte() == 0) {
+            aciertos = null;
+        } else {
+            aciertos = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            fallos = null;
+        } else {
+            fallos = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            tiempo = null;
+        } else {
+            tiempo = in.readLong();
+        }
+        logro = in.readString();
+        observacion = in.readString();
+        if (in.readByte() == 0) {
+            idEstudiante = null;
+        } else {
+            idEstudiante = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            idTaller = null;
+        } else {
+            idTaller = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            idHistoria = null;
+        } else {
+            idHistoria = in.readInt();
+        }
+    }
+
+    public static final Creator<Sesion> CREATOR = new Creator<Sesion>() {
+        @Override
+        public Sesion createFromParcel(Parcel in) {
+            return new Sesion(in);
+        }
+
+        @Override
+        public Sesion[] newArray(int size) {
+            return new Sesion[size];
+        }
+    };
 
     public Integer getIdSesion() {
         return idSesion;
@@ -119,39 +178,25 @@ public class Sesion implements Parcelable {
         this.idEstudiante = idEstudiante;
     }
 
-    protected Sesion(Parcel in) {
-        if (in.readByte() == 0) {
-            idSesion = null;
-        } else {
-            idSesion = in.readInt();
-        }
-        fechaSesion = in.readString();
-        nombretaller = in.readString();
-        nombretutor = in.readString();
-        nombreEstudiate = in.readString();
-        nombrehistoria = in.readString();
-        if (in.readByte() == 0) {
-            aciertos = null;
-        } else {
-            aciertos = in.readInt();
-        }
-        if (in.readByte() == 0) {
-            fallos = null;
-        } else {
-            fallos = in.readInt();
-        }
-        if (in.readByte() == 0) {
-            tiempo = null;
-        } else {
-            tiempo = in.readLong();
-        }
-        logro = in.readString();
-        observacion = in.readString();
-        if (in.readByte() == 0) {
-            idEstudiante = null;
-        } else {
-            idEstudiante = in.readInt();
-        }
+    public Integer getIdTaller() {
+        return idTaller;
+    }
+
+    public void setIdTaller(Integer idTaller) {
+        this.idTaller = idTaller;
+    }
+
+    public Integer getIdHistoria() {
+        return idHistoria;
+    }
+
+    public void setIdHistoria(Integer idHistoria) {
+        this.idHistoria = idHistoria;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     @Override
@@ -193,22 +238,17 @@ public class Sesion implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(idEstudiante);
         }
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Sesion> CREATOR = new Creator<Sesion>() {
-        @Override
-        public Sesion createFromParcel(Parcel in) {
-            return new Sesion(in);
+        if (idTaller == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idTaller);
         }
-
-        @Override
-        public Sesion[] newArray(int size) {
-            return new Sesion[size];
+        if (idHistoria == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idHistoria);
         }
-    };
+    }
 }

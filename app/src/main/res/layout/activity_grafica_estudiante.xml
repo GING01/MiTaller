@@ -9,12 +9,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:orientation="horizontal"
-        android:visibility="visible"
-        android:layout_alignParentLeft="true">
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/nombreEstu"
@@ -40,8 +39,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="431dp"
-            android:layout_alignParentLeft="true" />
+            android:layout_marginStart="368dp" />
+
+        <Spinner
+            android:id="@+id/spnHistoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="410dp" />
 
         <RadioGroup
             android:id="@+id/rgFiltro"
@@ -55,9 +61,9 @@
                 android:id="@+id/rbAciertosyFallos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:selectAllOnFocus="true"
-                android:onClick="onClick"
                 android:checked="true"
+                android:onClick="onClick"
+                android:selectAllOnFocus="true"
 
                 android:text="Aciertos y Fallos" />
 
@@ -76,41 +82,10 @@
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
         android:layout_width="match_parent"
-        android:layout_height="354dp"
+        android:layout_height="403dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="62dp"
-        />
+        android:layout_marginTop="62dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:orientation="horizontal"
-        android:visibility="visible">
 
-        <Button
-            android:id="@+id/btnVerTabla"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="320dp"
-            android:layout_marginStart="320dp"
-            android:text="Ver tabla" />
-
-        <Button
-            android:id="@+id/btnExportar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="320dp"
-            android:layout_marginRight="320dp"
-            android:text="Exportar" />
-
-    </RelativeLayout>
 
 </RelativeLayout>

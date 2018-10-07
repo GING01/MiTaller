@@ -11,13 +11,19 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,18 +47,20 @@ import java.util.Date;
 import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
+import mta.epn.ginghogam.com.mitaller.db.HistoriaDAO;
 import mta.epn.ginghogam.com.mitaller.db.SesionDAO;
+import mta.epn.ginghogam.com.mitaller.db.TallerDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
+import mta.epn.ginghogam.com.mitaller.entidades.Historia;
+import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 
 public class GraficaEstudianteActivity extends AppCompatActivity {
 
     private TextView nombreApellido;
     private RadioButton aciertosFallos, tiempo;
-    private Button verTabla, exportar;
     private boolean checked;
 
-    ImageView imageView;
 
     private GraphView graph;
 
@@ -62,10 +70,22 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     List<String> fechaList;
 
     private String nombreEstudiante, nombreTaller;
+    private Integer idTaller, idHistoria;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 
-    LineGraphSeries<DataPoint> series;
+    Spinner spinnerTaller;
+    Spinner spinnerHistoria;
+
+    ArrayList<Taller> listTalleres;
+    ArrayList<Historia> listHistoria;
+
+    ArrayList<String> tallerArrayList;
+    ArrayList<String> historiaArrayList;
+
+
+    TallerDAO tallerDAO;
+    HistoriaDAO historiaDAO;
 
 
     @Override
@@ -79,29 +99,20 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         parametros();
         iniciarComponentes();
-        llamarTabla();
         consultarDatosSesion();
         grafica();
-
+        consultarTalleres();
+        comboTaller();
 
         nombreApellido.setText(nombreEstudiante);
-
-        imageView = findViewById(R.id.cap);
-        exportar.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.KITKAT)
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                exportarGrafica();
-            }
-        });
 
 
     }
 
+
     private void consultarDatosSesion() {
         sesionDAO = new SesionDAO(this);
-        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
+        Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
         fechaList = new ArrayList<String>();
 
         if (cursor.moveToFirst()) {
@@ -116,8 +127,6 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
             } while (cursor.moveToNext());
         }
-
-        Toast.makeText(getApplicationContext(), "" + fechaList, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -204,12 +213,12 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
     private DataPoint[] getDataAcieros() {
         sesionDAO = new SesionDAO(this);
-
-        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
+        consultarDatosSesion();
+        Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
         DataPoint[] dp = new DataPoint[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
-            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(6));
+            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(8));
 
         }
 
@@ -220,12 +229,29 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     private DataPoint[] getData() {
 
         sesionDAO = new SesionDAO(this);
+        consultarDatosSesion();
 
-        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
+        Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
         DataPoint[] dp = new DataPoint[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
-            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(7));
+            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(9));
+
+        }
+
+        return dp;
+    }
+
+    private DataPoint[] getDataTiempo() {
+        sesionDAO = new SesionDAO(this);
+
+        consultarDatosSesion();
+
+        Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
+        DataPoint[] dp = new DataPoint[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToNext();
+            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(10));
 
         }
 
@@ -238,17 +264,6 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         tutor = extra.getParcelable("tutor");
     }
 
-    private void llamarTabla() {
-        verTabla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GraficaEstudianteActivity.this, TablaResultadosActivity.class);
-                intent.putExtra("tutor", tutor);
-                intent.putExtra("estudiante", estudiante);
-                startActivity(intent);
-            }
-        });
-    }
 
     int cont = 0;
 
@@ -259,16 +274,13 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         cont++;
 
-            graph.setDrawingCacheEnabled(true);
+        graph.setDrawingCacheEnabled(true);
 
-             bitmap = Bitmap.createBitmap(graph.getDrawingCache());//important to make copy of that bitmap.
-
-
-
+        bitmap = Bitmap.createBitmap(graph.getDrawingCache());//important to make copy of that bitmap.
 
 
         String path = Environment.getExternalStorageDirectory().toString();
-        File file = new File(path, nombreEstudiante +new Date()+ ".jpg"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
+        File file = new File(path, nombreEstudiante + new Date() + ".jpg"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
 
         try (FileOutputStream out = new FileOutputStream(file)) {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
@@ -282,8 +294,6 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         PdfDocument.PageInfo pi = new PdfDocument.PageInfo.Builder(bitmap.getWidth(), bitmap.getHeight(), 1).create();
 
         PdfDocument.Page page = pdfDocument.startPage(pi);
-
-
 
 
         Canvas canvas = page.getCanvas();
@@ -302,7 +312,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
             root.mkdir();
         }
 
-        File file1 = new File(root, nombreEstudiante+" "+nombreTaller+"_"+new Date()+".pdf");
+        File file1 = new File(root, nombreEstudiante + " " + nombreTaller + "_" + new Date() + ".pdf");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file1);
             pdfDocument.writeTo(fileOutputStream);
@@ -310,11 +320,10 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Toast.makeText(getApplicationContext(),"PDF generado", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "PDF generado", Toast.LENGTH_SHORT).show();
         pdfDocument.close();
 
         graph.destroyDrawingCache();
-
 
 
     }
@@ -322,10 +331,10 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     private void iniciarComponentes() {
         nombreApellido = findViewById(R.id.nombreEstu);
         aciertosFallos = findViewById(R.id.rbAciertosyFallos);
-        verTabla = findViewById(R.id.btnVerTabla);
-        exportar = findViewById(R.id.btnExportar);
         tiempo = findViewById(R.id.rbTiempo);
         graph = findViewById(R.id.graph);
+        spinnerTaller = findViewById(R.id.spnTaller);
+        spinnerHistoria = findViewById(R.id.spnHistoria);
     }
 
     public void onClick(View view) {
@@ -418,17 +427,149 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
     }
 
-    private DataPoint[] getDataTiempo() {
-        sesionDAO = new SesionDAO(this);
 
-        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
-        DataPoint[] dp = new DataPoint[cursor.getCount()];
-        for (int i = 0; i < cursor.getCount(); i++) {
-            cursor.moveToNext();
-            dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(8));
+    private void consultarTalleres() {
 
+        Taller taller = null;
+        tallerDAO = new TallerDAO(this);
+        Cursor cursor = tallerDAO.retrieve();
+        listTalleres = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                taller = new Taller();
+                taller.setIdTaller(cursor.getInt(0));
+                taller.setNombreTaller(cursor.getString(1));
+                taller.setDescripcionTaller(cursor.getString(2));
+                taller.setImagenTaller(cursor.getString(3));
+
+                listTalleres.add(taller);
+
+            } while (cursor.moveToNext());
+        }
+        obtenerListaTalleres();
+    }
+
+    private void obtenerListaTalleres() {
+
+        tallerArrayList = new ArrayList<>();
+
+        for (int i = 0; i < listTalleres.size(); i++) {
+            tallerArrayList.add(listTalleres.get(i).getNombreTaller());
         }
 
-        return dp;
     }
+
+    private void consultarHistoria(int idTaller) {
+
+        historiaDAO = new HistoriaDAO(this);
+        Historia historia = null;
+        Cursor cursor = historiaDAO.retrieve(idTaller);
+        listHistoria = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                historia = new Historia();
+                historia.setIdHistoria(cursor.getInt(0));
+                historia.setNombreHistoria(cursor.getString(1));
+                historia.setDescripcionHistoria(cursor.getString(2));
+                historia.setImagenHistoria(cursor.getString(3));
+                historia.setNumeroLaminas(cursor.getString(3));
+                historia.setIdTaller(cursor.getInt(0));
+                listHistoria.add(historia);
+            } while (cursor.moveToNext());
+        }
+        obtenerListaHistoria();
+    }
+
+    private void obtenerListaHistoria() {
+
+        historiaArrayList = new ArrayList<>();
+
+        for (int i = 0; i < listHistoria.size(); i++) {
+            historiaArrayList.add(listHistoria.get(i).getNombreHistoria());
+        }
+
+    }
+
+    private void comboTaller() {
+
+        ArrayAdapter<CharSequence> adatadorTaller = new ArrayAdapter(
+                this, android.R.layout.simple_spinner_item, tallerArrayList);
+        spinnerTaller.setAdapter(adatadorTaller);
+
+        spinnerTaller.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    default:
+                        idTaller = listTalleres.get(position).getIdTaller();
+                        Toast.makeText(getApplicationContext(), "" + idTaller, Toast.LENGTH_SHORT).show();
+                        consultarHistoria(idTaller);
+                        comboHistoria();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+    private void comboHistoria() {
+
+        ArrayAdapter<CharSequence> adatadorHistoria = new ArrayAdapter(
+                this, android.R.layout.simple_spinner_item, historiaArrayList);
+        spinnerHistoria.setAdapter(adatadorHistoria);
+
+        spinnerHistoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    default:
+                        idHistoria = listHistoria.get(position).getIdHistoria();
+                        consultarDatosSesion();
+                        grafica();
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_grafica, menu);
+        return true;
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.verTabla) {
+            Intent intent = new Intent(GraficaEstudianteActivity.this, TablaResultadosActivity.class);
+            intent.putExtra("tutor", tutor);
+            intent.putExtra("estudiante", estudiante);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.exportarGrafica) {
+            exportarGrafica();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

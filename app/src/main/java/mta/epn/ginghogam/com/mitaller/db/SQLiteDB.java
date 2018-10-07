@@ -108,9 +108,11 @@ public class SQLiteDB extends SQLiteOpenHelper {
                     ConstanteDB.COLUMN_ID_SESION +" INTEGER PRIMARY KEY AUTOINCREMENT,"  +
                     ConstanteDB.COLUMN_FECHA +  TEXT_TYPE  + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_TALLER + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_ID_TALLER_SESION + INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_TUTOR_RESULTADOS+ TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_NOMBRE_HISTORIA_RESULTADOS + TEXT_TYPE + COMMA_SEP +
+                    ConstanteDB.COLUMN_ID_HISTORIA_SESION + INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_ACIERTOS + INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_FALLOS + INTEGER_ + COMMA_SEP +
                     ConstanteDB.COLUMN_TIEMPO_EJERCICIO + INTEGER_ + COMMA_SEP +
