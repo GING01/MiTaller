@@ -85,15 +85,15 @@ public class TablaResultadosActivity extends AppCompatActivity {
                 sesion.setIdSesion(cursor.getInt(0));
                 sesion.setFechaSesion(cursor.getString(1));
                 sesion.setNombretaller(cursor.getString(2));
-                sesion.setNombretutor(cursor.getString(3));
-                sesion.setNombreEstudiate(cursor.getString(4));
-                sesion.setNombrehistoria(cursor.getString(5));
-                sesion.setAciertos(cursor.getInt(6));
-                sesion.setFallos(cursor.getInt(7));
-                sesion.setTiempo(cursor.getLong(8));
-                sesion.setLogro(cursor.getString(9));
-                sesion.setObservacion(cursor.getString(10));
-                sesion.setIdEstudiante(cursor.getInt(11));
+                sesion.setNombretutor(cursor.getString(4));
+                sesion.setNombreEstudiate(cursor.getString(5));
+                sesion.setNombrehistoria(cursor.getString(6));
+                sesion.setAciertos(cursor.getInt(8));
+                sesion.setFallos(cursor.getInt(9));
+                sesion.setTiempo(cursor.getLong(10));
+                sesion.setLogro(cursor.getString(11));
+                sesion.setObservacion(cursor.getString(12));
+                sesion.setIdEstudiante(cursor.getInt(13));
 
 
                 sesionList.add(sesion);

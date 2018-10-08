@@ -21,9 +21,11 @@ public class SesionDAO extends SQLiteDB {
         ContentValues values = new ContentValues();
         values.put(ConstanteDB.COLUMN_FECHA, String.valueOf(sesion.getFechaSesion()));
         values.put(ConstanteDB.COLUMN_NOMBRE_TALLER, sesion.getNombretaller());
+        values.put(ConstanteDB.COLUMN_ID_TALLER_SESION, sesion.getIdTaller());
         values.put(ConstanteDB.COLUMN_NOMBRE_TUTOR_RESULTADOS, sesion.getNombretutor());
         values.put(ConstanteDB.COLUMN_NOMBRE_ESTUDIANTE_RESULTADOS, sesion.getNombreEstudiate());
         values.put(ConstanteDB.COLUMN_NOMBRE_HISTORIA_RESULTADOS, sesion.getNombrehistoria());
+        values.put(ConstanteDB.COLUMN_ID_HISTORIA_SESION, sesion.getIdHistoria());
         values.put(ConstanteDB.COLUMN_ACIERTOS, sesion.getAciertos());
         values.put(ConstanteDB.COLUMN_FALLOS, sesion.getFallos());
         values.put(ConstanteDB.COLUMN_TIEMPO_EJERCICIO, sesion.getTiempo());
@@ -46,6 +48,19 @@ public class SesionDAO extends SQLiteDB {
 
         String selectQuery = "SELECT  * FROM " + ConstanteDB.TABLE_SESION + " WHERE "
                 + ConstanteDB.COLUMN_ID_ESTUDIANTE_FK + " = " + id ;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        return c;
+    }
+
+    public Cursor retrieveGrafica(long id, Integer taller, Integer historia){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + ConstanteDB.TABLE_SESION + " WHERE "
+                + ConstanteDB.COLUMN_ID_ESTUDIANTE_FK + " = " + id + " AND "
+                + ConstanteDB.COLUMN_ID_TALLER_SESION + " = " + taller + " AND "
+                + ConstanteDB.COLUMN_ID_HISTORIA_SESION + " = " + historia;
 
         Cursor c = db.rawQuery(selectQuery, null);
 

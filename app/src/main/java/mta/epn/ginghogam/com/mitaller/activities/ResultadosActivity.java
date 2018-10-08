@@ -88,7 +88,9 @@ public class ResultadosActivity extends AppCompatActivity {
             sesion.setAciertos(correctas);
             sesion.setFallos(inCorrectas);
             sesion.setNombretaller(taller.getNombreTaller());
+            sesion.setIdTaller(taller.getIdTaller());
             sesion.setNombrehistoria(historia.getNombreHistoria());
+            sesion.setIdHistoria(historia.getIdHistoria());
             sesion.setLogro(logros.getText().toString());
             sesion.setNombreEstudiate(estudiante.getNombreEstudiate()+ " "+ estudiante.getApellidoEstudiante());
             sesion.setNombretutor(tutor.getNombreTutor()+" "+ tutor.getApellidoTutor());
