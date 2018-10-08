@@ -28,7 +28,7 @@
         android:layout_height="100dp"
         android:contentDescription="@string/nav_header_desc"
         android:layout_gravity="center"
-        android:src="@drawable/buhoguia" />
+        android:src="@drawable/buhobig" />
 
     <TextView
         android:id="@+id/textView"

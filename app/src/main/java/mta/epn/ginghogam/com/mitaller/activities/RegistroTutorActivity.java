@@ -60,12 +60,12 @@ public class RegistroTutorActivity extends AppCompatActivity {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) {
-                        Toast.makeText(RegistroTutorActivity.this, "Buscando", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(RegistroTutorActivity.this, "Buscando", Toast.LENGTH_SHORT).show();
                          buscarcedula();
                         if(buscarcedula())
                             llenarDatosTutor(tutor);
                         else
-                            Toast.makeText(RegistroTutorActivity.this, "Cedula no valida", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegistroTutorActivity.this, "Cedula no valida", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(RegistroTutorActivity.this, "Ingrese su cedula para buscar", Toast.LENGTH_SHORT).show();
@@ -112,14 +112,14 @@ public class RegistroTutorActivity extends AppCompatActivity {
                 return true;
             }
             catch (Exception e){
-                Toast.makeText(RegistroTutorActivity.this, "No se encontro la cedula", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistroTutorActivity.this, "No se encontro la cedula", Toast.LENGTH_SHORT).show();
 
                 return false;
             }
 
         }
         else{
-            Toast.makeText(RegistroTutorActivity.this, "Cedula no valida", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegistroTutorActivity.this, "Cedula no valida", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -155,7 +155,7 @@ public class RegistroTutorActivity extends AppCompatActivity {
                                 finish();
                             }
                             else{
-                                Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else {
@@ -167,7 +167,7 @@ public class RegistroTutorActivity extends AppCompatActivity {
                     }
                     catch (Exception e)
                     {
-                        Toast.makeText(RegistroTutorActivity.this, "No se pudo registrar", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistroTutorActivity.this, "No se pudo registrar", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -177,11 +177,7 @@ public class RegistroTutorActivity extends AppCompatActivity {
         }
         else{
             tutorDAO =new TutorDAO(this);
-            if (buscarUsuario()){
-                Toast.makeText(RegistroTutorActivity.this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
-            }
 
-            else {
 
                 try {
                     tutor = new Tutor();
@@ -199,7 +195,7 @@ public class RegistroTutorActivity extends AppCompatActivity {
                             finish();
                         }
                         else{
-                            Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegistroTutorActivity.this, "Los campos no estan completos revisa porfavor", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else {
@@ -210,12 +206,12 @@ public class RegistroTutorActivity extends AppCompatActivity {
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(RegistroTutorActivity.this, "No se pudo actualizar", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistroTutorActivity.this, "No se pudo actualizar", Toast.LENGTH_SHORT).show();
 
                 }
 
             }
-        }
+
 
 
     }
@@ -235,7 +231,7 @@ public class RegistroTutorActivity extends AppCompatActivity {
             return true;
         }
         catch (Exception e){
-            Toast.makeText(RegistroTutorActivity.this, "No se encontro el usuario", Toast.LENGTH_LONG).show();
+            //Toast.makeText(RegistroTutorActivity.this, "No se encontro el usuario", Toast.LENGTH_LONG).show();
             return false;
         }
     }

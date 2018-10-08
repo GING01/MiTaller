@@ -180,7 +180,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
     private void guardarEstudiante() {
 
         if(estudiante != null){
-            if(fileImagen != null){
+            if(fileImagen != null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
 
                 estudiante.setNombreEstudiate(nombre.getText().toString());
                 estudiante.setApellidoEstudiante(apellido.getText().toString());
@@ -191,7 +191,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudianteDAO.update(estudiante);
                 finish();
             }
-            if (pathGaleria != null){
+            if (pathGaleria != null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
                 estudiante.setApellidoEstudiante(apellido.getText().toString());
                 estudiante.setGeneroEstudiante(generoSelected);
@@ -201,7 +201,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudianteDAO.update(estudiante);
                 finish();
             }
-            if (pathGaleria == null && fileImagen == null){
+            if (pathGaleria == null && fileImagen == null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
                 estudiante.setApellidoEstudiante(apellido.getText().toString());
                 estudiante.setGeneroEstudiante(generoSelected);
@@ -211,7 +211,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudianteDAO.update(estudiante);
                 finish();
             }
-            if (pathGaleria == null){
+            if (pathGaleria == null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
                 estudiante.setApellidoEstudiante(apellido.getText().toString());
                 estudiante.setGeneroEstudiante(generoSelected);
@@ -221,7 +221,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudianteDAO.update(estudiante);
                 finish();
             }
-            if (fileImagen == null){
+            if (fileImagen == null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
                 estudiante.setApellidoEstudiante(apellido.getText().toString());
                 estudiante.setGeneroEstudiante(generoSelected);
@@ -235,7 +235,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
 
         }else {
 
-            if (fileImagen != null) {
+            if (fileImagen != null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101) {
                 estudiante = new Estudiante();
                 estudiante.setNombreEstudiate(nombre.getText().toString());
                 estudiante.setApellidoEstudiante(apellido.getText().toString());
@@ -248,7 +248,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudianteDAO.create(estudiante);
                 finish();
             }
-            if (pathGaleria != null) {
+            if (pathGaleria != null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101) {
                 estudiante = new Estudiante();
                 estudiante.setNombreEstudiate(nombre.getText().toString());
                 estudiante.setApellidoEstudiante(apellido.getText().toString());
@@ -257,11 +257,12 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 estudiante.setIdTutor(tutor.getIdTutor());
-
                 estudianteDAO.create(estudiante);
                 finish();
             }
         }
+
+
     }
 
     @Override

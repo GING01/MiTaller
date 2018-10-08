@@ -106,7 +106,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 secuenciaList.add(secuencia);
                 imagenes.add(cursor.getString(1));
             } while (cursor.moveToNext());
-            Toast.makeText(getApplicationContext(), "Imagen secuencia: " + secuencia.getImagenSecuencia(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Imagen secuencia: " + secuencia.getImagenSecuencia(), Toast.LENGTH_LONG).show();
             for (int i = 0; i < secuenciaList.size(); i++) {
                 bt1 = new ImageView(getApplicationContext());
 
@@ -173,7 +173,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
                 case DragEvent.ACTION_DROP:
-                    Toast.makeText(getApplicationContext(), v.getTag() + "?", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), v.getTag() + "?", Toast.LENGTH_SHORT).show();
                     if (pathArrastrar == null && fileImagen == null) {
                         ((ImageView) v).setImageDrawable(imagen.getDrawable());
                         imagenes.set((Integer) v.getTag(), "");
