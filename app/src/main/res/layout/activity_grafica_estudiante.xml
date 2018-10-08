@@ -32,6 +32,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="311dp"
+            android:text="Taller: " />
 
         <Spinner
             android:id="@+id/spnTaller"
@@ -41,13 +48,22 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="368dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="399dp"
+            android:text="Historia: " />
+
+
         <Spinner
             android:id="@+id/spnHistoria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="410dp" />
+            android:layout_marginEnd="336dp" />
 
         <RadioGroup
             android:id="@+id/rgFiltro"
@@ -61,9 +77,7 @@
                 android:id="@+id/rbAciertosyFallos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:onClick="onClick"
-                android:selectAllOnFocus="true"
 
                 android:text="Aciertos y Fallos" />
 
@@ -81,7 +95,7 @@
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
-        android:layout_width="match_parent"
+        android:layout_width="951dp"
         android:layout_height="403dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="62dp" />

@@ -11,7 +11,6 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -59,8 +58,12 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
     private TextView nombreApellido;
     private RadioButton aciertosFallos, tiempo;
+    private Button verTabla, exportar;
     private boolean checked;
+    private Integer idTaller, idHistoria;
 
+
+    ImageView imageView;
 
     private GraphView graph;
 
@@ -70,8 +73,10 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     List<String> fechaList;
 
     private String nombreEstudiante, nombreTaller;
-    private Integer idTaller, idHistoria;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+
+    LineGraphSeries<DataPoint> series;
 
 
     Spinner spinnerTaller;
@@ -88,6 +93,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     HistoriaDAO historiaDAO;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,12 +105,18 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         parametros();
         iniciarComponentes();
-        consultarDatosSesion();
-        grafica();
+
+
+
         consultarTalleres();
         comboTaller();
 
-        nombreApellido.setText(nombreEstudiante);
+//        consultarDatosSesion();
+//        grafica();
+        graph.setVisibility(View.GONE);
+
+
+        imageView = findViewById(R.id.cap);
 
 
     }
@@ -112,6 +124,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
     private void consultarDatosSesion() {
         sesionDAO = new SesionDAO(this);
+//        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
         Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
         fechaList = new ArrayList<String>();
 
@@ -125,8 +138,13 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 fechaList.add(fecha.toString());
 
 
+
             } while (cursor.moveToNext());
         }
+
+        nombreApellido.setText(nombreEstudiante);
+
+        Toast.makeText(getApplicationContext()," id taller"+idTaller+"  "+idHistoria, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -205,7 +223,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         graph.getGridLabelRenderer().setHorizontalLabelsAngle(135);
 
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(5);
 
 
     }
@@ -213,8 +231,10 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
     private DataPoint[] getDataAcieros() {
         sesionDAO = new SesionDAO(this);
-        consultarDatosSesion();
+
+//        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
         Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
+
         DataPoint[] dp = new DataPoint[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
@@ -228,10 +248,14 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
     private DataPoint[] getData() {
 
-        sesionDAO = new SesionDAO(this);
         consultarDatosSesion();
 
+
+        sesionDAO = new SesionDAO(this);
+
+//        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
         Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
+
         DataPoint[] dp = new DataPoint[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
@@ -245,9 +269,9 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     private DataPoint[] getDataTiempo() {
         sesionDAO = new SesionDAO(this);
 
-        consultarDatosSesion();
-
+//        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
         Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
+
         DataPoint[] dp = new DataPoint[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
@@ -422,10 +446,11 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         graph.getGridLabelRenderer().setHorizontalLabelsAngle(135);
 
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(5);
 
 
     }
+
 
 
     private void consultarTalleres() {
@@ -503,9 +528,11 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 switch (position) {
                     default:
                         idTaller = listTalleres.get(position).getIdTaller();
-                        Toast.makeText(getApplicationContext(), "" + idTaller, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Id taller: " + idTaller, Toast.LENGTH_SHORT).show();
+
                         consultarHistoria(idTaller);
                         comboHistoria();
+
                         break;
                 }
             }
@@ -531,8 +558,8 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 switch (position) {
                     default:
                         idHistoria = listHistoria.get(position).getIdHistoria();
-                        consultarDatosSesion();
-                        grafica();
+//                        Toast.makeText(getApplicationContext(), "Id historia: " + idHistoria, Toast.LENGTH_SHORT).show();
+
                         break;
                 }
 
@@ -573,3 +600,4 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
 
 }
+
