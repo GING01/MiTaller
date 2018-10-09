@@ -127,6 +127,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
         final TextView nombreHistoria = (TextView) view.findViewById(R.id.tvNombreHistoria);
 
+        nombreHistoria.setText(mData.get(position).getNombreHistoria());
 
         maxhpdisplay.setText(mData.get(position).getDescripcionHistoria());
         localView = view;
@@ -161,7 +162,6 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
                         if(!changePage){
                             i++;
-                            nombreHistoria.setText(mData.get(position).getNombreHistoria());
                             hablar(manyDifferentStrings, finalLocalView, i, position);
                         }if(changePage){
                             TtS.speak("Por favor, vuelve a presionar el botón play!", TextToSpeech.QUEUE_FLUSH, null);

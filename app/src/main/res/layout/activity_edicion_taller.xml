@@ -19,12 +19,12 @@
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
             android:layout_width="300dp"
-            android:layout_height="200dp">
+            android:layout_height="300dp">
 
             <ImageView
                 android:id="@+id/img_taller"
-                android:layout_width="300dp"
-                android:layout_height="200dp"
+                android:layout_width="275dp"
+                android:layout_height="300dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="fotografía"
                 android:src="@drawable/no_foto" />
@@ -54,15 +54,19 @@
         <LinearLayout
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:background="@drawable/shape"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/nombreTaller"
-                android:layout_width="343dp"
+                android:layout_width="561dp"
                 android:layout_height="wrap_content"
-                android:hint="Nombre Taller"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="15dp"
+                android:hint="Nombre del taller"
+                android:inputType="text"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textSize="18dp"
@@ -70,9 +74,12 @@
 
             <EditText
                 android:id="@+id/descripcionTaller"
-                android:layout_width="343dp"
-                android:layout_height="156dp"
+                android:layout_width="567dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="15dp"
                 android:hint="Descripción Taller"
+                android:inputType="text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
             <EditText

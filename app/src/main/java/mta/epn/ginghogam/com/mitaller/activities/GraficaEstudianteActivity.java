@@ -72,7 +72,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     private SesionDAO sesionDAO;
     List<String> fechaList;
 
-    private String nombreEstudiante, nombreTaller;
+    private String nombreEstudiante, nombreTaller, nombreHistoria;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 
@@ -135,6 +135,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 String fecha = cursor.getString(1);
                 nombreTaller = cursor.getString(2);
                 nombreEstudiante = cursor.getString(4);
+                nombreHistoria = cursor.getString(6);
                 fechaList.add(fecha.toString());
 
 
@@ -207,7 +208,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setTextSize(14);
 
 
-        graph.setTitle("Taller: " + nombreTaller);
+        graph.setTitle("Taller: " + nombreTaller+"  -  "+nombreHistoria);
         graph.setTitleTextSize(25);
         graph.setTitleColor(Color.RED);
 
@@ -268,6 +269,8 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
     private DataPoint[] getDataTiempo() {
         sesionDAO = new SesionDAO(this);
+
+        consultarDatosSesion();
 
 //        Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
         Cursor cursor = sesionDAO.retrieveGrafica(estudiante.getIdEstudiante(), idTaller, idHistoria);
@@ -377,6 +380,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
             case R.id.rbTiempo:
                 if (checked) {
                     graph.removeAllSeries();
+                    graph.setVisibility(View.VISIBLE);
                     graficaTiempo();
                 }
                 break;
@@ -430,7 +434,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setTextSize(14);
 
 
-        graph.setTitle("Taller: " + nombreTaller);
+        graph.setTitle("Taller: " + nombreTaller+"  - "+nombreHistoria);
         graph.setTitleTextSize(25);
         graph.setTitleColor(Color.RED);
 

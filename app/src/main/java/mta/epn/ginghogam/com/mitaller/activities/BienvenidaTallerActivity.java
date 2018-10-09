@@ -128,8 +128,6 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
                     j++;
                     if(j < l.get(i-1).length) {
                         mHandler.postDelayed(this, 400);
-                    }else{
-
                     }
                 }
             });

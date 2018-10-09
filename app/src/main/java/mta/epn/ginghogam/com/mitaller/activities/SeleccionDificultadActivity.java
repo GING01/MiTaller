@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -40,16 +41,19 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
     private TextView lectura;
 
     String dificultadSeleccionada = "facil";
+    int contador = 0;
 
+
+    Handler handlerbuho;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion_dificultad);
-        TtS=new TextToSpeech(this,this);
+        TtS = new TextToSpeech(this, this);
 
-        seekBarDificultad=findViewById(R.id.seekbardificultad);
+        seekBarDificultad = findViewById(R.id.seekbardificultad);
         seekBarDificultad.setMax(2);
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
@@ -61,15 +65,15 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         seekBarDificultad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress==0){
-                    seekbarvalue=progress;
+                if (progress == 0) {
+                    seekbarvalue = progress;
                     dificultadSeleccionada = "facil";
                 }
-                if(progress==1){
+                if (progress == 1) {
 
                     dificultadSeleccionada = "medio";
                 }
-                if(progress==2){
+                if (progress == 2) {
 
                     dificultadSeleccionada = "dificil";
                 }
@@ -90,12 +94,30 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
 
         String msj = "Porfavor selecciona la dificultad para el ejercicio";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(255,192,0));
+        lectura.setTextColor(rgb(255, 192, 0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hablar();
+
+                contador++;
+
+                Toast.makeText(getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
+                handlerbuho = new Handler();
+                handlerbuho.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (contador == 1) {
+                            hablar();
+                        }
+                        if (contador == 2) {
+                        }
+                        if (contador >= 3) {
+                            contador = 0;
+                        }
+
+                    }
+                }, 5);
             }
         });
 
@@ -103,63 +125,65 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
 
     private void hablar() {
         String msj = "Porfavor selecciona la dificultad para el ejercicio";
-        final String texto= msj.toString();
+        final String texto = msj.toString();
 
-        final String [] palabraResaltada = texto.split("\\s+");
+        final String[] palabraResaltada = texto.split("\\s+");
         lectura.setText("");
-        i=0;
+        i = 0;
         final Handler mHandler = new Handler();
 
-        mHandler.post(new Runnable(){
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
-                lectura.append(palabraResaltada[i]+" ");
-                lectura.setTextColor(rgb(255,192,0));
-                lectura.setMovementMethod(new ScrollingMovementMethod());
-
-
-                i++;
-                if(i < palabraResaltada.length) {
-                    mHandler.postDelayed(this, 300);
-
+                if (contador == 1) {
+                    lectura.append(palabraResaltada[i] + " ");
+                    lectura.setTextColor(rgb(255, 192, 0));
+                    lectura.setMovementMethod(new ScrollingMovementMethod());
+                    i++;
+                    if (i < palabraResaltada.length) {
+                        mHandler.postDelayed(this, 450);
+                    } else {
+                        i = 0;
+                        handlerbuho.removeCallbacksAndMessages(null);
+                    }
                 }
             }
         });
-        TtS.speak(texto, TextToSpeech.QUEUE_FLUSH,null);
+        TtS.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
 
 
     }
+
     public void pasar(View view) {
         Intent intent = new Intent(SeleccionDificultadActivity.this, SeleccionTallerEntrenamientoActivity.class);
         intent.putExtra("tutor", tutor);
         intent.putExtra("estudiante", estudiante);
-        intent.putExtra("dificultad",dificultadSeleccionada);
+        intent.putExtra("dificultad", dificultadSeleccionada);
         startActivity(intent);
     }
 
 
-
     @Override
     public void onInit(int text) {
-        if(text==TextToSpeech.SUCCESS){
-            int lenguaje= TtS.isLanguageAvailable(new Locale("spa", "ESP"));
-            if(lenguaje == TextToSpeech.LANG_MISSING_DATA || lenguaje==TextToSpeech.LANG_NOT_SUPPORTED){
+        if (text == TextToSpeech.SUCCESS) {
+            int lenguaje = TtS.isLanguageAvailable(new Locale("spa", "ESP"));
+            if (lenguaje == TextToSpeech.LANG_MISSING_DATA || lenguaje == TextToSpeech.LANG_NOT_SUPPORTED) {
                 guia.setSaveEnabled(true);
                 hablar();
 
+            } else {
             }
-            else {
-            }
+        } else {
         }
-        else{}
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-            getSupportActionBar().setCustomView(R.layout.menu_seleccion_dificultad_titulo);
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            return true;
-        }
+        getSupportActionBar().setCustomView(R.layout.menu_seleccion_dificultad_titulo);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -170,7 +194,8 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
 
         return super.onOptionsItemSelected(item);
     }
-    public void llamarmenu(View view){
+
+    public void llamarmenu(View view) {
         Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
