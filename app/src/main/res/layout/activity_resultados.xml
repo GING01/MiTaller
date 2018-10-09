@@ -7,75 +7,37 @@
     tools:context="mta.epn.ginghogam.com.mitaller.activities.ResultadosActivity">
 
 
-    <ImageButton
+    <ImageView
         android:id="@+id/guardar"
-        android:layout_width="61dp"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="57dp"
-        android:src="@android:drawable/checkbox_on_background" />
+        android:src="@android:drawable/ic_menu_save" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="103dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="RESULTADOS" />
+        android:text="RESULTADOS"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp"/>
 
-    <TextView
-        android:id="@+id/nombretaller"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="64dp"
-        android:layout_toStartOf="@+id/textView15"
-        android:text="TextView" />
 
-    <TextView
-        android:id="@+id/nombrehistoriaResultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/nombretaller"
-        android:layout_toEndOf="@+id/textView15"
-        android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="101dp"
-        android:layout_toStartOf="@+id/textView15"
-        android:text="Ejercicio Resuelto:" />
 
-    <TextView
-        android:id="@+id/resultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView18"
-        android:layout_toEndOf="@+id/textView15"
-        android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="173dp"
-        android:layout_toStartOf="@+id/textView15"
-        android:text="Falos:" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="138dp"
-        android:layout_toStartOf="@+id/textView15"
-        android:text="Acierto:" />
+
+
+
+
+
 
     <EditText
         android:id="@+id/observaciones"
@@ -84,23 +46,107 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="140dp"
-        android:ems="10"
-        android:hint="Observaciones"
+        android:ems="15"
+        android:hint="Observación"
         android:inputType="textMultiLine" />
 
-    <TextView
-        android:id="@+id/aciertos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView21"
-        android:layout_toEndOf="@+id/textView15"
-        android:text="TextView" />
 
-    <TextView
-        android:id="@+id/fallos"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/nombrehistoriaResultado"
-        android:layout_alignTop="@+id/textView20"
-        android:text="TextView" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="102dp"
+        android:orientation="vertical"
+        android:paddingRight="15dp">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/nombretaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nombrehistoriaResultado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Ejercicio Resuelto:"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/resultado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Acierto:"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/aciertos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Fallos:"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fallos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView" />
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+
 </RelativeLayout>
