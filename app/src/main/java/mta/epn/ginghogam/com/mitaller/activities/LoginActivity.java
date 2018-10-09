@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }
         else
-            Toast.makeText(LoginActivity.this, "No se pudo abrir", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Porfavor revisa los datos", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
         catch (Exception e){
-            Toast.makeText(LoginActivity.this, "Revisar Usuario o contraseña", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "Porfavor revisa los datos", Toast.LENGTH_LONG).show();
             return false;
 
         }

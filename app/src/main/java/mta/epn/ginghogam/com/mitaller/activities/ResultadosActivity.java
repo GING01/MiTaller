@@ -1,5 +1,6 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,7 +58,7 @@ public class ResultadosActivity extends AppCompatActivity {
         sqLiteDB = new SQLiteDB(this);
         sesionDAO = new SesionDAO(this);
 
-        Toast.makeText(this,historia.getNombreHistoria().toString(),Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this,historia.getNombreHistoria().toString(),Toast.LENGTH_SHORT).show();
 
        nombreTaller =(TextView)findViewById(R.id.nombretaller);
         TextView nombrehistoria =findViewById(R.id.nombrehistoriaResultado);
@@ -103,5 +104,25 @@ public class ResultadosActivity extends AppCompatActivity {
     });
 
 
+    }
+    boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Si sales ahora no se guardaran los datos", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

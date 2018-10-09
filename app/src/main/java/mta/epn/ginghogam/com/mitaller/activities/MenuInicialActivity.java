@@ -62,9 +62,9 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
 
 
         if (tutor == null) {
-            Toast.makeText(this, " PATO", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, " PATO", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "a: " + tutor.getCiTutor(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "a: " + tutor.getCiTutor(), Toast.LENGTH_LONG).show();
         }
 
         GradientDrawable border = new GradientDrawable();

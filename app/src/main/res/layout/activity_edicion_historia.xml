@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,89 +13,65 @@
 
 
     <LinearLayout
-        android:layout_width="557dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5">
+        <FrameLayout
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:background="@drawable/shapesquare">
 
             <ImageView
                 android:id="@+id/img_historia"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
                 android:adjustViewBounds="true"
+                android:layout_margin="10dp"
                 android:contentDescription="fotografía"
-                android:src="@drawable/no_foto"
-                tools:layout_conversion_absoluteHeight="200dp"
-                tools:layout_conversion_absoluteWidth="300dp"
-                tools:layout_editor_absoluteX="27dp"
-                tools:layout_editor_absoluteY="85dp"
-                android:layout_margin="5dp"/>
+                android:src="@drawable/no_foto"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
 
             <ImageView
                 android:id="@+id/galeria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="23dp"
-                android:layout_weight="1"
-                android:contentDescription="logo galería"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:onClick="galeria"
-                android:src="@android:drawable/ic_menu_gallery"
-                tools:layout_conversion_absoluteHeight="60dp"
-                tools:layout_conversion_absoluteWidth="60dp"
-                tools:layout_editor_absoluteX="227dp"
-                tools:layout_editor_absoluteY="53dp"
-                android:layout_alignParentRight="true"
-                tools:ignore="RtlCompat" />
+                android:contentDescription="logo galería"
+                android:src="@android:drawable/ic_menu_gallery" />
 
             <ImageView
                 android:id="@+id/camara"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="67dp"
-                android:layout_weight="1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="logo cámara"
                 android:onClick="tomarFoto"
-                android:src="@android:drawable/ic_menu_camera"
-                tools:layout_conversion_absoluteHeight="60dp"
-                tools:layout_conversion_absoluteWidth="60dp"
-                tools:layout_editor_absoluteX="186dp"
-                tools:layout_editor_absoluteY="53dp"
-                android:layout_alignParentRight="true"
-                tools:ignore="RtlCompat" />
-        </RelativeLayout>
+                android:src="@android:drawable/ic_menu_camera" />
+            </LinearLayout>
+        </FrameLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            tools:layout_editor_absoluteX="20dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/shapesquare">
 
                 <EditText
                     android:id="@+id/nombreHistoria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nombre historia"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     tools:layout_conversion_absoluteHeight="45dp"
@@ -116,7 +93,7 @@
                     tools:layout_editor_absoluteY="85dp" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/textoDificultad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -138,14 +115,16 @@
                 <SeekBar
                     android:id="@+id/seekBar2"
                     android:layout_width="match_parent"
-                    android:layout_height="37dp" />
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="5dp"
+                    />
 
 
             </LinearLayout>
 
-        </RelativeLayout>
+
 
     </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

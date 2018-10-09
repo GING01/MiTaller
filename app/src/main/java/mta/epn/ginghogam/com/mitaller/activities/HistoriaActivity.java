@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         taller = extras.getParcelable("taller");
 
         recyclerHistoria = (RecyclerView) findViewById(R.id.recyclerHistoria);
+
 
 
 //        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);

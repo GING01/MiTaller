@@ -146,7 +146,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         historia = getIntent().getParcelableExtra(EdicionHistoriaActivity.class.getSimpleName());
 
         if(historia != null){
-            Toast.makeText(this, "Dificultad" + historia.getDificultad(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Dificultad" + historia.getDificultad(), Toast.LENGTH_LONG).show();
             nombreHistoria.setText(historia.getNombreHistoria());
             descripcionHistoria.setText(historia.getDescripcionHistoria());
             seleccionDificultad.setProgress(Integer.parseInt(historia.getNumeroLaminas()));
@@ -159,6 +159,10 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                     imgHistoria.setImageBitmap(BitmapFactory.decodeFile(historia.getImagenHistoria().toString()));
             }
 
+            dificultad.setVisibility(View.GONE);
+            seleccionDificultad.setVisibility(View.GONE);
+            TextView textoDificultar =findViewById(R.id.textoDificultad);
+            textoDificultar.setVisibility(View.GONE);
         }
         sqLiteDB = new SQLiteDB(this);
         historiaDAO = new HistoriaDAO(this);
