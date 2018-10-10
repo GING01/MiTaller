@@ -16,15 +16,15 @@
         android:orientation="horizontal">
 
         <FrameLayout
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
             android:layout_width="300dp"
-            android:layout_height="200dp">
+            android:layout_height="300dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <ImageView
                 android:id="@+id/img_palabra"
-                android:layout_width="300dp"
-                android:layout_height="190dp"
+                android:layout_width="275dp"
+                android:layout_height="300dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="fotografía"
                 android:src="@drawable/no_foto" />
@@ -46,27 +46,33 @@
                     android:id="@+id/galeria"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="galeria"
                     android:contentDescription="logo galería"
+                    android:onClick="galeria"
                     android:src="@android:drawable/ic_menu_gallery" />
             </LinearLayout>
         </FrameLayout>
+
         <LinearLayout
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:background="@drawable/shape"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="297dp"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <EditText
                 android:id="@+id/palabra"
-                android:layout_width="602dp"
+                android:layout_width="286dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
                 android:hint="Palabra"
+                android:inputType="text"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,8 +87,8 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_play"
-                    android:tint="@android:color/darker_gray"
-                    />
+                    android:tint="@android:color/darker_gray" />
+
                 <ImageView
                     android:id="@+id/imageViewStop"
                     android:layout_width="60dp"
@@ -93,7 +99,7 @@
                     android:focusable="true"
                     android:src="@drawable/ic_stop"
                     android:tint="@android:color/darker_gray"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <SeekBar
                     android:id="@+id/seekBar"
@@ -110,7 +116,7 @@
                     android:gravity="center"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="60sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/imageViewRecord"
@@ -125,41 +131,60 @@
             </LinearLayout>
 
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <RadioGroup
-                android:id="@+id/tipoPalabra"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Tipo de palabra"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alimento"
-                    android:id="@+id/rbAlimento"
+                <RadioGroup
+                    android:id="@+id/tipoPalabra"
+                    android:layout_width="match_parent"
+                    android:layout_height="124dp"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:onClick="radioClicked"
-                    android:checked="false"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Peligro"
-                    android:id="@+id/rbPeligro"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:onClick="radioClicked"
-                    android:checked="false"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Limpieza"
-                    android:id="@+id/rbLimpieza"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:onClick="radioClicked"
-                    android:checked="false"/>
+                    android:layout_marginTop="38dp">
 
-            </RadioGroup>
+                    <RadioButton
+
+                        android:id="@+id/rbAlimento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="true"
+                        android:onClick="radioClicked"
+                        android:text="Alimento" />
+
+                    <RadioButton
+                        android:id="@+id/rbPeligro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="false"
+                        android:onClick="radioClicked"
+                        android:text="Peligro" />
+
+                    <RadioButton
+                        android:id="@+id/rbLimpieza"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="false"
+                        android:onClick="radioClicked"
+                        android:text="Limpieza" />
+
+                </RadioGroup>
+            </RelativeLayout>
 
         </LinearLayout>
 

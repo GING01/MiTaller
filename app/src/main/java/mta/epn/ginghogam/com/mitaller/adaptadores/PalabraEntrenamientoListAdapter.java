@@ -153,8 +153,6 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
                 public void onClick(View v) {
 
                     contador++;
-
-                    Toast.makeText(context.getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override

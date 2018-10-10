@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,11 +21,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.adaptadores.PalabraEntrenamientoListAdapter;
@@ -35,7 +41,9 @@ import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.entidades.Vocabulario;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
-public class EntrenamientoVocabularioActivity extends AppCompatActivity implements RecyclerItemClickListener {
+import static android.graphics.Color.rgb;
+
+public class EntrenamientoVocabularioActivity extends AppCompatActivity implements RecyclerItemClickListener, TextToSpeech.OnInitListener {
 
     private RecyclerView recyclerPalabra;
 
@@ -52,6 +60,16 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     private List<Vocabulario> vocabularioList;
     String dificultadSeleccionada;
 
+    private ImageView guia;
+    private TextView lectura;
+
+    private TextToSpeech TtS;
+    int contador = 0;
+    private int i = 0;
+
+
+    Handler handlerbuho;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +79,10 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+
+        TtS = new TextToSpeech(this, this);
+
 
         Bundle extras = getIntent().getExtras();
         taller = extras.getParcelable("taller");
@@ -80,10 +102,70 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         recyclerPalabra.setLayoutManager(linearLayoutManager);
         recyclerPalabra.setAdapter(palabraEntrenamientoListAdapter);
 
+        lectura = findViewById(R.id.texto);
+        guia = findViewById(R.id.guia);
+
+        String msj = "Antes de continuar es importante que conozcas algunas palabras!";
+        lectura.setText(msj);
+        lectura.setTextColor(rgb(255, 192, 0));
+
+        guia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                contador++;
+
+                Toast.makeText(getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
+                handlerbuho = new Handler();
+                handlerbuho.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (contador == 1) {
+                            hablar();
+                        }
+                        if (contador == 2) {
+                        }
+                        if (contador >= 3) {
+                            contador = 0;
+                        }
+
+                    }
+                }, 5);
+            }
+        });
 
 
     }
+    private void hablar() {
+        String msj = "Antes de continuar es importante que conozcas algunas palabras!";
+        final String texto = msj.toString();
 
+        final String[] palabraResaltada = texto.split("\\s+");
+        lectura.setText("");
+        i = 0;
+        final Handler mHandler = new Handler();
+
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (contador == 1) {
+                    lectura.append(palabraResaltada[i] + " ");
+                    lectura.setTextColor(rgb(255, 192, 0));
+                    lectura.setMovementMethod(new ScrollingMovementMethod());
+                    i++;
+                    if (i < palabraResaltada.length) {
+                        mHandler.postDelayed(this, 450);
+                    } else {
+                        i = 0;
+                        handlerbuho.removeCallbacksAndMessages(null);
+                    }
+                }
+            }
+        });
+        TtS.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
+
+
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -121,7 +203,6 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         palabraEntrenamientoListAdapter.clear();
         palabraEntrenamientoListAdapter.addAll(vocabularioList);
     }
-
 
 
     @Override
@@ -162,5 +243,19 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         startActivity(intent);
         finish();
 
+    }
+
+    @Override
+    public void onInit(int text) {
+        if (text == TextToSpeech.SUCCESS) {
+            int lenguaje = TtS.isLanguageAvailable(new Locale("spa", "ESP"));
+            if (lenguaje == TextToSpeech.LANG_MISSING_DATA || lenguaje == TextToSpeech.LANG_NOT_SUPPORTED) {
+                guia.setSaveEnabled(true);
+                hablar();
+
+            } else {
+            }
+        } else {
+        }
     }
 }

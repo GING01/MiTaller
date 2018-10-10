@@ -24,46 +24,55 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="82dp"
             android:layout_marginStart="82dp"
-            android:text="Nombre Apellido" />
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
 
         <ImageView
             android:id="@+id/cap"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="28dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="311dp"
-            android:text="Taller: " />
+            android:layout_marginStart="253dp"
+            android:text="Taller: "
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spnTaller"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="121dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="368dp" />
+            android:layout_marginStart="336dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="399dp"
-            android:text="Historia: " />
+            android:layout_marginEnd="396dp"
+            android:text="Historia: "
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
 
         <Spinner
             android:id="@+id/spnHistoria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="336dp" />
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="235dp"
+            android:layout_marginTop="15dp" />
 
         <RadioGroup
             android:id="@+id/rgFiltro"
@@ -95,10 +104,10 @@
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
-        android:layout_width="951dp"
-        android:layout_height="403dp"
+        android:layout_width="match_parent"
+        android:layout_height="416dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="62dp" />
+        android:layout_marginTop="49dp" />
 
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,18 +59,17 @@ public class ResultadosActivity extends AppCompatActivity {
         sqLiteDB = new SQLiteDB(this);
         sesionDAO = new SesionDAO(this);
 
-       // Toast.makeText(this,historia.getNombreHistoria().toString(),Toast.LENGTH_SHORT).show();
 
        nombreTaller =(TextView)findViewById(R.id.nombretaller);
         TextView nombrehistoria =findViewById(R.id.nombrehistoriaResultado);
         final TextView logros =findViewById(R.id.resultado);
         TextView aciertos =findViewById(R.id.aciertos);
         TextView fallos =findViewById(R.id.fallos);
-        ImageButton guardar= findViewById(R.id.guardar);
+        ImageView guardar= findViewById(R.id.guardar);
         final EditText observacion =findViewById(R.id.observaciones);
 
-    nombreTaller.setText(taller.getNombreTaller().toString());
-    nombrehistoria.setText(Long.toString(tiempo));
+    nombreTaller.setText("Taller de "+taller.getNombreTaller().toString()+":");
+    nombrehistoria.setText(historia.getNombreHistoria());
     aciertos.setText(correctas+"" );
     fallos.setText(inCorrectas+"");
     if(logro){
