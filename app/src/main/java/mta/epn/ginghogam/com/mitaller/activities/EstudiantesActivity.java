@@ -67,7 +67,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
 
-        Toast.makeText(this, tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
 
 
         recyclerEstudiante = (RecyclerView) findViewById(R.id.recyclerEstudiante);

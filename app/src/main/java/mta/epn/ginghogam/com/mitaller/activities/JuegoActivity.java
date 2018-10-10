@@ -149,7 +149,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             } while (cursor.moveToNext());
         }
 
-        Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
 
 
         for (int i = 0; i < lista.size(); i++) {

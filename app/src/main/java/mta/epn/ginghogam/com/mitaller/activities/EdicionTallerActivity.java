@@ -89,7 +89,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 descripcionTaller.setText(taller.getDescripcionTaller());
                 File file = new File(taller.getImagenTaller());
                 if (!file.exists()) {
-                    Toast.makeText(this,"no Exist", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"no Existe", Toast.LENGTH_SHORT).show();
                     imgTaller.setImageResource(R.drawable.no_foto);
                 }else {
                     imgTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller().toString()));
@@ -108,7 +108,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
             }
             if(imagenCamara != null){
                 imgTaller.setImageBitmap(BitmapFactory.decodeFile(imagenCamara));
-                Toast.makeText(this,"Hola >D"+imagenCamara, Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"Hola >D"+imagenCamara, Toast.LENGTH_LONG).show();
             }
 
 
@@ -195,13 +195,13 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 finish();
             }
             if(pathGaleria == null && fileImagen == null && !nombreTaller.getText().toString().isEmpty() && !descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && !nombreTaller.getText().toString().isEmpty() && descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && nombreTaller.getText().toString().isEmpty() && !descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && nombreTaller.getText().toString().isEmpty() && descripcionTaller.getText().toString().isEmpty()){
                 Toast.makeText(getApplicationContext(),"Debes realizar alguna accion",Toast.LENGTH_LONG).show();
@@ -300,7 +300,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
             case RESULTADO_GALERIA:
                 if (resultCode == Activity.RESULT_OK) {
                     pathGaleria = data.getDataString();
-                    Toast.makeText(this,"path: "+pathGaleria,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(this,"path: "+pathGaleria,Toast.LENGTH_LONG).show();
                     ponerFoto(imgTaller, pathGaleria);
                 } else
                     Toast.makeText(this, "Foto no cargada", Toast.LENGTH_LONG).show();
@@ -366,7 +366,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
 
     protected void ponerFoto(ImageView imageView, String uri) {
 
-        Toast.makeText(getApplicationContext(),"uri "+uri, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"uri "+uri, Toast.LENGTH_LONG).show();
         Bitmap bitmap = BitmapFactory.decodeFile(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(uri)));
         if (uri != null) {
             try{

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/table_view_cell_height"
-    android:background="#e3ede9"
+    android:background="#dae8ef"
     android:orientation="vertical">
 
 
@@ -18,7 +18,7 @@
         android:layout_marginEnd="12dp"
         android:gravity="center"
         android:maxLines="1"
-        android:textColor="@color/unselected_text_color"
+        android:textColor="#ffffff"
         android:textSize="13sp"
         tools:text="Cell Data"/>
 
