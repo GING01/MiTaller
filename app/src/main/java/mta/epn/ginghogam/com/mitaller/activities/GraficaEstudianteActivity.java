@@ -134,7 +134,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
                 String fecha = cursor.getString(1);
                 nombreTaller = cursor.getString(2);
-                nombreEstudiante = cursor.getString(4);
+                nombreEstudiante = cursor.getString(5);
                 nombreHistoria = cursor.getString(6);
                 fechaList.add(fecha.toString());
 

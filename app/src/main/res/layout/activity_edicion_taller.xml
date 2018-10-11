@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,27 +8,34 @@
     android:paddingLeft="20dp"
     tools:context=".activities.EdicionTallerActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
         android:orientation="horizontal">
 
         <FrameLayout
-            android:paddingRight="10dp"
+            android:layout_width="360dp"
+            android:layout_height="350dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="84dp"
             android:paddingLeft="10dp"
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:background="@drawable/shapesquare">
+            android:paddingRight="10dp"
+            android:background="@color/colorPrimary">
 
             <ImageView
                 android:id="@+id/img_taller"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
                 android:contentDescription="fotografía"
-                android:src="@drawable/no_foto" />
+                android:src="@drawable/no_foto"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -47,50 +54,43 @@
                     android:id="@+id/galeria"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:onClick="galeria"
                     android:contentDescription="logo galería"
+                    android:onClick="galeria"
                     android:src="@android:drawable/ic_menu_gallery" />
             </LinearLayout>
         </FrameLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/shapesquare">
+            android:layout_width="386dp"
+            android:layout_height="334dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="88dp"
+            android:background="@drawable/shapesquare"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/nombreTaller"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="15dp"
                 android:hint="Nombre Taller"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-
+                android:inputType="text"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/descripcionTaller"
-                android:layout_width="match_parent"
-                android:layout_height="199dp"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="15dp"
                 android:hint="Descripción Taller"
-                android:layout_marginTop="15dp"
-                android:layout_marginHorizontal="5dp"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:background="@drawable/shapesquare"/>
-
-            <EditText
-                android:id="@+id/idTaller"
-                android:layout_width="343dp"
-                android:layout_height="156dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:visibility="gone" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

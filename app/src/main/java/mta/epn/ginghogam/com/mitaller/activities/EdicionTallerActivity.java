@@ -46,7 +46,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
 
     private String pathCamara, pathGaleria, imagenCamara;
 
-    private EditText nombreTaller, descripcionTaller, idTaller;
+    private EditText nombreTaller, descripcionTaller;
     private ImageView imgTaller, galeria;
 
     private Taller taller;
@@ -75,10 +75,13 @@ public class EdicionTallerActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
+
 
         nombreTaller = (EditText) findViewById(R.id.nombreTaller);
         descripcionTaller = (EditText) findViewById(R.id.descripcionTaller);
-        idTaller = (EditText) findViewById(R.id.idTaller);
         imgTaller = (ImageView) findViewById(R.id.img_taller);
         validaPermiso();
         taller = getIntent().getParcelableExtra(EdicionTallerActivity.class.getSimpleName());
@@ -195,16 +198,14 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 finish();
             }
             if(pathGaleria == null && fileImagen == null && !nombreTaller.getText().toString().isEmpty() && !descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Falta fotografía",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && !nombreTaller.getText().toString().isEmpty() && descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && nombreTaller.getText().toString().isEmpty() && !descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && nombreTaller.getText().toString().isEmpty() && descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"Debes realizar alguna accion",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Debes llenar todos los campos",Toast.LENGTH_LONG).show();
             }
         }
     }
