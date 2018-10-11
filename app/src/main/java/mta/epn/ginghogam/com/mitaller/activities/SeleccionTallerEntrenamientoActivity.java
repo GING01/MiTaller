@@ -76,7 +76,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         estudiante = extras.getParcelable("estudiante");
         dificultadSeleccionada=extras.getString("dificultad");
 
-        Toast.makeText(this, "Dificultad "+dificultadSeleccionada, Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, "Dificultad "+dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
 
         context = this;

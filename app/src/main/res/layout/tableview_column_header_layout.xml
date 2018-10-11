@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/table_view_cell_height"
-    android:background="#e3ede9"
+    android:background="#dae8ef"
     android:orientation="vertical">
 
     <FrameLayout
@@ -29,7 +29,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:textColor="@color/unselected_text_color"
+                android:textColor="#706c6c"
                 android:textSize="@dimen/table_view_default_text_size"
                 tools:text="Header Data"/>
 

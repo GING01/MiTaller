@@ -1,5 +1,6 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -8,10 +9,15 @@ import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
+
+
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,19 +43,19 @@ import mta.epn.ginghogam.com.mitaller.db.SesionDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Sesion;
 import mta.epn.ginghogam.com.mitaller.utilidades.MyTableViewListener;
+import mta.epn.ginghogam.com.mitaller.utilidades.MyTableViewModel;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static java.security.AccessController.getContext;
 
-public class TablaResultadosActivity extends AppCompatActivity {
-
-
+public class TablaResultadosActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
     private TableView mTableView;
     private MyTableViewAdapter mTableAdapter;
     private SesionDAO sesionDAO;
     List<Sesion> sesionList;
-    private Filter tableViewFilter;
+    private Filter tableViewFilter ;
+    MenuItem menuItem;
 
 
     @Override
@@ -57,10 +63,15 @@ public class TablaResultadosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabla_resultados);
         mTableView = findViewById(R.id.my_TableView);
-       TextView name = findViewById(R.id.nombreestudiantetabla);
+        TextView name = findViewById(R.id.nombreestudiantetabla);
+
+
+
 
 
         initializeTableView(mTableView);
+        tableViewFilter = new Filter(mTableView);
+
 
         sesionDAO = new SesionDAO(this);
 
@@ -71,9 +82,6 @@ public class TablaResultadosActivity extends AppCompatActivity {
         Estudiante estudiante;
         estudiante=extra.getParcelable("estudiante");
         name.setText(estudiante.getNombreEstudiate().toUpperCase()+" "+estudiante.getApellidoEstudiante().toUpperCase());
-
-
-
 
         Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
         cursor.moveToFirst();
@@ -104,33 +112,27 @@ public class TablaResultadosActivity extends AppCompatActivity {
 
 
         mTableAdapter.setUserList(sesionList);
-
     }
-    private void initializeTableView(TableView tableView){
 
-        // Create TableView Adapter
+
+    private void initializeTableView(TableView tableView){
         mTableAdapter = new MyTableViewAdapter(this);
         tableView.setAdapter(mTableAdapter);
-
-        // Create listener
         tableView.setTableViewListener(new MyTableViewListener(tableView));
         tableViewFilter = new Filter(mTableView);
-        filterTableForGender("si");
     }
 
-    public void filterTableForGender(String genderFilterKeyword) {
-        tableViewFilter.set(genderFilterKeyword);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_secuencia, menu);
+        getMenuInflater().inflate(R.menu.menu_tabla_estudiantes, menu);
         getSupportActionBar().setCustomView(R.layout.menu_tabla_titulo);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
+        menuItem = menu.findItem(R.id.buscar);
+       // SearchView searchView = (SearchView) menuItem.getActionView();
+       // searchView.setOnQueryTextListener(this);
 
         return true;
     }
@@ -140,6 +142,10 @@ public class TablaResultadosActivity extends AppCompatActivity {
 
         if (item.getItemId() == android.R.id.home) {
             finish();
+        }
+        if (item.getItemId() == R.id.buscar) {
+            exportarXls();
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -152,7 +158,7 @@ public class TablaResultadosActivity extends AppCompatActivity {
         finish();
     }
 
-    public void exportarXls(View view) {
+    public void exportarXls() {
         validaPermiso();
         try {
             Bundle extra = getIntent().getExtras();
@@ -224,6 +230,19 @@ public class TablaResultadosActivity extends AppCompatActivity {
         else{
             requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA},100);
         }
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+        tableViewFilter.set(query);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
         return false;
     }
 }

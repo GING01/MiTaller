@@ -39,24 +39,6 @@ public class MyTableViewModel {
         }
     }
 
-     /*
-       - Each of Column Header -
-            "Id"
-            "Name"
-            "Nickname"
-            "Email"
-            "Birthday"
-            "Gender"
-            "Age"
-            "Job"
-            "Salary"
-            "CreatedAt"
-            "UpdatedAt"
-            "Address"
-            "Zip Code"
-            "Phone"
-            "Fax"
-     */
 
     public int getColumnTextAlign(int column) {
         switch (column) {
@@ -65,13 +47,13 @@ public class MyTableViewModel {
                 return Gravity.CENTER;
             // Name
             case 1:
-                return Gravity.LEFT;
+                return Gravity.CENTER;
             // Nickname
             case 2:
-                return Gravity.LEFT;
+                return Gravity.CENTER;
             // Email
             case 3:
-                return Gravity.LEFT;
+                return Gravity.CENTER;
             // BirthDay
             case 4:
                 return Gravity.CENTER;
@@ -83,7 +65,7 @@ public class MyTableViewModel {
                 return Gravity.CENTER;
             // Job
             case 7:
-                return Gravity.LEFT;
+                return Gravity.CENTER;
             // Salary
             case 8:
                 return Gravity.CENTER;
