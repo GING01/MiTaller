@@ -126,11 +126,11 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_tabla_estudiantes, menu);
+        getMenuInflater().inflate(R.menu.menu_tabla_estudiantes, menu);
         getSupportActionBar().setCustomView(R.layout.menu_tabla_titulo);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //menuItem = menu.findItem(R.id.buscar);
+        menuItem = menu.findItem(R.id.buscar);
        // SearchView searchView = (SearchView) menuItem.getActionView();
        // searchView.setOnQueryTextListener(this);
 
@@ -143,6 +143,10 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
         if (item.getItemId() == android.R.id.home) {
             finish();
         }
+        if (item.getItemId() == R.id.buscar) {
+            exportarXls();
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -154,7 +158,7 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
         finish();
     }
 
-    public void exportarXls(View view) {
+    public void exportarXls() {
         validaPermiso();
         try {
             Bundle extra = getIntent().getExtras();
