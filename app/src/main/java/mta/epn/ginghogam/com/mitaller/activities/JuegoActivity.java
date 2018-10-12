@@ -495,8 +495,20 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     @Override
     public void onBackPressed() {
-        handler1.removeCallbacksAndMessages(null);
-        finish();
-        super.onBackPressed();
+
+
+        new AlertDialog.Builder(this)
+                .setMessage("¿Estás seguro que deseas salir?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        handler1.removeCallbacksAndMessages(null);
+                        JuegoActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+
     }
+
 }

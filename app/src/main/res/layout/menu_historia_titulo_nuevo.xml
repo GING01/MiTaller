@@ -8,7 +8,7 @@
     <!-- TODO Fix width -->
 
     <FrameLayout
-        android:layout_width="30dp"
+        android:layout_width="35dp"
         android:layout_height="match_parent"
         >
 
@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginVertical="10dp"
-            android:background="@drawable/ic_home"
+            android:background="@drawable/home_1"
             android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="NUEVA HISTORIA"
+        android:text="Nueva Historia"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:layout_weight="1"/>
