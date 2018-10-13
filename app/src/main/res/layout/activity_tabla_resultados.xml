@@ -1,58 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="20dp"
-    android:paddingLeft="20dp"
     android:background="#f7f7f7"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     tools:context="mta.epn.ginghogam.com.mitaller.activities.TablaResultadosActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/shapesquare">
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/nombreestudiantetabla"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/nombreestudiantetabla"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="    s              "
-                android:textColor="@color/unselected_text_color"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+            android:gravity="center_vertical"
+            android:text="    s              "
+            android:textColor="@color/unselected_text_color"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <com.evrencoskun.tableview.TableView
-        android:id="@+id/my_TableView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginHorizontal="5dp"
-
-        android:layout_marginTop="8dp"
-        app:column_header_height="@dimen/table_view_cell_height"
-        app:layout_constraintTop_toBottomOf="@+id/nombreestudiantetabla"
-        app:row_header_width="@dimen/table_view_row_header_width"
-        app:selected_color="#8c8c8c"
-        app:separator_color="#ffffff"
-        app:shadow_color="#ffffff"
-        app:unselected_color="#ffffff"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
+            android:id="@+id/my_TableView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"
+            app:column_header_height="@dimen/table_view_cell_height"
+            app:layout_constraintTop_toBottomOf="@+id/nombreestudiantetabla"
+            app:row_header_width="@dimen/table_view_row_header_width"
+            app:selected_color="#8c8c8c"
+            app:separator_color="#ffffff"
+            app:shadow_color="#ffffff"
+            app:unselected_color="#ffffff"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            android:layout_margin="2dp"
+            />
 
 
     </LinearLayout>
 
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

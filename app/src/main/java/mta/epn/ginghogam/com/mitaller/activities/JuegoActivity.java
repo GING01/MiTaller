@@ -156,17 +156,13 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
             LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
             itemLayout.setId(ITEM_ID + i);
-            itemLayout.setOrientation(LinearLayout.VERTICAL);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.gravity = Gravity.CENTER;
+            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.MATCH_PARENT);
+            params.gravity = Gravity.CENTER_HORIZONTAL;
             params.setMargins(10, 10, 10, 10);
 
             itemLayout.setLayoutParams(params);
-
-
             tg = new LinearLayout(getApplicationContext());
-
-
             bt1 = new Button(getApplicationContext());
             bt1.setText("" + (i + 1));
             bt1.setLayoutParams(params);
@@ -179,25 +175,18 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             bt1.setOnDragListener(dragListener);
             tg.addView(bt1);
             target.addView(tg);
-
             rootLayout.addView(itemLayout);
-
         }
-
         ArrayList<Secuencia> listaRandom = new ArrayList<Secuencia>();
         listaRandom = lista;
-
         Random rndm = new Random();
         Collections.shuffle(listaRandom, rndm);
-
         for (int i = 0; i < lista.size(); i++) {
-
             LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
             itemLayout.setId(ITEM_ID + i);
             itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            params.gravity = Gravity.CENTER;
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            params.gravity = Gravity.CENTER_HORIZONTAL;
             params.setMargins(10, 10, 10, 10);
 
             itemLayout.setLayoutParams(params);
@@ -292,7 +281,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         end =System.currentTimeMillis();
                         logro=true;
                          tiempaso =(end-start)/1000;
-                        Toast.makeText(getApplicationContext(), "tiempo " + tiempaso + " segs", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "tiempo " + tiempaso + " segs", Toast.LENGTH_LONG).show();
                         welldone();
                     }
                     break;
@@ -500,7 +489,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         new AlertDialog.Builder(this)
                 .setMessage("¿Estás seguro que deseas salir?")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         handler1.removeCallbacksAndMessages(null);
                         JuegoActivity.this.finish();

@@ -15,11 +15,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true" />
 
-
-
-
-
-
     <LinearLayout
         android:id="@+id/ly2"
         android:layout_width="match_parent"

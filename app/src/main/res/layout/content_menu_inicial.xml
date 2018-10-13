@@ -29,7 +29,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:text=" Bienvenido, dirigete a la parte superior izquierda para ver el menú o dirigete al botón comenzar para empezar con el entrenamiento!"
-            android:textSize="16dp"
+            android:textSize="19dp"
             android:textStyle="bold"/>
 
         <Button

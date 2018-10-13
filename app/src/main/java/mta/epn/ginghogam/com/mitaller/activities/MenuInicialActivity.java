@@ -69,7 +69,7 @@ public class MenuInicialActivity extends AppCompatActivity implements Navigation
 
         GradientDrawable border = new GradientDrawable();
 
-        border.setColor(Color.RED); //white background
+        border.setColor(Color.rgb(234, 112, 112)); //white background
         border.setStroke(3, Color.BLACK); //black border with full opacity
         border.setCornerRadius(15);
 
