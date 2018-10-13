@@ -92,7 +92,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         dificultad = (TextView) findViewById(R.id.dificultadtext);
         imgHistoria = (ImageView) findViewById(R.id.img_historia);
         seleccionDificultad.setProgress(2);
-        numeroLaminas=1;
+        numeroLaminas=3;
         dificultadSeleccionada="facil";
         dificultad.setText("FACIL: "+3+ " laminas");
 

@@ -2,6 +2,7 @@ package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBar;
@@ -41,14 +42,14 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
     private Runnable mRunnable;
     private ImageView guia;
     private TextView lectura;
-    private int j;
+    private int j=0;
     int i=0;
-    String[] s = {};
+    List<String> s;
     TextView changingText;
     String manyDifferentStrings;
-    String[] resul;
+    List<String> resul;
     List myList;
-    ArrayList<String[]> l;
+    ArrayList<String> l;
     String msj;
 
     @Override
@@ -83,7 +84,6 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
             @Override
             public void onClick(View v) {
                 hablar();
-                i++;
             }
         });
 
@@ -97,58 +97,37 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
     }
 
     private void hablar() {
-        ArrayList<String> texto = new ArrayList<>();
-
+        final List<String> texto =new ArrayList<>();
         Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
         Matcher reMatcher = re.matcher(msj);
         int h =0;
         while (reMatcher.find()) {
             texto.add(reMatcher.group());
-            h++;
-
         }
-        l = new ArrayList<>();
-        for(int i = 0; i<texto.size();i++){
-            resul =  texto.get(i).split("\\s");
-            s = resul;
-            myList = Arrays.asList(s);
-            l.add(s);
-        }
-
-        lectura.setText("");
-        j= 0;
         final Handler mHandler = new Handler();
-        if(i<l.size()) {
+        if(i>=0 && i<texto.size()) {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    lectura.append(l.get(i-1)[j]+" ");
-                    lectura.setTextColor(rgb(255, 192, 0));
-
-                    j++;
-                    if(j < l.get(i-1).length) {
-                        mHandler.postDelayed(this, 400);
-                    }
+                    lectura.setText(texto.get(i-1));
                 }
             });
             TtS.speak(texto.get(i), TextToSpeech.QUEUE_FLUSH, null);
-        }else{
-            i = 0;
+           // mHandler.removeCallbacksAndMessages(this);
+            i++;
+        }else
+            if(i>texto.size() ||i==texto.size()){
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    lectura.append(l.get(0)[j]+" ");
-                    lectura.setTextColor(rgb(255, 192, 0));
-
-                    j++;
-                    if(j < l.get(0).length) {
-                        mHandler.postDelayed(this, 400);
-                    }else{
-
-                    }
+                    lectura.setText(texto.get(0));
                 }
             });
+
             TtS.speak(texto.get(0), TextToSpeech.QUEUE_FLUSH, null);
+                i = 1;
+
+           // mHandler.removeCallbacksAndMessages(this);
         }
     }
 

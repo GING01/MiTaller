@@ -14,7 +14,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true">
 
         <FrameLayout
             android:layout_width="360dp"
@@ -24,7 +25,9 @@
             android:layout_marginStart="84dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:layout_alignParentLeft="true"
+            tools:ignore="RtlCompat">
 
             <ImageView
                 android:id="@+id/img_taller"
@@ -67,7 +70,9 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="88dp"
             android:background="@drawable/shapesquare"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlCompat">
 
             <EditText
                 android:id="@+id/nombreTaller"

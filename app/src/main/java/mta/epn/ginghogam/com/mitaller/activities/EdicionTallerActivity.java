@@ -35,7 +35,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class EdicionTallerActivity extends AppCompatActivity {
 
-    private static final String DIRECTORIO_IMAGEN = "imagenesTalleres/";
+    private static final String DIRECTORIO_IMAGEN = "misImagenesApp/";
 
 
     final static int RESULTADO_EDITAR = 1;
@@ -78,6 +78,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
 
         nombreTaller = (EditText) findViewById(R.id.nombreTaller);
         descripcionTaller = (EditText) findViewById(R.id.descripcionTaller);
+       // idTaller = (EditText) findViewById(R.id.idTaller);
         imgTaller = (ImageView) findViewById(R.id.img_taller);
         validaPermiso();
         taller = getIntent().getParcelableExtra(EdicionTallerActivity.class.getSimpleName());
