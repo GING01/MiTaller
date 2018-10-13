@@ -88,9 +88,10 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 descripcionTaller.setText(taller.getDescripcionTaller());
                 File file = new File(taller.getImagenTaller());
                 if (!file.exists()) {
-                    Toast.makeText(this,"no Existe", Toast.LENGTH_SHORT).show();
                     imgTaller.setImageResource(R.drawable.no_foto);
                 }else {
+                    Toast.makeText(this,taller.getImagenTaller(), Toast.LENGTH_LONG).show();
+
                     imgTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller().toString()));
                 }
             } if(savedInstanceState != null){

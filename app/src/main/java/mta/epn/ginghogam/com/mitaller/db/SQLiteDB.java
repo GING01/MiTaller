@@ -1,11 +1,22 @@
 package mta.epn.ginghogam.com.mitaller.db;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
+import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.constantes.ConstanteDB;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 
@@ -124,8 +135,30 @@ public class SQLiteDB extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + ConstanteDB.TABLE_SESION;
 
 
+
+
+    private static final String SQL_REGISTRO_TALLER =
+            " INSERT INTO " + ConstanteDB.TABLE_TALLER + " VALUES (null, "+
+                    "'Panaderia', "+
+                    "'Se hace pan',"+
+                    "'null')";
+
+
+    private static final String SQL_REGISTRO_TUTOR =
+            " INSERT INTO " + ConstanteDB.TABLE_TUTOR + " VALUES (null, "+
+                    "'1723091367', "+
+                    "'user',"+
+                    "'user',"+
+                    "'user',"+
+                    "'user')";
+
+
+
+
+
     public SQLiteDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     @Override
@@ -138,6 +171,12 @@ public class SQLiteDB extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_VOCABULARIO);
         db.execSQL(SQL_CREATE_TALLER);
         db.execSQL(SQL_CREATE_TUTOR);
+
+//        db.execSQL(SQL_REGISTRO_TALLER);
+        db.execSQL(SQL_REGISTRO_TUTOR);
+
+
+
 
 
     }
