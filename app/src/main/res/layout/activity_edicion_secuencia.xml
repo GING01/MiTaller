@@ -18,14 +18,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="357dp"
-            tools:layout_editor_absoluteY="92dp">
+            tools:layout_editor_absoluteY="92dp"
+            android:background="@drawable/shapesquare">
 
             <LinearLayout
                 android:id="@+id/layout_root"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
-                android:background="@color/colorPrimaryDark"
+                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
             </LinearLayout>
@@ -35,9 +36,10 @@
 
 
     <RelativeLayout
-        android:layout_width="543dp"
-        android:layout_height="179dp"
+        android:layout_width="280dp"
+        android:layout_height="205dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/shapesquare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
@@ -50,18 +52,20 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:contentDescription="fotografía"
-            app:srcCompat="@mipmap/ic_launcher"/>
+            android:layout_margin="5dp"
+            android:src="@drawable/no_foto"
+            />
 
         <ImageView
             android:id="@+id/btncamara"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="72dp"
             android:layout_marginRight="72dp"
-            android:layout_marginTop="11dp"
             android:onClick="tomarFoto"
             app:srcCompat="@android:drawable/ic_menu_camera" />
 
@@ -69,9 +73,9 @@
             android:id="@+id/btngalery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btncamara"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/btncamara"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:onClick="galeria"

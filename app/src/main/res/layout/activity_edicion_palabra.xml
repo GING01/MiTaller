@@ -40,7 +40,9 @@
             app:layout_constraintHorizontal_bias="0.648"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.428">
+            app:layout_constraintVertical_bias="0.428"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="90dp">
 
             <ImageView
                 android:id="@+id/img_palabra"
@@ -88,7 +90,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.504">
+            app:layout_constraintVertical_bias="0.504"
+            android:layout_marginRight="90dp"
+            android:layout_alignParentRight="true">
 
             <EditText
                 android:id="@+id/palabra"

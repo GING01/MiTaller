@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -110,7 +111,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             for (int i = 0; i < secuenciaList.size(); i++) {
                 bt1 = new ImageView(getApplicationContext());
 
-                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(150, 150);
+                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(180, 180);
                 parametros.gravity = Gravity.CENTER;
                 parametros.setMargins(10, 10, 10, 10);
 
@@ -118,6 +119,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
 
                 bt1.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(i).getImagenSecuencia()));
+                bt1.setBackgroundColor(Color.DKGRAY);
                 bt1.setOnDragListener(dragListener);
                 bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
                 rootLayout.addView(bt1);
@@ -129,7 +131,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
 
                 bt1 = new ImageView(getApplicationContext());
-                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(150, 150);
+                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(180, 180);
                 parametros.gravity = Gravity.CENTER;
                 parametros.setMargins(10, 10, 10, 10);
 
