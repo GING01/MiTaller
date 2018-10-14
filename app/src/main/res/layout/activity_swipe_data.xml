@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:fillViewport="true"
-        android:fitsSystemWindows="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             <LinearLayout
                 android:id="@+id/ly1"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="390dp"
                 android:layout_alignParentTop="true">
 
                 <android.support.v4.view.ViewPager
@@ -37,11 +37,16 @@
             <LinearLayout
                 android:id="@+id/ly2"
                 android:layout_width="match_parent"
-                android:layout_height="107dp"
+                android:layout_height="100dp"
                 android:layout_alignParentBottom="true"
                 android:layout_below="@+id/ly1"
-                android:layout_marginBottom="6dp"
-                android:orientation="horizontal">
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
 
                 <ImageView
                     android:id="@+id/guia"
@@ -63,7 +68,8 @@
                         android:scrollHorizontally="true"
                         android:ellipsize="marquee"
                         android:focusable="false"
-                        android:focusableInTouchMode="false">
+                        android:focusableInTouchMode="false"
+                        android:background="@drawable/shape">
                         <TextView
 
                             android:id="@+id/texto"
@@ -78,5 +84,5 @@
 
         </RelativeLayout>
 
-    </ScrollView>
+</ScrollView>
 
