@@ -39,7 +39,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class EdicionHistoriaActivity extends AppCompatActivity {
 
 
-    private static final String DIRECTORIO_IMAGEN = "misImagenesApp/";
+    private static final String DIRECTORIO_IMAGEN = "imageneshistoria/";
 
 
     final static int RESULTADO_EDITAR = 1;
@@ -94,7 +94,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         seleccionDificultad.setProgress(2);
         numeroLaminas=3;
         dificultadSeleccionada="facil";
-        dificultad.setText("FACIL: "+3+ " laminas");
+        dificultad.setText("Fácil: "+3+ " láminas");
 
 
         Bundle extras = getIntent().getExtras();
@@ -112,18 +112,18 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(progress>=0 && progress <=3){
                     seekbarvalue=progress;
-                    dificultad.setText("FACIL: "+(progress+1)+ " laminas");
+                    dificultad.setText("Fácil: "+(progress+1)+ " láminas");
                     dificultadSeleccionada = "facil";
                     numeroLaminas = progress+1;
                 }
                 if(progress>3 && progress <=6){
-                    dificultad.setText("MEDIO: "+(progress+1)+ " laminas");
+                    dificultad.setText("Medio: "+(progress+1)+ " láminas");
                     dificultadSeleccionada = "medio";
                     numeroLaminas = progress+1;
 
                 }
                 if(progress>6 && progress <=9){
-                    dificultad.setText("DIFICIL: "+(progress+1)+ " laminas");
+                    dificultad.setText("Díficil: "+(progress+1)+ " láminas");
                     dificultadSeleccionada = "dificil";
                     numeroLaminas = progress+1;
 

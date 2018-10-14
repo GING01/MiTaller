@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,119 +12,151 @@
     android:id="@+id/scrollView2">
 
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:layout_width="280dp"
+            android:layout_width="291dp"
             android:layout_height="280dp"
-            android:background="@drawable/shapesquare">
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/shapesquare"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
+            app:layout_constraintHorizontal_bias="0.622"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.497">
 
             <ImageView
                 android:id="@+id/img_historia"
-                android:layout_width="match_parent"
+                android:layout_width="254dp"
                 android:layout_height="match_parent"
-                android:adjustViewBounds="true"
                 android:layout_margin="10dp"
+                android:adjustViewBounds="true"
                 android:contentDescription="fotografía"
-                android:src="@drawable/no_foto"/>
+                android:src="@drawable/no_foto" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right">
 
-            <ImageView
-                android:id="@+id/galeria"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="galeria"
-                android:contentDescription="logo galería"
-                android:src="@android:drawable/ic_menu_gallery" />
+                <ImageView
+                    android:id="@+id/galeria"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="logo galería"
+                    android:onClick="galeria"
+                    android:src="@android:drawable/ic_menu_gallery" />
 
-            <ImageView
-                android:id="@+id/camara"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="logo cámara"
-                android:onClick="tomarFoto"
-                android:src="@android:drawable/ic_menu_camera" />
+                <ImageView
+                    android:id="@+id/camara"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="logo cámara"
+                    android:onClick="tomarFoto"
+                    android:src="@android:drawable/ic_menu_camera" />
             </LinearLayout>
         </FrameLayout>
 
 
+        <RelativeLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="435dp"
+            android:layout_height="295dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginRight="76dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shapesquare"
+            android:orientation="vertical"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.503">
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/nombreHistoria"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/shapesquare">
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="22dp"
+                android:hint="Nombre historia"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                tools:layout_conversion_absoluteHeight="45dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="295dp"
+                tools:layout_editor_absoluteY="30dp" />
 
-                <EditText
-                    android:id="@+id/nombreHistoria"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre historia"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    tools:layout_conversion_absoluteHeight="45dp"
-                    tools:layout_conversion_absoluteWidth="343dp"
-                    tools:layout_editor_absoluteX="295dp"
-                    tools:layout_editor_absoluteY="30dp" />
+            <EditText
+                android:id="@+id/descripcionHistoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="75dp"
+                android:hint="Descripción Historia"
+                android:inputType="textMultiLine"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                tools:layout_conversion_absoluteHeight="156dp"
+                tools:layout_conversion_absoluteWidth="343dp"
+                tools:layout_editor_absoluteX="304dp"
+                tools:layout_editor_absoluteY="85dp" />
 
-                <EditText
-                    android:id="@+id/descripcionHistoria"
-                    android:layout_width="match_parent"
-                    android:layout_height="141dp"
-                    android:hint="Descripción Historia"
-                    android:inputType="textMultiLine"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    tools:layout_conversion_absoluteHeight="156dp"
-                    tools:layout_conversion_absoluteWidth="343dp"
-                    tools:layout_editor_absoluteX="304dp"
-                    tools:layout_editor_absoluteY="85dp" />
+            <TextView
+                android:id="@+id/textoDificultad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="89dp"
+                android:text="Dificultad"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textoDificultad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="Dificultad"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/dificultadtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textoDificultad"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="-89dp"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/dificultadtext"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginHorizontal="20dp"
-                    />
-
-                <SeekBar
-                    android:id="@+id/seekBar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="37dp"
-                    android:layout_marginLeft="5dp"
-                    />
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="26dp" />
 
 
-            </LinearLayout>
+        </RelativeLayout>
 
 
+    </android.support.constraint.ConstraintLayout>
 
-    </LinearLayout>
 
-
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

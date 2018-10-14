@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,23 +9,44 @@
     android:paddingLeft="20dp"
     tools:context=".activities.EdicionPalabraActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="85dp"
+    <RelativeLayout
+        android:layout_width="973dp"
+        android:layout_height="483dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
         android:paddingBottom="85dp"
-        android:orientation="horizontal">
+        android:paddingTop="85dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="349dp"
+            android:layout_height="321dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="90dp"
+            android:background="@drawable/shapesquare"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.648"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.428">
 
             <ImageView
                 android:id="@+id/img_palabra"
                 android:layout_width="275dp"
-                android:layout_height="300dp"
+                android:layout_height="262dp"
+                android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:contentDescription="fotografía"
                 android:src="@drawable/no_foto" />
@@ -53,16 +75,24 @@
         </FrameLayout>
 
         <LinearLayout
-            android:background="@drawable/shape"
-            android:layout_width="match_parent"
-            android:layout_height="297dp"
+            android:id="@+id/linearLayout3"
+            android:layout_width="409dp"
+            android:layout_height="321dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="90dp"
+            android:background="@drawable/shapesquare"
             android:orientation="vertical"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.504">
 
             <EditText
                 android:id="@+id/palabra"
-                android:layout_width="286dp"
+                android:layout_width="369dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
@@ -74,7 +104,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="382dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -103,8 +133,8 @@
 
                 <SeekBar
                     android:id="@+id/seekBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="91dp"
+                    android:layout_width="377dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1" />
 
@@ -132,12 +162,12 @@
 
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="387dp"
+                android:layout_height="148dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="354dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Tipo de palabra"
@@ -146,11 +176,11 @@
 
                 <RadioGroup
                     android:id="@+id/tipoPalabra"
-                    android:layout_width="match_parent"
-                    android:layout_height="124dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="38dp">
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="12dp">
 
                     <RadioButton
 
@@ -188,5 +218,5 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

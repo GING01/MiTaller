@@ -42,7 +42,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class EdicionEstudianteActivity extends AppCompatActivity {
 
-    private static final String DIRECTORIO_IMAGEN = "misImagenesApp/";
+    private static final String DIRECTORIO_IMAGEN = "imagenesEstudiantes/";
 
 
     final static int RESULTADO_EDITAR = 1;
@@ -133,7 +133,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
 
             File file = new File(estudiante.getFotoEstudiante());
             if (!file.exists()) {
-                Toast.makeText(this, "no Exist" + estudiante.getFotoEstudiante().toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "no existe" + estudiante.getFotoEstudiante().toString(), Toast.LENGTH_LONG).show();
                 foto.setImageResource(R.drawable.no_foto);
             } else {
                 foto.setImageBitmap(BitmapFactory.decodeFile(estudiante.getFotoEstudiante().toString()));

@@ -69,7 +69,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
     private Handler mHandler = new Handler();
     private boolean isPlaying = false;
     //
-    private static final String DIRECTORIO_IMAGEN = "misImagenesApp/";
+    private static final String DIRECTORIO_IMAGEN = "imagenesPalabras/";
 
 
     final static int RESULTADO_EDITAR = 1;

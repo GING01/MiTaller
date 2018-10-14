@@ -120,98 +120,60 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
 
         final String manyDifferentStrings = mData.get(position).getDescripcionHistoria();
-
         final ImageView plusmaxhp =  view.findViewById(R.id.play);
-
         final TextView maxhpdisplay = (TextView) view.findViewById(R.id.tvDescripcionHistoria);
-
         final TextView nombreHistoria = (TextView) view.findViewById(R.id.tvNombreHistoria);
 
         nombreHistoria.setText(mData.get(position).getNombreHistoria());
-
         maxhpdisplay.setText(mData.get(position).getDescripcionHistoria());
         localView = view;
 
         TtS = new TextToSpeech(collection.getContext().getApplicationContext(), this);
 
-
         ImageView image = (ImageView) view.findViewById(R.id.ivHistoria);
         Bitmap bitmap = BitmapFactory.decodeFile(mData.get(position).getImagenHistoria());
         image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 250, 220, true));
-
         ImageView irJuego = (ImageView) view.findViewById(R.id.irJuego);
-
-
-
         irJuego.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivityJuego(view.getContext(), mData.get(position), estudiante, tutor, taller);
-
             }
         });
-
-
-
-
         switch (position){
             default:
                 final View finalLocalView = localView;
                 plusmaxhp.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v) {
-
                         if(!changePage){
                             i++;
                             hablar(manyDifferentStrings, finalLocalView, i, position);
                         }if(changePage){
                             TtS.speak("Por favor, vuelve a presionar el botón play!", TextToSpeech.QUEUE_FLUSH, null);
-
                             changePage = false;
                             i = 0;
                             j = 0;
                             isStopped = true;
 //                            TtS.stop();
-
                         }
-
-
                     }
                 });
                 break;
-
         }
-
-
         if(mViews != null) {
 //            return view;
             ((ViewPager) collection).addView(localView, position);
 
         }
-
-
-
-
         CardView cardView = (CardView) view.findViewById(R.id.cardView);
-
         if (mBaseElevation == 0) {
             mBaseElevation = cardView.getCardElevation();
         }
-
         cardView.setMaxCardElevation(mBaseElevation * MAX_ELEVATION_FACTOR);
         mViews.set(position, cardView);
-
-
-
-
-
-
-
         return localView;
 
     }
-
-
-
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
@@ -238,17 +200,11 @@ public class CardPagerAdapterHistoria extends PagerAdapter
         switch (position){
 
             default:
-
-
                 if(!isStopped){
-
-
                 }else{
                     isStopped = false;
                     mHandler.removeCallbacksAndMessages(null);
                 }
-
-
                 ArrayList<String> texto = new ArrayList<>();
                 Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
                 Matcher reMatcher = re.matcher(manyDifferentStrings);
@@ -256,7 +212,6 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                 while (reMatcher.find()) {
                     texto.add(reMatcher.group());
                     h++;
-
                 }
                 l = new ArrayList<>();
                 for(int i = 0; i<texto.size();i++){
@@ -264,21 +219,14 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                     s = resul;
                     myList = Arrays.asList(s);
                     l.add(s);
-
                 }
-
-
                 maxhpdisplay.setText("");
                 j= 0;
                 mHandler = new Handler();
-
-
                 if(p<=l.size()) {
-
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-
                             if(!changePage){
                                 maxhpdisplay.append(l.get(p-1)[j]+" ");
                                 maxhpdisplay.setTextColor(rgb(255, 192, 0));
@@ -290,18 +238,12 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                                     plusmaxhp.setVisibility(View.VISIBLE);
                                 }
                             }if(changePage){
-
                                 l = new ArrayList<>();
                                 j = 0;
                                 plusmaxhp.setVisibility(View.VISIBLE);
-
-
                             }
-
-
                         }
                     });
-
                     TtS.speak(texto.get(p-1), TextToSpeech.QUEUE_FLUSH, null);
                 }
                 else{
@@ -322,20 +264,14 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                                     plusmaxhp.setVisibility(View.VISIBLE);
                                 }
                             }if(changePage){
-
                                 l = new ArrayList<>();
                                 j = 0;
                                 plusmaxhp.setVisibility(View.VISIBLE);
-
-
                             }
-
-
                         }
                     });
                     TtS.speak(texto.get(0), TextToSpeech.QUEUE_FLUSH, null);
                 }
-
                 break;
         }
     }
@@ -350,6 +286,4 @@ public class CardPagerAdapterHistoria extends PagerAdapter
         } else {
         }
     }
-
 }
-
