@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,12 +63,14 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabla_resultados);
+
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         mTableView = findViewById(R.id.my_TableView);
         TextView name = findViewById(R.id.nombreestudiantetabla);
-
-
-
-
 
         initializeTableView(mTableView);
         tableViewFilter = new Filter(mTableView);
