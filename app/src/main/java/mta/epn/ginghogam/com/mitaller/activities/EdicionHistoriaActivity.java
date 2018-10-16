@@ -174,8 +174,6 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if(fileImagen != null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
-                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historiaDAO.update(historia);
                 finish();
@@ -183,8 +181,6 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria != null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
-                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 historiaDAO.update(historia);
                 finish();
@@ -192,8 +188,6 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria == null && fileImagen == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
-                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
                 finish();
@@ -201,8 +195,6 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (pathGaleria == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
-                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
                 finish();
@@ -210,8 +202,6 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
             if (fileImagen == null){
                 historia.setNombreHistoria(nombreHistoria.getText().toString());
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
-                historia.setNumeroLaminas(String.valueOf(numeroLaminas));
-                historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
                 finish();
