@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -90,6 +91,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     AlertDialog dialog;
     Handler handler1;
     private String titulo;
+    MediaPlayer well, wrong, hend, bend;
 
 
 
@@ -115,6 +117,11 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         btnTarget = (LinearLayout) findViewById(R.id.btnTarget);
         rootLayout = (LinearLayout) findViewById(R.id.layout_root);
         rootLayout2 = (LinearLayout) findViewById(R.id.layout_root2);
+        wrong=MediaPlayer.create(this, R.raw.wrongmove);
+        hend=MediaPlayer.create(this,R.raw.welldone);
+        bend=MediaPlayer.create(this,R.raw.tryagain);
+        well=MediaPlayer.create(this,R.raw.rigth);
+
 
 
 
@@ -268,8 +275,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         LinearLayout hola = (LinearLayout) newParent.getParent();
                         v.setVisibility(View.GONE);
                         hola.addView(view);
+                        well.start();
                         correctas++;
                     } else {
+                        wrong.start();
                         inCorrectas++;
                     }
                     if (correctas == lista.size() && inCorrectas==0) {
@@ -299,6 +308,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
                 final View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado_negativo, null);
                 final ImageButton imageButton = mView.findViewById(R.id.baddoneico);
+                bend.start();
                 imageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -427,6 +437,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
          View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
         ImageButton imageButton = mView.findViewById(R.id.welldoneico);
+        hend.start();
        imageButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
