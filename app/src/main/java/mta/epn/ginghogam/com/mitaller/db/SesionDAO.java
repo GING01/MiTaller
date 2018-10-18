@@ -53,6 +53,18 @@ public class SesionDAO extends SQLiteDB {
 
         return c;
     }
+    public Cursor retrieveExport(long id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery = "SELECT fecha_sesion AS 'FECHA', nombre_taller_sesion AS 'TALLER', nombre_historia_resultados AS 'HISTORIA', nombre_estudiante_resultados AS 'NOMBRE ESTUDIANTE'" +
+                ",aciertos AS 'ACIERTOS', fallos AS 'FALLOS', " +
+                "tiempo AS 'TIEMPO', resultado_ejercicio AS 'RESULTADO', observacion AS 'OBSERVACION'  FROM " + ConstanteDB.TABLE_SESION + " WHERE "
+                + ConstanteDB.COLUMN_ID_ESTUDIANTE_FK + " = " + id ;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        return c;
+    }
 
     public Cursor retrieveGrafica(long id, Integer taller, Integer historia){
         SQLiteDatabase db = getReadableDatabase();

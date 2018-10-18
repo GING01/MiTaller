@@ -164,12 +164,12 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
             Bundle extra = getIntent().getExtras();
             Estudiante estudiante;
             estudiante=extra.getParcelable("estudiante");
-            Cursor cursor = sesionDAO.retrieve(estudiante.getIdEstudiante());
+            Cursor cursor = sesionDAO.retrieveExport(estudiante.getIdEstudiante());
             cursor.moveToFirst();
             int rowcount = 0;
             int colcount = 0;
             File sdCardDir = Environment.getExternalStorageDirectory();
-            String filename = "MyBackUp.csv";
+            String filename = estudiante.getNombreEstudiate()+".csv";
             // the name of the file to export with
             File saveFile = new File(sdCardDir, filename);
             FileWriter fw = new FileWriter(saveFile);
@@ -183,7 +183,7 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
                 for (int i = 0; i < colcount; i++) {
                     if (i != colcount - 1) {
 
-                        bw.write(cursor.getColumnName(i) + ";");
+                        bw.write(cursor.getColumnName(i) + ",");
 
                     } else {
 
@@ -198,7 +198,7 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
 
                     for (int j = 0; j < colcount; j++) {
                         if (j != colcount - 1)
-                            bw.write(cursor.getString(j) + ";");
+                            bw.write(cursor.getString(j) + ",");
                         else
                             bw.write(cursor.getString(j));
                     }
