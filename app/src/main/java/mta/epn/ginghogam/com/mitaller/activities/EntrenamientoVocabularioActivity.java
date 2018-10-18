@@ -107,7 +107,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
 
         String msj = "Antes de continuar es importante que conozcas algunas palabras!";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(255, 192, 0));
+        lectura.setTextColor(rgb(0,0,0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +150,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
             public void run() {
                 if (contador == 1) {
                     lectura.append(palabraResaltada[i] + " ");
-                    lectura.setTextColor(rgb(255, 192, 0));
+                    lectura.setTextColor(rgb(0,0,0));
                     lectura.setMovementMethod(new ScrollingMovementMethod());
                     i++;
                     if (i < palabraResaltada.length) {

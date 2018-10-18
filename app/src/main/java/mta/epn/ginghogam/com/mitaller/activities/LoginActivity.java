@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         usuario =findViewById(R.id.txtUsuario);
         contraseña=findViewById(R.id.txtcontraseña);
         if (obtenerEstado(tutor)){

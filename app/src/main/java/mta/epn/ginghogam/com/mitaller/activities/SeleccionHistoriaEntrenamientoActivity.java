@@ -130,7 +130,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
         String msj = "Selecciona la historia";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(255, 192, 0));
+        lectura.setTextColor(rgb(0,0,0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +160,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
             @Override
             public void run() {
                 lectura.append(palabraResaltada[i] + " ");
-                lectura.setTextColor(rgb(255, 192, 0));
+                lectura.setTextColor(rgb(0,0,0));
                 lectura.setMovementMethod(new ScrollingMovementMethod());
 
 

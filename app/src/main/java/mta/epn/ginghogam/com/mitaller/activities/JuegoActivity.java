@@ -221,7 +221,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
         String msj = "Por favor, ordena las imágenes!";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(255, 192, 0));
+        lectura.setTextColor(rgb(0,0,0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,7 +351,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             @Override
             public void run() {
                 lectura.append(palabraResaltada[i] + " ");
-                lectura.setTextColor(rgb(255, 192, 0));
+                lectura.setTextColor(rgb(0, 0, 0));
                 lectura.setMovementMethod(new ScrollingMovementMethod());
 
 

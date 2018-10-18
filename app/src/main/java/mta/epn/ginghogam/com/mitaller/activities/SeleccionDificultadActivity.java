@@ -100,7 +100,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
 
         String msj = "Porfavor selecciona la dificultad para el ejercicio";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(255, 192, 0));
+        lectura.setTextColor(rgb(0,0,0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +143,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
             public void run() {
                 if (contador == 1) {
                     lectura.append(palabraResaltada[i] + " ");
-                    lectura.setTextColor(rgb(255, 192, 0));
+                    lectura.setTextColor(rgb(0,0,0));
                     lectura.setMovementMethod(new ScrollingMovementMethod());
                     i++;
                     if (i < palabraResaltada.length) {

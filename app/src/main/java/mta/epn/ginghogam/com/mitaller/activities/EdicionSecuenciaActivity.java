@@ -81,6 +81,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         historia = getIntent().getParcelableExtra(EdicionSecuenciaActivity.class.getSimpleName());
         validaPermiso();
         numeroImg = Integer.valueOf(historia.getNumeroLaminas());

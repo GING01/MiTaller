@@ -119,7 +119,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
 
         String msj = "Selecciona el taller";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(255,192,0));
+        lectura.setTextColor(rgb(0,0,0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +149,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
             @Override
             public void run() {
                 lectura.append(palabraResaltada[i]+" ");
-                lectura.setTextColor(rgb(255,192,0));
+                lectura.setTextColor(rgb(0,0,0));
                 lectura.setMovementMethod(new ScrollingMovementMethod());
 
 

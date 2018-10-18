@@ -82,7 +82,7 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
 
         msj = taller.getDescripcionTaller();
         lectura.setText(msj);
-        lectura.setTextColor(rgb(255,192,0));
+        lectura.setTextColor(rgb(0,0,0));
         TtS = new TextToSpeech(this, this);
 
         guia.setOnClickListener(new View.OnClickListener() {

@@ -85,6 +85,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         nombreHistoria = (EditText) findViewById(R.id.nombreHistoria);
         descripcionHistoria = (EditText) findViewById(R.id.descripcionHistoria);
