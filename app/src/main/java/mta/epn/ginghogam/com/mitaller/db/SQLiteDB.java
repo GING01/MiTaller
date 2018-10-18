@@ -137,13 +137,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
 
 
-    private static final String SQL_REGISTRO_TALLER =
-            " INSERT INTO " + ConstanteDB.TABLE_TALLER + " VALUES (null, "+
-                    "'Panaderia', "+
-                    "'Se hace pan',"+
-                    "'null')";
-
-
     private static final String SQL_REGISTRO_TUTOR =
             " INSERT INTO " + ConstanteDB.TABLE_TUTOR + " VALUES (null, "+
                     "'1723091367', "+
