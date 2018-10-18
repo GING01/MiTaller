@@ -243,13 +243,13 @@ public class LoginActivity extends AppCompatActivity {
 
             String img = file.getPath().toString();
             taller.setNombreTaller("Panaderia");
-            taller.setDescripcionTaller("Hola Mundo");
+            taller.setDescripcionTaller("En este taller inicial de panadería aprendemos los primeros conceptos y toda la teoría para elaborar panes básicos, con los ingredientes elementales que configuran un pan: harina, agua, levadura y sal.  Aprenderemos a usar diferentes tipos de harinas, sus usos y especificaciones técnicas.");
             taller.setImagenTaller(img);
             tallerDAO.create(taller);
 
 
-            historia.setNombreHistoria("Lavarse");
-            historia.setDescripcionHistoria("Aqui debes lavarte");
+            historia.setNombreHistoria("Historia 1");
+            historia.setDescripcionHistoria("Aquí va una introducción de la historia. Se relata brevemente las actividades que se realiza.");
             historia.setNumeroLaminas("3");
             historia.setDificultad("facil");
             historia.setImagenHistoria(img);
@@ -274,8 +274,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-            historia.setNombreHistoria("Lavarse 2");
-            historia.setDescripcionHistoria("Aqui debes lavarte 2");
+            historia.setNombreHistoria("Historia 2");
+            historia.setDescripcionHistoria("Aquí va una introducción de la historia. Se relata brevemente las actividades que se realiza.");
             historia.setNumeroLaminas("6");
             historia.setDificultad("medio");
             historia.setImagenHistoria(img);
@@ -283,24 +283,24 @@ public class LoginActivity extends AppCompatActivity {
             historiaDAO.create(historia);
 
 
-            historia.setNombreHistoria("Lavarse 3");
-            historia.setDescripcionHistoria("Aqui debes lavarte 3");
+            historia.setNombreHistoria("Historia 3");
+            historia.setDescripcionHistoria("Aquí va una introducción de la historia. Se relata brevemente las actividades que se realiza.");
             historia.setNumeroLaminas("9");
             historia.setDificultad("dificil");
             historia.setImagenHistoria(img);
             historia.setIdTaller(1);
             historiaDAO.create(historia);
 
-            vocabulario.setPalabra("Palabra");
-            vocabulario.setTipoPalabra("alimento");
+            vocabulario.setPalabra("Harina");
+            vocabulario.setTipoPalabra("Alimento");
             vocabulario.setImagenPalabra(img);
             vocabulario.setSonidoPalabra(list.get(1));
             vocabulario.setIdTaller(1);
             vocabularioDAO.create(vocabulario);
 
 
-            vocabulario.setPalabra("Palabra 2");
-            vocabulario.setTipoPalabra("peligro");
+            vocabulario.setPalabra("Mantequilla");
+            vocabulario.setTipoPalabra("Alimento");
             vocabulario.setImagenPalabra(img);
             vocabulario.setSonidoPalabra(list.get(0));
             vocabulario.setIdTaller(1);
