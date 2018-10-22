@@ -487,7 +487,18 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
         if (item.getItemId() == android.R.id.home) {
             handler1.removeCallbacksAndMessages(null);
-            finish();
+            new AlertDialog.Builder(this)
+                    .setMessage("¿Estás seguro que deseas salir?")
+                    .setCancelable(false)
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            handler1.removeCallbacksAndMessages(null);
+                            JuegoActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+
         }
 
         return super.onOptionsItemSelected(item);
