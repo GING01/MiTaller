@@ -255,7 +255,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
                             if(!changePage){
                                 maxhpdisplay.append(l.get(0)[j]+" ");
-                                maxhpdisplay.setTextColor(rgb(255, 192, 0));
+                                maxhpdisplay.setTextColor(rgb(0, 0, 0));
                                 plusmaxhp.setVisibility(View.GONE);
                                 j++;
                                 if(j < l.get(0).length) {

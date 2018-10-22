@@ -308,56 +308,55 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         graph.setDrawingCacheEnabled(true);
 
-        bitmap = Bitmap.createBitmap(graph.getDrawingCache());//important to make copy of that bitmap.
+        PdfDocument.Page page = null;
+        PdfDocument pdfDocument = null;
 
+        if(graph.getDrawingCache()!=null){
+            bitmap = Bitmap.createBitmap(graph.getDrawingCache());//
+            String path = Environment.getExternalStorageDirectory().toString();
+            File file = new File(path, nombreEstudiante + new Date() + ".jpg"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
 
-        String path = Environment.getExternalStorageDirectory().toString();
-        File file = new File(path, nombreEstudiante + new Date() + ".jpg"); // the File to save , append increasing numeric counter to prevent files from getting overwritten.
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+                // PNG is a lossless format, the compression factor (100) is ignored
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        try (FileOutputStream out = new FileOutputStream(file)) {
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
-            // PNG is a lossless format, the compression factor (100) is ignored
-        } catch (IOException e) {
-            e.printStackTrace();
+            pdfDocument = new PdfDocument();
+            PdfDocument.PageInfo pi = new PdfDocument.PageInfo.Builder(bitmap.getWidth(), bitmap.getHeight(), 1).create();
+
+             page = pdfDocument.startPage(pi);
+
+            Canvas canvas = page.getCanvas();
+            Paint paint = new Paint();
+            paint.setColor(Color.parseColor("#FFFFFF"));
+            canvas.drawPaint(paint);
+
+            bitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+            paint.setColor(Color.BLUE);
+            canvas.drawBitmap(bitmap, 0, 0, null);
+
+            pdfDocument.finishPage(page);
+
+            File root = new File(Environment.getExternalStorageDirectory(), "Grafica estudiantes");
+            if (!root.exists()) {
+                root.mkdir();
+            }
+
+            File file1 = new File(root, nombreEstudiante + " " + nombreTaller + "_" + new Date() + ".pdf");
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(file1);
+                pdfDocument.writeTo(fileOutputStream);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Toast.makeText(getApplicationContext(), "Imagen generada", Toast.LENGTH_SHORT).show();
+            pdfDocument.close();
+
+            graph.destroyDrawingCache();
         }
-
-
-        PdfDocument pdfDocument = new PdfDocument();
-        PdfDocument.PageInfo pi = new PdfDocument.PageInfo.Builder(bitmap.getWidth(), bitmap.getHeight(), 1).create();
-
-        PdfDocument.Page page = pdfDocument.startPage(pi);
-
-
-        Canvas canvas = page.getCanvas();
-        Paint paint = new Paint();
-        paint.setColor(Color.parseColor("#FFFFFF"));
-        canvas.drawPaint(paint);
-
-        bitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
-        paint.setColor(Color.BLUE);
-        canvas.drawBitmap(bitmap, 0, 0, null);
-
-        pdfDocument.finishPage(page);
-
-        File root = new File(Environment.getExternalStorageDirectory(), "Grafica estudiantes");
-        if (!root.exists()) {
-            root.mkdir();
-        }
-
-        File file1 = new File(root, nombreEstudiante + " " + nombreTaller + "_" + new Date() + ".pdf");
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file1);
-            pdfDocument.writeTo(fileOutputStream);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Toast.makeText(getApplicationContext(), "PDF generado", Toast.LENGTH_SHORT).show();
-        pdfDocument.close();
-
-        graph.destroyDrawingCache();
-
-
     }
 
     private void iniciarComponentes() {

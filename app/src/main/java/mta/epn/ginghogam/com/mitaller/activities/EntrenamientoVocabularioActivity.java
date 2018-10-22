@@ -107,7 +107,8 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
 
-        String msj = "Antes de continuar es importante que conozcas algunas palabras. Ten en cuenta que la pabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas." +
+        String msj = "Antes de continuar es importante que conozcas algunas palabras. " +
+                "Ten en cuenta que la pabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas." +
                 "Los recuadros verdes son comida";
         lectura.setText(msj);
         lectura.setTextColor(rgb(0,0,0));
