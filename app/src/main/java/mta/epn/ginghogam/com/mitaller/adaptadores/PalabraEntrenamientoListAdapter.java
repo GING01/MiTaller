@@ -115,27 +115,34 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
         //use a GradientDrawable with only one color set, to make it a solid color
         GradientDrawable border = new GradientDrawable();
 
-            if (tipoPalabra.equals("Alimento")) {
-                border.setColor(Color.WHITE); //white background
-                border.setStroke(6, Color.rgb(22, 239, 2)); //black border with full opacity
-                border.setCornerRadius(20);
-                holder.lyColor.setBackground(border);
+        if (tipoPalabra.equals("Alimento")) {
+            border.setColor(Color.WHITE); //white background
+            border.setStroke(6, Color.rgb(22, 239, 2)); //black border with full opacity
+            border.setCornerRadius(20);
+            holder.lyColor.setBackground(border);
 
-            }
-            if (tipoPalabra.equals("Peligro")) {
-                border.setColor(Color.WHITE); //white background
-                border.setStroke(6, Color.rgb(255, 89, 0)); //black border with full opacity
-                border.setCornerRadius(20);
-                holder.lyColor.setBackground(border);
+        }
+        if (tipoPalabra.equals("Peligro")) {
+            border.setColor(Color.WHITE); //white background
+            border.setStroke(6, Color.rgb(255, 89, 0)); //black border with full opacity
+            border.setCornerRadius(20);
+            holder.lyColor.setBackground(border);
 
-            }
-            if (tipoPalabra.equals("Limpieza")) {
-                border.setColor(Color.WHITE); //white background
-                border.setStroke(6, Color.rgb(2, 69, 239)); //black border with full opacity
-                border.setCornerRadius(20);
-                holder.lyColor.setBackground(border);
+        }
+        if (tipoPalabra.equals("Limpieza")) {
+            border.setColor(Color.WHITE); //white background
+            border.setStroke(6, Color.rgb(2, 69, 239)); //black border with full opacity
+            border.setCornerRadius(20);
+            holder.lyColor.setBackground(border);
 
-            }
+        }
+        if (tipoPalabra.equals("Herramienta")) {
+            border.setColor(Color.WHITE); //white background
+            border.setStroke(6, Color.rgb(150, 109, 56)); //black border with full opacity
+            border.setCornerRadius(20);
+            holder.lyColor.setBackground(border);
+
+        }
 
 
         holder.palabra.setText(vocabulario.getPalabra());

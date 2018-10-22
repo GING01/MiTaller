@@ -167,7 +167,7 @@
 
             <RelativeLayout
                 android:layout_width="387dp"
-                android:layout_height="148dp"
+                android:layout_height="158dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -180,11 +180,10 @@
 
                 <RadioGroup
                     android:id="@+id/tipoPalabra"
-                    android:layout_width="100dp"
+                    android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="12dp">
+                    android:layout_centerHorizontal="true">
 
                     <RadioButton
 
@@ -216,6 +215,17 @@
                         android:checked="false"
                         android:onClick="radioClicked"
                         android:text="Limpieza" />
+
+                    <RadioButton
+                        android:id="@+id/rbHerramienta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:checked="false"
+                        android:onClick="radioClicked"
+                        android:text="Herramienta" />
+
 
                 </RadioGroup>
             </RelativeLayout>

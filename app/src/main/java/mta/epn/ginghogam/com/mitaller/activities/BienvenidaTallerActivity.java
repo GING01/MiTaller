@@ -164,8 +164,9 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
         intent.putExtra("estudiante", estudiante);
         intent.putExtra("dificultad",dificultadSeleccionada);
         intent.putExtra("taller",taller);
-        TtS.stop();
+        TtS.shutdown();
         startActivity(intent);
+
     }
 
     public void llamarmenu(View view){

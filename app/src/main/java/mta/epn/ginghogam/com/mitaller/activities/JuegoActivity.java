@@ -280,15 +280,12 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         inCorrectas++;
                     }
                     if (correctas == lista.size() && inCorrectas==0) {
-                        Toast.makeText(getApplicationContext(), "SOS UN PRO", Toast.LENGTH_SHORT).show();
 
                     }
                     if (correctas == lista.size()) {
-                        Toast.makeText(getApplicationContext(), "FELICIDADES LOS HAS LOGRADO" + " correctas" + correctas + " incorrectas: " + inCorrectas, Toast.LENGTH_SHORT).show();
                         end =System.currentTimeMillis();
                         logro=true;
                          tiempaso =(end-start)/1000;
-                        //Toast.makeText(getApplicationContext(), "tiempo " + tiempaso + " segs", Toast.LENGTH_LONG).show();
                         welldone();
                     }
                     break;

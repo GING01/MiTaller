@@ -81,7 +81,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
     private String pathCamara, pathGaleria;
 
     private EditText palabra;
-    private RadioButton alimento, limpieza, peligroso;
+    private RadioButton alimento, limpieza, peligroso, herramienta;
 
     private ImageView imgPalabra, galeria;
 
@@ -141,9 +141,11 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         imageViewPlay.setOnClickListener(this);
 
         vocabulario = getIntent().getParcelableExtra(EdicionPalabraActivity.class.getSimpleName());
+        if(alimento.isChecked()){
+            tipoPalabra = "Alimento";
+        }
 
         if(vocabulario != null){
-            Toast.makeText(this,"id t: "+taller.getIdTaller(), Toast.LENGTH_LONG).show();
             palabra.setText(vocabulario.getPalabra());
             fileName = vocabulario.getSonidoPalabra();
 
@@ -163,11 +165,13 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 peligroso.setChecked(checked);
                 peligroso.setText(tipoPalabra);
             }
-            Toast.makeText(this,""+tipoPalabra,Toast.LENGTH_LONG).show();
+            if(tipoPalabra.trim().equals("Herramienta")){
+                peligroso.setChecked(checked);
+                peligroso.setText(tipoPalabra);
+            }
 
             File file = new File(vocabulario.getImagenPalabra());
             if (!file.exists()) {
-                Toast.makeText(this, "no Exist" + vocabulario.getImagenPalabra().toString(), Toast.LENGTH_LONG).show();
                 imgPalabra.setImageResource(R.drawable.no_foto);
             } else {
                 imgPalabra.setImageBitmap(BitmapFactory.decodeFile(vocabulario.getImagenPalabra().toString()));
@@ -306,11 +310,16 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
 
         if(id == R.id.accion_guardar_palabra) {
             guardarPalabra();
+            stopRecording();
             return true;
         }
         if (item.getItemId() == android.R.id.home) {
+            if(mRecorder != null) {
+                mRecorder.stop();
+            }
             finish();
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -380,7 +389,6 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
 
                 vocabulario.setImagenPalabra(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 vocabulario.setIdTaller(taller.getIdTaller());
-                Toast.makeText(this,"id taller: "+taller.getIdTaller(),Toast.LENGTH_LONG).show();
                 vocabularioDAO.create(vocabulario);
                 finish();
             }
@@ -415,6 +423,10 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
             case R.id.rbPeligro:
                 if (checked)
                     tipoPalabra = "Peligro";
+                break;
+            case  R.id.rbHerramienta:
+                if (checked)
+                    tipoPalabra = "Herramienta";
                 break;
 
         }
@@ -589,4 +601,13 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         finish();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(mRecorder != null) {
+            mRecorder.stop();
+        }
+
+    }
 }
