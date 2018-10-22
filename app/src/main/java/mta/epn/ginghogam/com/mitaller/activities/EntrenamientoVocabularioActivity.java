@@ -112,6 +112,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
                 "Los recuadros verdes son comida";
         lectura.setText(msj);
         lectura.setTextColor(rgb(0,0,0));
+        TtS = new TextToSpeech(this, this);
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +125,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     }
 
     private void hablar() {
-        String msj = "Antes de continuar es importante que conozcas algunas palabras. Ten en cuenta que la pabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas." +
+        String msj = "Antes de continuar es importante que conozcas algunas palabras. Ten en cuenta que la palabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas. "  +
                 "Los recuadros verdes son comida";
         final List<String> texto =new ArrayList<>();
         Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
@@ -243,9 +244,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         if (text == TextToSpeech.SUCCESS) {
             int lenguaje = TtS.isLanguageAvailable(new Locale("spa", "ESP"));
             if (lenguaje == TextToSpeech.LANG_MISSING_DATA || lenguaje == TextToSpeech.LANG_NOT_SUPPORTED) {
-                guia.setSaveEnabled(true);
-                hablar();
-
+                //hablar();
             } else {
             }
         } else {
