@@ -472,8 +472,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         //getSupportActionBar().setDisplayShowTitleEnabled(true);
 
        Bundle extras = getIntent().getExtras();
-       taller = extras.getParcelable("taller");
-       getSupportActionBar().setTitle("Bienvenido al taller de: "+taller.getNombreTaller()+"");
+       historia = extras.getParcelable("historia");
+       getSupportActionBar().setTitle(historia.getNombreHistoria().toUpperCase());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
