@@ -107,32 +107,15 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
 
-        String msj = "Antes de continuar es importante que conozcas algunas palabras!";
+        String msj = "Antes de continuar es importante que conozcas algunas palabras. Ten en cuenta que la pabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas." +
+                "Los recuadros verdes son comida";
         lectura.setText(msj);
         lectura.setTextColor(rgb(0,0,0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                contador++;
-
-                Toast.makeText(getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
-                handlerbuho = new Handler();
-                handlerbuho.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (contador == 1) {
-                            hablar();
-                        }
-                        if (contador == 2) {
-                        }
-                        if (contador >= 3) {
-                            contador = 0;
-                        }
-
-                    }
-                }, 5);
+                hablar();
             }
         });
 
