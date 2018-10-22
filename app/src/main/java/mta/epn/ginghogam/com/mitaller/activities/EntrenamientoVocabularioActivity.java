@@ -124,7 +124,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     }
 
     private void hablar() {
-        String msj = "Antes de continuar es importante que conozcas algunas palabras. Ten en cuenta que la pabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas." +
+        String msj = "Antes de continuar es importante que conozcas algunas palabras. Ten en cuenta que la palabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas. "  +
                 "Los recuadros verdes son comida";
         final List<String> texto =new ArrayList<>();
         Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
