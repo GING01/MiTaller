@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.adaptadores.PalabraEntrenamientoListAdapter;
@@ -136,35 +138,42 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
 
 
     }
+
     private void hablar() {
-        String msj = "Antes de continuar es importante que conozcas algunas palabras!";
-        final String texto = msj.toString();
-
-        final String[] palabraResaltada = texto.split("\\s+");
-        lectura.setText("");
-        i = 0;
+        String msj = "Antes de continuar es importante que conozcas algunas palabras. Ten en cuenta que la pabras con un recuadro azul son insumos. Los recuadros rojos son cosas peligrosas." +
+                "Los recuadros verdes son comida";
+        final List<String> texto =new ArrayList<>();
+        Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+        Matcher reMatcher = re.matcher(msj);
+        int h =0;
+        while (reMatcher.find()) {
+            texto.add(reMatcher.group());
+        }
         final Handler mHandler = new Handler();
-
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (contador == 1) {
-                    lectura.append(palabraResaltada[i] + " ");
-                    lectura.setTextColor(rgb(0,0,0));
-                    lectura.setMovementMethod(new ScrollingMovementMethod());
-                    i++;
-                    if (i < palabraResaltada.length) {
-                        mHandler.postDelayed(this, 450);
-                    } else {
-                        i = 0;
-                        handlerbuho.removeCallbacksAndMessages(null);
-                    }
+        if(i>=0 && i<texto.size()) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    lectura.setText(texto.get(i-1));
                 }
-            }
-        });
-        TtS.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
+            });
+            TtS.speak(texto.get(i), TextToSpeech.QUEUE_FLUSH, null);
+            // mHandler.removeCallbacksAndMessages(this);
+            i++;
+        }else
+        if(i>texto.size() ||i==texto.size()){
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    lectura.setText(texto.get(0));
+                }
+            });
 
+            TtS.speak(texto.get(0), TextToSpeech.QUEUE_FLUSH, null);
+            i = 1;
 
+            // mHandler.removeCallbacksAndMessages(this);
+        }
     }
     @Override
     protected void onStart() {
