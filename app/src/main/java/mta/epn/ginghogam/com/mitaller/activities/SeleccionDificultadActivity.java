@@ -134,27 +134,27 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
         final String texto = msj.toString();
 
         final String[] palabraResaltada = texto.split("\\s+");
-        lectura.setText("");
-        i = 0;
-        final Handler mHandler = new Handler();
-
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (contador == 1) {
-                    lectura.append(palabraResaltada[i] + " ");
-                    lectura.setTextColor(rgb(0,0,0));
-                    lectura.setMovementMethod(new ScrollingMovementMethod());
-                    i++;
-                    if (i < palabraResaltada.length) {
-                        mHandler.postDelayed(this, 450);
-                    } else {
-                        i = 0;
-                        handlerbuho.removeCallbacksAndMessages(null);
-                    }
-                }
-            }
-        });
+        lectura.setText(msj);
+//        i = 0;
+//        final Handler mHandler = new Handler();
+//
+//        mHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                if (contador == 1) {
+//                    lectura.append(palabraResaltada[i] + " ");
+//                    lectura.setTextColor(rgb(0,0,0));
+//                    lectura.setMovementMethod(new ScrollingMovementMethod());
+//                    i++;
+//                    if (i < palabraResaltada.length) {
+//                        mHandler.postDelayed(this, 450);
+//                    } else {
+//                        i = 0;
+//                        handlerbuho.removeCallbacksAndMessages(null);
+//                    }
+//                }
+//            }
+//        });
         TtS.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
 
 

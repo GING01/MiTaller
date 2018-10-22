@@ -152,25 +152,25 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         final String texto = msj.toString();
 
         final String[] palabraResaltada = texto.split("\\s+");
-        lectura.setText("");
+        lectura.setText(msj);
         i = 0;
-        final Handler mHandler = new Handler();
-
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                lectura.append(palabraResaltada[i] + " ");
-                lectura.setTextColor(rgb(0,0,0));
-                lectura.setMovementMethod(new ScrollingMovementMethod());
-
-
-                i++;
-                if (i < palabraResaltada.length) {
-                    mHandler.postDelayed(this, 300);
-
-                }
-            }
-        });
+//        final Handler mHandler = new Handler();
+//
+//        mHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                lectura.append(palabraResaltada[i] + " ");
+//                lectura.setTextColor(rgb(0,0,0));
+//                lectura.setMovementMethod(new ScrollingMovementMethod());
+//
+//
+//                i++;
+//                if (i < palabraResaltada.length) {
+//                    mHandler.postDelayed(this, 300);
+//
+//                }
+//            }
+//        });
         TtS.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
 
 

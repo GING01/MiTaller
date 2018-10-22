@@ -9,6 +9,7 @@
 
 
     <HorizontalScrollView
+        android:paddingTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".7"
@@ -67,7 +68,7 @@
 
     <LinearLayout
         android:id="@+id/ly2"
-        android:layout_width="match_parent"
+        android:layout_width="932dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="25dp"
@@ -80,48 +81,40 @@
 
         <ImageView
             android:id="@+id/guia"
-            android:layout_width="107dp"
+            android:layout_width="24dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/buhobig"/>
-
-
+            android:src="@drawable/buhobig" />
 
 
         <LinearLayout
-            android:layout_width="707dp"
+            android:layout_width="643dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
             android:background="@drawable/shape"
-            android:ellipsize="marquee"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true">
+            android:paddingTop="5dp">
+
             <TextView
 
                 android:id="@+id/texto"
-                android:layout_width="match_parent"
+                android:layout_width="317dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:text="Por favor ordena las imagenes"
                 android:textSize="22dp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tiempoedt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:visibility="gone"
-               />
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>

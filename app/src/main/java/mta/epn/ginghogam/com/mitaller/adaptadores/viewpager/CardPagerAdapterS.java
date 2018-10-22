@@ -120,6 +120,14 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
             }
         });
 
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(view.getContext(), item, estudiante, tutor, dificultadSeleccionada);
+
+            }
+        });
+
 
     }
 

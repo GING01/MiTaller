@@ -48,6 +48,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="37dp"
+                        android:background="@drawable/shapesquare"
                         android:src="@drawable/ic_android_black_24dp" />
 
                     <LinearLayout
@@ -61,42 +62,42 @@
                         <TextView
                             android:id="@+id/tvDescripcionHistoria"
                             style="@style/TextAppearance.AppCompat.Title"
-                            android:layout_width="369dp"
-                            android:layout_height="127dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="224dp"
                             android:background="@drawable/shape"
                             android:paddingLeft="10dp"
                             android:paddingTop="10dp"
                             android:text="Aqui va una descripcion de la historia que se desea practicar."
                             android:textSize="20dp" />
 
-                        <ImageView
-                            android:id="@+id/play"
-                            android:layout_width="38dp"
-                            android:layout_height="68dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/arrow"
-                            android:text="Play" />
+
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="117dp"
-                        android:layout_height="117dp"
+                        android:layout_height="221dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="26dp"
-                        android:layout_marginRight="26dp"
+                        android:layout_marginEnd="27dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
 
                         <ImageView
+                            android:id="@+id/play"
+                            android:layout_width="match_parent"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/iconosonido"
+                            android:text="Play" />
+
+                        <ImageView
                             android:id="@+id/irJuego"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/juego"
+                            android:layout_width="93dp"
+                            android:layout_height="115dp"
+                            android:src="@drawable/iconojuego"
                             android:text="Entrenar" />
 
                     </LinearLayout>

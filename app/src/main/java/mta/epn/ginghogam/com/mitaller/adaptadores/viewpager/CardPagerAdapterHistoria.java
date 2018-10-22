@@ -149,7 +149,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                             i++;
                             hablar(manyDifferentStrings, finalLocalView, i, position);
                         }if(changePage){
-                            TtS.speak("Por favor, vuelve a presionar el botón play!", TextToSpeech.QUEUE_FLUSH, null);
+                            TtS.speak("Por favor, vuelve a presionar el botón!", TextToSpeech.QUEUE_FLUSH, null);
                             changePage = false;
                             i = 0;
                             j = 0;
@@ -229,7 +229,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                         public void run() {
                             if(!changePage){
                                 maxhpdisplay.append(l.get(p-1)[j]+" ");
-                                maxhpdisplay.setTextColor(rgb(255, 192, 0));
+                                maxhpdisplay.setTextColor(rgb(0, 0, 0));
                                 plusmaxhp.setVisibility(View.GONE);
                                 j++;
                                 if(j < l.get(p-1).length) {

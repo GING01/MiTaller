@@ -134,8 +134,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         taller = extras.getParcelable("taller");
 
 
-        //Toast.makeText(this, "taller" + taller.getNombreTaller(), Toast.LENGTH_SHORT).show();
-
 
         long id = historia.getIdHistoria();
         Cursor cursor = secuenciaDAO.retrieve(id);
@@ -343,25 +341,25 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         final String texto = msj.toString();
 
         final String[] palabraResaltada = texto.split("\\s+");
-        lectura.setText("");
+        lectura.setText(msj);
         i = 0;
-        final Handler mHandler = new Handler();
-
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                lectura.append(palabraResaltada[i] + " ");
-                lectura.setTextColor(rgb(0, 0, 0));
-                lectura.setMovementMethod(new ScrollingMovementMethod());
-
-
-                i++;
-                if (i < palabraResaltada.length) {
-                    mHandler.postDelayed(this, 300);
-
-                }
-            }
-        });
+//        final Handler mHandler = new Handler();
+//
+//        mHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                lectura.append(palabraResaltada[i] + " ");
+//                lectura.setTextColor(rgb(0, 0, 0));
+//                lectura.setMovementMethod(new ScrollingMovementMethod());
+//
+//
+//                i++;
+//                if (i < palabraResaltada.length) {
+//                    mHandler.postDelayed(this, 300);
+//
+//                }
+//            }
+//        });
         TtS.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
 
 

@@ -250,7 +250,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             historia.setNombreHistoria("Historia 1");
-            historia.setDescripcionHistoria("Aquí va una introducción de la historia. Se relata brevemente las actividades que se realiza.");
+            historia.setDescripcionHistoria("Aquí va una introducción de la historia y se relata brevemente las actividades que se realiza.");
             historia.setNumeroLaminas("3");
             historia.setDificultad("facil");
             historia.setImagenHistoria(img);
