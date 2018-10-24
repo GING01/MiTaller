@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView usuario;
     TextView contraseña;
     private TutorDAO tutorDAO;
-    private static  final String preference="mitaller.iniciosesion";
+    private static final String preference = "mitaller.iniciosesion";
     public Integer id;
     private String nombre, apellido, ci, user, password;
 
@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
     private Secuencia secuencia;
 
 
-
     ArrayList<String> list;
 
     @Override
@@ -74,11 +73,11 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        usuario =findViewById(R.id.txtUsuario);
-        contraseña=findViewById(R.id.txtcontraseña);
-        if (obtenerEstado(tutor)){
-            Intent i = new Intent(LoginActivity.this,MenuInicialActivity.class);
-            i.putExtra("tutor",tutor);
+        usuario = findViewById(R.id.txtUsuario);
+        contraseña = findViewById(R.id.txtcontraseña);
+        if (obtenerEstado(tutor)) {
+            Intent i = new Intent(LoginActivity.this, MenuInicialActivity.class);
+            i.putExtra("tutor", tutor);
             startActivity(i);
             finish();
         }
@@ -87,9 +86,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onBackPressed() {
-        Toast.makeText(this,"Adios!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Adios!", Toast.LENGTH_LONG).show();
         finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     public void registrarTutor(View view) {
 
         Intent intent = new Intent(LoginActivity.this, RegistroTutorActivity.class);
@@ -106,23 +107,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void validar(View view) {
-        if(validarUsuario()){
-            Intent intent = new Intent(LoginActivity.this,MenuInicialActivity.class);
+        if (validarUsuario()) {
+            Intent intent = new Intent(LoginActivity.this, MenuInicialActivity.class);
 
             guardarEstado();
             intent.putExtra("tutor", tutor);
             startActivity(intent);
             finish();
 
-        }
-        else
+        } else
             Toast.makeText(LoginActivity.this, "Porfavor revisa los datos", Toast.LENGTH_SHORT).show();
 
     }
 
     private void guardarEstado() {
 
-        SharedPreferences preferences =  getSharedPreferences(preference, MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
 
 
         preferences.edit().putInt("ID", Integer.valueOf(id)).commit();
@@ -133,33 +133,32 @@ public class LoginActivity extends AppCompatActivity {
         preferences.edit().putString("ci", String.valueOf(ci)).commit();
 
 
-
-        if(tutor==null){
+        if (tutor == null) {
             // Toast.makeText(LoginActivity.this, "", Toast.LENGTH_LONG).show();
 
-        }else{
+        } else {
             // Toast.makeText(LoginActivity.this,""+ id, Toast.LENGTH_LONG).show();
 
         }
 
     }
+
     private boolean obtenerEstado(Tutor tutor) {
         SharedPreferences preferences = getSharedPreferences(preference, MODE_PRIVATE);
         Integer restoredText = preferences.getInt("ID", 0);
 
         if (restoredText != 0) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 
     private boolean validarUsuario() {
-        tutorDAO =new TutorDAO(this);
+        tutorDAO = new TutorDAO(this);
         tutor = new Tutor();
-        String usr= "'"+usuario.getText().toString().trim()+"'";
-        String pass = "'"+contraseña.getText().toString().trim()+"'";
-        Cursor cursor = tutorDAO.retrieve(usr , pass);
+        String usr = "'" + usuario.getText().toString().trim() + "'";
+        String pass = "'" + contraseña.getText().toString().trim() + "'";
+        Cursor cursor = tutorDAO.retrieve(usr, pass);
         try {
             cursor.moveToFirst();
             id = cursor.getInt(0);
@@ -170,8 +169,7 @@ public class LoginActivity extends AppCompatActivity {
             password = cursor.getString(5);
 
             return true;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(LoginActivity.this, "Porfavor revisa los datos", Toast.LENGTH_LONG).show();
             return false;
 
@@ -183,6 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("editar", true);
         startActivity(intent);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -193,39 +192,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void insertarRegistros(){
-
-        Bitmap buhobig = BitmapFactory.decodeResource(getResources(), R.drawable.buhobig);
-        String path = Environment.getExternalStorageDirectory().toString();
-        File file = new File(path, "buho" + ".jpg");
-        OutputStream out = null;
-
-        try{
-            out = new FileOutputStream(file);
-            buhobig.compress(Bitmap.CompressFormat.PNG,100,out);
-            out.flush();
-            out.close();
-        }catch (Exception e){
-
-        }
-
-        final int[] mSongs = new int[] { R.raw.uno, R.raw.dos };
-        list = new ArrayList<>();
-
-        for (int i = 0; i < mSongs.length; i++) {
-            try {
-                String path2 = Environment.getExternalStorageDirectory().toString();
-                File dir = new File(path2);
-                if (dir.mkdirs() || dir.isDirectory()) {
-                    String str_song_name = i + ".mp3";
-                    CopyRAWtoSDCard(mSongs[i], path2 + File.separator + str_song_name);
-                    list.add(path2 + File.separator + str_song_name);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
+    private void insertarRegistros() {
 
 
 
@@ -236,90 +203,311 @@ public class LoginActivity extends AppCompatActivity {
 
         Cursor cursor = tallerDAO.retrieve();
 
-        if(cursor.getCount() == 0){
+        if (cursor.getCount() == 0) {
+
+
+            String path = Environment.getExternalStorageDirectory().toString();
+
+            Bitmap panaderia = BitmapFactory.decodeResource(getResources(), R.drawable.panaderiaport);
+            File filePanaderia = new File(path, "panaderia" + ".jpg");
+
+            Bitmap historiaEmpaquetado = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
+            File fileHistoriaEmpaquetado = new File(path, "empaquetado" + ".jpg");
+
+            Bitmap amasadora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_amasadora);
+            File fileAmasadora = new File(path, "amasadora" + ".jpg");
+
+            Bitmap balanza = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_balanza);
+            File fileBalanza = new File(path, "balanza" + ".jpg");
+
+            Bitmap bodega = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_bodega);
+            File fileBodega = new File(path, "bodega" + ".jpg");
+
+            Bitmap boleadora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_boleadora);
+            File fileBoleadora = new File(path, "boleadora" + ".jpg");
+
+            Bitmap camaraLeudo = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_camara_de_leudo);
+            File fileCamaraLeudo = new File(path, "camaraLeudo" + ".jpg");
+
+            Bitmap congelador = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_congelador);
+            File fileCongelador = new File(path, "congelador" + ".jpg");
+
+            Bitmap cortadorPan = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_cortador_de_pan);
+            File fileCortadorPan = new File(path, "cortadorPan" + ".jpg");
+
+            Bitmap horno = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_horno);
+            File fileHorno = new File(path, "horno" + ".jpg");
+
+            Bitmap laminadora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_laminadora);
+            File fileLaminadora = new File(path, "laminadora" + ".jpg");
+
+            Bitmap meson = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_meson_de_trabajo);
+            File fileMeson = new File(path, "meson" + ".jpg");
+
+            Bitmap refrigeradora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_refrigeradora);
+            File fileRefrigeradora = new File(path, "refrigeradora" + ".jpg");
+
+
+            //sequence
+
+            Bitmap empaquetado1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
+            File fileEmpaquetado1 = new File(path, "empaquetado1" + ".jpg");
+
+            Bitmap empaquetado2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado2);
+            File fileEmpaquetado2 = new File(path, "empaquetado2" + ".jpg");
+
+            Bitmap empaquetado3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado3);
+            File fileEmpaquetado3 = new File(path, "empaquetado3" + ".jpg");
+
+            Bitmap empaquetado4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado4);
+            File fileEmpaquetado4 = new File(path, "empaquetado4" + ".jpg");
+
+            Bitmap empaquetado5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado5);
+            File fileEmpaquetado5 = new File(path, "empaquetado5" + ".jpg");
+
+
+
+            OutputStream out = null;
+
+            try {
+                out = new FileOutputStream(filePanaderia);
+                panaderia.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileHistoriaEmpaquetado);
+                historiaEmpaquetado.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileAmasadora);
+                amasadora.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileBalanza);
+                balanza.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileBodega);
+                bodega.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileBoleadora);
+                boleadora.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileCamaraLeudo);
+                camaraLeudo.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileCongelador);
+                congelador.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileCortadorPan);
+                cortadorPan.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileHorno);
+                horno.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileLaminadora);
+                laminadora.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileMeson);
+                meson.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileRefrigeradora);
+                refrigeradora.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+
+
+
+                //sequence
+
+                out = new FileOutputStream(fileEmpaquetado1);
+                empaquetado1.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileEmpaquetado2);
+                empaquetado2.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileEmpaquetado3);
+                empaquetado3.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileEmpaquetado4);
+                empaquetado4.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(fileEmpaquetado5);
+                empaquetado5.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+
+                out.flush();
+                out.close();
+            } catch (Exception e) {
+
+            }
+
+            final int[] mSongs = new int[]{R.raw.amasadora, R.raw.balanza, R.raw.boleadora, R.raw.camara_leudo, R.raw.congelador,
+                    R.raw.cortador_pan, R.raw.horno, R.raw.laminadora, R.raw.meson, R.raw.refrigeradora};
+            list = new ArrayList<>();
+
+            for (int i = 0; i < mSongs.length; i++) {
+                try {
+                    String path2 = Environment.getExternalStorageDirectory().toString();
+                    File dir = new File(path2);
+                    if (dir.mkdirs() || dir.isDirectory()) {
+                        String str_song_name = i + ".mp3";
+                        CopyRAWtoSDCard(mSongs[i], path2 + File.separator + str_song_name);
+                        list.add(path2 + File.separator + str_song_name);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
             taller = new Taller();
             historia = new Historia();
             vocabulario = new Vocabulario();
             secuencia = new Secuencia();
 
-            String img = file.getPath().toString();
+            String panaderiaport = filePanaderia.getPath().toString();
             taller.setNombreTaller("Panaderia");
-            taller.setDescripcionTaller("En este taller inicial de panadería aprendemos los primeros conceptos y toda la teoría para elaborar panes básicos, con los ingredientes elementales que configuran un pan: harina, agua, levadura y sal.  Aprenderemos a usar diferentes tipos de harinas, sus usos y especificaciones técnicas.");
-            taller.setImagenTaller(img);
+            taller.setDescripcionTaller("En este taller de panadería aprendemos a elaborar panes básicos. Con los ingredientes elementales que configuran un pan: harina, agua, levadura y sal.  Aprenderemos a usar diferentes tipos de harinas, sus usos y especificaciones técnicas.");
+            taller.setImagenTaller(panaderiaport);
+            taller.setIdTaller(1);
             tallerDAO.create(taller);
 
 
-            historia.setNombreHistoria("Historia 1");
-            historia.setDescripcionHistoria("Aquí va una introducción de la historia y se relata brevemente las actividades que se realiza.");
-            historia.setNumeroLaminas("3");
-            historia.setDificultad("facil");
-            historia.setImagenHistoria(img);
+            String empaquetado = fileHistoriaEmpaquetado.getPath().toString();
+            historia.setNombreHistoria("Empaquetado");
+            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
+                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+            historia.setNumeroLaminas("5");
+            historia.setDificultad("medio");
+            historia.setImagenHistoria(empaquetado);
             historia.setIdTaller(1);
             historiaDAO.create(historia);
 
-            secuencia.setImagenSecuencia(img);
+
+
+            String pathEmpaquetado1 = fileEmpaquetado1.getPath().toString();
+            secuencia.setImagenSecuencia(pathEmpaquetado1);
             secuencia.setOrdenImagenSecuencia(0);
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
 
-            secuencia.setImagenSecuencia(img);
+            String pathEmpaquetado2 = fileEmpaquetado2.getPath().toString();
+            secuencia.setImagenSecuencia(pathEmpaquetado2);
             secuencia.setOrdenImagenSecuencia(1);
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
-            secuencia.setImagenSecuencia(img);
+
+            String pathEmpaquetado3 = fileEmpaquetado3.getPath().toString();
+            secuencia.setImagenSecuencia(pathEmpaquetado3);
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setIdHistoria(1);
+            secuenciaDAO.create(secuencia);
+
+            String pathEmpaquetado4 = fileEmpaquetado4.getPath().toString();
+            secuencia.setImagenSecuencia(pathEmpaquetado4);
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setIdHistoria(1);
+            secuenciaDAO.create(secuencia);
+
+            String pathEmpaquetado5 = fileEmpaquetado5.getPath().toString();
+            secuencia.setImagenSecuencia(pathEmpaquetado5);
             secuencia.setOrdenImagenSecuencia(2);
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
 
+            String pathAmasadora = fileAmasadora.getPath().toString();
+            vocabulario.setPalabra("Amasadora");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathAmasadora);
+            vocabulario.setSonidoPalabra(list.get(0));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
 
-            historia.setNombreHistoria("Historia 2");
-            historia.setDescripcionHistoria("Aquí va una introducción de la historia. Se relata brevemente las actividades que se realiza.");
-            historia.setNumeroLaminas("6");
-            historia.setDificultad("medio");
-            historia.setImagenHistoria(img);
-            historia.setIdTaller(1);
-            historiaDAO.create(historia);
-
-
-            historia.setNombreHistoria("Historia 3");
-            historia.setDescripcionHistoria("Aquí va una introducción de la historia. Se relata brevemente las actividades que se realiza.");
-            historia.setNumeroLaminas("9");
-            historia.setDificultad("dificil");
-            historia.setImagenHistoria(img);
-            historia.setIdTaller(1);
-            historiaDAO.create(historia);
-
-            vocabulario.setPalabra("Harina");
-            vocabulario.setTipoPalabra("Alimento");
-            vocabulario.setImagenPalabra(img);
+            String pathBalazna = fileBalanza.getPath().toString();
+            vocabulario.setPalabra("Balanza");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathBalazna);
             vocabulario.setSonidoPalabra(list.get(1));
             vocabulario.setIdTaller(1);
             vocabularioDAO.create(vocabulario);
 
 
-            vocabulario.setPalabra("Mantequilla");
-            vocabulario.setTipoPalabra("Alimento");
-            vocabulario.setImagenPalabra(img);
-            vocabulario.setSonidoPalabra(list.get(0));
+            String pathBoleadora = fileBoleadora.getPath().toString();
+            vocabulario.setPalabra("Boleadora");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathBoleadora);
+            vocabulario.setSonidoPalabra(list.get(2));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
+
+
+            String pathCamaraLeudo = fileCamaraLeudo.getPath().toString();
+            vocabulario.setPalabra("Cámara de Leudo");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathCamaraLeudo);
+            vocabulario.setSonidoPalabra(list.get(3));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
+
+
+            String pathCongelador = fileCongelador.getPath().toString();
+            vocabulario.setPalabra("Congelador");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathCongelador);
+            vocabulario.setSonidoPalabra(list.get(4));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
+
+
+            String pathCortadorPan = fileCortadorPan.getPath().toString();
+            vocabulario.setPalabra("Cortador de Pan");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathCortadorPan);
+            vocabulario.setSonidoPalabra(list.get(5));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
+
+            String pathHorno = fileHorno.getPath().toString();
+            vocabulario.setPalabra("Horno");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathHorno);
+            vocabulario.setSonidoPalabra(list.get(6));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
+
+
+            String pathLaminadora = fileLaminadora.getPath().toString();
+            vocabulario.setPalabra("Laminadora");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathLaminadora);
+            vocabulario.setSonidoPalabra(list.get(7));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
+
+
+            String pathMeson = fileMeson.getPath().toString();
+            vocabulario.setPalabra("Meson");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathMeson);
+            vocabulario.setSonidoPalabra(list.get(8));
             vocabulario.setIdTaller(1);
             vocabularioDAO.create(vocabulario);
 
 
 
-
+            String pathRefrigeradora = fileRefrigeradora.getPath().toString();
+            vocabulario.setPalabra("Refrigeradora");
+            vocabulario.setTipoPalabra("Herramienta");
+            vocabulario.setImagenPalabra(pathRefrigeradora);
+            vocabulario.setSonidoPalabra(list.get(9));
+            vocabulario.setIdTaller(1);
+            vocabularioDAO.create(vocabulario);
 
 
         }
 
 
-
-
-
-
     }
+
     private void CopyRAWtoSDCard(int id, String path) throws IOException {
         InputStream in = getResources().openRawResource(id);
         FileOutputStream out = new FileOutputStream(path);
