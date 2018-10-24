@@ -21,6 +21,7 @@ public class SecuenciaDAO extends SQLiteDB {
         ContentValues values = new ContentValues();
         values.put(ConstanteDB.COLUMN_IMAGEN_SECUENCIA, secuencia.getImagenSecuencia());
         values.put(ConstanteDB.COLUMN_IMAGEN_ORDEN, secuencia.getOrdenImagenSecuencia());
+        values.put(ConstanteDB.COLUMN_IMAGEN_DESCRIPCION, secuencia.getDescripcionImagenSecuencia());
         values.put(ConstanteDB.COLUMN_ID_HISTORIA_PK, secuencia.getIdHistoria());
 
 
@@ -50,6 +51,7 @@ public class SecuenciaDAO extends SQLiteDB {
         ContentValues values = new ContentValues();
         values.put(ConstanteDB.COLUMN_IMAGEN_SECUENCIA, secuencia.getImagenSecuencia());
         values.put(ConstanteDB.COLUMN_IMAGEN_ORDEN, secuencia.getOrdenImagenSecuencia());
+        values.put(ConstanteDB.COLUMN_IMAGEN_DESCRIPCION, secuencia.getDescripcionImagenSecuencia());
         // Which row to update, based on the ID
         String selection = ConstanteDB.COLUMN_ID_SECUENCIA + " LIKE ?";
         String[] selectionArgs = { String.valueOf(secuencia.getIdSecuencia()) };

@@ -80,6 +80,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
                     ConstanteDB.COLUMN_ID_SECUENCIA + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     ConstanteDB.COLUMN_IMAGEN_SECUENCIA + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_IMAGEN_ORDEN + INTEGER_ + COMMA_SEP +
+                    ConstanteDB.COLUMN_IMAGEN_DESCRIPCION + TEXT_TYPE + COMMA_SEP +
                     ConstanteDB.COLUMN_ID_HISTORIA_PK + INTEGER_ + " )";
 
     private static final String SQL_DELETE_SECUENCIA =
@@ -164,12 +165,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_VOCABULARIO);
         db.execSQL(SQL_CREATE_TALLER);
         db.execSQL(SQL_CREATE_TUTOR);
-
-//        db.execSQL(SQL_REGISTRO_TALLER);
         db.execSQL(SQL_REGISTRO_TUTOR);
-
-
-
 
 
     }

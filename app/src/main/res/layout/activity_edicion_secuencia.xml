@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.EdicionSecuenciaActivity">
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="172dp"
         android:layout_margin="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,10 +17,10 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="188dp"
+            android:background="@drawable/shapesquare"
             tools:layout_editor_absoluteX="357dp"
-            tools:layout_editor_absoluteY="92dp"
-            android:background="@drawable/shapesquare">
+            tools:layout_editor_absoluteY="92dp">
 
             <LinearLayout
                 android:id="@+id/layout_root"
@@ -33,38 +34,52 @@
         </HorizontalScrollView>
     </RelativeLayout>
 
+    <EditText
+        android:id="@+id/decripcionImagenSecuencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Aqui va una descripcion de la imagen de la secuencia"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.448"
+        android:paddingLeft="15dp"/>
+
 
     <RelativeLayout
-        android:layout_width="280dp"
-        android:layout_height="205dp"
+        android:layout_width="278dp"
+        android:layout_height="204dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shapesquare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.789">
+
 
         <ImageView
             android:id="@+id/imagenfoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:contentDescription="fotografía"
             android:layout_margin="5dp"
-            android:src="@drawable/no_foto"
-            />
+            android:contentDescription="fotografía"
+            android:src="@drawable/no_foto" />
 
         <ImageView
             android:id="@+id/btncamara"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="11dp"
+            android:layout_alignParentTop="true"
             android:layout_marginEnd="72dp"
             android:layout_marginRight="72dp"
+            android:layout_marginTop="11dp"
             android:onClick="tomarFoto"
             app:srcCompat="@android:drawable/ic_menu_camera" />
 
@@ -72,9 +87,9 @@
             android:id="@+id/btngalery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/btncamara"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/btncamara"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:onClick="galeria"

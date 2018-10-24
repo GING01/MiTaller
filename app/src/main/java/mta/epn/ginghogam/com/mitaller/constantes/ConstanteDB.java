@@ -35,6 +35,7 @@ public class ConstanteDB {
     public static final String COLUMN_ID_SECUENCIA = "secuencia_id";
     public static final String COLUMN_IMAGEN_SECUENCIA = "secuencia_imagen";
     public static final String COLUMN_IMAGEN_ORDEN = "secuencia_imagen_orden";
+    public static final String COLUMN_IMAGEN_DESCRIPCION = "secuencia_imagen_descripcion";
     public static final String COLUMN_ID_HISTORIA_PK = "historia_pk_id";
 
     //Tabla TUTOR
