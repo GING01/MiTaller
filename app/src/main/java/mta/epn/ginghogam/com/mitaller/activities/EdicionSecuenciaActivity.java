@@ -145,6 +145,8 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                         descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
                     }
                 });
+
+
             }
 
 
@@ -175,6 +177,8 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
 
     }
+
+
 
     View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
         @Override
