@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     private LinearLayout rootLayout, target;
 
     ImageView bt1, imagen, camara, galery;
+    EditText descripcionImagenSecuencia;
     Integer numeroImg;
     private File fileImagen;
     private String pathCamara, pathGaleria, pathArrastrar;
@@ -64,6 +66,8 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     private SecuenciaDAO secuenciaDAO;
     private boolean editar = false;
     private ArrayList<String> imagenes = new ArrayList<String>();
+    private ArrayList<String> descripcionImagenes = new ArrayList<String>();
+
     List<Secuencia> secuenciaList = new ArrayList<>();
 
 
@@ -89,6 +93,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         imagen = findViewById(R.id.imagenfoto);
         camara = findViewById(R.id.btncamara);
         galery = findViewById(R.id.btngalery);
+        descripcionImagenSecuencia = findViewById(R.id.decripcionImagenSecuencia);
         sqLiteDB = new SQLiteDB(this);
         secuenciaDAO = new SecuenciaDAO(this);
 
@@ -104,11 +109,13 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 secuencia.setIdSecuencia(cursor.getInt(0));
                 secuencia.setImagenSecuencia(cursor.getString(1));
                 secuencia.setOrdenImagenSecuencia(cursor.getInt(2));
-                secuencia.setIdHistoria(cursor.getInt(3));
+                secuencia.setDescripcionImagenSecuencia(cursor.getString(3));
+                secuencia.setIdHistoria(cursor.getInt(4));
                 secuenciaList.add(secuencia);
                 imagenes.add(cursor.getString(1));
+                descripcionImagenes.add(cursor.getString(3));
+
             } while (cursor.moveToNext());
-            //Toast.makeText(getApplicationContext(), "Imagen secuencia: " + secuencia.getImagenSecuencia(), Toast.LENGTH_LONG).show();
             for (int i = 0; i < secuenciaList.size(); i++) {
                 bt1 = new ImageView(getApplicationContext());
 
@@ -124,7 +131,21 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 bt1.setOnDragListener(dragListener);
                 bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
                 rootLayout.addView(bt1);
+
+
+                final int finalI = i;
+                bt1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        imagen.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(finalI).getImagenSecuencia()));
+                        descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
+
+                    }
+                });
+
             }
+
+
             editar = true;
             imagen.setOnLongClickListener(longClickListener);
         } else {
@@ -170,16 +191,18 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             int dragEvent = event.getAction();
             final View view = (View) event.getLocalState();
 
+
             switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED:
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
                 case DragEvent.ACTION_DROP:
-                    //Toast.makeText(getApplicationContext(), v.getTag() + "?", Toast.LENGTH_SHORT).show();
                     if (pathArrastrar == null && fileImagen == null) {
                         ((ImageView) v).setImageDrawable(imagen.getDrawable());
                         imagenes.set((Integer) v.getTag(), "");
+                        descripcionImagenes.set((Integer) v.getTag(), "");
+
                     } else if (fileImagen != null) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inJustDecodeBounds = false;
@@ -188,11 +211,15 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                         Bitmap bitmap = BitmapFactory.decodeFile(pathArrastrar);
                         ((ImageView) v).setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1024, 1024, true));
                         imagenes.set((Integer) v.getTag(), pathArrastrar);
+                        descripcionImagenes.set((Integer) v.getTag(), descripcionImagenSecuencia.getText().toString());
 
                     } else if (pathArrastrar != null && fileImagen == null) {
 
                         ponerFoto((ImageView) v, pathArrastrar);
                         imagenes.set((Integer) v.getTag(), RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathArrastrar)));
+                        descripcionImagenes.set((Integer) v.getTag(), descripcionImagenSecuencia.getText().toString());
+
+
                     }
 
 
@@ -358,6 +385,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 secuencia.setIdSecuencia(secuenciaList.get(i).getIdSecuencia());
                 secuencia.setImagenSecuencia(imagenes.get(i));
                 secuencia.setOrdenImagenSecuencia((i));
+                secuencia.setDescripcionImagenSecuencia(descripcionImagenes.get(i));
                 secuencia.setIdHistoria(historia.getIdHistoria());
                 secuenciaDAO.update(secuencia);
             }
@@ -369,6 +397,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 secuencia = new Secuencia();
                 secuencia.setImagenSecuencia(imagenes.get(i));
                 secuencia.setOrdenImagenSecuencia((i));
+                secuencia.setDescripcionImagenSecuencia(descripcionImagenes.get(i));
                 secuencia.setIdHistoria(historia.getIdHistoria());
                 secuenciaDAO.create(secuencia);
 
@@ -376,18 +405,18 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             finish();
 
         } else {
-            Toast.makeText(this, "revise si subio todas las imagenes para la secuencia", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Revisa si estan todas las imagenes para la secuencia", Toast.LENGTH_SHORT).show();
         }
 
     }
-    public void llamarmenu(View view){
+
+    public void llamarmenu(View view) {
         Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
         startActivity(intent);
         finish();
     }
-
 
 
 }

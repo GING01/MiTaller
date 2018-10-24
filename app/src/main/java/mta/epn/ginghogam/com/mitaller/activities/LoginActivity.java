@@ -384,6 +384,7 @@ public class LoginActivity extends AppCompatActivity {
             String pathEmpaquetado1 = fileEmpaquetado1.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado1);
             secuencia.setOrdenImagenSecuencia(0);
+            secuencia.setDescripcionImagenSecuencia("Uno");
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
@@ -391,6 +392,8 @@ public class LoginActivity extends AppCompatActivity {
             String pathEmpaquetado2 = fileEmpaquetado2.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado2);
             secuencia.setOrdenImagenSecuencia(1);
+            secuencia.setDescripcionImagenSecuencia("Dos");
+
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
@@ -398,18 +401,23 @@ public class LoginActivity extends AppCompatActivity {
             String pathEmpaquetado3 = fileEmpaquetado3.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado3);
             secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Tres");
+
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
             String pathEmpaquetado4 = fileEmpaquetado4.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado4);
             secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Cuatro");
+
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
             String pathEmpaquetado5 = fileEmpaquetado5.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado5);
             secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Cinco");
             secuencia.setIdHistoria(1);
             secuenciaDAO.create(secuencia);
 
