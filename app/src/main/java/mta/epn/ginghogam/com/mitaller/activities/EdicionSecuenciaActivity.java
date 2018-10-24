@@ -93,6 +93,9 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         imagen = findViewById(R.id.imagenfoto);
         camara = findViewById(R.id.btncamara);
         galery = findViewById(R.id.btngalery);
+
+
+
         descripcionImagenSecuencia = findViewById(R.id.decripcionImagenSecuencia);
         sqLiteDB = new SQLiteDB(this);
         secuenciaDAO = new SecuenciaDAO(this);
@@ -100,6 +103,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
         long params = historia.getIdHistoria();
         Cursor cursor = secuenciaDAO.retrieve(params);
+
 
         if (cursor.moveToFirst()) {
 
@@ -139,10 +143,9 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         imagen.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(finalI).getImagenSecuencia()));
                         descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
-                        imagenes.set((Integer) v.getTag(), secuenciaList.get(finalI).getImagenSecuencia());
-
                     }
                 });
+
 
             }
 
@@ -151,7 +154,6 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             imagen.setOnLongClickListener(longClickListener);
         } else {
             for (int i = 0; i < numeroImg; i++) {
-
 
                 bt1 = new ImageView(getApplicationContext());
                 LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(180, 180);
@@ -165,6 +167,8 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 bt1.setTag(i);
                 rootLayout.addView(bt1);
                 imagenes.add("");
+                descripcionImagenes.add("");
+
 
 
             }
@@ -173,6 +177,8 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
 
     }
+
+
 
     View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
         @Override
@@ -199,10 +205,13 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
                 case DragEvent.ACTION_DROP:
+
                     if (pathArrastrar == null && fileImagen == null) {
                         ((ImageView) v).setImageDrawable(imagen.getDrawable());
                         imagenes.set((Integer) v.getTag(), "");
-                        descripcionImagenes.set((Integer) v.getTag(), "");
+//                        descripcionImagenes.set((Integer) v.getTag(), "");
+                        descripcionImagenes.set((Integer) v.getTag(), descripcionImagenSecuencia.getText().toString());
+
 
                     } else if (fileImagen != null) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -363,14 +372,14 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     }
 
     private boolean comprobarImg() {
-        boolean nolleno = false;
+        boolean lleno = false;
         for (int j = 0; j < numeroImg; j++) {
             if (imagenes.get(j).equals("") || imagenes.get(j) == null || imagenes.isEmpty()) {
-                nolleno = true;
+                lleno = true;
             }
         }
 
-        if (nolleno == true) {
+        if (lleno == true) {
             return false;
         } else {
             return true;
@@ -406,7 +415,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             finish();
 
         } else {
-            Toast.makeText(this, "Revisa si estan todas las imagenes para la secuencia", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Revisa si estan todas las imágenes!", Toast.LENGTH_SHORT).show();
         }
 
     }
