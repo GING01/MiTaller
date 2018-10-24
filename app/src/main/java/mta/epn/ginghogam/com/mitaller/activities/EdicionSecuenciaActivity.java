@@ -143,6 +143,9 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         imagen.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(finalI).getImagenSecuencia()));
                         descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
+//                        pathArrastrar= imagen
+
+
                     }
                 });
 
@@ -208,10 +211,14 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
                     if (pathArrastrar == null && fileImagen == null) {
                         ((ImageView) v).setImageDrawable(imagen.getDrawable());
-                        imagenes.set((Integer) v.getTag(), "");
+                        if(imagenes.get((Integer)v.getTag())!=""){
+                            descripcionImagenes.set((Integer) v.getTag(), descripcionImagenSecuencia.getText().toString());
+                        }
+                        else{
+                            imagenes.set((Integer) v.getTag(), "");
 //                        descripcionImagenes.set((Integer) v.getTag(), "");
-                        descripcionImagenes.set((Integer) v.getTag(), descripcionImagenSecuencia.getText().toString());
-
+                            descripcionImagenes.set((Integer) v.getTag(), descripcionImagenSecuencia.getText().toString());
+                        }
 
                     } else if (fileImagen != null) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -372,17 +379,21 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     }
 
     private boolean comprobarImg() {
-        boolean lleno = false;
+        boolean nolleno = false;
         for (int j = 0; j < numeroImg; j++) {
             if (imagenes.get(j).equals("") || imagenes.get(j) == null || imagenes.isEmpty()) {
-                lleno = true;
+                nolleno = true;
             }
         }
 
-        if (lleno == true) {
+        if (nolleno == true) {
+            Toast.makeText(this, "no estan !", Toast.LENGTH_SHORT).show();
             return false;
+
         } else {
+            Toast.makeText(this, "si estan!", Toast.LENGTH_SHORT).show();
             return true;
+
         }
     }
 
