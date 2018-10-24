@@ -139,6 +139,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         imagen.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(finalI).getImagenSecuencia()));
                         descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
+                        imagenes.set((Integer) v.getTag(), secuenciaList.get(finalI).getImagenSecuencia());
 
                     }
                 });
@@ -362,14 +363,14 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     }
 
     private boolean comprobarImg() {
-        boolean lleno = false;
+        boolean nolleno = false;
         for (int j = 0; j < numeroImg; j++) {
             if (imagenes.get(j).equals("") || imagenes.get(j) == null || imagenes.isEmpty()) {
-                lleno = true;
+                nolleno = true;
             }
         }
 
-        if (lleno == true) {
+        if (nolleno == true) {
             return false;
         } else {
             return true;
