@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="26dp"
-                android:thumb="@drawable/seekbaricon"/>
+                android:thumb="@drawable/seekbaricon2"/>
 
 
         </RelativeLayout>

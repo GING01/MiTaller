@@ -42,10 +42,10 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_margin="15dp"
-            android:thumbTint="#42a4f4"
+
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="142dp"
-            android:thumb="@drawable/seekbaricon"/>
+            android:thumb="@drawable/seekbaricon2"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
