@@ -83,17 +83,15 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     private Historia historia;
     private Taller taller;
     private SecuenciaDAO secuenciaDAO;
-    private Integer tiempo=1 ;
+    private Integer tiempo = 1;
     private TextView ttiempo;
     long start;
     long end;
-    private Boolean logro =false;
+    private Boolean logro = false;
     AlertDialog dialog;
     Handler handler1;
     private String titulo;
     MediaPlayer well, wrong, hend, bend;
-
-
 
 
     @Override
@@ -108,21 +106,16 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
-
-
-
         TtS = new TextToSpeech(this, this);
 
         target = (LinearLayout) findViewById(R.id.target1);
         btnTarget = (LinearLayout) findViewById(R.id.btnTarget);
         rootLayout = (LinearLayout) findViewById(R.id.layout_root);
         rootLayout2 = (LinearLayout) findViewById(R.id.layout_root2);
-        wrong=MediaPlayer.create(this, R.raw.wrongmove);
-        hend=MediaPlayer.create(this,R.raw.welldone);
-        bend=MediaPlayer.create(this,R.raw.tryagain);
-        well=MediaPlayer.create(this,R.raw.rigth);
-
-
+        wrong = MediaPlayer.create(this, R.raw.wrongmove);
+        hend = MediaPlayer.create(this, R.raw.welldone);
+        bend = MediaPlayer.create(this, R.raw.tryagain);
+        well = MediaPlayer.create(this, R.raw.rigth);
 
 
         secuenciaDAO = new SecuenciaDAO(this);
@@ -132,7 +125,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         estudiante = extras.getParcelable("estudiante");
         historia = extras.getParcelable("historia");
         taller = extras.getParcelable("taller");
-
 
 
         long id = historia.getIdHistoria();
@@ -162,7 +154,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
             itemLayout.setId(ITEM_ID + i);
             itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
             params.setMargins(10, 10, 10, 10);
 
@@ -214,12 +206,12 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
 
         lectura = findViewById(R.id.texto);
-        ttiempo=(TextView) findViewById(R.id.tiempoedt);
+        ttiempo = (TextView) findViewById(R.id.tiempoedt);
         guia = findViewById(R.id.guia);
 
-        String msj = "Por favor, ordena las imágenes!";
+        String msj = "Selecciona una imagen y arrastrala hacia los cuadros superiores";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(0,0,0));
+        lectura.setTextColor(rgb(0, 0, 0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,7 +221,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         });
 
 
-
     }
 
     @Override
@@ -237,8 +228,6 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         tiempo();
         super.onStart();
     }
-
-
 
 
     View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
@@ -279,13 +268,13 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         wrong.start();
                         inCorrectas++;
                     }
-                    if (correctas == lista.size() && inCorrectas==0) {
+                    if (correctas == lista.size() && inCorrectas == 0) {
 
                     }
                     if (correctas == lista.size()) {
-                        end =System.currentTimeMillis();
-                        logro=true;
-                         tiempaso =(end-start)/1000;
+                        end = System.currentTimeMillis();
+                        logro = true;
+                        tiempaso = (end - start) / 1000;
                         welldone();
                     }
                     break;
@@ -295,7 +284,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         }
     };
 
-    public void cerraTiempo(final Integer i){
+    public void cerraTiempo(final Integer i) {
         handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override
@@ -312,9 +301,9 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         intent.putExtra("estudiante", estudiante);
                         intent.putExtra("tutor", tutor);
                         intent.putExtra("taller", taller);
-                        intent.putExtra("tiempo",(long) tiempo*60);
+                        intent.putExtra("tiempo", (long) tiempo * 60);
                         intent.putExtra("logro", false);
-                        intent.putExtra("correctas",correctas);
+                        intent.putExtra("correctas", correctas);
                         intent.putExtra("incorrectas", inCorrectas);
                         startActivity(intent);
                         dialog.dismiss();
@@ -333,7 +322,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     }
 
     private void hablar() {
-        String msj = "Por favor, ordena las imágenes!";
+        String msj = "Selecciona una imagen y arrastrala hacia los cuadros superiores";
 
         final String texto = msj.toString();
 
@@ -377,18 +366,18 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
-    public void tiempo(){
+    public void tiempo() {
 
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
         final View mView = getLayoutInflater().inflate(R.layout.dialog_tiempo, null);
-        final SeekBar seekBar =mView.findViewById(R.id.seekBartiempo);
-        final TextView txttiempo= mView.findViewById(R.id.txttiempo);
+        final SeekBar seekBar = mView.findViewById(R.id.seekBartiempo);
+        final TextView txttiempo = mView.findViewById(R.id.txttiempo);
         seekBar.setMax(9);
-        txttiempo.setText((seekBar.getProgress()+1) + " min");
+        txttiempo.setText((seekBar.getProgress() + 1) + " min");
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txttiempo.setText((progress+1) + " min");
+                txttiempo.setText((progress + 1) + " min");
             }
 
             @Override
@@ -404,10 +393,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         mBuilder.setView(mView);
         mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                tiempo = seekBar.getProgress()+1;
-                ttiempo.setText(tiempo+"");
-                cerraTiempo(tiempo*60000);
-                start =System.currentTimeMillis();
+                tiempo = seekBar.getProgress() + 1;
+                ttiempo.setText(tiempo + "");
+                cerraTiempo(tiempo * 60000);
+                start = System.currentTimeMillis();
                 dialog.dismiss();
 
 
@@ -424,39 +413,40 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         dialog.show();
     }
 
-    public void welldone(){
+    public void welldone() {
 
         handler1.removeCallbacksAndMessages(null);
 
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
-         View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
         ImageButton imageButton = mView.findViewById(R.id.welldoneico);
         hend.start();
-       imageButton.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             Intent intent = new Intent(getApplicationContext(), ResultadosActivity.class);
-             intent.putExtra("historia", historia);
-             intent.putExtra("estudiante", estudiante);
-             intent.putExtra("tutor", tutor);
-             intent.putExtra("taller", taller);
-             intent.putExtra("tiempo",tiempaso);
-             intent.putExtra("logro", logro);
-             intent.putExtra("correctas",correctas);
-             intent.putExtra("incorrectas", inCorrectas);
-             startActivity(intent);
-             dialog.dismiss();
-             finish();
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ResultadosActivity.class);
+                intent.putExtra("historia", historia);
+                intent.putExtra("estudiante", estudiante);
+                intent.putExtra("tutor", tutor);
+                intent.putExtra("taller", taller);
+                intent.putExtra("tiempo", tiempaso);
+                intent.putExtra("logro", logro);
+                intent.putExtra("correctas", correctas);
+                intent.putExtra("incorrectas", inCorrectas);
+                startActivity(intent);
+                dialog.dismiss();
+                finish();
 
-         }
-     });
+            }
+        });
         mBuilder.setView(mView);
         dialog = mBuilder.create();
         dialog.setCancelable(false);
         dialog.show();
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -466,16 +456,16 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         //getSupportActionBar().setCustomView(R.layout.menu_juego_taller_titulo);
         //getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-       Bundle extras = getIntent().getExtras();
-       historia = extras.getParcelable("historia");
-       getSupportActionBar().setTitle(historia.getNombreHistoria().toUpperCase());
+        Bundle extras = getIntent().getExtras();
+        historia = extras.getParcelable("historia");
+        getSupportActionBar().setTitle(historia.getNombreHistoria().toUpperCase());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

@@ -112,7 +112,6 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
                 "Los recuadros verdes son comida";
         lectura.setText(msj);
         lectura.setTextColor(rgb(0,0,0));
-        TtS = new TextToSpeech(this, this);
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,7 +243,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         if (text == TextToSpeech.SUCCESS) {
             int lenguaje = TtS.isLanguageAvailable(new Locale("spa", "ESP"));
             if (lenguaje == TextToSpeech.LANG_MISSING_DATA || lenguaje == TextToSpeech.LANG_NOT_SUPPORTED) {
-                //hablar();
+                hablar();
             } else {
             }
         } else {

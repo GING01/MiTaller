@@ -100,7 +100,7 @@
             <TextView
 
                 android:id="@+id/texto"
-                android:layout_width="317dp"
+                android:layout_width="806dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:gravity="center"

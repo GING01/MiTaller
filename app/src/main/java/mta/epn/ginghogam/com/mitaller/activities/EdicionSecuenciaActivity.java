@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -52,7 +51,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     private LinearLayout rootLayout, target;
 
     ImageView bt1, imagen, camara, galery;
-    EditText descripcionImagenSecuencia, sequenceDes;
+    EditText descripcionImagenSecuencia;
     Integer numeroImg;
     private File fileImagen;
     private String pathCamara, pathGaleria, pathArrastrar;
@@ -123,27 +122,12 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             } while (cursor.moveToNext());
             for (int i = 0; i < secuenciaList.size(); i++) {
                 bt1 = new ImageView(getApplicationContext());
-                sequenceDes = new EditText(getApplicationContext());
 
                 LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(180, 180);
                 parametros.gravity = Gravity.CENTER;
                 parametros.setMargins(10, 10, 10, 10);
 
-                LinearLayout.LayoutParams parametros2 = new LinearLayout.LayoutParams(180, 180);
-                parametros.gravity = Gravity.CENTER;
-
-                bt1.setLayoutParams(parametros2);
-                sequenceDes.setLayoutParams(parametros);
-                sequenceDes.setText(secuenciaList.get(i).getDescripcionImagenSecuencia());
-//                sequenceDes.setBackgroundColor(Color.WHITE);
-//                sequenceDes.setTextColor(Color.BLACK);
-//                GradientDrawable border = new GradientDrawable();
-//                border.setColor(Color.WHITE); //white background
-//                border.setStroke(1, Color.BLACK); //black border with full opacity
-//                border.setCornerRadius(1);
-//                sequenceDes.setBackground(border);
-                sequenceDes.setPadding(10,10,10,10);
-
+                bt1.setLayoutParams(parametros);
 
 
                 bt1.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(i).getImagenSecuencia()));
@@ -151,7 +135,6 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 bt1.setOnDragListener(dragListener);
                 bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
                 rootLayout.addView(bt1);
-                rootLayout.addView(sequenceDes);
 
 
                 final int finalI = i;

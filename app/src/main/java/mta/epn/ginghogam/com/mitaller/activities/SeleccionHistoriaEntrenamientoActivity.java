@@ -27,9 +27,11 @@ import mta.epn.ginghogam.com.mitaller.adaptadores.viewpager.CardPagerAdapterHist
 import mta.epn.ginghogam.com.mitaller.adaptadores.viewpager.CardPagerAdapterS;
 import mta.epn.ginghogam.com.mitaller.db.HistoriaDAO;
 import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
+import mta.epn.ginghogam.com.mitaller.db.SecuenciaDAO;
 import mta.epn.ginghogam.com.mitaller.db.TallerDAO;
 import mta.epn.ginghogam.com.mitaller.entidades.Estudiante;
 import mta.epn.ginghogam.com.mitaller.entidades.Historia;
+import mta.epn.ginghogam.com.mitaller.entidades.Secuencia;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.utilidades.ShadowTransformer;
@@ -47,14 +49,15 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
     public int valor;
 
 
-
     Context context;
 
     private HistoriaDAO historiaDAO;
+    private SecuenciaDAO secuenciaDAO;
 
     private Taller taller;
     private Estudiante estudiante;
     private Tutor tutor;
+    private Secuencia secuencia;
 
     private TextView lectura;
     private ImageView guia;
@@ -94,14 +97,18 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         mCardAdapter = new CardPagerAdapterHistoria();
 
         historiaDAO = new HistoriaDAO(this);
+        secuenciaDAO = new SecuenciaDAO(this);
 
         List<Historia> historiaList = new ArrayList<>();
+        List<Secuencia> secuenciaList = new ArrayList<>();
+
 
         long params = taller.getIdTaller();
-
-       Cursor cursor = historiaDAO.retrieveWithDificult(params, "'"+dificultadSeleccionada.toString().trim()+"'");
-
+        Cursor cursor = historiaDAO.retrieveWithDificult(params, "'" + dificultadSeleccionada.toString().trim() + "'");
         Historia historia;
+
+
+
 
         if (cursor.moveToFirst()) {
             do {
@@ -118,11 +125,12 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
                 historiaList.add(historia);
 
 
-                mCardAdapter.addCardItemS(historia, estudiante, tutor,taller);
+
+
+
+                mCardAdapter.addCardItemS(historia, estudiante, tutor, taller);
             } while (cursor.moveToNext());
         }
-
-
 
 
         lectura = findViewById(R.id.texto);
@@ -130,7 +138,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
         String msj = "Selecciona la historia";
         lectura.setText(msj);
-        lectura.setTextColor(rgb(0,0,0));
+        lectura.setTextColor(rgb(0, 0, 0));
 
         guia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +183,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
 
     }
+
     @Override
     public void onInit(int text) {
         if (text == TextToSpeech.SUCCESS) {
@@ -196,6 +205,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -207,7 +217,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         return super.onOptionsItemSelected(item);
     }
 
-    public void llamarmenu(View view){
+    public void llamarmenu(View view) {
         Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
