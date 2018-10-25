@@ -44,7 +44,8 @@
             android:layout_margin="15dp"
             android:thumbTint="#42a4f4"
             tools:layout_editor_absoluteX="280dp"
-            tools:layout_editor_absoluteY="142dp" />
+            tools:layout_editor_absoluteY="142dp"
+            android:thumb="@drawable/seekbaricon"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
