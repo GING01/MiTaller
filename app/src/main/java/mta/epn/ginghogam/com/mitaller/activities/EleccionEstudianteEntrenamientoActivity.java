@@ -137,6 +137,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         builder.setView(input);
 
+
 // Set up the buttons
 
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
