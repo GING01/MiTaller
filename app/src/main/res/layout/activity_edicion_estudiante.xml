@@ -44,7 +44,8 @@
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="1.0"
+            android:layout_alignParentLeft="true">
 
             <ImageView
                 android:id="@+id/img_estudiante"
@@ -95,7 +96,8 @@
             app:layout_constraintHorizontal_bias="0.112"
             app:layout_constraintStart_toEndOf="@+id/frameLayout"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.387">
+            app:layout_constraintVertical_bias="0.387"
+            android:layout_alignParentRight="true">
 
             <EditText
                 android:id="@+id/nombre_estudiante"
@@ -106,7 +108,8 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:imeOptions="actionNext"/>
 
             <EditText
                 android:id="@+id/apellido_estudiante"
@@ -115,7 +118,8 @@
                 android:layout_marginLeft="5dp"
                 android:hint="Apellido"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:imeOptions="actionNext"/>
 
             <EditText
                 android:id="@+id/edad_estudiante"
@@ -186,7 +190,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:hint="Perfil del estudiante"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:imeOptions="actionDone"/>
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
