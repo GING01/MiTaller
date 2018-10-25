@@ -13,6 +13,7 @@
         android:layout_width="926dp"
         android:layout_height="427dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
@@ -25,18 +26,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_alignParentRight="true">
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="132dp"
-            android:layout_marginStart="132dp"
+            android:layout_marginLeft="128dp"
+            android:layout_marginStart="128dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/shapesquare"
             android:paddingLeft="10dp"
@@ -44,8 +45,7 @@
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            android:layout_alignParentLeft="true">
+            app:layout_constraintVertical_bias="0.409">
 
             <ImageView
                 android:id="@+id/img_estudiante"
@@ -84,6 +84,7 @@
             android:layout_width="301dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -93,11 +94,10 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.112"
+            app:layout_constraintHorizontal_bias="0.095"
             app:layout_constraintStart_toEndOf="@+id/frameLayout"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.387"
-            android:layout_alignParentRight="true">
+            app:layout_constraintVertical_bias="0.06">
 
             <EditText
                 android:id="@+id/nombre_estudiante"
@@ -105,11 +105,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:hint="Nombre"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:imeOptions="actionNext"/>
+
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/apellido_estudiante"
@@ -117,9 +119,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:hint="Apellido"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:imeOptions="actionNext"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edad_estudiante"
@@ -131,6 +134,7 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textSize="18dp"
+
                 android:textStyle="bold" />
 
             <RadioGroup
@@ -169,7 +173,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="705dp"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
@@ -181,8 +185,10 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.816">
 
             <EditText
                 android:id="@+id/perfil_estudiante"
@@ -190,8 +196,10 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:hint="Perfil del estudiante"
-                android:inputType="textMultiLine"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionDone"
+
+
+                android:inputType="textMultiLine" />
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
