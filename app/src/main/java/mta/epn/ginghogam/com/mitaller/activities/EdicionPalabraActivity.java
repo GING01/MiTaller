@@ -332,6 +332,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 vocabulario.setTipoPalabra(tipoPalabra);
                 vocabulario.setImagenPalabra(fileImagen.getPath().toString());
                 vocabularioDAO.update(vocabulario);
+                Toast.makeText(this,"La palabra ha sido modificada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria != null){
@@ -340,7 +341,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 vocabulario.setTipoPalabra(tipoPalabra);
                 vocabulario.setImagenPalabra(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 vocabularioDAO.update(vocabulario);
-                finish();
+                Toast.makeText(this,"La palabra ha sido modificada", Toast.LENGTH_SHORT).show();                finish();
             }
             if (pathGaleria == null && fileImagen == null){
                 vocabulario.setPalabra(palabra.getText().toString());
@@ -348,7 +349,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 vocabulario.setTipoPalabra(tipoPalabra);
                 vocabulario.setImagenPalabra(vocabulario.getImagenPalabra());
                 vocabularioDAO.update(vocabulario);
-                finish();
+                Toast.makeText(this,"La palabra ha sido modificada", Toast.LENGTH_SHORT).show();                finish();
             }
             if (pathGaleria == null){
                 vocabulario.setPalabra(palabra.getText().toString());
@@ -356,7 +357,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 vocabulario.setTipoPalabra(tipoPalabra);
                 vocabulario.setImagenPalabra(vocabulario.getImagenPalabra());
                 vocabularioDAO.update(vocabulario);
-                finish();
+                Toast.makeText(this,"La palabra ha sido modificada", Toast.LENGTH_SHORT).show();                finish();
             }
             if (fileImagen == null){
                 vocabulario.setPalabra(palabra.getText().toString());
@@ -364,7 +365,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 vocabulario.setTipoPalabra(tipoPalabra);
                 vocabulario.setImagenPalabra(vocabulario.getImagenPalabra());
                 vocabularioDAO.update(vocabulario);
-                finish();
+                Toast.makeText(this,"La palabra ha sido modificada", Toast.LENGTH_SHORT).show();                finish();
             }
 
 
@@ -379,6 +380,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 vocabulario.setImagenPalabra(fileImagen.getPath().toString());
                 vocabulario.setIdTaller(taller.getIdTaller());
                 vocabularioDAO.create(vocabulario);
+                Toast.makeText(this,"Palabra registrada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria != null && !palabra.getText().toString().isEmpty()){
@@ -386,10 +388,10 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 vocabulario.setPalabra(palabra.getText().toString());
                 vocabulario.setSonidoPalabra(fileName);
                 vocabulario.setTipoPalabra(tipoPalabra);
-
                 vocabulario.setImagenPalabra(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 vocabulario.setIdTaller(taller.getIdTaller());
                 vocabularioDAO.create(vocabulario);
+                Toast.makeText(this,"Palabra registrada", Toast.LENGTH_SHORT).show();
                 finish();
             }
        /*     if(pathGaleria == null && fileImagen == null && !nombreHistoria.getText().toString().isEmpty() && !descripcionHistoria.getText().toString().isEmpty()){
@@ -592,6 +594,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         imageViewPlay.setImageResource(R.drawable.ic_play);
         chronometer.stop();
     }
+
     public void llamarmenu(View view){
         Intent intent = new Intent(getApplicationContext(), MenuInicialActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -599,8 +602,6 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         startActivity(intent);
         finish();
     }
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

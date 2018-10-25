@@ -111,7 +111,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
         estudiante = getIntent().getParcelableExtra(EdicionEstudianteActivity.class.getSimpleName());
 
         if(estudiante != null){
-            Toast.makeText(this,"id t: "+estudiante.getGeneroEstudiante(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,"id t: "+estudiante.getGeneroEstudiante(), Toast.LENGTH_LONG).show();
             nombre.setText(estudiante.getNombreEstudiate());
             apellido.setText(estudiante.getApellidoEstudiante());
             edad.setText(Integer.toString(estudiante.getEdadEstudiante()));
@@ -192,7 +192,9 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(fileImagen.getPath().toString());
                 estudianteDAO.update(estudiante);
+                Toast.makeText(this,"El estudiante ha sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
+
             }
             if (pathGaleria != null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
@@ -202,7 +204,8 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 estudianteDAO.update(estudiante);
-                finish();
+                Toast.makeText(this,"El estudiante ha sido modificado", Toast.LENGTH_SHORT).show();                finish();
+
             }
             if (pathGaleria == null && fileImagen == null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
@@ -212,7 +215,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(estudiante.getFotoEstudiante());
                 estudianteDAO.update(estudiante);
-                finish();
+                Toast.makeText(this,"El estudiante ha sido modificado", Toast.LENGTH_SHORT).show();                finish();
             }
             if (pathGaleria == null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
@@ -222,7 +225,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(estudiante.getFotoEstudiante());
                 estudianteDAO.update(estudiante);
-                finish();
+                Toast.makeText(this,"El estudiante ha sido modificado", Toast.LENGTH_SHORT).show();                finish();
             }
             if (fileImagen == null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101){
                 estudiante.setNombreEstudiate(nombre.getText().toString());
@@ -232,7 +235,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(estudiante.getFotoEstudiante());
                 estudianteDAO.update(estudiante);
-                finish();
+                Toast.makeText(this,"El estudiante ha sido modificado", Toast.LENGTH_SHORT).show();                finish();
             }
 
 
@@ -247,8 +250,9 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setEdadEstudiante(Integer.parseInt(edad.getText().toString()));
                 estudiante.setFotoEstudiante(fileImagen.getPath().toString());
                 estudiante.setIdTutor(tutor.getIdTutor());
-                Toast.makeText(this, "genero: " + generoSelected, Toast.LENGTH_LONG).show();
+               // Toast.makeText(this, "genero: " + generoSelected, Toast.LENGTH_LONG).show();
                 estudianteDAO.create(estudiante);
+                Toast.makeText(this,"Estudiante registrado", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria != null && Integer.parseInt(String.valueOf(edad.getText()))>=1 && Integer.parseInt(String.valueOf(edad.getText()))<=101) {
@@ -261,6 +265,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setFotoEstudiante(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 estudiante.setIdTutor(tutor.getIdTutor());
                 estudianteDAO.create(estudiante);
+                Toast.makeText(this,"El estudiante a sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }

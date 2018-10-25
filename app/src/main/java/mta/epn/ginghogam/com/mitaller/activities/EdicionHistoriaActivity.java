@@ -177,6 +177,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historiaDAO.update(historia);
+                Toast.makeText(this,"la historia ha sido modificada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria != null){
@@ -184,6 +185,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 historiaDAO.update(historia);
+                Toast.makeText(this,"la historia ha sido modificada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria == null && fileImagen == null){
@@ -191,6 +193,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
+                Toast.makeText(this,"la historia ha sido modificada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria == null){
@@ -198,6 +201,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
+                Toast.makeText(this,"la historia ha sido modificada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (fileImagen == null){
@@ -205,6 +209,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setDescripcionHistoria(descripcionHistoria.getText().toString());
                 historia.setImagenHistoria(historia.getImagenHistoria());
                 historiaDAO.update(historia);
+                Toast.makeText(this,"la historia ha sido modificada", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
@@ -220,6 +225,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setImagenHistoria(fileImagen.getPath().toString());
                 historia.setIdTaller(taller.getIdTaller());
                 historiaDAO.create(historia);
+                Toast.makeText(this,"Historia registrada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria != null && !nombreHistoria.getText().toString().isEmpty() && !descripcionHistoria.getText().toString().isEmpty()){
@@ -230,18 +236,19 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 historia.setIdTaller(taller.getIdTaller());
-                Toast.makeText(this,"id taller: "+taller.getIdTaller(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"id taller: "+taller.getIdTaller(),Toast.LENGTH_LONG).show();
                 historiaDAO.create(historia);
+                Toast.makeText(this,"Historia registrada", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if(pathGaleria == null && fileImagen == null && !nombreHistoria.getText().toString().isEmpty() && !descripcionHistoria.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && !nombreHistoria.getText().toString().isEmpty() && descripcionHistoria.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && nombreHistoria.getText().toString().isEmpty() && !descripcionHistoria.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && nombreHistoria.getText().toString().isEmpty() && descripcionHistoria.getText().toString().isEmpty()){
                 Toast.makeText(getApplicationContext(),"Debes realizar alguna accion",Toast.LENGTH_LONG).show();

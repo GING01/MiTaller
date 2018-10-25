@@ -145,6 +145,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(imagenCamara);
                 tallerDAO.update(taller);
+                Toast.makeText(this,"El taller ha sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria != null){
@@ -152,6 +153,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 tallerDAO.update(taller);
+                Toast.makeText(this,"El taller ha sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria == null && fileImagen == null){
@@ -159,6 +161,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(taller.getImagenTaller());
                 tallerDAO.update(taller);
+                Toast.makeText(this,"El taller ha sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria == null){
@@ -166,6 +169,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(taller.getImagenTaller());
                 tallerDAO.update(taller);
+                Toast.makeText(this,"El taller ha sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (fileImagen == null){
@@ -173,6 +177,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(taller.getImagenTaller());
                 tallerDAO.update(taller);
+                Toast.makeText(this,"El taller ha sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
@@ -185,6 +190,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(imagenCamara);
                 tallerDAO.create(taller);
+                Toast.makeText(this,"Taller registrado", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if (pathGaleria != null && !nombreTaller.getText().toString().isEmpty() && !descripcionTaller.getText().toString().isEmpty()){
@@ -193,6 +199,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 tallerDAO.create(taller);
+                Toast.makeText(this,"Taller registrado", Toast.LENGTH_SHORT).show();
                 finish();
             }
             if(pathGaleria == null && fileImagen == null && !nombreTaller.getText().toString().isEmpty() && !descripcionTaller.getText().toString().isEmpty()){

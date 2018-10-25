@@ -404,8 +404,10 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 secuencia.setOrdenImagenSecuencia((i));
                 secuencia.setDescripcionImagenSecuencia(descripcionImagenes.get(i));
                 secuencia.setIdHistoria(historia.getIdHistoria());
+
                 secuenciaDAO.update(secuencia);
             }
+            Toast.makeText(this,"La secuencia ha sido modificada", Toast.LENGTH_SHORT).show();
             finish();
 
         } else if (edit == false && comprobarImg()) {
@@ -418,7 +420,9 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 secuencia.setIdHistoria(historia.getIdHistoria());
                 secuenciaDAO.create(secuencia);
 
+
             }
+            Toast.makeText(this,"La secuencia ha sido modificada", Toast.LENGTH_SHORT).show();
             finish();
 
         } else {
