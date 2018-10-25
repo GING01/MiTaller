@@ -414,7 +414,7 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         switch(view.getId()) {
             case R.id.rbAlimento:
                 if (checked)
-                    tipoPalabra = "Alimento";
+                    tipoPalabra = "Ingrediente";
                 break;
             case R.id.rbLimpieza:
                 if (checked)
@@ -528,7 +528,6 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         chronometer.stop();
         chronometer.setBase(SystemClock.elapsedRealtime());
         //showing the play button
-        Toast.makeText(this, "Recording saved successfully.", Toast.LENGTH_SHORT).show();
     }
 
     private void startRecording() {
@@ -539,12 +538,12 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
         /**In the lines below, we create a directory VoiceRecorderSimplifiedCoding/Audios in the phone storage
          * and the audios are being stored in the Audios folder **/
         File root = android.os.Environment.getExternalStorageDirectory();
-        File file = new File(root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios");
+        File file = new File(root.getAbsolutePath() + "Audios");
         if (!file.exists()) {
             file.mkdirs();
         }
 
-        fileName =  root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios/" +
+        fileName =  root.getAbsolutePath() + "Audios/" +
                 String.valueOf(System.currentTimeMillis() + ".mp3");
         Log.d("filename",fileName);
         mRecorder.setOutputFile(fileName);

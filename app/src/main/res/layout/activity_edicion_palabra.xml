@@ -194,7 +194,7 @@
                         android:layout_centerHorizontal="true"
                         android:checked="true"
                         android:onClick="radioClicked"
-                        android:text="Alimento" />
+                        android:text="Ingrediente" />
 
                     <RadioButton
                         android:id="@+id/rbPeligro"
