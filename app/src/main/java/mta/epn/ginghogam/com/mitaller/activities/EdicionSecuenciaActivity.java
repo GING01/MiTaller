@@ -60,7 +60,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
     final static int RESULTADO_GALERIA = 2;
     final static int RESULTADO_FOTO = 3;
 
-    private static final String DIRECTORIO_IMAGEN = "misImagenesApp/";
+    private static final String DIRECTORIO_IMAGEN = "secuencias/";
 
     private SQLiteDB sqLiteDB;
     private SecuenciaDAO secuenciaDAO;
@@ -387,13 +387,9 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         }
 
         if (nolleno == true) {
-            Toast.makeText(this, "no estan !", Toast.LENGTH_SHORT).show();
             return false;
-
         } else {
-            Toast.makeText(this, "si estan!", Toast.LENGTH_SHORT).show();
             return true;
-
         }
     }
 

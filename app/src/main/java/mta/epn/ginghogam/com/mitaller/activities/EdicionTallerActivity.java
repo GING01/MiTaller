@@ -92,7 +92,6 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 if (!file.exists()) {
                     imgTaller.setImageResource(R.drawable.no_foto);
                 }else {
-                    Toast.makeText(this,taller.getImagenTaller(), Toast.LENGTH_LONG).show();
 
                     imgTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller().toString()));
                 }
