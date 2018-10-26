@@ -52,7 +52,7 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
     List myList;
     ArrayList<String> l;
     String msj;
-
+    String ahivele;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
