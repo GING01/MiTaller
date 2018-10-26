@@ -56,7 +56,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
 
-        Toast.makeText(this,tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
 
         recyclerEstudiante = (RecyclerView) findViewById(R.id.recyclerEstudianteEntrenamiento);
 
@@ -129,7 +129,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Ingresa tu password para continuar");
+        builder.setTitle("Hola "+tutor.getNombreTutor()+", "+ "ingresa tu contraseña para continuar");
 
 // Set up the input
         final EditText input = new EditText(this);

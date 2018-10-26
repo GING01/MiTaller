@@ -150,7 +150,6 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         nombreApellido.setText(nombreEstudiante);
 
-        Toast.makeText(getApplicationContext()," id taller"+idTaller+"  "+idHistoria, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -207,7 +206,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setVerticalLabelsAlign(Paint.Align.CENTER);
         graph.getGridLabelRenderer().setTextSize(14);
 
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Estudiante: " + nombreEstudiante);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("ESTUDIANTE: " + nombreEstudiante);
         graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.BLUE);
         graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(12);
         graph.getGridLabelRenderer().setTextSize(14);
@@ -426,13 +425,13 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         });
 
 
-        graph.getGridLabelRenderer().setVerticalAxisTitle("Tiempo (segundos)");
+        graph.getGridLabelRenderer().setVerticalAxisTitle("TIEMPO (segundos)");
         graph.getGridLabelRenderer().setVerticalLabelsColor(Color.BLUE);
         graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(18);
         graph.getGridLabelRenderer().setVerticalLabelsAlign(Paint.Align.CENTER);
         graph.getGridLabelRenderer().setTextSize(14);
 
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Estudiante: " + nombreEstudiante);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("ESTUDIANTE: " + nombreEstudiante);
         graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.BLUE);
         graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(12);
         graph.getGridLabelRenderer().setTextSize(14);
@@ -536,8 +535,6 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 switch (position) {
                     default:
                         idTaller = listTalleres.get(position).getIdTaller();
-                        Toast.makeText(getApplicationContext(), "Id taller: " + idTaller, Toast.LENGTH_SHORT).show();
-
                         consultarHistoria(idTaller);
                         comboHistoria();
 
@@ -566,8 +563,6 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 switch (position) {
                     default:
                         idHistoria = listHistoria.get(position).getIdHistoria();
-//                        Toast.makeText(getApplicationContext(), "Id historia: " + idHistoria, Toast.LENGTH_SHORT).show();
-
                         break;
                 }
 

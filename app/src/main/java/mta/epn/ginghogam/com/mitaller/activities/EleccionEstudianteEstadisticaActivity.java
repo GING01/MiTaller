@@ -48,7 +48,6 @@ public class EleccionEstudianteEstadisticaActivity extends AppCompatActivity imp
         Bundle extras = getIntent().getExtras();
         tutor = extras.getParcelable("tutor");
 
-        Toast.makeText(this,tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
 
         recyclerEstudiante = (RecyclerView) findViewById(R.id.recyclerEstudianteEntrenamiento);
 
