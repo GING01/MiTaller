@@ -45,7 +45,7 @@
 
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="142dp"
-            android:thumb="@drawable/seekbaricon2"/>
+            android:thumb="@drawable/seekbaricon"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
