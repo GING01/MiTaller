@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -90,7 +91,14 @@ public class PalabraListAdapter extends RecyclerView.Adapter<PalabraListAdapter.
             Toast.makeText(context,"no Exist", Toast.LENGTH_LONG).show();
             holder.imgPalabra.setImageResource(R.drawable.no_foto);
         }else {
-            holder.imgPalabra.setImageBitmap(BitmapFactory.decodeFile(vocabulario.getImagenPalabra().toString()));
+
+
+            File fileImagen = new File(vocabulario.getImagenPalabra().toString());
+            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 188,
+                    173, true);
+
+
+            holder.imgPalabra.setImageBitmap(newBitmap);
         }
         if(!vocabularioActivity.visible){
             holder.checkBox.setVisibility(View.GONE);

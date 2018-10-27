@@ -148,6 +148,9 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        sesionDAO.close();
+
         nombreApellido.setText(nombreEstudiante);
 
 
@@ -247,6 +250,9 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         }
 
+        cursor.close();
+        sesionDAO.close();
+
         return dp;
     }
 
@@ -268,6 +274,9 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
 
         }
 
+        cursor.close();
+        sesionDAO.close();
+
         return dp;
     }
 
@@ -285,6 +294,9 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
             dp[i] = new DataPoint(new Date(fechaList.get(i)), cursor.getInt(10));
 
         }
+
+        cursor.close();
+        sesionDAO.close();
 
         return dp;
     }
@@ -479,6 +491,9 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
         obtenerListaTalleres();
+
+        cursor.close();
+        tallerDAO.close();
     }
 
     private void obtenerListaTalleres() {
@@ -510,6 +525,9 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 listHistoria.add(historia);
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
+        historiaDAO.close();
         obtenerListaHistoria();
     }
 

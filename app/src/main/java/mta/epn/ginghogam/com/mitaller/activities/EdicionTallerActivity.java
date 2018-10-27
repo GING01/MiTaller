@@ -297,7 +297,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                         imagenCamara = fileImagen.getPath();
 
                         Bitmap bitmap = BitmapFactory.decodeFile(imagenCamara);
-                        imgTaller.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1024, 1024, true));
+                        imgTaller.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 350, 350, true));
                     }
                     break;
                 } else
@@ -378,7 +378,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeFile(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(uri)));
         if (uri != null) {
             try{
-                imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmap,1024,1024, true));
+                imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmap,350,350, true));
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(),"No encontrado", Toast.LENGTH_LONG).show();
             }

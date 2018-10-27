@@ -108,6 +108,8 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        estudianteDAO.close();
 
         estudianteEntrenamientoListAdapter.clear();
         estudianteEntrenamientoListAdapter.addAll(estudianteList);

@@ -57,8 +57,10 @@
         <activity
             android:name=".activities.EdicionPalabraActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".activities.TallerActivity" />
-        <activity android:name=".activities.RegistroTutorActivity" />
+        <activity android:name=".activities.TallerActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".activities.RegistroTutorActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activities.MenuInicialActivity"
             android:label="@string/title_activity_menu_inicial"

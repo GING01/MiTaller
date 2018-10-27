@@ -146,6 +146,11 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
             } while (cursor.moveToNext());
         }
 
+
+        cursor.close();
+        secuenciaDAO.close();
+
+
         //Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
 
 

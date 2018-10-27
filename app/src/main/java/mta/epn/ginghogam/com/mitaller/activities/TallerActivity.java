@@ -104,6 +104,9 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        tallerDAO.close();
+
         tallerListAdapter.clear();
         tallerListAdapter.addAll(tallerList);
     }

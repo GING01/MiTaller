@@ -130,7 +130,13 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
                 bt1.setLayoutParams(parametros);
 
 
-                bt1.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(i).getImagenSecuencia()));
+
+                File fileImagen = new File(secuenciaList.get(i).getImagenSecuencia());
+                Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 250,
+                        250, true);
+
+
+                bt1.setImageBitmap(newBitmap);
                 bt1.setBackgroundColor(Color.DKGRAY);
                 bt1.setOnDragListener(dragListener);
                 bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));

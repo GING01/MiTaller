@@ -104,6 +104,8 @@ public class ResultadosActivity extends AppCompatActivity {
             sesion.setObservacion(observacion.getText().toString());
             sesion.setIdEstudiante(estudiante.getIdEstudiante());
             sesionDAO.create(sesion);
+
+            sesionDAO.close();
             finish();
 
         }

@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -102,7 +103,13 @@ public class EstudianteListAdapter extends RecyclerView.Adapter<EstudianteListAd
             Toast.makeText(context, "no Exist", Toast.LENGTH_LONG).show();
             holder.imagen.setImageResource(R.drawable.no_foto);
         } else {
-            holder.imagen.setImageBitmap(BitmapFactory.decodeFile(estudiante.getFotoEstudiante().toString()));
+
+
+            File fileImagen = new File(estudiante.getFotoEstudiante().toString());
+            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 100,
+                    100, true);
+
+            holder.imagen.setImageBitmap(newBitmap);
         }
         if(!estudianteActivity.visible){
             holder.checkBox.setVisibility(View.GONE);

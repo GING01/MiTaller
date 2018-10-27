@@ -132,6 +132,10 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        historiaDAO.close();
+        secuenciaDAO.close();
+
 
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);

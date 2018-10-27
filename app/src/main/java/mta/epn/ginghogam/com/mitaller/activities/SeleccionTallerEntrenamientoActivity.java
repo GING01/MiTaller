@@ -114,6 +114,9 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        tallerDAO.close();
+
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
 

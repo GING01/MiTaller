@@ -113,6 +113,9 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         }
 
 
+        cursor.close();
+        vocabularioDAO.close();
+
         palabraListAdapter.clear();
         palabraListAdapter.addAll(vocabularioList);
     }

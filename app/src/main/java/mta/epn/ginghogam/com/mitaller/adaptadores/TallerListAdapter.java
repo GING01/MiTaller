@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -96,7 +97,14 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
                 Toast.makeText(context, "no Exist", Toast.LENGTH_LONG).show();
                 holder.imgTaller.setImageResource(R.drawable.no_foto);
             } else {
-                holder.imgTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller().toString()));
+
+
+                File fileImagen = new File(taller.getImagenTaller().toString());
+                Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 512,
+                        512, true);
+
+
+                holder.imgTaller.setImageBitmap(newBitmap);
             }
         }
         if(!tallerActivity.visible){

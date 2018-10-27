@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -84,7 +85,13 @@ public class SecuenciaListAdapter extends RecyclerView.Adapter<SecuenciaListAdap
             Toast.makeText(context,"no Exist", Toast.LENGTH_LONG).show();
             holder.imgHistoria.setImageResource(R.drawable.no_foto);
         }else {
-            holder.imgHistoria.setImageBitmap(BitmapFactory.decodeFile(historia.getImagenHistoria().toString()));
+
+            File fileImagen = new File(historia.getImagenHistoria().toString());
+            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 188,
+                    173, true);
+
+
+            holder.imgHistoria.setImageBitmap(newBitmap);
         }
     }
 

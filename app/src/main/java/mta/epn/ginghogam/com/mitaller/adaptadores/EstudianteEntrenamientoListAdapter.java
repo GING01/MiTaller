@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -101,7 +102,11 @@ public class EstudianteEntrenamientoListAdapter extends RecyclerView.Adapter<Est
             Toast.makeText(context, "no Exist", Toast.LENGTH_LONG).show();
             holder.imagen.setImageResource(R.drawable.no_foto);
         } else {
-            holder.imagen.setImageBitmap(BitmapFactory.decodeFile(estudiante.getFotoEstudiante().toString()));
+            File fileImagen = new File(estudiante.getFotoEstudiante().toString());
+            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 250,
+                    250, true);
+
+            holder.imagen.setImageBitmap(newBitmap);
         }
 
     }

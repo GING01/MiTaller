@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -231,7 +232,14 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                 if (contadorSecuencia < secuenciaList.size()) {
 
                     numLaminas.setText((contadorSecuencia + 1) + "/" + secuenciaList.size());
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(contadorSecuencia).getImagenSecuencia()));
+
+
+                    File fileImagen = new File(secuenciaList.get(contadorSecuencia).getImagenSecuencia());
+                    Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 450,
+                            350, true);
+
+
+                    imageView.setImageBitmap(newBitmap);
                     TtS.speak(secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
                     TtS.speak("Paso"+(contadorSecuencia+1)+"  :"+secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
 

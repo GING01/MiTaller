@@ -1,6 +1,7 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,16 +45,8 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
     private Runnable mRunnable;
     private ImageView guia;
     private TextView lectura;
-    private int j=0;
     int i=0;
-    List<String> s;
-    TextView changingText;
-    String manyDifferentStrings;
-    List<String> resul;
-    List myList;
-    ArrayList<String> l;
     String msj;
-    String ahivele;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +62,20 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
         taller = extras.getParcelable("taller");
         dificultadSeleccionada = extras.getString("dificultad");
 
-        Toast.makeText(this, "dificultad: " + dificultadSeleccionada, Toast.LENGTH_SHORT).show();
 
         nombreTaller=(TextView) findViewById(R.id.nTaller);
         imagenTaller=findViewById(R.id.imagenTaller);
         descripcionTaller=(TextView) findViewById(R.id.texto);
 
         nombreTaller.setText(taller.getNombreTaller());
-        imagenTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller()));
+
+
+        File fileImagen = new File(taller.getImagenTaller());
+        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 512,
+                512, true);
+
+
+        imagenTaller.setImageBitmap(newBitmap);
         descripcionTaller.setText(taller.getDescripcionTaller());
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);
@@ -141,7 +141,7 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
         if (text == TextToSpeech.SUCCESS) {
             int lenguaje = TtS.isLanguageAvailable(new Locale("spa", "ESP"));
             if (lenguaje == TextToSpeech.LANG_MISSING_DATA || lenguaje == TextToSpeech.LANG_NOT_SUPPORTED) {
-                //hablar();
+                hablar();
             } else {
             }
         } else {
@@ -164,7 +164,7 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
         intent.putExtra("estudiante", estudiante);
         intent.putExtra("dificultad",dificultadSeleccionada);
         intent.putExtra("taller",taller);
-        TtS.shutdown();
+        TtS.stop();
         startActivity(intent);
 
     }

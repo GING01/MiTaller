@@ -149,8 +149,8 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
 
 
         File file = new File(vocabulario.getImagenPalabra());
-        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(file.getPath()), 512,
-                512, true);
+        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(file.getPath()), 250,
+                250, true);
         if (!file.exists()) {
             holder.imgPalabra.setImageResource(R.drawable.no_foto);
         } else {
@@ -166,7 +166,7 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
                         public void run() {
                             if (contador == 1) {
                                 reproducirSonido(position);
-
+                                contador = 0;
                                 //mp.stop();
 
                             }

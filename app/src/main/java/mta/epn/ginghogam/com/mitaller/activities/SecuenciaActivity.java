@@ -94,9 +94,14 @@ public class SecuenciaActivity extends AppCompatActivity implements RecyclerItem
                     histariaList.add(historia);
                 } while (cursor.moveToNext());
             }
+
+            cursor.close();
+
+            historiaDAO.close();
         } else {
             Toast.makeText(this, "No hay registros realizados", Toast.LENGTH_LONG).show();
         }
+
 
 
         Historia historia;

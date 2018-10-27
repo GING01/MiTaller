@@ -98,6 +98,9 @@ public class EleccionEstudianteEstadisticaActivity extends AppCompatActivity imp
         }
 
 
+        cursor.close();
+        estudianteDAO.close();
+
         estudianteEstadisticaListAdapter.clear();
         estudianteEstadisticaListAdapter.addAll(estudianteList);
     }

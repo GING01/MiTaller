@@ -83,7 +83,6 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
-        TtS = new TextToSpeech(this, this);
 
 
         Bundle extras = getIntent().getExtras();
@@ -119,6 +118,10 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
                 hablar();
             }
         });
+
+
+        TtS = new TextToSpeech(this, this);
+
 
 
     }
@@ -192,6 +195,8 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        vocabularioDAO.close();
 
         palabraEntrenamientoListAdapter.clear();
         palabraEntrenamientoListAdapter.addAll(vocabularioList);
@@ -226,6 +231,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         intent.putExtra("estudiante", estudiante);
         intent.putExtra("dificultad", dificultadSeleccionada);
         intent.putExtra("taller", taller);
+        TtS.stop();
         startActivity(intent);
     }
 

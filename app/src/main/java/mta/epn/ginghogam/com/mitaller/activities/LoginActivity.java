@@ -514,6 +514,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
+        cursor.close();
+        vocabularioDAO.close();
+
     }
 
     private void CopyRAWtoSDCard(int id, String path) throws IOException {

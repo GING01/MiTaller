@@ -114,6 +114,9 @@ public class TablaResultadosActivity extends AppCompatActivity implements Search
         }
 
 
+        cursor.close();
+        sesionDAO.close();
+
         mTableAdapter.setUserList(sesionList);
     }
 

@@ -119,6 +119,8 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
                 } while (cursor.moveToNext());
             }
 
+            cursor.close();
+            historiaDAO.close();
 
         historiaListAdapter.clear();
         historiaListAdapter.addAll(histariaList);

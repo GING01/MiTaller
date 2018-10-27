@@ -121,6 +121,9 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
         }
 
 
+        cursor.close();
+        estudianteDAO.close();
+
         estudianteListAdapter.clear();
         estudianteListAdapter.addAll(estudianteList);
 
