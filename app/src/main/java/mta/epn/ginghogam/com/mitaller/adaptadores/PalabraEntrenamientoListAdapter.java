@@ -166,12 +166,13 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
                         public void run() {
                             if (contador == 1) {
                                 reproducirSonido(position);
-                                //
+
+                                //mp.stop();
 
                             }
-                            if (contador >= 2) {
+                            if (contador >=2) {
                                 reproducirSonido(position);
-                               // mp.stop();
+
                                 contador = 0;
                             }
 
@@ -204,10 +205,6 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
         }
 
         if (mp.isPlaying() && mp != null) {
-
-        }
-        if (contador>1 ) {
-            mp.stop();
 
         }
 
