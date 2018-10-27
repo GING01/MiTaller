@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -210,70 +209,77 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
         }
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
 
-        LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View mView = li.inflate(R.layout.entrenamiento_secuencia_dialog, null);
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
 
-        final ImageView imageView = mView.findViewById(R.id.welldoneico);
-        Button jugar = mView.findViewById(R.id.empezar);
+            LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View mView = li.inflate(R.layout.entrenamiento_secuencia_dialog, null);
 
-
-        final TextView numLaminas = mView.findViewById(R.id.numLaminas);
-        TtS.speak("Antes de ordenar la secuencia debes aprenderla", TextToSpeech.QUEUE_FLUSH, null);
+            final ImageView imageView = mView.findViewById(R.id.welldoneico);
+            Button jugar = mView.findViewById(R.id.empezar);
 
 
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            final TextView numLaminas = mView.findViewById(R.id.numLaminas);
+            TtS.speak("Antes de ordenar la secuencia debes aprenderla", TextToSpeech.QUEUE_FLUSH, null);
 
 
-                if (contadorSecuencia < secuenciaList.size()) {
 
-                    numLaminas.setText((contadorSecuencia + 1) + "/" + secuenciaList.size());
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(secuenciaList.size()==0){
+                        TtS.speak("Perdon no existe contenido", TextToSpeech.QUEUE_FLUSH, null);
+
+                    }
+
+                    else if (contadorSecuencia < secuenciaList.size()) {
+
+                        numLaminas.setText((contadorSecuencia + 1) + "/" + secuenciaList.size());
+                        imageView.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(contadorSecuencia).getImagenSecuencia()));
+                        TtS.speak(secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
+                        TtS.speak("Paso"+(contadorSecuencia+1)+"  :"+secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
+
+                    } else if (contadorSecuencia == secuenciaList.size())  {
+                        contadorSecuencia = 0;
+                        numLaminas.setText((1) + "/" + secuenciaList.size());
+                        imageView.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(contadorSecuencia).getImagenSecuencia()));
+                        TtS.speak("Paso"+(contadorSecuencia+1)+"  :"+secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
+                    }
 
 
-                    File fileImagen = new File(secuenciaList.get(contadorSecuencia).getImagenSecuencia());
-                    Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 450,
-                            350, true);
+                    contadorSecuencia++;
 
 
-                    imageView.setImageBitmap(newBitmap);
-                    TtS.speak(secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
-                    TtS.speak("Paso"+(contadorSecuencia+1)+"  :"+secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
-
-                } else if (contadorSecuencia == 5) {
-                    contadorSecuencia = 0;
-                    numLaminas.setText((1) + "/" + secuenciaList.size());
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(contadorSecuencia).getImagenSecuencia()));
-                    TtS.speak("Paso"+(contadorSecuencia+1)+"  :"+secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia(), TextToSpeech.QUEUE_FLUSH, null);
                 }
-
-                contadorSecuencia++;
-
-
-            }
-        });
+            });
 
 
-        jugar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityJuego(view.getContext(), mData.get(position), estudiante, tutor, taller);
-                dialog.dismiss();
+            jugar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(secuenciaList.size()==0){
+                        TtS.speak("Perdon no existe contenido", TextToSpeech.QUEUE_FLUSH, null);
+                        dialog.dismiss();
 
-            }
-        });
-
-
-        mBuilder.setView(mView);
-        dialog = mBuilder.create();
-        dialog.setCancelable(false);
-        dialog.show();
+                    }
+                    else {
+                        startActivityJuego(view.getContext(), mData.get(position), estudiante, tutor, taller);
+                        dialog.dismiss();
+                    }
 
 
-    }
+                }
+            });
+
+
+            mBuilder.setView(mView);
+            dialog = mBuilder.create();
+            dialog.setCancelable(false);
+            dialog.show();
+
+        }
+
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
