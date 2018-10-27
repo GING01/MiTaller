@@ -1578,7 +1578,7 @@ public class LoginActivity extends AppCompatActivity {
             historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
                     "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
             historia.setNumeroLaminas("8");
-            historia.setDificultad("media");
+            historia.setDificultad("medio");
             historia.setImagenHistoria(protocoloAsepcia);
             historia.setIdHistoria(10);
             historia.setIdTaller(1);
