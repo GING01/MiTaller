@@ -1,15 +1,20 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +49,9 @@ import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.entidades.Vocabulario;
 import mta.epn.ginghogam.com.mitaller.utilidades.RealPathUtil;
 
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 public class LoginActivity extends AppCompatActivity {
     TextView usuario;
     TextView contraseña;
@@ -72,7 +80,18 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        validaPermiso();
+
+
+        insertarRegistros();
+
         usuario = findViewById(R.id.txtUsuario);
         contraseña = findViewById(R.id.txtcontraseña);
         if (obtenerEstado(tutor)) {
@@ -82,9 +101,23 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        insertarRegistros();
 
 
+
+    }
+
+    private boolean validaPermiso() {
+        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.M){
+            return true;
+        }
+        if((checkSelfPermission(CAMERA)== PackageManager.PERMISSION_GRANTED)&&
+                (checkSelfPermission(WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)){
+            return true;
+        }
+        else{
+            requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA},100);
+        }
+        return false;
     }
 
     @Override
@@ -208,339 +241,443 @@ public class LoginActivity extends AppCompatActivity {
 
             String path = Environment.getExternalStorageDirectory().toString();
 
-            Bitmap panaderia = BitmapFactory.decodeResource(getResources(), R.drawable.panaderiaport);
+//            Bitmap panaderia1 = BitmapFactory.decodeResource(getResources(), R.drawable.panaderiaport);
+            Bitmap panaderia = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.panaderiaport), 350, 350, true);
             File filePanaderia = new File(path, "panaderia" + ".jpg");
 
-            Bitmap historiaEmpaquetado = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
+//            Bitmap historiaEmpaquetado1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
+            Bitmap historiaEmpaquetado = Bitmap.createScaledBitmap( BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1), 350, 350, true);
             File fileHistoriaEmpaquetado = new File(path, "empaquetado" + ".jpg");
 
-            Bitmap historiaGlaceado = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1);
+//            Bitmap historiaGlaceado1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1);
+            Bitmap historiaGlaceado = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1), 350, 350, true);
             File fileHistoriaGlaceado = new File(path, "glaceado" + ".jpg");
 
-            Bitmap historiaLimpiezaJabas = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1);
+//            Bitmap historiaLimpiezaJabas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1);
+            Bitmap historiaLimpiezaJabas = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1), 350, 350, true);
             File fileHistoriaLimpiezaJabas = new File(path, "limpieza_jabas" + ".jpg");
 
-            Bitmap historiaLimpiezaLatas = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1);
+//            Bitmap historiaLimpiezaLatas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1);
+            Bitmap historiaLimpiezaLatas = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1), 350, 350, true);
             File fileHistoriaLimpiezaLatas = new File(path, "limpieza_latas" + ".jpg");
 
-            Bitmap historiaLimpiezaGeneral = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1);
+//            Bitmap historiaLimpiezaGeneral1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1);
+            Bitmap historiaLimpiezaGeneral = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1), 350, 350, true);
             File fileHistoriaLimpiezaGeneral = new File(path, "limpieza_general" + ".jpg");
 
-            Bitmap historiaPreparacionLatas = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1);
+//            Bitmap historiaPreparacionLatas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1);
+            Bitmap historiaPreparacionLatas = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1), 350, 350, true);
             File fileHistoriaPreparacionLatas = new File(path, "preparacion_latas" + ".jpg");
 
-            Bitmap historiaPreparacionMasa = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1);
+//            Bitmap historiaPreparacionMasa1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1);
+            Bitmap historiaPreparacionMasa = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1), 350, 350, true);
             File fileHistoriaPreparacionMasa= new File(path, "preparacion_masa" + ".jpg");
 
-            Bitmap historiaPreparacionUniforme = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1);
+//            Bitmap historiaPreparacionUniforme1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1);
+            Bitmap historiaPreparacionUniforme = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1), 350, 350, true);
             File fileHistoriaPreparacionUniforme = new File(path, "preparacion_uniforme" + ".jpg");
 
-            Bitmap historiaPreparacionMoldes = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1);
+//            Bitmap historiaPreparacionMoldes1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1);
+            Bitmap historiaPreparacionMoldes = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1), 350, 350, true);
             File fileHistoriaPreparacionMoldes = new File(path, "preparacion_moldes" + ".jpg");
 
-            Bitmap historiaProtocoloAsepcia = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1);
+//            Bitmap historiaProtocoloAsepcia1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1);
+            Bitmap historiaProtocoloAsepcia = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1), 350, 350, true);
             File fileHistoriaProtocoloAsepcia = new File(path, "protocolo_asepcia" + ".jpg");
 
 
 
-            Bitmap amasadora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_amasadora);
+            //vocabulario
+//            Bitmap amasadora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_amasadora);
+            Bitmap amasadora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_amasadora), 350, 350, true);
             File fileAmasadora = new File(path, "amasadora" + ".jpg");
 
-            Bitmap balanza = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_balanza);
+//            Bitmap balanza1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_balanza);
+            Bitmap balanza = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_balanza), 350, 350, true);
             File fileBalanza = new File(path, "balanza" + ".jpg");
 
-            Bitmap bodega = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_bodega);
+//            Bitmap bodega1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_bodega);
+            Bitmap bodega = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_bodega), 350, 350, true);
             File fileBodega = new File(path, "bodega" + ".jpg");
 
-            Bitmap boleadora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_boleadora);
+//            Bitmap boleadora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_boleadora);
+            Bitmap boleadora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_boleadora), 350, 350, true);
             File fileBoleadora = new File(path, "boleadora" + ".jpg");
 
-            Bitmap camaraLeudo = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_camara_de_leudo);
+//            Bitmap camaraLeudo1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_camara_de_leudo);
+            Bitmap camaraLeudo = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_camara_de_leudo), 350, 350, true);
             File fileCamaraLeudo = new File(path, "camaraLeudo" + ".jpg");
 
-            Bitmap congelador = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_congelador);
+//            Bitmap congelador1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_congelador);
+            Bitmap congelador = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_congelador), 350, 350, true);
             File fileCongelador = new File(path, "congelador" + ".jpg");
 
-            Bitmap cortadorPan = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_cortador_de_pan);
+//            Bitmap cortadorPan1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_cortador_de_pan);
+            Bitmap cortadorPan = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_cortador_de_pan), 350, 350, true);
             File fileCortadorPan = new File(path, "cortadorPan" + ".jpg");
 
-            Bitmap horno = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_horno);
+//            Bitmap horno1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_horno);
+            Bitmap horno = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_horno), 350, 350, true);
             File fileHorno = new File(path, "horno" + ".jpg");
 
-            Bitmap laminadora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_laminadora);
+//            Bitmap laminadora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_laminadora);
+            Bitmap laminadora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_laminadora), 350, 350, true);
             File fileLaminadora = new File(path, "laminadora" + ".jpg");
 
-            Bitmap meson = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_meson_de_trabajo);
+//            Bitmap meson1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_meson_de_trabajo);
+            Bitmap meson = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_meson_de_trabajo), 350, 350, true);
             File fileMeson = new File(path, "meson" + ".jpg");
 
-            Bitmap refrigeradora = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_refrigeradora);
+//            Bitmap refrigeradora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_refrigeradora);
+            Bitmap refrigeradora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_refrigeradora), 350, 350, true);
             File fileRefrigeradora = new File(path, "refrigeradora" + ".jpg");
 
 
             //sequence empaquetado
 
-            Bitmap empaquetado1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
+//            Bitmap empaquetado11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
+            Bitmap empaquetado1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1), 350, 350, true);
             File fileEmpaquetado1 = new File(path, "empaquetado1" + ".jpg");
 
-            Bitmap empaquetado2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado2);
+//            Bitmap empaquetado22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado2);
+            Bitmap empaquetado2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado2), 350, 350, true);
             File fileEmpaquetado2 = new File(path, "empaquetado2" + ".jpg");
 
-            Bitmap empaquetado3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado3);
+//            Bitmap empaquetado33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado3);
+            Bitmap empaquetado3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado3), 350, 350, true);
             File fileEmpaquetado3 = new File(path, "empaquetado3" + ".jpg");
 
-            Bitmap empaquetado4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado4);
+//            Bitmap empaquetado44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado4);
+            Bitmap empaquetado4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado4), 350, 350, true);
             File fileEmpaquetado4 = new File(path, "empaquetado4" + ".jpg");
 
-            Bitmap empaquetado5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado5);
+//            Bitmap empaquetado55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado5);
+            Bitmap empaquetado5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado5), 350, 350, true);
             File fileEmpaquetado5 = new File(path, "empaquetado5" + ".jpg");
 
             //sequence glaceado
 
-            Bitmap galceado1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1);
+//            Bitmap galceado11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1);
+            Bitmap galceado1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1), 350, 350, true);
             File fileGlaceado1 = new File(path, "glaceado1" + ".jpg");
 
-            Bitmap galceado2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado2);
+//            Bitmap galceado22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado2);
+            Bitmap galceado2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado2), 350, 350, true);
             File fileGlaceado2 = new File(path, "glaceado2" + ".jpg");
 
-            Bitmap galceado3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado3);
+//            Bitmap galceado33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado3);
+            Bitmap galceado3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado3), 350, 350, true);
             File fileGlaceado3 = new File(path, "glaceado3" + ".jpg");
 
-            Bitmap galceado4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado4);
+//            Bitmap galceado44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado4);
+            Bitmap galceado4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado4), 350, 350, true);
             File fileGlaceado4 = new File(path, "glaceado4" + ".jpg");
 
-            Bitmap galceado5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado5);
+//            Bitmap galceado55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado5);
+            Bitmap galceado5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado5), 350, 350, true);
             File fileGlaceado5 = new File(path, "glaceado5" + ".jpg");
 
-            Bitmap galceado6 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado6);
+//            Bitmap galceado66 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado6);
+            Bitmap galceado6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado6), 350, 350, true);
             File fileGlaceado6 = new File(path, "glaceado6" + ".jpg");
 
-            Bitmap galceado7 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado7);
+//            Bitmap galceado77 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado7);
+            Bitmap galceado7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado7), 350, 350, true);
             File fileGlaceado7 = new File(path, "glaceado7" + ".jpg");
 
             //sequence limpieza jabas
 
-            Bitmap limpiezaJabas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1);
+//            Bitmap limpiezaJabas11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1);
+            Bitmap limpiezaJabas1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1), 350, 350, true);
             File filelimpiezaJabas1 = new File(path, "limpieza_jabas1" + ".jpg");
 
-            Bitmap limpiezaJabas2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas2);
+//            Bitmap limpiezaJabas22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas2);
+            Bitmap limpiezaJabas2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas2), 350, 350, true);
             File filelimpiezaJabas2 = new File(path, "limpieza_jabas2" + ".jpg");
 
-            Bitmap limpiezaJabas3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas3);
+//            Bitmap limpiezaJabas33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas3);
+            Bitmap limpiezaJabas3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas3), 350, 350, true);
             File filelimpiezaJabas3 = new File(path, "limpieza_jabas3" + ".jpg");
 
-            Bitmap limpiezaJabas4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas4);
+//            Bitmap limpiezaJabas44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas4);
+            Bitmap limpiezaJabas4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas4), 350, 350, true);
             File filelimpiezaJabas4 = new File(path, "limpieza_jabas4" + ".jpg");
 
-            Bitmap limpiezaJabas5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas5);
+//            Bitmap limpiezaJabas55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas5);
+            Bitmap limpiezaJabas5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas5), 350, 350, true);
             File filelimpiezaJabas5 = new File(path, "limpieza_jabas5" + ".jpg");
 
             //sequence limpieza latas
 
-            Bitmap limpiezaLatas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1);
+//            Bitmap limpiezaLatas01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1);
+            Bitmap limpiezaLatas1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1), 350, 350, true);
             File filelimpiezaLatas1 = new File(path, "limpieza_latas1" + ".jpg");
 
-            Bitmap limpiezaLatas2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas2);
+//            Bitmap limpiezaLatas22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas2);
+            Bitmap limpiezaLatas2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas2), 350, 350, true);
             File filelimpiezaLatas2 = new File(path, "limpieza_latas2" + ".jpg");
 
-            Bitmap limpiezaLatas3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas3);
+//            Bitmap limpiezaLatas33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas3);
+            Bitmap limpiezaLatas3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas3), 350, 350, true);
             File filelimpiezaLatas3 = new File(path, "limpieza_latas3" + ".jpg");
 
-            Bitmap limpiezaLatas4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas4);
+//            Bitmap limpiezaLatas44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas4);
+            Bitmap limpiezaLatas4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas4), 350, 350, true);
             File filelimpiezaLatas4 = new File(path, "limpieza_latas4" + ".jpg");
 
-            Bitmap limpiezaLatas5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas5);
+//            Bitmap limpiezaLatas55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas5);**
+            Bitmap limpiezaLatas5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas5), 350, 350, true);
             File filelimpiezaLatas5 = new File(path, "limpieza_latas5" + ".jpg");
 
-            Bitmap limpiezaLatas6 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas6);
+//            Bitmap limpiezaLatas66 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas6);
+            Bitmap limpiezaLatas6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas6), 350, 350, true);
             File filelimpiezaLatas6 = new File(path, "limpieza_latas6" + ".jpg");
 
-            Bitmap limpiezaLatas7 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas7);
+//            Bitmap limpiezaLatas77 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas7);
+            Bitmap limpiezaLatas7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas7), 350, 350, true);
             File filelimpiezaLatas7 = new File(path, "limpieza_latas7" + ".jpg");
 
-            Bitmap limpiezaLatas8 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas8);
+//            Bitmap limpiezaLatas88 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas8);
+            Bitmap limpiezaLatas8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas8), 350, 350, true);
             File filelimpiezaLatas8 = new File(path, "limpieza_latas8" + ".jpg");
 
-            Bitmap limpiezaLatas9 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas9);
+//            Bitmap limpiezaLatas99 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas9);
+            Bitmap limpiezaLatas9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas9), 350, 350, true);
             File filelimpiezaLatas9 = new File(path, "limpieza_latas9" + ".jpg");
 
-            Bitmap limpiezaLatas10 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas10);
+//            Bitmap limpiezaLatas100 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas10);
+            Bitmap limpiezaLatas10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas10), 350, 350, true);
             File filelimpiezaLatas10 = new File(path, "limpieza_latas10" + ".jpg");
 
-            Bitmap limpiezaLatas11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas11);
+//            Bitmap limpiezaLatas111 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas11);
+            Bitmap limpiezaLatas11 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas11), 350, 350, true);
             File filelimpiezaLatas11 = new File(path, "limpieza_latas11" + ".jpg");
 
             //sequence limpieza general
 
-            Bitmap limpiezaGeneral1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1);
+//            Bitmap limpiezaGeneral01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1);
+            Bitmap limpiezaGeneral1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1), 350, 350, true);
             File filelimpiezaGeneral1 = new File(path, "limpieza_general1" + ".jpg");
 
-            Bitmap limpiezaGeneral2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral2);
+//            Bitmap limpiezaGeneral02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral2);
+            Bitmap limpiezaGeneral2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral2), 350, 350, true);
             File filelimpiezaGeneral2 = new File(path, "limpieza_general2" + ".jpg");
 
-            Bitmap limpiezaGeneral3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral3);
+//            Bitmap limpiezaGeneral03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral3);
+            Bitmap limpiezaGeneral3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral3), 350, 350, true);
             File filelimpiezaGeneral3 = new File(path, "limpieza_general3" + ".jpg");
 
-            Bitmap limpiezaGeneral4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral4);
+//            Bitmap limpiezaGeneral04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral4);
+            Bitmap limpiezaGeneral4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral4), 350, 350, true);
             File filelimpiezaGeneral4 = new File(path, "limpieza_general4" + ".jpg");
 
-            Bitmap limpiezaGeneral5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral5);
+//            Bitmap limpiezaGeneral05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral5);
+            Bitmap limpiezaGeneral5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral5), 350, 350, true);
             File filelimpiezaGeneral5 = new File(path, "limpieza_general5" + ".jpg");
 
-            Bitmap limpiezaGeneral6 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral6);
+//            Bitmap limpiezaGeneral06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral6);
+            Bitmap limpiezaGeneral6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral6), 350, 350, true);
             File filelimpiezaGeneral6 = new File(path, "limpieza_general6" + ".jpg");
 
-            Bitmap limpiezaGeneral7 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral7);
+//            Bitmap limpiezaGeneral07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral7);
+            Bitmap limpiezaGeneral7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral7), 350, 350, true);
             File filelimpiezaGeneral7 = new File(path, "limpieza_general7" + ".jpg");
 
-            Bitmap limpiezaGeneral8 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral8);
+//            Bitmap limpiezaGeneral08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral8);
+            Bitmap limpiezaGeneral8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral8), 350, 350, true);
             File filelimpiezaGeneral8 = new File(path, "limpieza_general8" + ".jpg");
 
-            Bitmap limpiezaGeneral9 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral9);
+//            Bitmap limpiezaGeneral09 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral9);
+            Bitmap limpiezaGeneral9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral9), 350, 350, true);
             File filelimpiezaGeneral9 = new File(path, "limpieza_general9" + ".jpg");
 
-            Bitmap limpiezaGeneral10 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10);
+//            Bitmap limpiezaGeneral010 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10);
+            Bitmap limpiezaGeneral10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10), 350, 350, true);
             File filelimpiezaGeneral10 = new File(path, "limpieza_general10" + ".jpg");
 
             //sequence preparacion latas
 
-            Bitmap preparacionLatas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1);
+//            Bitmap preparacionLatas01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1);
+            Bitmap preparacionLatas1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1), 350, 350, true);
             File filePreparacionLatas1 = new File(path, "preparacion_latas1" + ".jpg");
 
-            Bitmap preparacionLatas2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas2);
+//            Bitmap preparacionLatas02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas2);
+            Bitmap preparacionLatas2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas2), 350, 350, true);
             File filePreparacionLatas2 = new File(path, "preparacion_latas2" + ".jpg");
 
-            Bitmap preparacionLatas3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas3);
+//            Bitmap preparacionLatas03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas3);
+            Bitmap preparacionLatas3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas3), 350, 350, true);
             File filePreparacionLatas3 = new File(path, "preparacion_latas3" + ".jpg");
 
-            Bitmap preparacionLatas4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas4);
+//            Bitmap preparacionLatas04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas4);
+            Bitmap preparacionLatas4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas4), 350, 350, true);
             File filePreparacionLatas4 = new File(path, "preparacion_latas4" + ".jpg");
 
-            Bitmap preparacionLatas5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas5);
+//            Bitmap preparacionLatas05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas5);
+            Bitmap preparacionLatas5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas5), 350, 350, true);
             File filePreparacionLatas5 = new File(path, "preparacion_latas5" + ".jpg");
 
 
 
             //sequence preparacion masa
 
-            Bitmap preparacionMasa1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1);
+//            Bitmap preparacionMasa01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1);
+            Bitmap preparacionMasa1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1), 350, 350, true);
             File filePreparacionMasa1 = new File(path, "preparacion_masa1" + ".jpg");
 
-            Bitmap preparacionMasa2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa2);
+//            Bitmap preparacionMasa02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa2);
+            Bitmap preparacionMasa2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa2), 350, 350, true);
             File filePreparacionMasa2 = new File(path, "preparacion_masa2" + ".jpg");
 
-            Bitmap preparacionMasa3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa3);
+//            Bitmap preparacionMasa03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa3);
+            Bitmap preparacionMasa3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa3), 350, 350, true);
             File filePreparacionMasa3 = new File(path, "preparacion_masa3" + ".jpg");
 
-            Bitmap preparacionMasa4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa4);
+//            Bitmap preparacionMasa04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa4);
+            Bitmap preparacionMasa4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa4), 350, 350, true);
             File filePreparacionMasa4 = new File(path, "preparacion_masa4" + ".jpg");
 
-            Bitmap preparacionMasa5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa5);
+//            Bitmap preparacionMasa05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa5);
+            Bitmap preparacionMasa5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa5), 350, 350, true);
             File filePreparacionMasa5 = new File(path, "preparacion_masa5" + ".jpg");
 
-            Bitmap preparacionMasa6 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa6);
+//            Bitmap preparacionMasa06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa6);
+            Bitmap preparacionMasa6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa6), 350, 350, true);
             File filePreparacionMasa6 = new File(path, "preparacion_masa16" + ".jpg");
 
-            Bitmap preparacionMasa7 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa7);
+//            Bitmap preparacionMasa07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa7);
+            Bitmap preparacionMasa7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa7), 350, 350, true);
             File filePreparacionMasa7 = new File(path, "preparacion_masa7" + ".jpg");
 
-            Bitmap preparacionMasa8 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa8);
+//            Bitmap preparacionMasa08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa8);
+            Bitmap preparacionMasa8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa8), 350, 350, true);
             File filePreparacionMasa8 = new File(path, "preparacion_masa8" + ".jpg");
 
-            Bitmap preparacionMasa9 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa9);
+//            Bitmap preparacionMasa09 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa9);
+            Bitmap preparacionMasa9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa9), 350, 350, true);
             File filePreparacionMasa9 = new File(path, "preparacion_masa9" + ".jpg");
 
-            Bitmap preparacionMasa10 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa10);
+//            Bitmap preparacionMasa010 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa10);
+            Bitmap preparacionMasa10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa10), 350, 350, true);
             File filePreparacionMasa10 = new File(path, "preparacion_masa10" + ".jpg");
 
-            Bitmap preparacionMasa11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa11);
+//            Bitmap preparacionMasa011 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa11);
+            Bitmap preparacionMasa11 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa11), 350, 350, true);
             File filePreparacionMasa11 = new File(path, "preparacion_masa11" + ".jpg");
 
-            Bitmap preparacionMasa12 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa12);
+//            Bitmap preparacionMasa012 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa12);
+            Bitmap preparacionMasa12 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa12), 350, 350, true);
             File filePreparacionMasa12 = new File(path, "preparacion_masa12" + ".jpg");
 
-            Bitmap preparacionMasa13 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa13);
+//            Bitmap preparacionMasa013 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa13);
+            Bitmap preparacionMasa13 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa13), 350, 350, true);
             File filePreparacionMasa13 = new File(path, "preparacion_masa13" + ".jpg");
 
-            Bitmap preparacionMasa14 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa14);
+//            Bitmap preparacionMasa014 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa14);
+            Bitmap preparacionMasa14 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa14), 350, 350, true);
             File filePreparacionMasa14 = new File(path, "preparacion_masa14" + ".jpg");
 
             //sequence preparacion uniforme
 
-            Bitmap preparacionUniforme1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1);
+//            Bitmap preparacionUniforme01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1);
+            Bitmap preparacionUniforme1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1), 350, 350, true);
             File filePreparacionUniforme1 = new File(path, "preparacion_uniforme1" + ".jpg");
 
-            Bitmap preparacionUniforme2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme2);
+//            Bitmap preparacionUniforme02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme2);
+            Bitmap preparacionUniforme2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme2), 350, 350, true);
             File filePreparacionUniforme2 = new File(path, "preparacion_uniforme2" + ".jpg");
 
-            Bitmap preparacionUniforme3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme3);
+//            Bitmap preparacionUniforme03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme3);
+            Bitmap preparacionUniforme3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme3), 350, 350, true);
             File filePreparacionUniforme3 = new File(path, "preparacion_uniforme3" + ".jpg");
 
-            Bitmap preparacionUniforme4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme4);
+//            Bitmap preparacionUniforme04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme4);
+            Bitmap preparacionUniforme4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme4), 350, 350, true);
             File filePreparacionUniforme4 = new File(path, "preparacion_uniforme4" + ".jpg");
 
-            Bitmap preparacionUniforme5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme5);
+//            Bitmap preparacionUniforme05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme5);
+            Bitmap preparacionUniforme5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme5), 350, 350, true);
             File filePreparacionUniforme5 = new File(path, "preparacion_uniforme5" + ".jpg");
 
-            Bitmap preparacionUniforme6 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme6);
+//            Bitmap preparacionUniforme06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme6);
+            Bitmap preparacionUniforme6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme6), 350, 350, true);
             File filePreparacionUniforme6 = new File(path, "preparacion_uniforme6" + ".jpg");
 
             //sequence preparacion moldes
 
-            Bitmap preparacionMolde1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1);
+//            Bitmap preparacionMolde01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1);
+            Bitmap preparacionMolde1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1), 350, 350, true);
             File filePreparacionMolde1 = new File(path, "preparacion_mo1de1" + ".jpg");
 
-            Bitmap preparacionMolde2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes2);
+//            Bitmap preparacionMolde02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes2);
+            Bitmap preparacionMolde2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes2), 350, 350, true);
             File filePreparacionMolde2 = new File(path, "preparacion_mo1de2" + ".jpg");
 
-            Bitmap preparacionMolde3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes3);
+//            Bitmap preparacionMolde03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes3);
+            Bitmap preparacionMolde3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes3), 350, 350, true);
             File filePreparacionMolde3 = new File(path, "preparacion_mo1de3" + ".jpg");
 
-            Bitmap preparacionMolde4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes4);
+//            Bitmap preparacionMolde04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes4);
+            Bitmap preparacionMolde4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes4), 350, 350, true);
             File filePreparacionMolde4 = new File(path, "preparacion_mo1de4" + ".jpg");
 
-            Bitmap preparacionMolde5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes5);
+//            Bitmap preparacionMolde05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes5);
+            Bitmap preparacionMolde5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes5), 350, 350, true);
             File filePreparacionMolde5 = new File(path, "preparacion_mo1de5" + ".jpg");
 
-            Bitmap preparacionMolde6 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes6);
+//            Bitmap preparacionMolde06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes6);
+            Bitmap preparacionMolde6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes6), 350, 350, true);
             File filePreparacionMolde6 = new File(path, "preparacion_mo1de6" + ".jpg");
 
-            Bitmap preparacionMolde7 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes7);
+//            Bitmap preparacionMolde07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes7);
+            Bitmap preparacionMolde7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes7), 350, 350, true);
             File filePreparacionMolde7 = new File(path, "preparacion_mo1de7" + ".jpg");
 
-            Bitmap preparacionMolde8 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes8);
+//            Bitmap preparacionMolde08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes8);
+            Bitmap preparacionMolde8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes8), 350, 350, true);
             File filePreparacionMolde8 = new File(path, "preparacion_mo1de8" + ".jpg");
 
-            Bitmap preparacionMolde9 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes9);
+//            Bitmap preparacionMolde09 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes9);
+            Bitmap preparacionMolde9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes9), 350, 350, true);
             File filePreparacionMolde9 = new File(path, "preparacion_mo1de9" + ".jpg");
 
-            Bitmap preparacionMolde10 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes10);
+//            Bitmap preparacionMolde010 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes10);
+            Bitmap preparacionMolde10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes10), 350, 350, true);
             File filePreparacionMolde10 = new File(path, "preparacion_mo1de10" + ".jpg");
 
 
             //sequence protocolo asepcia
 
-            Bitmap protocoloAsepcia1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1);
+//            Bitmap protocoloAsepcia01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1);
+            Bitmap protocoloAsepcia1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1), 350, 350, true);
             File fileProtocoloAsepcia1 = new File(path, "protocolo_asepcia1" + ".jpg");
 
-            Bitmap protocoloAsepcia2 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia2);
+//            Bitmap protocoloAsepcia02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia2);
+            Bitmap protocoloAsepcia2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia2), 350, 350, true);
             File fileProtocoloAsepcia2 = new File(path, "protocolo_asepcia2" + ".jpg");
 
-            Bitmap protocoloAsepcia3 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia3);
+//            Bitmap protocoloAsepcia03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia3);
+            Bitmap protocoloAsepcia3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia3), 350, 350, true);
             File fileProtocoloAsepcia3 = new File(path, "protocolo_asepcia3" + ".jpg");
 
-            Bitmap protocoloAsepcia4 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia4);
+//            Bitmap protocoloAsepcia04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia4);
+            Bitmap protocoloAsepcia4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia4), 350, 350, true);
             File fileProtocoloAsepcia4 = new File(path, "protocolo_asepcia4" + ".jpg");
 
-            Bitmap protocoloAsepcia5 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia5);
+//            Bitmap protocoloAsepcia05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia5);
+            Bitmap protocoloAsepcia5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia5), 350, 350, true);
             File fileProtocoloAsepcia5 = new File(path, "protocolo_asepcia5" + ".jpg");
 
-            Bitmap protocoloAsepcia6 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia6);
+//            Bitmap protocoloAsepcia06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia6);
+            Bitmap protocoloAsepcia6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia6), 350, 350, true);
             File fileProtocoloAsepcia6 = new File(path, "protocolo_asepcia6" + ".jpg");
 
-            Bitmap protocoloAsepcia7 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia7);
+//            Bitmap protocoloAsepcia07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia7);
+            Bitmap protocoloAsepcia7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia7), 350, 350, true);
             File fileProtocoloAsepcia7 = new File(path, "protocolo_asepcia7" + ".jpg");
 
-            Bitmap protocoloAsepcia8 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia8);
+//            Bitmap protocoloAsepcia08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia8);
+            Bitmap protocoloAsepcia8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia8), 350, 350, true);
             File fileProtocoloAsepcia8 = new File(path, "protocolo_asepcia8" + ".jpg");
 
 
@@ -906,11 +1043,11 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String path2 = Environment.getExternalStorageDirectory().toString();
                     File dir = new File(path2);
-                    if (dir.mkdirs() || dir.isDirectory()) {
+//                    if (dir.mkdirs() || dir.isDirectory()) {
                         String str_song_name = i + ".mp3";
                         CopyRAWtoSDCard(mSongs[i], path2 + File.separator + str_song_name);
                         list.add(path2 + File.separator + str_song_name);
-                    }
+//                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -939,7 +1076,7 @@ public class LoginActivity extends AppCompatActivity {
             historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
                     "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
             historia.setNumeroLaminas("5");
-            historia.setDificultad("medio");
+            historia.setDificultad("facil");
             historia.setImagenHistoria(empaquetado);
             historia.setIdHistoria(1);
             historia.setIdTaller(1);
@@ -1057,7 +1194,7 @@ public class LoginActivity extends AppCompatActivity {
             historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
                     "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
             historia.setNumeroLaminas("5");
-            historia.setDificultad("medio");
+            historia.setDificultad("facil");
             historia.setImagenHistoria(limpiezaJabas);
             historia.setIdHistoria(3);
             historia.setIdTaller(1);
@@ -1441,7 +1578,7 @@ public class LoginActivity extends AppCompatActivity {
             historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
                     "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
             historia.setNumeroLaminas("6");
-            historia.setDificultad("medio");
+            historia.setDificultad("facil");
             historia.setImagenHistoria(preparacionUniforme);
             historia.setIdHistoria(8);
             historia.setIdTaller(1);
