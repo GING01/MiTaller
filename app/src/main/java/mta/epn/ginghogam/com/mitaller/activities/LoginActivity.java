@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -209,8 +210,9 @@ public class LoginActivity extends AppCompatActivity {
 
             String path = Environment.getExternalStorageDirectory().toString();
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.RGB_565;
 
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                options.inSampleSize=1;
 
             Bitmap panaderia = BitmapFactory.decodeResource(getResources(), R.drawable.panaderiaport,options);
             File filePanaderia = new File(path, "panaderia" + ".jpg");
@@ -1741,6 +1743,9 @@ public class LoginActivity extends AppCompatActivity {
 
         cursor.close();
         vocabularioDAO.close();
+        secuenciaDAO.close();
+        tallerDAO.close();
+        historiaDAO.close();
 
     }
 
