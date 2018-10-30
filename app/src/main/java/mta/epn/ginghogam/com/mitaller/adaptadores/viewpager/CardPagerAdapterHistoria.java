@@ -191,6 +191,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
     int contadorSecuencia = 0;
 
 
+
     private void entrenamiento(final Context context, final int position) {
 
         long id = mData.get(position).getIdHistoria();
