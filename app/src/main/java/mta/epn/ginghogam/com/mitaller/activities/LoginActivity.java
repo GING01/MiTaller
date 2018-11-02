@@ -1,20 +1,13 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,20 +17,15 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.db.HistoriaDAO;
-import mta.epn.ginghogam.com.mitaller.db.SQLiteDB;
 import mta.epn.ginghogam.com.mitaller.db.SecuenciaDAO;
 import mta.epn.ginghogam.com.mitaller.db.TallerDAO;
 import mta.epn.ginghogam.com.mitaller.db.TutorDAO;
@@ -47,7 +35,6 @@ import mta.epn.ginghogam.com.mitaller.entidades.Secuencia;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.entidades.Tutor;
 import mta.epn.ginghogam.com.mitaller.entidades.Vocabulario;
-import mta.epn.ginghogam.com.mitaller.utilidades.RealPathUtil;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -89,8 +76,12 @@ public class LoginActivity extends AppCompatActivity {
 
         validaPermiso();
 
+Boolean isFirstRun = getSharedPreferences("Preference",MODE_PRIVATE).getBoolean("primerUso",true);
+if(isFirstRun){
+    insertarRegistros();
+    getSharedPreferences("Preference",MODE_PRIVATE).edit().putBoolean("primerUso",false).commit();
+}
 
-        insertarRegistros();
 
         usuario = findViewById(R.id.txtUsuario);
         contraseña = findViewById(R.id.txtcontraseña);
@@ -381,9 +372,8 @@ public class LoginActivity extends AppCompatActivity {
             Bitmap galceado6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado6), 350, 350, true);
             File fileGlaceado6 = new File(path, "glaceado6" + ".jpg");
 
-//            Bitmap galceado77 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado7);
-            Bitmap galceado7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado7), 350, 350, true);
-            File fileGlaceado7 = new File(path, "glaceado7" + ".jpg");
+//
+
 
             //sequence limpieza jabas
 
@@ -543,7 +533,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //            Bitmap preparacionMasa06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa6);
             Bitmap preparacionMasa6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa6), 350, 350, true);
-            File filePreparacionMasa6 = new File(path, "preparacion_masa16" + ".jpg");
+            File filePreparacionMasa6 = new File(path, "preparacion_masa6" + ".jpg");
 
 //            Bitmap preparacionMasa07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa7);
             Bitmap preparacionMasa7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa7), 350, 350, true);
@@ -798,8 +788,7 @@ public class LoginActivity extends AppCompatActivity {
                 out = new FileOutputStream(fileGlaceado6);
                 galceado6.compress(Bitmap.CompressFormat.PNG, 100, out);
 
-                out = new FileOutputStream(fileGlaceado7);
-                galceado7.compress(Bitmap.CompressFormat.PNG, 100, out);
+
 
 
                 //limpieza de jabas
@@ -1087,7 +1076,7 @@ public class LoginActivity extends AppCompatActivity {
             String pathEmpaquetado1 = fileEmpaquetado1.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado1);
             secuencia.setOrdenImagenSecuencia(0);
-            secuencia.setDescripcionImagenSecuencia("Uno");
+            secuencia.setDescripcionImagenSecuencia("Ubicar los materiales");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
@@ -1095,7 +1084,7 @@ public class LoginActivity extends AppCompatActivity {
             String pathEmpaquetado2 = fileEmpaquetado2.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado2);
             secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Dos");
+            secuencia.setDescripcionImagenSecuencia("Separar las fundas para empaquetar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
@@ -1103,21 +1092,21 @@ public class LoginActivity extends AppCompatActivity {
             String pathEmpaquetado3 = fileEmpaquetado3.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado3);
             secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Tres");
+            secuencia.setDescripcionImagenSecuencia("Llenar el producto en las bolsas");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathEmpaquetado4 = fileEmpaquetado4.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado4);
             secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
+            secuencia.setDescripcionImagenSecuencia("poner las bolsas llenas en la gabeta");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathEmpaquetado5 = fileEmpaquetado5.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado5);
             secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
+            secuencia.setDescripcionImagenSecuencia("Cerrar las bolsas llenas con el producto");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
@@ -1137,53 +1126,53 @@ public class LoginActivity extends AppCompatActivity {
 
             String pathGlaceado1 = fileGlaceado1.getPath().toString();
             secuencia.setImagenSecuencia(pathGlaceado1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
+            secuencia.setOrdenImagenSecuencia(0);
+            secuencia.setDescripcionImagenSecuencia("Tener una mezcla de chocolate");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathGlaceado2 = fileGlaceado2.getPath().toString();
             secuencia.setImagenSecuencia(pathGlaceado2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
+            secuencia.setOrdenImagenSecuencia(1);
+            secuencia.setDescripcionImagenSecuencia("Bañar las galletas en el chocolate");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathGlaceado3 = fileGlaceado3.getPath().toString();
             secuencia.setImagenSecuencia(pathGlaceado3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Poner a secar las galletas");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
 
             String pathGlaceado4 = fileGlaceado4.getPath().toString();
             secuencia.setImagenSecuencia(pathGlaceado4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
+            secuencia.setOrdenImagenSecuencia(3);
+            secuencia.setDescripcionImagenSecuencia("Separar las galletas y el glaceado");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathGlaceado5 = fileGlaceado5.getPath().toString();
             secuencia.setImagenSecuencia(pathGlaceado5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
+            secuencia.setOrdenImagenSecuencia(4);
+            secuencia.setDescripcionImagenSecuencia("bañar las galletas en el glaceado");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathGlaceado6 = fileGlaceado6.getPath().toString();
             secuencia.setImagenSecuencia(pathGlaceado6);
-            secuencia.setOrdenImagenSecuencia(6);
-            secuencia.setDescripcionImagenSecuencia("Seis");
+            secuencia.setOrdenImagenSecuencia(5);
+            secuencia.setDescripcionImagenSecuencia("poner a secar las galletas ");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
-            String pathGlaceado7 = fileGlaceado7.getPath().toString();
+          /*  String pathGlaceado7 = fileGlaceado7.getPath().toString();
             secuencia.setImagenSecuencia(pathGlaceado7);
             secuencia.setOrdenImagenSecuencia(7);
             secuencia.setDescripcionImagenSecuencia("Siete");
             secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
+            secuenciaDAO.create(secuencia);*/
 
 
 
@@ -1203,36 +1192,36 @@ public class LoginActivity extends AppCompatActivity {
 
             String pathLimpiezaJabas1 = filelimpiezaJabas1.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
+            secuencia.setOrdenImagenSecuencia(0);
+            secuencia.setDescripcionImagenSecuencia("Separa un paño para limpiar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaJabas2 = filelimpiezaJabas2.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
+            secuencia.setOrdenImagenSecuencia(1);
+            secuencia.setDescripcionImagenSecuencia("selecciona la java que vas ha limpiar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaJabas3 = filelimpiezaJabas3.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Limpia por dentro la java");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaJabas4 = filelimpiezaJabas4.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
+            secuencia.setOrdenImagenSecuencia(3);
+            secuencia.setDescripcionImagenSecuencia("Limpia por fuera la java");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaJabas5 = filelimpiezaJabas5.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
+            secuencia.setOrdenImagenSecuencia(4);
+            secuencia.setDescripcionImagenSecuencia("Una vez limpia coloca la java en su lugar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
@@ -1251,78 +1240,78 @@ public class LoginActivity extends AppCompatActivity {
 
             String pathLimpiezaLatas1 = filelimpiezaLatas1.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
+            secuencia.setOrdenImagenSecuencia(0);
+            secuencia.setDescripcionImagenSecuencia("Separa un recipiente para limpiar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas2 = filelimpiezaLatas2.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
+            secuencia.setOrdenImagenSecuencia(1);
+            secuencia.setDescripcionImagenSecuencia("Busca el instrumento para limpiar las latas");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas3 = filelimpiezaLatas3.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Busca un recipiente para arrojar la basura");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas4 = filelimpiezaLatas4.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
+            secuencia.setOrdenImagenSecuencia(3);
+            secuencia.setDescripcionImagenSecuencia("busca un paño para limpiar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas5 = filelimpiezaLatas5.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
+            secuencia.setOrdenImagenSecuencia(4);
+            secuencia.setDescripcionImagenSecuencia("Ubicate en tu estacion de trabajo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas6 = filelimpiezaLatas6.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas6);
-            secuencia.setOrdenImagenSecuencia(6);
-            secuencia.setDescripcionImagenSecuencia("Seis");
+            secuencia.setOrdenImagenSecuencia(5);
+            secuencia.setDescripcionImagenSecuencia("Limpia la lata con la herramienta");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas7 = filelimpiezaLatas7.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas7);
-            secuencia.setOrdenImagenSecuencia(7);
-            secuencia.setDescripcionImagenSecuencia("Siete");
+            secuencia.setOrdenImagenSecuencia(6);
+            secuencia.setDescripcionImagenSecuencia("arroja la basua en el recipiente adecuando");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas8 = filelimpiezaLatas8.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas8);
-            secuencia.setOrdenImagenSecuencia(8);
-            secuencia.setDescripcionImagenSecuencia("Ocho");
+            secuencia.setOrdenImagenSecuencia(7);
+            secuencia.setDescripcionImagenSecuencia("Limpia el recipiente");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas9 = filelimpiezaLatas9.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas9);
-            secuencia.setOrdenImagenSecuencia(9);
-            secuencia.setDescripcionImagenSecuencia("Nueve");
+            secuencia.setOrdenImagenSecuencia(8);
+            secuencia.setDescripcionImagenSecuencia("Remoja el paño para limpiar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas10 = filelimpiezaLatas10.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas10);
-            secuencia.setOrdenImagenSecuencia(10);
-            secuencia.setDescripcionImagenSecuencia("Diez");
+            secuencia.setOrdenImagenSecuencia(9);
+            secuencia.setDescripcionImagenSecuencia("Limpia la lata con el paño");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaLatas11 = filelimpiezaLatas11.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaLatas11);
-            secuencia.setOrdenImagenSecuencia(11);
-            secuencia.setDescripcionImagenSecuencia("Once");
+            secuencia.setOrdenImagenSecuencia(10);
+            secuencia.setDescripcionImagenSecuencia("Una vez limpia la lata ponla en su lugar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
@@ -1475,99 +1464,99 @@ public class LoginActivity extends AppCompatActivity {
 
             String pathPreparacionMasa1 = filePreparacionMasa1.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
+            secuencia.setOrdenImagenSecuencia(0);
+            secuencia.setDescripcionImagenSecuencia("Pesa los ingredientes");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa2 = filePreparacionMasa2.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
+            secuencia.setOrdenImagenSecuencia(1);
+            secuencia.setDescripcionImagenSecuencia("Añade la harina a la mezcladora");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa3 = filePreparacionMasa3.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Añade el resto de ingredientes en la mezcladora");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa4 = filePreparacionMasa4.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
+            secuencia.setOrdenImagenSecuencia(3);
+            secuencia.setDescripcionImagenSecuencia("Pon a funcionar la mezcladora");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa5 = filePreparacionMasa5.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
+            secuencia.setOrdenImagenSecuencia(4);
+            secuencia.setDescripcionImagenSecuencia("Apaga la maquina y revisa que la mezcle este haciendose bien.");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa6 = filePreparacionMasa6.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa6);
-            secuencia.setOrdenImagenSecuencia(6);
-            secuencia.setDescripcionImagenSecuencia("Seis");
+            secuencia.setOrdenImagenSecuencia(5);
+            secuencia.setDescripcionImagenSecuencia("Apaga la maquina y retira la masa ya hecha");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa7 = filePreparacionMasa7.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa7);
-            secuencia.setOrdenImagenSecuencia(7);
-            secuencia.setDescripcionImagenSecuencia("Siete");
+            secuencia.setOrdenImagenSecuencia(6);
+            secuencia.setDescripcionImagenSecuencia("separa la masa en partes para darles forma");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa8 = filePreparacionMasa8.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa8);
-            secuencia.setOrdenImagenSecuencia(8);
-            secuencia.setDescripcionImagenSecuencia("Ocho");
+            secuencia.setOrdenImagenSecuencia(7);
+            secuencia.setDescripcionImagenSecuencia("Dale a la masa la forma que te pidan");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa9 = filePreparacionMasa9.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa9);
-            secuencia.setOrdenImagenSecuencia(9);
-            secuencia.setDescripcionImagenSecuencia("Nueve");
+            secuencia.setOrdenImagenSecuencia(8);
+            secuencia.setDescripcionImagenSecuencia("Pon la masa moldeada en las bandejas");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa10 = filePreparacionMasa10.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa10);
-            secuencia.setOrdenImagenSecuencia(10);
-            secuencia.setDescripcionImagenSecuencia("Diez");
+            secuencia.setOrdenImagenSecuencia(9);
+            secuencia.setDescripcionImagenSecuencia("Pon las badejas en la camara de leudo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa11 = filePreparacionMasa11.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa11);
-            secuencia.setOrdenImagenSecuencia(11);
-            secuencia.setDescripcionImagenSecuencia("Once");
+            secuencia.setOrdenImagenSecuencia(10);
+            secuencia.setDescripcionImagenSecuencia("deja reposar un tiempo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa12 = filePreparacionMasa12.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa12);
-            secuencia.setOrdenImagenSecuencia(12);
-            secuencia.setDescripcionImagenSecuencia("Doce");
+            secuencia.setOrdenImagenSecuencia(11);
+            secuencia.setDescripcionImagenSecuencia("Ahora lleva las bandejas al horno");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa13 = filePreparacionMasa13.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa13);
-            secuencia.setOrdenImagenSecuencia(13);
-            secuencia.setDescripcionImagenSecuencia("Trece");
+            secuencia.setOrdenImagenSecuencia(12);
+            secuencia.setDescripcionImagenSecuencia("Ahora espera a que este horneado por completo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionMasa14 = filePreparacionMasa14.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionMasa14);
-            secuencia.setOrdenImagenSecuencia(14);
-            secuencia.setDescripcionImagenSecuencia("Catorce");
+            secuencia.setOrdenImagenSecuencia(13);
+            secuencia.setDescripcionImagenSecuencia("Retira el producto del horno");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 

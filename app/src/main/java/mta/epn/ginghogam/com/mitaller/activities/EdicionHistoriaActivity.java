@@ -103,7 +103,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         validaPermiso();
 
 
-        seleccionDificultad.setMax(8);
+        seleccionDificultad.setMax(14);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             seleccionDificultad.setMin(1);
         }
@@ -111,19 +111,19 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
         seleccionDificultad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress>=0 && progress <=3){
+                if(progress>=0 && progress <=5){
                     seekbarvalue=progress;
                     dificultad.setText("Fácil: "+(progress+1)+ " láminas");
                     dificultadSeleccionada = "facil";
                     numeroLaminas = progress+1;
                 }
-                if(progress>3 && progress <=6){
+                if(progress>5 && progress <=10){
                     dificultad.setText("Medio: "+(progress+1)+ " láminas");
                     dificultadSeleccionada = "medio";
                     numeroLaminas = progress+1;
 
                 }
-                if(progress>6 && progress <=9){
+                if(progress>10 && progress <=15){
                     dificultad.setText("Díficil: "+(progress+1)+ " láminas");
                     dificultadSeleccionada = "dificil";
                     numeroLaminas = progress+1;
