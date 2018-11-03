@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
     private Button aceptar, cancelar;
     public boolean visible = false;
     ArrayList<Taller> seleccion = new ArrayList<>();
+    ImageView fondosinregistro;
 
     //menu
     MenuItem menuItem;
@@ -60,6 +62,7 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
         }
 
         recyclerTaller = (RecyclerView) findViewById(R.id.recyclerTalleres);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
 
 //        linearLayoutManager = new LinearLayoutManager(this);
@@ -102,6 +105,10 @@ public class TallerActivity extends AppCompatActivity implements RecyclerItemCli
                 taller.setImagenTaller(cursor.getString(3));
                 tallerList.add(taller);
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
+        }
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
         }
 
         cursor.close();

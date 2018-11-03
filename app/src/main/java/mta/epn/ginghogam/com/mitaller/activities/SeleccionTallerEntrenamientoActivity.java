@@ -55,6 +55,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     private ImageView guia;
 
     private TextToSpeech TtS;
+    ImageView fondosinregistro;
 
 
 
@@ -63,6 +64,7 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
     private Runnable mRunnable;
     private int i = 0;
     private String dificultadSeleccionada;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -89,6 +91,8 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
         context = this;
 
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        fondosinregistro=findViewById(R.id.sinregistros);
+
 
         mCardAdapter = new CardPagerAdapterS();
 
@@ -112,6 +116,10 @@ public class SeleccionTallerEntrenamientoActivity extends AppCompatActivity impl
                 tallerList.add(taller);
                 mCardAdapter.addCardItemS(taller, estudiante, tutor, dificultadSeleccionada);
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
+        }
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
         }
 
         cursor.close();

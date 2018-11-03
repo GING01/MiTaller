@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
     private Button aceptar,cancelar;
     public boolean visible=false;
     ArrayList<Historia> seleccion= new ArrayList<>();
+    ImageView fondosinregistro;
 
 
     //Menu
@@ -67,6 +69,7 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
         taller = extras.getParcelable("taller");
 
         recyclerHistoria = (RecyclerView) findViewById(R.id.recyclerHistoria);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
 
 
@@ -117,6 +120,10 @@ public class HistoriaActivity extends AppCompatActivity implements RecyclerItemC
                     historia.setIdTaller(cursor.getInt(6));
                     histariaList.add(historia);
                 } while (cursor.moveToNext());
+                fondosinregistro.setVisibility(View.GONE);
+            }
+            else {
+                fondosinregistro.setVisibility(View.VISIBLE);
             }
 
             cursor.close();

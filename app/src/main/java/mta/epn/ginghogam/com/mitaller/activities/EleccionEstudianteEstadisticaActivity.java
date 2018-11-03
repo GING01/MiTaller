@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class EleccionEstudianteEstadisticaActivity extends AppCompatActivity imp
     private EstudianteDAO estudianteDAO;
     private Tutor tutor;
     List<Estudiante> estudianteList;
+    ImageView fondosinregistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class EleccionEstudianteEstadisticaActivity extends AppCompatActivity imp
 
 
         recyclerEstudiante = (RecyclerView) findViewById(R.id.recyclerEstudianteEntrenamiento);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
 
         linearLayoutManager = new LinearLayoutManager(this);
@@ -95,6 +98,10 @@ public class EleccionEstudianteEstadisticaActivity extends AppCompatActivity imp
                 estudianteList.add(estudiante);
 
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
+        }
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
         }
 
 

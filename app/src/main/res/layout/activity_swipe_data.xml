@@ -9,9 +9,17 @@
     android:fillViewport="true"
     android:fitsSystemWindows="true">
 
+
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/sinregistros"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:src="@drawable/buhosinregistros"
+                android:visibility="gone"
+                />
 
             <LinearLayout
                 android:id="@+id/ly1"
@@ -31,7 +39,11 @@
                     android:paddingLeft="@dimen/card_padding"
                     android:paddingRight="@dimen/card_padding"
                     android:paddingStart="@dimen/card_padding" />
+
+
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/ly2"
@@ -84,6 +96,7 @@
             </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>
+
 
 </ScrollView>
 

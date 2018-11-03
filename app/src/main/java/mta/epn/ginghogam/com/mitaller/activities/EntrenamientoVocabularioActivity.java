@@ -61,6 +61,8 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
     private Estudiante estudiante;
     private List<Vocabulario> vocabularioList;
     String dificultadSeleccionada;
+    ImageView fondosinregistro;
+
 
     private ImageView guia;
     private TextView lectura;
@@ -94,6 +96,7 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         Toast.makeText(this, dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
         recyclerPalabra = (RecyclerView) findViewById(R.id.recyclerPalabraEntrenamiento);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
 
         linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -193,6 +196,10 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
 
 
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
+        }
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
         }
 
         cursor.close();

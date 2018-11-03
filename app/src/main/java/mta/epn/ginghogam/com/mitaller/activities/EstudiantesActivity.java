@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
     public boolean visible = false;
     ArrayList<Estudiante> seleccion = new ArrayList<>();
     List<Estudiante> estudianteList;
+    ImageView fondosinregistro;
 
 
     //Menu
@@ -71,6 +73,7 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
 
 
         recyclerEstudiante = (RecyclerView) findViewById(R.id.recyclerEstudiante);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
 
         linearLayoutManager = new LinearLayoutManager(this);
@@ -118,6 +121,10 @@ public class EstudiantesActivity extends AppCompatActivity implements RecyclerIt
                 estudianteList.add(estudiante);
 
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
+        }
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
         }
 
 

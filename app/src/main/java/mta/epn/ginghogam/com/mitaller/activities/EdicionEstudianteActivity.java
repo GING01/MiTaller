@@ -265,7 +265,7 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 estudiante.setFotoEstudiante(RealPathUtil.getRealPath(getApplicationContext(), Uri.parse(pathGaleria)));
                 estudiante.setIdTutor(tutor.getIdTutor());
                 estudianteDAO.create(estudiante);
-                Toast.makeText(this,"El estudiante a sido modificado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Estudiante registrado", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }

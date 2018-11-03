@@ -70,6 +70,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
     private int i = 0;
 
     String dificultadSeleccionada;
+    ImageView fondosinregistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,7 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
         context = this;
 
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
         mCardAdapter = new CardPagerAdapterHistoria();
 
@@ -130,6 +132,10 @@ public class SeleccionHistoriaEntrenamientoActivity extends AppCompatActivity im
 
                 mCardAdapter.addCardItemS(historia, estudiante, tutor, taller);
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
+        }
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
         }
 
         cursor.close();

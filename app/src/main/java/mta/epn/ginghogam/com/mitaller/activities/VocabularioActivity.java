@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
     private Taller taller;
     public boolean visible = false;
     ArrayList<Vocabulario> seleccion = new ArrayList<>();
+    ImageView fondosinregistro;
 
 
     //Menu
@@ -65,6 +67,7 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
         taller = extras.getParcelable("taller");
 
         recyclerPalabra = (RecyclerView) findViewById(R.id.recyclerVocabulario);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
 
 //        linearLayoutManager = new LinearLayoutManager(this);
@@ -110,8 +113,11 @@ public class VocabularioActivity extends AppCompatActivity implements RecyclerIt
 
 
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
         }
-
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
+        }
 
         cursor.close();
         vocabularioDAO.close();

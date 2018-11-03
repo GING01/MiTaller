@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -38,7 +39,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
     private LinearLayoutManager linearLayoutManager;
     private EstudianteDAO estudianteDAO;
     private Tutor tutor;
-
+    ImageView fondosinregistro;
     private String m_Text = "";
     List<Estudiante> estudianteList;
 
@@ -59,6 +60,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
 //        Toast.makeText(this,tutor.getNombreTutor(), Toast.LENGTH_LONG).show();
 
         recyclerEstudiante = (RecyclerView) findViewById(R.id.recyclerEstudianteEntrenamiento);
+        fondosinregistro=findViewById(R.id.sinregistros);
 
 
         linearLayoutManager = new LinearLayoutManager(this);
@@ -106,6 +108,10 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
                 estudianteList.add(estudiante);
 
             } while (cursor.moveToNext());
+            fondosinregistro.setVisibility(View.GONE);
+        }
+        else {
+            fondosinregistro.setVisibility(View.VISIBLE);
         }
 
         cursor.close();
