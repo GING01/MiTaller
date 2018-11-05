@@ -482,8 +482,8 @@ if(isFirstRun){
             File filelimpiezaGeneral9 = new File(path, "limpieza_general9" + ".jpg");
 
 //            Bitmap limpiezaGeneral010 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10);
-            Bitmap limpiezaGeneral10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10), 350, 350, true);
-            File filelimpiezaGeneral10 = new File(path, "limpieza_general10" + ".jpg");
+            //Bitmap limpiezaGeneral10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10), 350, 350, true);
+           // File filelimpiezaGeneral10 = new File(path, "limpieza_general10" + ".jpg");
 
             //sequence preparacion latas
 
@@ -872,8 +872,8 @@ if(isFirstRun){
                 out = new FileOutputStream(filelimpiezaGeneral9);
                 limpiezaGeneral9.compress(Bitmap.CompressFormat.PNG, 100, out);
 
-                out = new FileOutputStream(filelimpiezaGeneral10);
-                limpiezaGeneral10.compress(Bitmap.CompressFormat.PNG, 100, out);
+               // out = new FileOutputStream(filelimpiezaGeneral10);
+                //limpiezaGeneral10.compress(Bitmap.CompressFormat.PNG, 100, out);
 
                 //preparacion de latas
                 out = new FileOutputStream(filePreparacionLatas1);
@@ -1319,10 +1319,10 @@ if(isFirstRun){
             //Historia limpieza general
             String limpiezaGeneral = fileHistoriaLimpiezaGeneral.getPath().toString();
             historia.setNombreHistoria("Limpieza General");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
-            historia.setNumeroLaminas("10");
-            historia.setDificultad("dificil");
+            historia.setDescripcionHistoria("Debes tener en cuenta que antes y despues de terminar tus labores en el centro de trabajo debes limpiarlo" +
+                    "ten en cuenta que debes limpiar todo muy bien");
+            historia.setNumeroLaminas("9");
+            historia.setDificultad("medio");
             historia.setImagenHistoria(limpiezaGeneral);
             historia.setIdHistoria(5);
             historia.setIdTaller(1);
@@ -1331,73 +1331,73 @@ if(isFirstRun){
 
             String pathLimpiezaGeneral1 = filelimpiezaGeneral1.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
+            secuencia.setOrdenImagenSecuencia(0);
+            secuencia.setDescripcionImagenSecuencia("Toma un paño y una escoba para limpiar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral2 = filelimpiezaGeneral2.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
+            secuencia.setOrdenImagenSecuencia(1);
+            secuencia.setDescripcionImagenSecuencia("Limpia las mesas de trabajo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral3 = filelimpiezaGeneral3.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Limpia el congelador");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral4 = filelimpiezaGeneral4.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
+            secuencia.setOrdenImagenSecuencia(3);
+            secuencia.setDescripcionImagenSecuencia("Limpia la entrada al taller");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral5 = filelimpiezaGeneral5.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
+            secuencia.setOrdenImagenSecuencia(4);
+            secuencia.setDescripcionImagenSecuencia("Limpia el refrigerador");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral6 = filelimpiezaGeneral6.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral6);
-            secuencia.setOrdenImagenSecuencia(6);
-            secuencia.setDescripcionImagenSecuencia("Seis");
+            secuencia.setOrdenImagenSecuencia(5);
+            secuencia.setDescripcionImagenSecuencia("Limpia las ventanas");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral7 = filelimpiezaGeneral7.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral7);
-            secuencia.setOrdenImagenSecuencia(7);
-            secuencia.setDescripcionImagenSecuencia("Siete");
+            secuencia.setOrdenImagenSecuencia(6);
+            secuencia.setDescripcionImagenSecuencia("Ahora barre el lugar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral8 = filelimpiezaGeneral8.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral8);
-            secuencia.setOrdenImagenSecuencia(8);
-            secuencia.setDescripcionImagenSecuencia("Ocho");
+            secuencia.setOrdenImagenSecuencia(7);
+            secuencia.setDescripcionImagenSecuencia("No olvides limpiar debajo de las mesas");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaGeneral9 = filelimpiezaGeneral9.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaGeneral9);
-            secuencia.setOrdenImagenSecuencia(9);
-            secuencia.setDescripcionImagenSecuencia("Nueve");
+            secuencia.setOrdenImagenSecuencia(8);
+            secuencia.setDescripcionImagenSecuencia("Finalmente recoge la basura");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
-            String pathLimpiezaGeneral10 = filelimpiezaGeneral10.getPath().toString();
-            secuencia.setImagenSecuencia(pathLimpiezaGeneral10);
-            secuencia.setOrdenImagenSecuencia(10);
-            secuencia.setDescripcionImagenSecuencia("Diez");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
+//            String pathLimpiezaGeneral10 = filelimpiezaGeneral10.getPath().toString();
+//            secuencia.setImagenSecuencia(pathLimpiezaGeneral10);
+//            secuencia.setOrdenImagenSecuencia(10);
+//            secuencia.setDescripcionImagenSecuencia("Diez");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
 
 
             //Historia preparacion latas
