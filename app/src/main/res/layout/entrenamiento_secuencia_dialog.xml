@@ -16,11 +16,21 @@
         android:layout_width="450dp"
         android:layout_height="350dp"
         android:layout_gravity="center"
-        android:src="@drawable/buhoguia"
+        android:src="@drawable/buhobig"
+        android:elevation="15dp"
         android:background="@drawable/shapesquare"/>
 
     <TextView
         android:id="@+id/numLaminas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/textolamina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"

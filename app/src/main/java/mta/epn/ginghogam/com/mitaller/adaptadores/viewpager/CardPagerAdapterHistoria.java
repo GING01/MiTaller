@@ -219,6 +219,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
         final ImageView imageView = mView.findViewById(R.id.welldoneico);
         Button jugar = mView.findViewById(R.id.empezar);
+        final TextView texto = mView.findViewById(R.id.textolamina);
 
 
         final TextView numLaminas = mView.findViewById(R.id.numLaminas);
@@ -235,6 +236,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                 } else if (contadorSecuencia < secuenciaList.size()) {
 
                     numLaminas.setText((contadorSecuencia + 1) + "/" + secuenciaList.size());
+                    texto.setText(secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia().toString());
 
                     File fileImagen = new File(secuenciaList.get(contadorSecuencia).getImagenSecuencia());
                     Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 450,
@@ -248,6 +250,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                 } else if (contadorSecuencia == secuenciaList.size()) {
                     contadorSecuencia = 0;
                     numLaminas.setText((1) + "/" + secuenciaList.size());
+                    texto.setText(secuenciaList.get(contadorSecuencia).getDescripcionImagenSecuencia().toString());
                     File fileImagen = new File(secuenciaList.get(contadorSecuencia).getImagenSecuencia());
                     Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 450,
                             350, true);
