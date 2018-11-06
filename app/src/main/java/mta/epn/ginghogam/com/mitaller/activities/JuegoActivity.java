@@ -108,10 +108,11 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
         TtS = new TextToSpeech(this, this);
 
-        target = (LinearLayout) findViewById(R.id.target1);
-        btnTarget = (LinearLayout) findViewById(R.id.btnTarget);
-        rootLayout = (LinearLayout) findViewById(R.id.layout_root);
-        rootLayout2 = (LinearLayout) findViewById(R.id.layout_root2);
+        target =  findViewById(R.id.target1);
+        btnTarget =  findViewById(R.id.btnTarget);
+        rootLayout =  findViewById(R.id.layout_root);
+        rootLayout2 =  findViewById(R.id.layout_root2);
+
         wrong = MediaPlayer.create(this, R.raw.wrongmove);
         hend = MediaPlayer.create(this, R.raw.welldone);
         bend = MediaPlayer.create(this, R.raw.tryagain);
@@ -264,10 +265,11 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         LinearLayout oldparent = (LinearLayout) view.getParent();
                         oldparent.removeView(view);
                         Button newParent = (Button) v;
-                        LinearLayout hola = (LinearLayout) newParent.getParent();
+                        LinearLayout ly = (LinearLayout) newParent.getParent();
                         v.setVisibility(View.GONE);
-                        hola.addView(view);
+                        ly.addView(view);
                         well.start();
+
                         correctas++;
                     } else {
                         wrong.start();
@@ -298,6 +300,12 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 final View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado_negativo, null);
                 final ImageButton imageButton = mView.findViewById(R.id.baddoneico);
                 bend.start();
+                bend.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+                });
                 imageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -427,6 +435,13 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         View mView = getLayoutInflater().inflate(R.layout.dialog_resutlado, null);
         ImageButton imageButton = mView.findViewById(R.id.welldoneico);
         hend.start();
+        hend.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+        });
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

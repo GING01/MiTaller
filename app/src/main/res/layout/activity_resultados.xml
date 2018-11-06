@@ -77,6 +77,7 @@
                     android:padding="10dp"
                     android:text="TextView"
                     android:textColor="#000"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -84,6 +85,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="10dp"
+                    android:textSize="25dp"
+
                     android:text="TextView" />
             </TableRow>
 
@@ -96,6 +99,8 @@
                     android:padding="10dp"
                     android:text="Ejercicio Resuelto:"
                     android:textColor="#000"
+                    android:textSize="25dp"
+
                     android:textStyle="bold" />
 
                 <TextView
@@ -113,8 +118,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="10dp"
-                    android:text="Acierto:"
+                    android:text="Aciertos:"
                     android:textColor="#000"
+                    android:textSize="25dp"
+
                     android:textStyle="bold" />
 
                 <TextView
@@ -122,6 +129,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="10dp"
+                    android:textSize="25dp"
+
                     android:text="TextView" />
 
             </TableRow>
@@ -135,6 +144,8 @@
                     android:padding="10dp"
                     android:text="Fallos:"
                     android:textColor="#000"
+                    android:textSize="25dp"
+
                     android:textStyle="bold" />
 
                 <TextView
@@ -142,6 +153,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="10dp"
+                    android:textSize="25dp"
+
                     android:text="TextView" />
             </TableRow>
 

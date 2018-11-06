@@ -143,7 +143,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
         ImageView image = (ImageView) view.findViewById(R.id.ivHistoria);
         Bitmap bitmap = BitmapFactory.decodeFile(mData.get(position).getImagenHistoria());
-        image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 250, 220, true));
+        //image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 250, 220, true));
         ImageView irJuego = (ImageView) view.findViewById(R.id.irJuego);
         irJuego.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,6 +276,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
                 } else {
                     startActivityJuego(view.getContext(), mData.get(position), estudiante, tutor, taller);
+                    contadorSecuencia=0;
                     dialog.dismiss();
                 }
 
@@ -376,6 +377,11 @@ public class CardPagerAdapterHistoria extends PagerAdapter
                 }
                 break;
         }
+    }
+
+    @Override
+    public float getPageWidth(int position) {
+        return (0.90f);
     }
 
     @Override

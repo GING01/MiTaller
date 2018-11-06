@@ -115,7 +115,7 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
         //use a GradientDrawable with only one color set, to make it a solid color
         GradientDrawable border = new GradientDrawable();
 
-        if (tipoPalabra.equals("Alimento")) {
+        if (tipoPalabra.equals("Ingrediente")) {
             border.setColor(Color.WHITE); //white background
             border.setStroke(6, Color.rgb(22, 239, 2)); //black border with full opacity
             border.setCornerRadius(20);

@@ -23,7 +23,7 @@
         <LinearLayout
             android:id="@+id/ly1"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true">
 
             <android.support.v4.view.ViewPager
@@ -53,7 +53,8 @@
             android:orientation="horizontal"
             android:weightSum="3"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/guia"
