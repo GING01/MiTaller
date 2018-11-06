@@ -1,8 +1,10 @@
 package mta.epn.ginghogam.com.mitaller.activities;
 
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -114,6 +116,14 @@ public class ResultadosActivity extends AppCompatActivity {
 
     }
     boolean doubleBackToExitPressedOnce = false;
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportActionBar().setCustomView(R.layout.menu_entrenamiento_resultado_preliminar);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        return true;
+    }
+
 
     @Override
     public void onBackPressed() {
