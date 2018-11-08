@@ -593,6 +593,9 @@ if(isFirstRun){
             Bitmap preparacionUniforme6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme6), 350, 350, true);
             File filePreparacionUniforme6 = new File(path, "preparacion_uniforme6" + ".jpg");
 
+            Bitmap preparacionUniforme7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme7), 350, 350, true);
+            File filePreparacionUniforme7 = new File(path, "preparacion_uniforme7" + ".jpg");
+
             //sequence preparacion moldes
 
 //            Bitmap preparacionMolde01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1);
@@ -958,6 +961,9 @@ if(isFirstRun){
 
                 out = new FileOutputStream(filePreparacionUniforme6);
                 preparacionUniforme6.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+                out = new FileOutputStream(filePreparacionUniforme7);
+                preparacionUniforme7.compress(Bitmap.CompressFormat.PNG, 100, out);
 
                 //preparacion moldes
 
@@ -1566,8 +1572,8 @@ if(isFirstRun){
             historia.setNombreHistoria("Preparación de Uniforme");
             historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
                     "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
-            historia.setNumeroLaminas("6");
-            historia.setDificultad("facil");
+            historia.setNumeroLaminas("7");
+            historia.setDificultad("medio");
             historia.setImagenHistoria(preparacionUniforme);
             historia.setIdHistoria(8);
             historia.setIdTaller(1);
@@ -1575,43 +1581,50 @@ if(isFirstRun){
 
             String pathPreparacionUniforme1 = filePreparacionUniforme1.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionUniforme1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
+            secuencia.setOrdenImagenSecuencia(0);
+            secuencia.setDescripcionImagenSecuencia("Recogete el pelo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionUniforme2 = filePreparacionUniforme2.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionUniforme2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
+            secuencia.setOrdenImagenSecuencia(1);
+            secuencia.setDescripcionImagenSecuencia("Sujetate el pelo en una coleta ");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionUniforme3 = filePreparacionUniforme3.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionUniforme3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
+            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setDescripcionImagenSecuencia("Usa una red para el pelo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionUniforme4 = filePreparacionUniforme4.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionUniforme4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
+            secuencia.setOrdenImagenSecuencia(3);
+            secuencia.setDescripcionImagenSecuencia("Ahora puedes usar el gorro de chef");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionUniforme5 = filePreparacionUniforme5.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionUniforme5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
+            secuencia.setOrdenImagenSecuencia(4);
+            secuencia.setDescripcionImagenSecuencia("Si estas enfermo no olvides usar una mascarilla");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathPreparacionUniforme6 = filePreparacionUniforme6.getPath().toString();
             secuencia.setImagenSecuencia(pathPreparacionUniforme6);
+            secuencia.setOrdenImagenSecuencia(5);
+            secuencia.setDescripcionImagenSecuencia("Ahora ponte el mandil de trabajo");
+            secuencia.setIdHistoria(historia.getIdHistoria());
+            secuenciaDAO.create(secuencia);
+
+            String pathPreparacionUniforme7 = filePreparacionUniforme7.getPath().toString();
+            secuencia.setImagenSecuencia(pathPreparacionUniforme7);
             secuencia.setOrdenImagenSecuencia(6);
-            secuencia.setDescripcionImagenSecuencia("Seis");
+            secuencia.setDescripcionImagenSecuencia("Por ultimo ajusta el mandil y estaras listo");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 

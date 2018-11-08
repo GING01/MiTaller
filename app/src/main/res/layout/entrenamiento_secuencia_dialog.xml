@@ -2,6 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ly"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +11,18 @@
     android:paddingBottom="10dp"
     android:paddingTop="10dp">
 
+
+    <ImageView
+        android:id="@+id/iconcerrar"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="cerrarentrenamiento"
+        android:src="@android:drawable/btn_dialog"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/welldoneico"
@@ -30,7 +43,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:textColor="#000"
-        android:textSize="12dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textolamina"
