@@ -123,7 +123,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             for (int i = 0; i < secuenciaList.size(); i++) {
                 bt1 = new ImageView(getApplicationContext());
 
-                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(180, 180);
                 parametros.gravity = Gravity.CENTER;
                 parametros.setMargins(10, 10, 10, 10);
 
@@ -132,8 +132,8 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
 
                 File fileImagen = new File(secuenciaList.get(i).getImagenSecuencia());
-                Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 400,
-                        400, true);
+                Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 250,
+                        250, true);
 
 
                 bt1.setImageBitmap(newBitmap);

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="265dp"
+        android:layout_height="200dp"
         android:layout_margin="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +35,12 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_width="494dp"
+        android:layout_height="249dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/shapesquare"
         android:gravity="center"
         android:orientation="vertical"
@@ -50,9 +50,9 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
-            android:layout_width="278dp"
-            android:layout_height="204dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="5dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,10 +64,15 @@
 
             <ImageView
                 android:id="@+id/imagenfoto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="236dp"
+                android:layout_height="174dp"
                 android:layout_alignParentTop="true"
-                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="fotografía"
                 android:src="@drawable/no_foto" />
 
@@ -75,12 +80,12 @@
                 android:id="@+id/btncamara"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="11dp"
+                android:layout_alignParentTop="true"
                 android:layout_marginEnd="72dp"
                 android:layout_marginRight="72dp"
+                android:layout_marginTop="11dp"
                 android:onClick="tomarFoto"
                 app:srcCompat="@android:drawable/ic_menu_camera" />
 
@@ -88,9 +93,9 @@
                 android:id="@+id/btngalery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/btncamara"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/btncamara"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:onClick="galeria"
@@ -104,14 +109,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Aqui va una descripcion de la imagen de la secuencia"
+            android:imeOptions="actionDone"
             android:paddingLeft="15dp"
+            android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.448"
-            android:imeOptions="actionDone"/>
+            app:layout_constraintVertical_bias="0.448" />
     </LinearLayout>
 
 
