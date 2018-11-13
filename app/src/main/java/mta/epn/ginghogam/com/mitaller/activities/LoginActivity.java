@@ -1057,7 +1057,9 @@ if(isFirstRun){
 
             String panaderiaport = filePanaderia.getPath().toString();
             taller.setNombreTaller("Panaderia");
-            taller.setDescripcionTaller("En este taller de panadería aprendemos a elaborar panes básicos. Con los ingredientes elementales que configuran un pan: harina, agua, levadura y sal.  Aprenderemos a usar diferentes tipos de harinas, sus usos y especificaciones técnicas.");
+            taller.setDescripcionTaller("En este taller de panadería aprendemos a elaborar panes básicos. " +
+                    "Con los ingredientes elementales que configuran un pan: harina, agua, levadura y sal." +
+                    "Aprenderemos a usar diferentes tipos de harinas, sus usos y especificaciones técnicas.");
             taller.setImagenTaller(panaderiaport);
             taller.setIdTaller(1);
             tallerDAO.create(taller);
@@ -1570,8 +1572,7 @@ if(isFirstRun){
             //Historia preparacion unifrome
             String preparacionUniforme = fileHistoriaPreparacionUniforme.getPath().toString();
             historia.setNombreHistoria("Preparación de Uniforme");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+            historia.setDescripcionHistoria("Antes de entrar a la estacion de trabajo debes estar correctamente uniformado");
             historia.setNumeroLaminas("7");
             historia.setDificultad("medio");
             historia.setImagenHistoria(preparacionUniforme);
