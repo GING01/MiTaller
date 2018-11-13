@@ -123,7 +123,7 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
             for (int i = 0; i < secuenciaList.size(); i++) {
                 bt1 = new ImageView(getApplicationContext());
 
-                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(180, 180);
+                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 parametros.gravity = Gravity.CENTER;
                 parametros.setMargins(10, 10, 10, 10);
 
