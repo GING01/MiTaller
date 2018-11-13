@@ -17,14 +17,14 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="188dp"
+            android:layout_height="match_parent"
             android:background="@drawable/shapesquare"
             tools:layout_editor_absoluteX="357dp"
             tools:layout_editor_absoluteY="92dp">
 
             <LinearLayout
                 android:id="@+id/layout_root"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:orientation="horizontal">
