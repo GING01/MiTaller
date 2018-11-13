@@ -9,14 +9,14 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/shapesquare"
             tools:layout_editor_absoluteX="357dp"
             tools:layout_editor_absoluteY="92dp">
@@ -49,8 +49,8 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="215dp"
+            android:layout_width="310dp"
+            android:layout_height="220dp"
             android:layout_marginTop="5dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
