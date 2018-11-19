@@ -140,7 +140,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
 
     private void registrarUsuarios() {
         if(taller != null){
-            if(fileImagen != null){
+            if(fileImagen != null && taller.getImagenTaller() != null){
                 taller.setNombreTaller(nombreTaller.getText().toString());
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(imagenCamara);
@@ -148,7 +148,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 Toast.makeText(this,"El taller ha sido modificado", Toast.LENGTH_SHORT).show();
                 finish();
             }
-            if (pathGaleria != null){
+            if (pathGaleria != null && taller.getImagenTaller() != null){
                 taller.setNombreTaller(nombreTaller.getText().toString());
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
                 taller.setImagenTaller(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));

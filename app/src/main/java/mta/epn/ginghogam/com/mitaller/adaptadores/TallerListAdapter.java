@@ -91,7 +91,7 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
         holder.nombreTaller.setText(taller.getNombreTaller());
 
 
-        if(taller != null) {
+        if(taller != null && taller.getImagenTaller() != null) {
             File file = new File(taller.getImagenTaller());
             if (!file.exists()) {
                 Toast.makeText(context, "no Exist", Toast.LENGTH_LONG).show();
