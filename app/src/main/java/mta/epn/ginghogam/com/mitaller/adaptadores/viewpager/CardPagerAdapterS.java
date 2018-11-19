@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,8 +109,15 @@ public class CardPagerAdapterS extends PagerAdapter implements CardAdapter {
         ImageView image = (ImageView) view.findViewById(R.id.imgPageTaller);
         Button taller = view.findViewById(R.id.irTaller);
         taller.setText(item.getNombreTaller());
-        image.setImageBitmap(BitmapFactory.decodeFile(item.getImagenTaller()));
 
+
+        File fileImagen = new File(item.getImagenTaller());
+
+        if (!fileImagen.exists()) {
+            image.setImageResource(R.drawable.no_foto);
+        } else {
+            image.setImageBitmap(BitmapFactory.decodeFile(fileImagen.getPath()));
+        }
 
         Button fab = (Button) view.findViewById(R.id.irTaller);
         fab.setOnClickListener(new View.OnClickListener() {
