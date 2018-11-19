@@ -19,6 +19,7 @@ import java.util.List;
 
 import mta.epn.ginghogam.com.mitaller.R;
 import mta.epn.ginghogam.com.mitaller.activities.TallerActivity;
+import mta.epn.ginghogam.com.mitaller.entidades.Historia;
 import mta.epn.ginghogam.com.mitaller.entidades.Taller;
 import mta.epn.ginghogam.com.mitaller.listener.RecyclerItemClickListener;
 
@@ -34,18 +35,21 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
     public TallerListAdapter(Context context) {
         this.context = context;
         this.tallerList = new ArrayList<>();
-        tallerActivity=(TallerActivity) context;
+        tallerActivity = (TallerActivity) context;
 
     }
+
     private void add(Taller item) {
         tallerList.add(item);
         notifyItemInserted(tallerList.size() - 1);
     }
+
     public void addAll(List<Taller> contactList) {
         for (Taller contact : contactList) {
             add(contact);
         }
     }
+
     public void remove(Taller item) {
         int position = tallerList.indexOf(item);
         if (position > -1) {
@@ -53,14 +57,17 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
             notifyItemRemoved(position);
         }
     }
+
     public void clear() {
         while (getItemCount() > 0) {
             remove(getItem(0));
         }
     }
+
     public Taller getItem(int position) {
         return tallerList.get(position);
     }
+
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_talleres, null, false);
@@ -80,37 +87,40 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
         });
         return contactHolder;
     }
+
     public void setOnClickListener(View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
 
     @Override
     public void onBindViewHolder(ContactHolder holder, int position) {
+
         final Taller taller = tallerList.get(position);
 
         holder.nombreTaller.setText(taller.getNombreTaller());
 
 
-        if(taller != null && taller.getImagenTaller() != null) {
+//        if(taller.getImagenTaller() != null) {
             File file = new File(taller.getImagenTaller());
             if (!file.exists()) {
                 Toast.makeText(context, "no Exist", Toast.LENGTH_LONG).show();
                 holder.imgTaller.setImageResource(R.drawable.no_foto);
             } else {
 
-
                 File fileImagen = new File(taller.getImagenTaller().toString());
-                Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 512,
-                        512, true);
+                Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 188,
+                        173, true);
 
 
                 holder.imgTaller.setImageBitmap(newBitmap);
             }
-        }
-        if(!tallerActivity.visible){
+
+//        }
+
+
+        if (!tallerActivity.visible) {
             holder.checkBox.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             holder.checkBox.setVisibility(View.VISIBLE);
             holder.checkBox.setChecked(false);
         }
@@ -127,7 +137,7 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
 
     @Override
     public void onClick(View v) {
-        if(onClickListener!=null){
+        if (onClickListener != null) {
             onClickListener.onClick(v);
         }
 
@@ -142,14 +152,14 @@ public class TallerListAdapter extends RecyclerView.Adapter<TallerListAdapter.Co
             super(itemView);
             imgTaller = (ImageView) itemView.findViewById(R.id.img_taller);
             nombreTaller = (TextView) itemView.findViewById(R.id.nombre_taller);
-            checkBox=(CheckBox) itemView.findViewById(R.id.seleccionar);
+            checkBox = (CheckBox) itemView.findViewById(R.id.seleccionar);
             checkBox.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View v) {
-            tallerActivity.prepararSeleccion(v,getAdapterPosition());
+            tallerActivity.prepararSeleccion(v, getAdapterPosition());
         }
     }
 }

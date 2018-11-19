@@ -236,7 +236,6 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 historia.setDificultad(dificultadSeleccionada);
                 historia.setImagenHistoria(RealPathUtil.getRealPath(getApplicationContext(),Uri.parse(pathGaleria)));
                 historia.setIdTaller(taller.getIdTaller());
-                //Toast.makeText(this,"id taller: "+taller.getIdTaller(),Toast.LENGTH_LONG).show();
                 historiaDAO.create(historia);
                 Toast.makeText(this,"Historia registrada", Toast.LENGTH_SHORT).show();
                 finish();
