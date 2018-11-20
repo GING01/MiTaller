@@ -95,28 +95,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
 
                     imgTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller().toString()));
                 }
-            } if(savedInstanceState != null){
-                pathGaleria = savedInstanceState.getString("galeria");
-                imagenCamara = savedInstanceState.getString("camara");
-                if(imagenCamara == null) {
-                    if(taller==null){
-                      imgTaller.setImageResource(R.drawable.no_foto);
-                    }else {
-                        imgTaller.setImageBitmap(BitmapFactory.decodeFile(taller.getImagenTaller()));
-                    }
-                }if(pathGaleria != null){
-                imgTaller.setImageBitmap(BitmapFactory.decodeFile(RealPathUtil.getRealPath(this,Uri.parse(pathGaleria))));
             }
-            if(imagenCamara != null){
-                imgTaller.setImageBitmap(BitmapFactory.decodeFile(imagenCamara));
-                //Toast.makeText(this,"Hola >D"+imagenCamara, Toast.LENGTH_LONG).show();
-            }
-
-
-
-
-
-        }
 
 
         sqLiteDB = new SQLiteDB(this);
@@ -188,7 +167,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 taller = new Taller();
                 taller.setNombreTaller(nombreTaller.getText().toString());
                 taller.setDescripcionTaller(descripcionTaller.getText().toString());
-                taller.setImagenTaller(imagenCamara);
+                taller.setImagenTaller(fileImagen.getPath().toString());
                 tallerDAO.create(taller);
                 Toast.makeText(this,"Taller registrado", Toast.LENGTH_SHORT).show();
                 finish();

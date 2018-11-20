@@ -71,11 +71,19 @@ public class BienvenidaTallerActivity extends AppCompatActivity implements TextT
 
 
         File fileImagen = new File(taller.getImagenTaller());
-        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 512,
-                512, true);
+
+        if (!fileImagen.exists()) {
+            imagenTaller.setImageResource(R.drawable.no_foto);
+        } else {
+
+            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 512,
+                    512, true);
 
 
-        imagenTaller.setImageBitmap(newBitmap);
+            imagenTaller.setImageBitmap(newBitmap);
+        }
+
+
         descripcionTaller.setText(taller.getDescripcionTaller());
         lectura = findViewById(R.id.texto);
         guia = findViewById(R.id.guia);

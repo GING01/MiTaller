@@ -149,11 +149,13 @@ public class PalabraEntrenamientoListAdapter extends RecyclerView.Adapter<Palabr
 
 
         File file = new File(vocabulario.getImagenPalabra());
-        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(file.getPath()), 250,
-                250, true);
+
         if (!file.exists()) {
             holder.imgPalabra.setImageResource(R.drawable.no_foto);
         } else {
+
+            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(file.getPath()), 250,
+                    250, true);
             holder.imgPalabra.setImageBitmap(newBitmap);
             holder.imgPalabra.setOnClickListener(new View.OnClickListener() {
                 @Override
