@@ -19,7 +19,7 @@
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="410dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -63,8 +63,8 @@
         </FrameLayout>
 
         <LinearLayout
-            android:layout_width="386dp"
-            android:layout_height="334dp"
+            android:layout_width="409dp"
+            android:layout_height="355dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -76,7 +76,7 @@
 
             <EditText
                 android:id="@+id/nombreTaller"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="15dp"
@@ -87,7 +87,7 @@
 
             <EditText
                 android:id="@+id/descripcionTaller"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="15dp"

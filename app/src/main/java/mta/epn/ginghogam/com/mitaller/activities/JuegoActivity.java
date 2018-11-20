@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -131,7 +132,8 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         long id = historia.getIdHistoria();
         Cursor cursor = secuenciaDAO.retrieve(id);
         lista = new ArrayList<Secuencia>();
-
+        int screenSize = getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
 
         Secuencia secuencia;
 
@@ -151,64 +153,126 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         cursor.close();
         secuenciaDAO.close();
 
+        switch (screenSize) {
+            case Configuration.SCREENLAYOUT_SIZE_XLARGE:
+                for (int i = 0; i < lista.size(); i++) {
 
+                    LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
+                    itemLayout.setId(ITEM_ID + i);
+                    itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    params.gravity = Gravity.CENTER_HORIZONTAL;
+                    params.setMargins(10, 10, 10, 10);
+
+                    itemLayout.setLayoutParams(params);
+                    tg = new LinearLayout(getApplicationContext());
+                    bt1 = new Button(getApplicationContext());
+                    bt1.setText("" + (i + 1));
+                    bt1.setLayoutParams(params);
+                    bt1.setId(lista.get(i).getOrdenImagenSecuencia());
+                    bt1.setBackgroundColor(Color.DKGRAY);
+                    bt1.setTextColor(Color.WHITE);
+                    bt1.setWidth(400);
+                    bt1.setHeight(400);
+                    bt1.setTextSize(75);
+                    bt1.setOnDragListener(dragListener);
+                    tg.addView(bt1);
+                    target.addView(tg);
+                    rootLayout.addView(itemLayout);
+                }
+                ArrayList<Secuencia> listaRandom = new ArrayList<Secuencia>();
+                listaRandom = lista;
+                Random rndm = new Random();
+                Collections.shuffle(listaRandom, rndm);
+                for (int i = 0; i < lista.size(); i++) {
+                    LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
+                    itemLayout.setId(ITEM_ID + i);
+                    itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    params.gravity = Gravity.CENTER_HORIZONTAL;
+                    params.setMargins(10, 10, 10, 10);
+
+                    itemLayout.setLayoutParams(params);
+
+
+                    Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom.get(i).getImagenSecuencia()), 400,
+                            400, true);
+
+
+                    bt2 = new ImageView(getApplicationContext());
+                    bt2.setId(listaRandom.get(i).getOrdenImagenSecuencia());
+                    bt2.setLayoutParams(params);
+                    bt2.setBackgroundColor(Color.BLACK);
+                    bt2.setImageBitmap(newBitmap);
+
+                    bt2.setOnLongClickListener(longClickListener);
+                    btnTarget.addView(bt2);
+                    rootLayout2.addView(itemLayout);
+                }
+
+                break;
+                default:
+                    for (int i = 0; i < lista.size(); i++) {
+
+                        LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
+                        itemLayout.setId(ITEM_ID + i);
+                        itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                        params.gravity = Gravity.CENTER_HORIZONTAL;
+                        params.setMargins(10, 10, 10, 10);
+
+                        itemLayout.setLayoutParams(params);
+                        tg = new LinearLayout(getApplicationContext());
+                        bt1 = new Button(getApplicationContext());
+                        bt1.setText("" + (i + 1));
+                        bt1.setLayoutParams(params);
+                        bt1.setId(lista.get(i).getOrdenImagenSecuencia());
+                        bt1.setBackgroundColor(Color.DKGRAY);
+                        bt1.setTextColor(Color.WHITE);
+                        bt1.setWidth(100);
+                        bt1.setHeight(150);
+                        bt1.setTextSize(75);
+                        bt1.setOnDragListener(dragListener);
+                        tg.addView(bt1);
+                        target.addView(tg);
+                        rootLayout.addView(itemLayout);
+                    }
+                    ArrayList<Secuencia> listaRandom2 = new ArrayList<Secuencia>();
+                    listaRandom = lista;
+                    Random rndm2 = new Random();
+                    Collections.shuffle(listaRandom2, rndm2);
+                    for (int i = 0; i < lista.size(); i++) {
+                        LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
+                        itemLayout.setId(ITEM_ID + i);
+                        itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                        params.gravity = Gravity.CENTER_HORIZONTAL;
+                        params.setMargins(10, 10, 10, 10);
+
+                        itemLayout.setLayoutParams(params);
+
+
+                        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom.get(i).getImagenSecuencia()), 190,
+                                190, true);
+
+
+                        bt2 = new ImageView(getApplicationContext());
+                        bt2.setId(listaRandom2.get(i).getOrdenImagenSecuencia());
+                        bt2.setLayoutParams(params);
+                        bt2.setBackgroundColor(Color.BLACK);
+                        bt2.setImageBitmap(newBitmap);
+
+                        bt2.setOnLongClickListener(longClickListener);
+                        btnTarget.addView(bt2);
+                        rootLayout2.addView(itemLayout);
+                    }
+
+
+
+        }
         //Toast.makeText(this, "" + lista.get(0).getImagenSecuencia(), Toast.LENGTH_LONG).show();
 
 
-        for (int i = 0; i < lista.size(); i++) {
-
-            LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
-            itemLayout.setId(ITEM_ID + i);
-            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            params.gravity = Gravity.CENTER_HORIZONTAL;
-            params.setMargins(10, 10, 10, 10);
-
-            itemLayout.setLayoutParams(params);
-            tg = new LinearLayout(getApplicationContext());
-            bt1 = new Button(getApplicationContext());
-            bt1.setText("" + (i + 1));
-            bt1.setLayoutParams(params);
-            bt1.setId(lista.get(i).getOrdenImagenSecuencia());
-            bt1.setBackgroundColor(Color.DKGRAY);
-            bt1.setTextColor(Color.WHITE);
-            bt1.setWidth(100);
-            bt1.setHeight(150);
-            bt1.setTextSize(75);
-            bt1.setOnDragListener(dragListener);
-            tg.addView(bt1);
-            target.addView(tg);
-            rootLayout.addView(itemLayout);
-        }
-        ArrayList<Secuencia> listaRandom = new ArrayList<Secuencia>();
-        listaRandom = lista;
-        Random rndm = new Random();
-        Collections.shuffle(listaRandom, rndm);
-        for (int i = 0; i < lista.size(); i++) {
-            LinearLayout itemLayout = new LinearLayout(JuegoActivity.this);
-            itemLayout.setId(ITEM_ID + i);
-            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            params.gravity = Gravity.CENTER_HORIZONTAL;
-            params.setMargins(10, 10, 10, 10);
-
-            itemLayout.setLayoutParams(params);
-
-
-            Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom.get(i).getImagenSecuencia()), 190,
-                    190, true);
-
-
-            bt2 = new ImageView(getApplicationContext());
-            bt2.setId(listaRandom.get(i).getOrdenImagenSecuencia());
-            bt2.setLayoutParams(params);
-            bt2.setBackgroundColor(Color.BLACK);
-            bt2.setImageBitmap(newBitmap);
-
-            bt2.setOnLongClickListener(longClickListener);
-            btnTarget.addView(bt2);
-            rootLayout2.addView(itemLayout);
-        }
 
 
         lectura = findViewById(R.id.texto);

@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -93,6 +94,8 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
         imagen = findViewById(R.id.imagenfoto);
         camara = findViewById(R.id.btncamara);
         galery = findViewById(R.id.btngalery);
+        int screenSize = getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
 
 
 
@@ -103,85 +106,170 @@ public class EdicionSecuenciaActivity extends AppCompatActivity {
 
         long params = historia.getIdHistoria();
         Cursor cursor = secuenciaDAO.retrieve(params);
+        switch (screenSize) {
+            case Configuration.SCREENLAYOUT_SIZE_XLARGE:
+                if (cursor.moveToFirst()) {
 
 
-        if (cursor.moveToFirst()) {
+                    do {
+                        secuencia = new Secuencia();
+                        secuencia.setIdSecuencia(cursor.getInt(0));
+                        secuencia.setImagenSecuencia(cursor.getString(1));
+                        secuencia.setOrdenImagenSecuencia(cursor.getInt(2));
+                        secuencia.setDescripcionImagenSecuencia(cursor.getString(3));
+                        secuencia.setIdHistoria(cursor.getInt(4));
+                        secuenciaList.add(secuencia);
+                        imagenes.add(cursor.getString(1));
+                        descripcionImagenes.add(cursor.getString(3));
 
+                    } while (cursor.moveToNext());
+                    for (int i = 0; i < secuenciaList.size(); i++) {
+                        bt1 = new ImageView(getApplicationContext());
 
-            do {
-                secuencia = new Secuencia();
-                secuencia.setIdSecuencia(cursor.getInt(0));
-                secuencia.setImagenSecuencia(cursor.getString(1));
-                secuencia.setOrdenImagenSecuencia(cursor.getInt(2));
-                secuencia.setDescripcionImagenSecuencia(cursor.getString(3));
-                secuencia.setIdHistoria(cursor.getInt(4));
-                secuenciaList.add(secuencia);
-                imagenes.add(cursor.getString(1));
-                descripcionImagenes.add(cursor.getString(3));
+                        LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(400, 400);
+                        parametros.gravity = Gravity.CENTER;
+                        parametros.setMargins(10, 10, 10, 10);
 
-            } while (cursor.moveToNext());
-            for (int i = 0; i < secuenciaList.size(); i++) {
-                bt1 = new ImageView(getApplicationContext());
-
-                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(250, 250);
-                parametros.gravity = Gravity.CENTER;
-                parametros.setMargins(10, 10, 10, 10);
-
-                bt1.setLayoutParams(parametros);
+                        bt1.setLayoutParams(parametros);
 
 
 
-                File fileImagen = new File(secuenciaList.get(i).getImagenSecuencia());
-                Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 250,
-                        250, true);
+                        File fileImagen = new File(secuenciaList.get(i).getImagenSecuencia());
+                        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 400,
+                                400, true);
 
 
-                bt1.setImageBitmap(newBitmap);
-                bt1.setBackgroundColor(Color.DKGRAY);
-                bt1.setOnDragListener(dragListener);
-                bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
-                rootLayout.addView(bt1);
+                        bt1.setImageBitmap(newBitmap);
+                        bt1.setBackgroundColor(Color.DKGRAY);
+                        bt1.setOnDragListener(dragListener);
+                        bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
+                        rootLayout.addView(bt1);
 
 
-                final int finalI = i;
-                bt1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        imagen.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(finalI).getImagenSecuencia()));
-                        descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
+                        final int finalI = i;
+                        bt1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                imagen.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(finalI).getImagenSecuencia()));
+                                descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
 //                        pathArrastrar= imagen
 
 
+                            }
+                        });
+
+
                     }
-                });
 
 
-            }
+                    editar = true;
+                    imagen.setOnLongClickListener(longClickListener);
+                } else {
+                    for (int i = 0; i < numeroImg; i++) {
 
+                        bt1 = new ImageView(getApplicationContext());
+                        LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(400, 400);
+                        parametros.gravity = Gravity.CENTER;
+                        parametros.setMargins(10, 10, 10, 10);
 
-            editar = true;
-            imagen.setOnLongClickListener(longClickListener);
-        } else {
-            for (int i = 0; i < numeroImg; i++) {
+                        bt1.setLayoutParams(parametros);
 
-                bt1 = new ImageView(getApplicationContext());
-                LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(250, 250);
-                parametros.gravity = Gravity.CENTER;
-                parametros.setMargins(10, 10, 10, 10);
-
-                bt1.setLayoutParams(parametros);
-
-                bt1.setImageResource(R.drawable.no_foto);
-                bt1.setOnDragListener(dragListener);
-                bt1.setTag(i);
-                rootLayout.addView(bt1);
-                imagenes.add("");
-                descripcionImagenes.add("");
+                        bt1.setImageResource(R.drawable.no_foto);
+                        bt1.setOnDragListener(dragListener);
+                        bt1.setTag(i);
+                        rootLayout.addView(bt1);
+                        imagenes.add("");
+                        descripcionImagenes.add("");
 
 
 
-            }
-            imagen.setOnLongClickListener(longClickListener);
+                    }
+                    imagen.setOnLongClickListener(longClickListener);
+                }
+
+
+                break;
+            default:
+                if (cursor.moveToFirst()) {
+
+
+                    do {
+                        secuencia = new Secuencia();
+                        secuencia.setIdSecuencia(cursor.getInt(0));
+                        secuencia.setImagenSecuencia(cursor.getString(1));
+                        secuencia.setOrdenImagenSecuencia(cursor.getInt(2));
+                        secuencia.setDescripcionImagenSecuencia(cursor.getString(3));
+                        secuencia.setIdHistoria(cursor.getInt(4));
+                        secuenciaList.add(secuencia);
+                        imagenes.add(cursor.getString(1));
+                        descripcionImagenes.add(cursor.getString(3));
+
+                    } while (cursor.moveToNext());
+                    for (int i = 0; i < secuenciaList.size(); i++) {
+                        bt1 = new ImageView(getApplicationContext());
+
+                        LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(250, 250);
+                        parametros.gravity = Gravity.CENTER;
+                        parametros.setMargins(10, 10, 10, 10);
+
+                        bt1.setLayoutParams(parametros);
+
+
+
+                        File fileImagen = new File(secuenciaList.get(i).getImagenSecuencia());
+                        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileImagen.getPath()), 250,
+                                250, true);
+
+
+                        bt1.setImageBitmap(newBitmap);
+                        bt1.setBackgroundColor(Color.DKGRAY);
+                        bt1.setOnDragListener(dragListener);
+                        bt1.setTag((secuenciaList.get(i).getOrdenImagenSecuencia()));
+                        rootLayout.addView(bt1);
+
+
+                        final int finalI = i;
+                        bt1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                imagen.setImageBitmap(BitmapFactory.decodeFile(secuenciaList.get(finalI).getImagenSecuencia()));
+                                descripcionImagenSecuencia.setText(secuenciaList.get(finalI).getDescripcionImagenSecuencia());
+//                        pathArrastrar= imagen
+
+
+                            }
+                        });
+
+
+                    }
+
+
+                    editar = true;
+                    imagen.setOnLongClickListener(longClickListener);
+                } else {
+                    for (int i = 0; i < numeroImg; i++) {
+
+                        bt1 = new ImageView(getApplicationContext());
+                        LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(250, 250);
+                        parametros.gravity = Gravity.CENTER;
+                        parametros.setMargins(10, 10, 10, 10);
+
+                        bt1.setLayoutParams(parametros);
+
+                        bt1.setImageResource(R.drawable.no_foto);
+                        bt1.setOnDragListener(dragListener);
+                        bt1.setTag(i);
+                        rootLayout.addView(bt1);
+                        imagenes.add("");
+                        descripcionImagenes.add("");
+
+
+
+                    }
+                    imagen.setOnLongClickListener(longClickListener);
+                }
+
+
         }
 
 
