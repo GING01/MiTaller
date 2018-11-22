@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mta.epn.ginghogam.com.mitaller.activities.ResultadosActivity">
+
+
+    <ImageView
+        android:id="@+id/guardar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="57dp"
+        android:src="@drawable/result" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="RESULTADOS"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp"/>
+
+
+    <EditText
+        android:id="@+id/observaciones"
+        android:layout_width="486dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="139dp"
+        android:ems="15"
+        android:focusableInTouchMode="true"
+        android:focusedByDefault="false"
+        android:hint="Observación"
+        android:inputType="textMultiLine|text" />
+
+
+    <LinearLayout
+        android:layout_width="456dp"
+        android:layout_height="286dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="102dp"
+        android:orientation="vertical"
+        android:paddingRight="15dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/nombretaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView"
+                    android:textColor="#000"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nombrehistoriaResultado"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView"
+
+                    android:textSize="30dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Ejercicio Resuelto:"
+                    android:textColor="#000"
+                    android:textSize="30dp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/resultado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView"
+                    android:textSize="30dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Aciertos:"
+                    android:textColor="#000"
+                    android:textSize="30dp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/aciertos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView"
+
+                    android:textSize="30dp" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Fallos:"
+                    android:textColor="#000"
+                    android:textSize="30dp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fallos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="TextView"
+
+                    android:textSize="30dp" />
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
