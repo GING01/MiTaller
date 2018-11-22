@@ -93,7 +93,6 @@ public class EntrenamientoVocabularioActivity extends AppCompatActivity implemen
         tutor = extras.getParcelable("tutor");
         dificultadSeleccionada = extras.getString("dificultad");
 
-        Toast.makeText(this, dificultadSeleccionada, Toast.LENGTH_LONG).show();
 
         recyclerPalabra = (RecyclerView) findViewById(R.id.recyclerPalabraEntrenamiento);
         fondosinregistro=findViewById(R.id.sinregistros);

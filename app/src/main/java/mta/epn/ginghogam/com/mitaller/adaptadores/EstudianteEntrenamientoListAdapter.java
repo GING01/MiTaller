@@ -99,7 +99,6 @@ public class EstudianteEntrenamientoListAdapter extends RecyclerView.Adapter<Est
 
         File file = new File(estudiante.getFotoEstudiante());
         if (!file.exists()) {
-            Toast.makeText(context, "no Exist", Toast.LENGTH_LONG).show();
             holder.imagen.setImageResource(R.drawable.no_foto);
         } else {
             File fileImagen = new File(estudiante.getFotoEstudiante().toString());
