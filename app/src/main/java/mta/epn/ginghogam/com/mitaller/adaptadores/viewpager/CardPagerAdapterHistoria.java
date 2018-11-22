@@ -142,8 +142,18 @@ public class CardPagerAdapterHistoria extends PagerAdapter
         TtS = new TextToSpeech(collection.getContext().getApplicationContext(), this);
 
         ImageView image = (ImageView) view.findViewById(R.id.ivHistoria);
-        Bitmap bitmap = BitmapFactory.decodeFile(mData.get(position).getImagenHistoria());
-        //image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 250, 220, true));
+
+        File file = new File(mData.get(position).getImagenHistoria());
+        if (!file.exists()) {
+            image.setImageResource(R.drawable.no_foto);
+        }else {
+
+            Bitmap bitmap = BitmapFactory.decodeFile(mData.get(position).getImagenHistoria());
+            image.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 250, 220, true));
+        }
+
+
+
         ImageView irJuego = (ImageView) view.findViewById(R.id.irJuego);
         irJuego.setOnClickListener(new View.OnClickListener() {
             @Override
