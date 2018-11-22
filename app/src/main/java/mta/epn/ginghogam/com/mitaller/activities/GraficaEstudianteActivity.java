@@ -64,7 +64,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
     private Integer idTaller, idHistoria;
 
 
-    ImageView imageView;
+    ImageView imageView, imagenFondo;
 
     private GraphView graph;
 
@@ -116,9 +116,8 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         consultarTalleres();
         comboTaller();
 
-//        consultarDatosSesion();
-//        grafica();
         graph.setVisibility(View.GONE);
+
 
 
         imageView = findViewById(R.id.cap);
@@ -377,6 +376,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
         graph = findViewById(R.id.graph);
         spinnerTaller = findViewById(R.id.spnTaller);
         spinnerHistoria = findViewById(R.id.spnHistoria);
+        imagenFondo =  findViewById(R.id.buho_grafico);
     }
 
     public void onClick(View view) {
@@ -387,6 +387,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 if (checked) {
                     graph.removeAllSeries();
                     graph.setVisibility(View.VISIBLE);
+                    imagenFondo.setVisibility(View.GONE);
                     grafica();
 
                 }
@@ -396,6 +397,7 @@ public class GraficaEstudianteActivity extends AppCompatActivity {
                 if (checked) {
                     graph.removeAllSeries();
                     graph.setVisibility(View.VISIBLE);
+                    imagenFondo.setVisibility(View.GONE);
                     graficaTiempo();
                 }
                 break;
