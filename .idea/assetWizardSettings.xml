@@ -35,7 +35,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="D:\buhoinicio.png" />
+                                      <entry key="foregroundImage" value="D:\buhoicono.png" />
                                       <entry key="foregroundLayerName" value="ic_buho_icon" />
                                       <entry key="outputName" value="ic_buhoicon" />
                                     </map>
@@ -69,11 +69,6 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="NOTIFICATION" />
                           </map>
                         </option>
                       </PersistentState>
