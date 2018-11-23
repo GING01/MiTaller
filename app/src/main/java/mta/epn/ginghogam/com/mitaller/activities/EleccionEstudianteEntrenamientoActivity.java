@@ -165,7 +165,7 @@ public class EleccionEstudianteEntrenamientoActivity extends AppCompatActivity i
                     intent.putExtra("estudiante", estudianteEntrenamientoListAdapter.getItem(position));
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getApplicationContext(),"Password incorrecto", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Contraseña incorrecto", Toast.LENGTH_LONG).show();
                 }
             }
         });

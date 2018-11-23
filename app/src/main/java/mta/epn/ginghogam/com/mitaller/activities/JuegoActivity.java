@@ -238,7 +238,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         rootLayout.addView(itemLayout);
                     }
                     ArrayList<Secuencia> listaRandom2 = new ArrayList<Secuencia>();
-                    listaRandom = lista;
+                    listaRandom2 = lista;
                     Random rndm2 = new Random();
                     Collections.shuffle(listaRandom2, rndm2);
                     for (int i = 0; i < lista.size(); i++) {
@@ -252,7 +252,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                         itemLayout.setLayoutParams(params);
 
 
-                        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom.get(i).getImagenSecuencia()), 190,
+                        Bitmap newBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(listaRandom2.get(i).getImagenSecuencia()), 190,
                                 190, true);
 
 
