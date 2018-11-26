@@ -229,7 +229,7 @@ public class CardPagerAdapterHistoria extends PagerAdapter
 
         final ImageView imageView = mView.findViewById(R.id.welldoneico);
         Button jugar = mView.findViewById(R.id.empezar);
-        Button cerrar = mView.findViewById(R.id.iconcerrar);
+        ImageView cerrar = mView.findViewById(R.id.iconcerrar);
         final TextView texto = mView.findViewById(R.id.textolamina);
 
 
