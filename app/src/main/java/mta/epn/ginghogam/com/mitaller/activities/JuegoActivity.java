@@ -591,4 +591,10 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        handler1.removeCallbacksAndMessages(null);
+
+    }
 }
