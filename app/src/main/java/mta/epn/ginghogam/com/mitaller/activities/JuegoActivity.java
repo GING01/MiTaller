@@ -93,6 +93,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
     Handler handler1;
     private String titulo;
     MediaPlayer well, wrong, hend, bend;
+    Boolean isFirstRun;
 
 
     @Override
@@ -105,6 +106,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
 
 
         TtS = new TextToSpeech(this, this);
@@ -295,7 +297,9 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     @Override
     protected void onStart() {
-        tiempo();
+
+            tiempo();
+
         super.onStart();
     }
 
@@ -443,52 +447,56 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
-    public void tiempo() {
 
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
-        final View mView = getLayoutInflater().inflate(R.layout.dialog_tiempo, null);
-        final SeekBar seekBar = mView.findViewById(R.id.seekBartiempo);
-        final TextView txttiempo = mView.findViewById(R.id.txttiempo);
-        seekBar.setMax(9);
-        txttiempo.setText((seekBar.getProgress() + 1) + " min");
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txttiempo.setText((progress + 1) + " min");
-            }
+        public void tiempo() {
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            final AlertDialog.Builder mBuilder = new AlertDialog.Builder(JuegoActivity.this);
+            final View mView = getLayoutInflater().inflate(R.layout.dialog_tiempo, null);
+            final SeekBar seekBar = mView.findViewById(R.id.seekBartiempo);
+            final TextView txttiempo = mView.findViewById(R.id.txttiempo);
+            seekBar.setMax(9);
+            txttiempo.setText((seekBar.getProgress() + 1) + " min");
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    txttiempo.setText((progress + 1) + " min");
+                }
 
-            }
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                }
 
-            }
-        });
-        mBuilder.setView(mView);
-        mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                tiempo = seekBar.getProgress() + 1;
-                ttiempo.setText(tiempo + "");
-                cerraTiempo(tiempo * 60000);
-                start = System.currentTimeMillis();
-                dialog.dismiss();
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+            mBuilder.setView(mView);
+            mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    tiempo = seekBar.getProgress() + 1;
+                    ttiempo.setText(tiempo + "");
+                    cerraTiempo(tiempo * 60000);
+                    start = System.currentTimeMillis();
+                    dialog.dismiss();
 
 
-            }
-        });
-        mBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                finish();
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = mBuilder.create();
-        dialog.setCancelable(false);
-        dialog.show();
-    }
+                }
+            });
+            mBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    finish();
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = mBuilder.create();
+            dialog.setCancelable(false);
+            dialog.show();
+        }
+
+
+
 
     public void welldone() {
 
@@ -583,7 +591,7 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         handler1.removeCallbacksAndMessages(null);
-                        JuegoActivity.this.finish();
+                        finish();
                     }
                 })
                 .setNegativeButton("No", null)
@@ -591,10 +599,21 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
     }
 
+
+
+    @Override
+    protected void onStop() {
+        handler1.removeCallbacksAndMessages(null);
+        finish();
+
+
+        super.onStop();
+    }
+
     @Override
     protected void onRestart() {
-        super.onRestart();
-        handler1.removeCallbacksAndMessages(null);
 
+        handler1.removeCallbacksAndMessages(null);
+        super.onRestart();
     }
 }
