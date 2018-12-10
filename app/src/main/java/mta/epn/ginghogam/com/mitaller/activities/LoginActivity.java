@@ -1106,14 +1106,14 @@ if(isFirstRun){
 
             String pathEmpaquetado4 = fileEmpaquetado4.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado4);
-            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setOrdenImagenSecuencia(3);
             secuencia.setDescripcionImagenSecuencia("poner las bolsas llenas en la gabeta");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathEmpaquetado5 = fileEmpaquetado5.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado5);
-            secuencia.setOrdenImagenSecuencia(2);
+            secuencia.setOrdenImagenSecuencia(4);
             secuencia.setDescripcionImagenSecuencia("Cerrar las bolsas llenas con el producto");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
