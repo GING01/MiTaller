@@ -601,19 +601,18 @@ public class JuegoActivity extends AppCompatActivity implements TextToSpeech.OnI
 
 
 
-    @Override
-    protected void onStop() {
-        handler1.removeCallbacksAndMessages(null);
-        finish();
-
-
-        super.onStop();
-    }
-
+//    @Override
+//    protected void onStop() {
+//        handler1.removeCallbacksAndMessages(null);
+//        finish();
+//        super.onStop();
+//    }
+//
     @Override
     protected void onRestart() {
 
         handler1.removeCallbacksAndMessages(null);
+        finish();
         super.onRestart();
     }
 }
