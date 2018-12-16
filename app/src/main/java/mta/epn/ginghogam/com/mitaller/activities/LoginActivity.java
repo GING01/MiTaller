@@ -232,278 +232,212 @@ if(isFirstRun){
 
             String path = Environment.getExternalStorageDirectory().toString();
 
-//            Bitmap panaderia1 = BitmapFactory.decodeResource(getResources(), R.drawable.panaderiaport);
             Bitmap panaderia = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.panaderiaport), 350, 350, true);
             File filePanaderia = new File(path, "panaderia" + ".jpg");
 
-//            Bitmap historiaEmpaquetado1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
             Bitmap historiaEmpaquetado = Bitmap.createScaledBitmap( BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1), 350, 350, true);
             File fileHistoriaEmpaquetado = new File(path, "empaquetado" + ".jpg");
 
-//            Bitmap historiaGlaceado1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1);
             Bitmap historiaGlaceado = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1), 350, 350, true);
             File fileHistoriaGlaceado = new File(path, "glaceado" + ".jpg");
 
-//            Bitmap historiaLimpiezaJabas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1);
             Bitmap historiaLimpiezaJabas = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1), 350, 350, true);
             File fileHistoriaLimpiezaJabas = new File(path, "limpieza_jabas" + ".jpg");
 
-//            Bitmap historiaLimpiezaLatas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1);
             Bitmap historiaLimpiezaLatas = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1), 350, 350, true);
             File fileHistoriaLimpiezaLatas = new File(path, "limpieza_latas" + ".jpg");
 
-//            Bitmap historiaLimpiezaGeneral1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1);
             Bitmap historiaLimpiezaGeneral = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1), 350, 350, true);
             File fileHistoriaLimpiezaGeneral = new File(path, "limpieza_general" + ".jpg");
 
-//            Bitmap historiaPreparacionLatas1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1);
             Bitmap historiaPreparacionLatas = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1), 350, 350, true);
             File fileHistoriaPreparacionLatas = new File(path, "preparacion_latas" + ".jpg");
 
-//            Bitmap historiaPreparacionMasa1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1);
             Bitmap historiaPreparacionMasa = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1), 350, 350, true);
             File fileHistoriaPreparacionMasa= new File(path, "preparacion_masa" + ".jpg");
 
-//            Bitmap historiaPreparacionUniforme1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1);
             Bitmap historiaPreparacionUniforme = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1), 350, 350, true);
             File fileHistoriaPreparacionUniforme = new File(path, "preparacion_uniforme" + ".jpg");
 
-//            Bitmap historiaPreparacionMoldes1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1);
             Bitmap historiaPreparacionMoldes = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1), 350, 350, true);
             File fileHistoriaPreparacionMoldes = new File(path, "preparacion_moldes" + ".jpg");
 
-//            Bitmap historiaProtocoloAsepcia1 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1);
             Bitmap historiaProtocoloAsepcia = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1), 350, 350, true);
             File fileHistoriaProtocoloAsepcia = new File(path, "protocolo_asepcia" + ".jpg");
 
 
 
             //vocabulario
-//            Bitmap amasadora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_amasadora);
             Bitmap amasadora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_amasadora), 350, 350, true);
             File fileAmasadora = new File(path, "amasadora" + ".jpg");
 
-//            Bitmap balanza1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_balanza);
             Bitmap balanza = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_balanza), 350, 350, true);
             File fileBalanza = new File(path, "balanza" + ".jpg");
 
-//            Bitmap bodega1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_bodega);
             Bitmap bodega = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_bodega), 350, 350, true);
             File fileBodega = new File(path, "bodega" + ".jpg");
 
-//            Bitmap boleadora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_boleadora);
             Bitmap boleadora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_boleadora), 350, 350, true);
             File fileBoleadora = new File(path, "boleadora" + ".jpg");
 
-//            Bitmap camaraLeudo1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_camara_de_leudo);
             Bitmap camaraLeudo = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_camara_de_leudo), 350, 350, true);
             File fileCamaraLeudo = new File(path, "camaraLeudo" + ".jpg");
 
-//            Bitmap congelador1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_congelador);
             Bitmap congelador = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_congelador), 350, 350, true);
             File fileCongelador = new File(path, "congelador" + ".jpg");
 
-//            Bitmap cortadorPan1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_cortador_de_pan);
             Bitmap cortadorPan = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_cortador_de_pan), 350, 350, true);
             File fileCortadorPan = new File(path, "cortadorPan" + ".jpg");
 
-//            Bitmap horno1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_horno);
             Bitmap horno = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_horno), 350, 350, true);
             File fileHorno = new File(path, "horno" + ".jpg");
 
-//            Bitmap laminadora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_laminadora);
             Bitmap laminadora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_laminadora), 350, 350, true);
             File fileLaminadora = new File(path, "laminadora" + ".jpg");
 
-//            Bitmap meson1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_meson_de_trabajo);
             Bitmap meson = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_meson_de_trabajo), 350, 350, true);
             File fileMeson = new File(path, "meson" + ".jpg");
 
-//            Bitmap refrigeradora1 = BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_refrigeradora);
             Bitmap refrigeradora = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vocabulario_refrigeradora), 350, 350, true);
             File fileRefrigeradora = new File(path, "refrigeradora" + ".jpg");
 
 
             //sequence empaquetado
 
-//            Bitmap empaquetado11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1);
             Bitmap empaquetado1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado1), 350, 350, true);
             File fileEmpaquetado1 = new File(path, "empaquetado1" + ".jpg");
 
-//            Bitmap empaquetado22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado2);
             Bitmap empaquetado2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado2), 350, 350, true);
             File fileEmpaquetado2 = new File(path, "empaquetado2" + ".jpg");
 
-//            Bitmap empaquetado33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado3);
             Bitmap empaquetado3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado3), 350, 350, true);
             File fileEmpaquetado3 = new File(path, "empaquetado3" + ".jpg");
 
-//            Bitmap empaquetado44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado4);
             Bitmap empaquetado4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado4), 350, 350, true);
             File fileEmpaquetado4 = new File(path, "empaquetado4" + ".jpg");
 
-//            Bitmap empaquetado55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado5);
             Bitmap empaquetado5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_empaquetado5), 350, 350, true);
             File fileEmpaquetado5 = new File(path, "empaquetado5" + ".jpg");
 
             //sequence glaceado
 
-//            Bitmap galceado11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1);
             Bitmap galceado1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado1), 350, 350, true);
             File fileGlaceado1 = new File(path, "glaceado1" + ".jpg");
 
-//            Bitmap galceado22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado2);
             Bitmap galceado2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado2), 350, 350, true);
             File fileGlaceado2 = new File(path, "glaceado2" + ".jpg");
 
-//            Bitmap galceado33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado3);
             Bitmap galceado3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado3), 350, 350, true);
             File fileGlaceado3 = new File(path, "glaceado3" + ".jpg");
 
-//            Bitmap galceado44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado4);
             Bitmap galceado4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado4), 350, 350, true);
             File fileGlaceado4 = new File(path, "glaceado4" + ".jpg");
 
-//            Bitmap galceado55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado5);
             Bitmap galceado5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado5), 350, 350, true);
             File fileGlaceado5 = new File(path, "glaceado5" + ".jpg");
 
-//            Bitmap galceado66 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado6);
             Bitmap galceado6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_glaceado6), 350, 350, true);
             File fileGlaceado6 = new File(path, "glaceado6" + ".jpg");
 
-//
 
 
             //sequence limpieza jabas
 
-//            Bitmap limpiezaJabas11 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1);
             Bitmap limpiezaJabas1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas1), 350, 350, true);
             File filelimpiezaJabas1 = new File(path, "limpieza_jabas1" + ".jpg");
 
-//            Bitmap limpiezaJabas22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas2);
             Bitmap limpiezaJabas2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas2), 350, 350, true);
             File filelimpiezaJabas2 = new File(path, "limpieza_jabas2" + ".jpg");
 
-//            Bitmap limpiezaJabas33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas3);
             Bitmap limpiezaJabas3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas3), 350, 350, true);
             File filelimpiezaJabas3 = new File(path, "limpieza_jabas3" + ".jpg");
 
-//            Bitmap limpiezaJabas44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas4);
             Bitmap limpiezaJabas4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas4), 350, 350, true);
             File filelimpiezaJabas4 = new File(path, "limpieza_jabas4" + ".jpg");
 
-//            Bitmap limpiezaJabas55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas5);
             Bitmap limpiezaJabas5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_jabas5), 350, 350, true);
             File filelimpiezaJabas5 = new File(path, "limpieza_jabas5" + ".jpg");
 
             //sequence limpieza latas
 
-//            Bitmap limpiezaLatas01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1);
             Bitmap limpiezaLatas1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas1), 350, 350, true);
             File filelimpiezaLatas1 = new File(path, "limpieza_latas1" + ".jpg");
 
-//            Bitmap limpiezaLatas22 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas2);
             Bitmap limpiezaLatas2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas2), 350, 350, true);
             File filelimpiezaLatas2 = new File(path, "limpieza_latas2" + ".jpg");
 
-//            Bitmap limpiezaLatas33 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas3);
             Bitmap limpiezaLatas3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas3), 350, 350, true);
             File filelimpiezaLatas3 = new File(path, "limpieza_latas3" + ".jpg");
 
-//            Bitmap limpiezaLatas44 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas4);
             Bitmap limpiezaLatas4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas4), 350, 350, true);
             File filelimpiezaLatas4 = new File(path, "limpieza_latas4" + ".jpg");
 
-//            Bitmap limpiezaLatas55 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas5);**
             Bitmap limpiezaLatas5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas5), 350, 350, true);
             File filelimpiezaLatas5 = new File(path, "limpieza_latas5" + ".jpg");
 
-//            Bitmap limpiezaLatas66 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas6);
             Bitmap limpiezaLatas6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas6), 350, 350, true);
             File filelimpiezaLatas6 = new File(path, "limpieza_latas6" + ".jpg");
 
-//            Bitmap limpiezaLatas77 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas7);
             Bitmap limpiezaLatas7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas7), 350, 350, true);
             File filelimpiezaLatas7 = new File(path, "limpieza_latas7" + ".jpg");
 
-//            Bitmap limpiezaLatas88 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas8);
             Bitmap limpiezaLatas8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas8), 350, 350, true);
             File filelimpiezaLatas8 = new File(path, "limpieza_latas8" + ".jpg");
 
-//            Bitmap limpiezaLatas99 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas9);
             Bitmap limpiezaLatas9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas9), 350, 350, true);
             File filelimpiezaLatas9 = new File(path, "limpieza_latas9" + ".jpg");
 
-//            Bitmap limpiezaLatas100 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas10);
             Bitmap limpiezaLatas10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas10), 350, 350, true);
             File filelimpiezaLatas10 = new File(path, "limpieza_latas10" + ".jpg");
 
-//            Bitmap limpiezaLatas111 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas11);
             Bitmap limpiezaLatas11 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpieza_latas11), 350, 350, true);
             File filelimpiezaLatas11 = new File(path, "limpieza_latas11" + ".jpg");
 
             //sequence limpieza general
 
-//            Bitmap limpiezaGeneral01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1);
             Bitmap limpiezaGeneral1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral1), 350, 350, true);
             File filelimpiezaGeneral1 = new File(path, "limpieza_general1" + ".jpg");
 
-//            Bitmap limpiezaGeneral02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral2);
             Bitmap limpiezaGeneral2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral2), 350, 350, true);
             File filelimpiezaGeneral2 = new File(path, "limpieza_general2" + ".jpg");
 
-//            Bitmap limpiezaGeneral03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral3);
             Bitmap limpiezaGeneral3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral3), 350, 350, true);
             File filelimpiezaGeneral3 = new File(path, "limpieza_general3" + ".jpg");
 
-//            Bitmap limpiezaGeneral04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral4);
             Bitmap limpiezaGeneral4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral4), 350, 350, true);
             File filelimpiezaGeneral4 = new File(path, "limpieza_general4" + ".jpg");
 
-//            Bitmap limpiezaGeneral05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral5);
             Bitmap limpiezaGeneral5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral5), 350, 350, true);
             File filelimpiezaGeneral5 = new File(path, "limpieza_general5" + ".jpg");
 
-//            Bitmap limpiezaGeneral06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral6);
             Bitmap limpiezaGeneral6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral6), 350, 350, true);
             File filelimpiezaGeneral6 = new File(path, "limpieza_general6" + ".jpg");
 
-//            Bitmap limpiezaGeneral07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral7);
             Bitmap limpiezaGeneral7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral7), 350, 350, true);
             File filelimpiezaGeneral7 = new File(path, "limpieza_general7" + ".jpg");
 
-//            Bitmap limpiezaGeneral08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral8);
             Bitmap limpiezaGeneral8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral8), 350, 350, true);
             File filelimpiezaGeneral8 = new File(path, "limpieza_general8" + ".jpg");
 
-//            Bitmap limpiezaGeneral09 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral9);
             Bitmap limpiezaGeneral9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral9), 350, 350, true);
             File filelimpiezaGeneral9 = new File(path, "limpieza_general9" + ".jpg");
 
-//            Bitmap limpiezaGeneral010 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10);
-            //Bitmap limpiezaGeneral10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_limpiezageneral10), 350, 350, true);
-           // File filelimpiezaGeneral10 = new File(path, "limpieza_general10" + ".jpg");
+
 
             //sequence preparacion latas
 
-//            Bitmap preparacionLatas01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1);
             Bitmap preparacionLatas1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas1), 350, 350, true);
             File filePreparacionLatas1 = new File(path, "preparacion_latas1" + ".jpg");
 
-//            Bitmap preparacionLatas02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas2);
             Bitmap preparacionLatas2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas2), 350, 350, true);
             File filePreparacionLatas2 = new File(path, "preparacion_latas2" + ".jpg");
 
-//            Bitmap preparacionLatas03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas3);
             Bitmap preparacionLatas3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas3), 350, 350, true);
             File filePreparacionLatas3 = new File(path, "preparacion_latas3" + ".jpg");
 
-//            Bitmap preparacionLatas04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas4);
             Bitmap preparacionLatas4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas4), 350, 350, true);
             File filePreparacionLatas4 = new File(path, "preparacion_latas4" + ".jpg");
 
-//            Bitmap preparacionLatas05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas5);
             Bitmap preparacionLatas5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_latas5), 350, 350, true);
             File filePreparacionLatas5 = new File(path, "preparacion_latas5" + ".jpg");
 
@@ -511,85 +445,65 @@ if(isFirstRun){
 
             //sequence preparacion masa
 
-//            Bitmap preparacionMasa01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1);
             Bitmap preparacionMasa1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa1), 350, 350, true);
             File filePreparacionMasa1 = new File(path, "preparacion_masa1" + ".jpg");
 
-//            Bitmap preparacionMasa02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa2);
             Bitmap preparacionMasa2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa2), 350, 350, true);
             File filePreparacionMasa2 = new File(path, "preparacion_masa2" + ".jpg");
 
-//            Bitmap preparacionMasa03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa3);
             Bitmap preparacionMasa3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa3), 350, 350, true);
             File filePreparacionMasa3 = new File(path, "preparacion_masa3" + ".jpg");
 
-//            Bitmap preparacionMasa04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa4);
             Bitmap preparacionMasa4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa4), 350, 350, true);
             File filePreparacionMasa4 = new File(path, "preparacion_masa4" + ".jpg");
 
-//            Bitmap preparacionMasa05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa5);
             Bitmap preparacionMasa5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa5), 350, 350, true);
             File filePreparacionMasa5 = new File(path, "preparacion_masa5" + ".jpg");
 
-//            Bitmap preparacionMasa06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa6);
             Bitmap preparacionMasa6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa6), 350, 350, true);
             File filePreparacionMasa6 = new File(path, "preparacion_masa6" + ".jpg");
 
-//            Bitmap preparacionMasa07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa7);
             Bitmap preparacionMasa7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa7), 350, 350, true);
             File filePreparacionMasa7 = new File(path, "preparacion_masa7" + ".jpg");
 
-//            Bitmap preparacionMasa08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa8);
             Bitmap preparacionMasa8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa8), 350, 350, true);
             File filePreparacionMasa8 = new File(path, "preparacion_masa8" + ".jpg");
 
-//            Bitmap preparacionMasa09 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa9);
             Bitmap preparacionMasa9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa9), 350, 350, true);
             File filePreparacionMasa9 = new File(path, "preparacion_masa9" + ".jpg");
 
-//            Bitmap preparacionMasa010 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa10);
             Bitmap preparacionMasa10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa10), 350, 350, true);
             File filePreparacionMasa10 = new File(path, "preparacion_masa10" + ".jpg");
 
-//            Bitmap preparacionMasa011 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa11);
             Bitmap preparacionMasa11 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa11), 350, 350, true);
             File filePreparacionMasa11 = new File(path, "preparacion_masa11" + ".jpg");
 
-//            Bitmap preparacionMasa012 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa12);
             Bitmap preparacionMasa12 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa12), 350, 350, true);
             File filePreparacionMasa12 = new File(path, "preparacion_masa12" + ".jpg");
 
-//            Bitmap preparacionMasa013 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa13);
             Bitmap preparacionMasa13 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa13), 350, 350, true);
             File filePreparacionMasa13 = new File(path, "preparacion_masa13" + ".jpg");
 
-//            Bitmap preparacionMasa014 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa14);
             Bitmap preparacionMasa14 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_masa14), 350, 350, true);
             File filePreparacionMasa14 = new File(path, "preparacion_masa14" + ".jpg");
 
             //sequence preparacion uniforme
 
-//            Bitmap preparacionUniforme01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1);
             Bitmap preparacionUniforme1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme1), 350, 350, true);
             File filePreparacionUniforme1 = new File(path, "preparacion_uniforme1" + ".jpg");
 
-//            Bitmap preparacionUniforme02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme2);
             Bitmap preparacionUniforme2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme2), 350, 350, true);
             File filePreparacionUniforme2 = new File(path, "preparacion_uniforme2" + ".jpg");
 
-//            Bitmap preparacionUniforme03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme3);
             Bitmap preparacionUniforme3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme3), 350, 350, true);
             File filePreparacionUniforme3 = new File(path, "preparacion_uniforme3" + ".jpg");
 
-//            Bitmap preparacionUniforme04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme4);
             Bitmap preparacionUniforme4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme4), 350, 350, true);
             File filePreparacionUniforme4 = new File(path, "preparacion_uniforme4" + ".jpg");
 
-//            Bitmap preparacionUniforme05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme5);
             Bitmap preparacionUniforme5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme5), 350, 350, true);
             File filePreparacionUniforme5 = new File(path, "preparacion_uniforme5" + ".jpg");
 
-//            Bitmap preparacionUniforme06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme6);
             Bitmap preparacionUniforme6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_uniforme6), 350, 350, true);
             File filePreparacionUniforme6 = new File(path, "preparacion_uniforme6" + ".jpg");
 
@@ -598,78 +512,60 @@ if(isFirstRun){
 
             //sequence preparacion moldes
 
-//            Bitmap preparacionMolde01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1);
             Bitmap preparacionMolde1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes1), 350, 350, true);
             File filePreparacionMolde1 = new File(path, "preparacion_mo1de1" + ".jpg");
 
-//            Bitmap preparacionMolde02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes2);
             Bitmap preparacionMolde2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes2), 350, 350, true);
             File filePreparacionMolde2 = new File(path, "preparacion_mo1de2" + ".jpg");
 
-//            Bitmap preparacionMolde03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes3);
             Bitmap preparacionMolde3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes3), 350, 350, true);
             File filePreparacionMolde3 = new File(path, "preparacion_mo1de3" + ".jpg");
 
-//            Bitmap preparacionMolde04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes4);
             Bitmap preparacionMolde4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes4), 350, 350, true);
             File filePreparacionMolde4 = new File(path, "preparacion_mo1de4" + ".jpg");
 
-//            Bitmap preparacionMolde05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes5);
             Bitmap preparacionMolde5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes5), 350, 350, true);
             File filePreparacionMolde5 = new File(path, "preparacion_mo1de5" + ".jpg");
 
-//            Bitmap preparacionMolde06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes6);
             Bitmap preparacionMolde6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes6), 350, 350, true);
             File filePreparacionMolde6 = new File(path, "preparacion_mo1de6" + ".jpg");
 
-//            Bitmap preparacionMolde07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes7);
             Bitmap preparacionMolde7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes7), 350, 350, true);
             File filePreparacionMolde7 = new File(path, "preparacion_mo1de7" + ".jpg");
 
-//            Bitmap preparacionMolde08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes8);
             Bitmap preparacionMolde8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes8), 350, 350, true);
             File filePreparacionMolde8 = new File(path, "preparacion_mo1de8" + ".jpg");
 
-//            Bitmap preparacionMolde09 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes9);
             Bitmap preparacionMolde9 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes9), 350, 350, true);
             File filePreparacionMolde9 = new File(path, "preparacion_mo1de9" + ".jpg");
 
-//            Bitmap preparacionMolde010 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes10);
             Bitmap preparacionMolde10 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_preparacion_moldes10), 350, 350, true);
             File filePreparacionMolde10 = new File(path, "preparacion_mo1de10" + ".jpg");
 
 
             //sequence protocolo asepcia
 
-//            Bitmap protocoloAsepcia01 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1);
             Bitmap protocoloAsepcia1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia1), 350, 350, true);
             File fileProtocoloAsepcia1 = new File(path, "protocolo_asepcia1" + ".jpg");
 
-//            Bitmap protocoloAsepcia02 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia2);
             Bitmap protocoloAsepcia2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia2), 350, 350, true);
             File fileProtocoloAsepcia2 = new File(path, "protocolo_asepcia2" + ".jpg");
 
-//            Bitmap protocoloAsepcia03 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia3);
             Bitmap protocoloAsepcia3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia3), 350, 350, true);
             File fileProtocoloAsepcia3 = new File(path, "protocolo_asepcia3" + ".jpg");
 
-//            Bitmap protocoloAsepcia04 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia4);
             Bitmap protocoloAsepcia4 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia4), 350, 350, true);
             File fileProtocoloAsepcia4 = new File(path, "protocolo_asepcia4" + ".jpg");
 
-//            Bitmap protocoloAsepcia05 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia5);
             Bitmap protocoloAsepcia5 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia5), 350, 350, true);
             File fileProtocoloAsepcia5 = new File(path, "protocolo_asepcia5" + ".jpg");
 
-//            Bitmap protocoloAsepcia06 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia6);
             Bitmap protocoloAsepcia6 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia6), 350, 350, true);
             File fileProtocoloAsepcia6 = new File(path, "protocolo_asepcia6" + ".jpg");
 
-//            Bitmap protocoloAsepcia07 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia7);
             Bitmap protocoloAsepcia7 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia7), 350, 350, true);
             File fileProtocoloAsepcia7 = new File(path, "protocolo_asepcia7" + ".jpg");
 
-//            Bitmap protocoloAsepcia08 = BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia8);
             Bitmap protocoloAsepcia8 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.secuencia_protocolo_asepcia8), 350, 350, true);
             File fileProtocoloAsepcia8 = new File(path, "protocolo_asepcia8" + ".jpg");
 
@@ -771,7 +667,7 @@ if(isFirstRun){
                 out = new FileOutputStream(fileEmpaquetado5);
                 empaquetado5.compress(Bitmap.CompressFormat.PNG, 100, out);
 
-                //sequence glaceado
+                //sequence glaseado
 
                 out = new FileOutputStream(fileGlaceado1);
                 galceado1.compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -875,24 +771,23 @@ if(isFirstRun){
                 out = new FileOutputStream(filelimpiezaGeneral9);
                 limpiezaGeneral9.compress(Bitmap.CompressFormat.PNG, 100, out);
 
-               // out = new FileOutputStream(filelimpiezaGeneral10);
-                //limpiezaGeneral10.compress(Bitmap.CompressFormat.PNG, 100, out);
+
 
                 //preparacion de latas
-                out = new FileOutputStream(filePreparacionLatas1);
-                preparacionLatas1.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(filePreparacionLatas2);
-                preparacionLatas2.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(filePreparacionLatas3);
-                preparacionLatas3.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(filePreparacionLatas4);
-                preparacionLatas4.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(filePreparacionLatas5);
-                preparacionLatas5.compress(Bitmap.CompressFormat.PNG, 100, out);
+//                out = new FileOutputStream(filePreparacionLatas1);
+//                preparacionLatas1.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(filePreparacionLatas2);
+//                preparacionLatas2.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(filePreparacionLatas3);
+//                preparacionLatas3.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(filePreparacionLatas4);
+//                preparacionLatas4.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(filePreparacionLatas5);
+//                preparacionLatas5.compress(Bitmap.CompressFormat.PNG, 100, out);
 
                 //preparacion masas
 
@@ -999,29 +894,29 @@ if(isFirstRun){
 
                 // protocolo asepcia
 
-                out = new FileOutputStream(fileProtocoloAsepcia1);
-                protocoloAsepcia1.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(fileProtocoloAsepcia2);
-                protocoloAsepcia2.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(fileProtocoloAsepcia3);
-                protocoloAsepcia3.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(fileProtocoloAsepcia4);
-                protocoloAsepcia4.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(fileProtocoloAsepcia5);
-                protocoloAsepcia5.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(fileProtocoloAsepcia6);
-                protocoloAsepcia6.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(fileProtocoloAsepcia7);
-                protocoloAsepcia7.compress(Bitmap.CompressFormat.PNG, 100, out);
-
-                out = new FileOutputStream(fileProtocoloAsepcia8);
-                protocoloAsepcia8.compress(Bitmap.CompressFormat.PNG, 100, out);
+//                out = new FileOutputStream(fileProtocoloAsepcia1);
+//                protocoloAsepcia1.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(fileProtocoloAsepcia2);
+//                protocoloAsepcia2.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(fileProtocoloAsepcia3);
+//                protocoloAsepcia3.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(fileProtocoloAsepcia4);
+//                protocoloAsepcia4.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(fileProtocoloAsepcia5);
+//                protocoloAsepcia5.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(fileProtocoloAsepcia6);
+//                protocoloAsepcia6.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(fileProtocoloAsepcia7);
+//                protocoloAsepcia7.compress(Bitmap.CompressFormat.PNG, 100, out);
+//
+//                out = new FileOutputStream(fileProtocoloAsepcia8);
+//                protocoloAsepcia8.compress(Bitmap.CompressFormat.PNG, 100, out);
 
 
                 out.flush();
@@ -1057,9 +952,7 @@ if(isFirstRun){
 
             String panaderiaport = filePanaderia.getPath().toString();
             taller.setNombreTaller("Panaderia");
-            taller.setDescripcionTaller("En este taller de panadería aprendemos a elaborar panes básicos. " +
-                    "Con los ingredientes elementales que configuran un pan: harina, agua, levadura y sal." +
-                    "Aprenderemos a usar diferentes tipos de harinas, sus usos y especificaciones técnicas.");
+            taller.setDescripcionTaller("En el taller de panadería vamos a aprender actividades básicas que se realizan para elaborar panes, empanadas y otros productos.");
             taller.setImagenTaller(panaderiaport);
             taller.setIdTaller(1);
             tallerDAO.create(taller);
@@ -1070,8 +963,7 @@ if(isFirstRun){
             //Historia empaquetado
             String empaquetado = fileHistoriaEmpaquetado.getPath().toString();
             historia.setNombreHistoria("Empaquetado");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+            historia.setDescripcionHistoria("Una vez listos los productos debemos guardarlos en sus respectivos empaques.");
             historia.setNumeroLaminas("5");
             historia.setDificultad("facil");
             historia.setImagenHistoria(empaquetado);
@@ -1120,11 +1012,11 @@ if(isFirstRun){
 
 
 
-            //historia glaceado
+            //historia glaseado
             String glaceado = fileHistoriaGlaceado.getPath().toString();
-            historia.setNombreHistoria("Glaceado");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+            historia.setNombreHistoria("Glaseado");
+            historia.setDescripcionHistoria("Cuando tengamos las melvas y galletas preparadas debemos decorarlas. " +
+                    "Ten en cuenta que las melvas se decoran con un poco de chocolate y las galletas con glaseado blanco.");
             historia.setNumeroLaminas("7");
             historia.setDificultad("medio");
             historia.setImagenHistoria(glaceado);
@@ -1175,12 +1067,7 @@ if(isFirstRun){
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
-          /*  String pathGlaceado7 = fileGlaceado7.getPath().toString();
-            secuencia.setImagenSecuencia(pathGlaceado7);
-            secuencia.setOrdenImagenSecuencia(7);
-            secuencia.setDescripcionImagenSecuencia("Siete");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);*/
+
 
 
 
@@ -1188,8 +1075,7 @@ if(isFirstRun){
 
             String limpiezaJabas = fileHistoriaLimpiezaJabas.getPath().toString();
             historia.setNombreHistoria("Limpieza de Jabas");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+            historia.setDescripcionHistoria(" Antes y después de usar las jabas de almacenaje debemos limpiarlas adecuadamente.");
             historia.setNumeroLaminas("5");
             historia.setDificultad("facil");
             historia.setImagenHistoria(limpiezaJabas);
@@ -1208,28 +1094,28 @@ if(isFirstRun){
             String pathLimpiezaJabas2 = filelimpiezaJabas2.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas2);
             secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("selecciona la java que vas ha limpiar");
+            secuencia.setDescripcionImagenSecuencia("selecciona la jaba que vas ha limpiar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaJabas3 = filelimpiezaJabas3.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas3);
             secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Limpia por dentro la java");
+            secuencia.setDescripcionImagenSecuencia("Limpia por dentro la jaba");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaJabas4 = filelimpiezaJabas4.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas4);
             secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Limpia por fuera la java");
+            secuencia.setDescripcionImagenSecuencia("Limpia por fuera la jaba");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
             String pathLimpiezaJabas5 = filelimpiezaJabas5.getPath().toString();
             secuencia.setImagenSecuencia(pathLimpiezaJabas5);
             secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Una vez limpia coloca la java en su lugar");
+            secuencia.setDescripcionImagenSecuencia("Una vez limpia coloca la jaba en su lugar");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
@@ -1237,8 +1123,7 @@ if(isFirstRun){
             //limpieza de latas
             String limpiezaLatas = fileHistoriaLimpiezaLatas.getPath().toString();
             historia.setNombreHistoria("Limpieza de Latas");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+            historia.setDescripcionHistoria(" Una vez que los productos hayan sido preparados es importante limpiar las latas que se hayan utilizado para poder utilizarlas en la próxima ocasión.\n");
             historia.setNumeroLaminas("11");
             historia.setDificultad("dificil");
             historia.setImagenHistoria(limpiezaLatas);
@@ -1400,69 +1285,61 @@ if(isFirstRun){
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
-//            String pathLimpiezaGeneral10 = filelimpiezaGeneral10.getPath().toString();
-//            secuencia.setImagenSecuencia(pathLimpiezaGeneral10);
-//            secuencia.setOrdenImagenSecuencia(10);
-//            secuencia.setDescripcionImagenSecuencia("Diez");
-//            secuencia.setIdHistoria(historia.getIdHistoria());
-//            secuenciaDAO.create(secuencia);
-
 
             //Historia preparacion latas
-            String preparacionLatas = fileHistoriaPreparacionLatas.getPath().toString();
-            historia.setNombreHistoria("Preparación de Latas");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
-            historia.setNumeroLaminas("5");
-            historia.setDificultad("facil");
-            historia.setImagenHistoria(preparacionLatas);
-            historia.setIdHistoria(6);
-            historia.setIdTaller(1);
-            historiaDAO.create(historia);
-
-
-            String pathPreparacionLatas1 = filePreparacionLatas1.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionLatas1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionLatas2 = filePreparacionLatas2.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionLatas2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionLatas3 = filePreparacionLatas3.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionLatas3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionLatas4 = filePreparacionLatas4.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionLatas4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionLatas5 = filePreparacionLatas5.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionLatas5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
+//            String preparacionLatas = fileHistoriaPreparacionLatas.getPath().toString();
+//            historia.setNombreHistoria("Preparación de Latas");
+//            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
+//                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+//            historia.setNumeroLaminas("5");
+//            historia.setDificultad("facil");
+//            historia.setImagenHistoria(preparacionLatas);
+//            historia.setIdHistoria(6);
+//            historia.setIdTaller(1);
+//            historiaDAO.create(historia);
+//
+//
+//            String pathPreparacionLatas1 = filePreparacionLatas1.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionLatas1);
+//            secuencia.setOrdenImagenSecuencia(1);
+//            secuencia.setDescripcionImagenSecuencia("Uno");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionLatas2 = filePreparacionLatas2.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionLatas2);
+//            secuencia.setOrdenImagenSecuencia(2);
+//            secuencia.setDescripcionImagenSecuencia("Dos");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionLatas3 = filePreparacionLatas3.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionLatas3);
+//            secuencia.setOrdenImagenSecuencia(3);
+//            secuencia.setDescripcionImagenSecuencia("Tres");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionLatas4 = filePreparacionLatas4.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionLatas4);
+//            secuencia.setOrdenImagenSecuencia(4);
+//            secuencia.setDescripcionImagenSecuencia("Cuatro");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionLatas5 = filePreparacionLatas5.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionLatas5);
+//            secuencia.setOrdenImagenSecuencia(5);
+//            secuencia.setDescripcionImagenSecuencia("Cinco");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
 
 
 
             //Historia preparacion masa
             String preparacionMasa = fileHistoriaPreparacionMasa.getPath().toString();
             historia.setNombreHistoria("Preparación de Masa");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+            historia.setDescripcionHistoria("Para empezar a preparar los productos en la panadería debemos preparar la masa.");
             historia.setNumeroLaminas("14");
             historia.setDificultad("dificil");
             historia.setImagenHistoria(preparacionMasa);
@@ -1630,155 +1507,155 @@ if(isFirstRun){
             secuenciaDAO.create(secuencia);
 
             //Historia preparacion moldes
-            String preparacionMolde = fileHistoriaPreparacionMoldes.getPath().toString();
-            historia.setNombreHistoria("Preparación de Moldes");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
-            historia.setNumeroLaminas("10");
-            historia.setDificultad("dificil");
-            historia.setImagenHistoria(preparacionMolde);
-            historia.setIdHistoria(9);
-            historia.setIdTaller(1);
-            historiaDAO.create(historia);
-
-            String pathPreparacionMolde1 = filePreparacionMolde1.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde2 = filePreparacionMolde2.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde3 = filePreparacionMolde3.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde4 = filePreparacionMolde4.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde5 = filePreparacionMolde5.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde6 = filePreparacionMolde6.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde6);
-            secuencia.setOrdenImagenSecuencia(6);
-            secuencia.setDescripcionImagenSecuencia("Seis");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde7 = filePreparacionMolde7.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde7);
-            secuencia.setOrdenImagenSecuencia(7);
-            secuencia.setDescripcionImagenSecuencia("Siete");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde8 = filePreparacionMolde8.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde8);
-            secuencia.setOrdenImagenSecuencia(8);
-            secuencia.setDescripcionImagenSecuencia("Ocho");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde9 = filePreparacionMolde9.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde9);
-            secuencia.setOrdenImagenSecuencia(9);
-            secuencia.setDescripcionImagenSecuencia("Nueve");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathPreparacionMolde10 = filePreparacionMolde10.getPath().toString();
-            secuencia.setImagenSecuencia(pathPreparacionMolde10);
-            secuencia.setOrdenImagenSecuencia(10);
-            secuencia.setDescripcionImagenSecuencia("Diez");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
+//            String preparacionMolde = fileHistoriaPreparacionMoldes.getPath().toString();
+//            historia.setNombreHistoria("Preparación de Moldes");
+//            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
+//                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+//            historia.setNumeroLaminas("10");
+//            historia.setDificultad("dificil");
+//            historia.setImagenHistoria(preparacionMolde);
+//            historia.setIdHistoria(9);
+//            historia.setIdTaller(1);
+//            historiaDAO.create(historia);
+//
+//            String pathPreparacionMolde1 = filePreparacionMolde1.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde1);
+//            secuencia.setOrdenImagenSecuencia(1);
+//            secuencia.setDescripcionImagenSecuencia("Uno");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde2 = filePreparacionMolde2.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde2);
+//            secuencia.setOrdenImagenSecuencia(2);
+//            secuencia.setDescripcionImagenSecuencia("Dos");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde3 = filePreparacionMolde3.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde3);
+//            secuencia.setOrdenImagenSecuencia(3);
+//            secuencia.setDescripcionImagenSecuencia("Tres");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde4 = filePreparacionMolde4.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde4);
+//            secuencia.setOrdenImagenSecuencia(4);
+//            secuencia.setDescripcionImagenSecuencia("Cuatro");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde5 = filePreparacionMolde5.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde5);
+//            secuencia.setOrdenImagenSecuencia(5);
+//            secuencia.setDescripcionImagenSecuencia("Cinco");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde6 = filePreparacionMolde6.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde6);
+//            secuencia.setOrdenImagenSecuencia(6);
+//            secuencia.setDescripcionImagenSecuencia("Seis");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde7 = filePreparacionMolde7.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde7);
+//            secuencia.setOrdenImagenSecuencia(7);
+//            secuencia.setDescripcionImagenSecuencia("Siete");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde8 = filePreparacionMolde8.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde8);
+//            secuencia.setOrdenImagenSecuencia(8);
+//            secuencia.setDescripcionImagenSecuencia("Ocho");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde9 = filePreparacionMolde9.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde9);
+//            secuencia.setOrdenImagenSecuencia(9);
+//            secuencia.setDescripcionImagenSecuencia("Nueve");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathPreparacionMolde10 = filePreparacionMolde10.getPath().toString();
+//            secuencia.setImagenSecuencia(pathPreparacionMolde10);
+//            secuencia.setOrdenImagenSecuencia(10);
+//            secuencia.setDescripcionImagenSecuencia("Diez");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
 
 
             //Historia protocolo asepcia
-            String protocoloAsepcia = fileHistoriaProtocoloAsepcia.getPath().toString();
-            historia.setNombreHistoria("Protocolo de Asepcia");
-            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
-                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
-            historia.setNumeroLaminas("8");
-            historia.setDificultad("medio");
-            historia.setImagenHistoria(protocoloAsepcia);
-            historia.setIdHistoria(10);
-            historia.setIdTaller(1);
-            historiaDAO.create(historia);
-
-            String pathProcoloAsepcia1 = fileProtocoloAsepcia1.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia1);
-            secuencia.setOrdenImagenSecuencia(1);
-            secuencia.setDescripcionImagenSecuencia("Uno");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathProcoloAsepcia2 = fileProtocoloAsepcia2.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia2);
-            secuencia.setOrdenImagenSecuencia(2);
-            secuencia.setDescripcionImagenSecuencia("Dos");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathProcoloAsepcia3 = fileProtocoloAsepcia3.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia3);
-            secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("Tres");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathProcoloAsepcia4 = fileProtocoloAsepcia4.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia4);
-            secuencia.setOrdenImagenSecuencia(4);
-            secuencia.setDescripcionImagenSecuencia("Cuatro");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathProcoloAsepcia5 = fileProtocoloAsepcia5.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia5);
-            secuencia.setOrdenImagenSecuencia(5);
-            secuencia.setDescripcionImagenSecuencia("Cinco");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathProcoloAsepcia6 = fileProtocoloAsepcia6.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia6);
-            secuencia.setOrdenImagenSecuencia(6);
-            secuencia.setDescripcionImagenSecuencia("Seis");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathProcoloAsepcia7 = fileProtocoloAsepcia7.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia7);
-            secuencia.setOrdenImagenSecuencia(7);
-            secuencia.setDescripcionImagenSecuencia("Siete");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
-
-            String pathProcoloAsepcia8 = fileProtocoloAsepcia8.getPath().toString();
-            secuencia.setImagenSecuencia(pathProcoloAsepcia8);
-            secuencia.setOrdenImagenSecuencia(8);
-            secuencia.setDescripcionImagenSecuencia("Ocho");
-            secuencia.setIdHistoria(historia.getIdHistoria());
-            secuenciaDAO.create(secuencia);
+//            String protocoloAsepcia = fileHistoriaProtocoloAsepcia.getPath().toString();
+//            historia.setNombreHistoria("Protocolo de Asepcia");
+//            historia.setDescripcionHistoria("Una vez que se encuentran horneados los productos, es necesario empaquetarlos para su distribución al público. " +
+//                    "Ten en cuenta que debes usar la máquina selladora. Debes tner cuidado ya que esta se encuentra caliente");
+//            historia.setNumeroLaminas("8");
+//            historia.setDificultad("medio");
+//            historia.setImagenHistoria(protocoloAsepcia);
+//            historia.setIdHistoria(10);
+//            historia.setIdTaller(1);
+//            historiaDAO.create(historia);
+//
+//            String pathProcoloAsepcia1 = fileProtocoloAsepcia1.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia1);
+//            secuencia.setOrdenImagenSecuencia(1);
+//            secuencia.setDescripcionImagenSecuencia("Uno");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathProcoloAsepcia2 = fileProtocoloAsepcia2.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia2);
+//            secuencia.setOrdenImagenSecuencia(2);
+//            secuencia.setDescripcionImagenSecuencia("Dos");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathProcoloAsepcia3 = fileProtocoloAsepcia3.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia3);
+//            secuencia.setOrdenImagenSecuencia(3);
+//            secuencia.setDescripcionImagenSecuencia("Tres");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathProcoloAsepcia4 = fileProtocoloAsepcia4.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia4);
+//            secuencia.setOrdenImagenSecuencia(4);
+//            secuencia.setDescripcionImagenSecuencia("Cuatro");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathProcoloAsepcia5 = fileProtocoloAsepcia5.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia5);
+//            secuencia.setOrdenImagenSecuencia(5);
+//            secuencia.setDescripcionImagenSecuencia("Cinco");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathProcoloAsepcia6 = fileProtocoloAsepcia6.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia6);
+//            secuencia.setOrdenImagenSecuencia(6);
+//            secuencia.setDescripcionImagenSecuencia("Seis");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathProcoloAsepcia7 = fileProtocoloAsepcia7.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia7);
+//            secuencia.setOrdenImagenSecuencia(7);
+//            secuencia.setDescripcionImagenSecuencia("Siete");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
+//
+//            String pathProcoloAsepcia8 = fileProtocoloAsepcia8.getPath().toString();
+//            secuencia.setImagenSecuencia(pathProcoloAsepcia8);
+//            secuencia.setOrdenImagenSecuencia(8);
+//            secuencia.setDescripcionImagenSecuencia("Ocho");
+//            secuencia.setIdHistoria(historia.getIdHistoria());
+//            secuenciaDAO.create(secuencia);
 
 
 
