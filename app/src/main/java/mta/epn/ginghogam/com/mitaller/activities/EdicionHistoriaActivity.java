@@ -241,7 +241,7 @@ public class EdicionHistoriaActivity extends AppCompatActivity {
                 finish();
             }
             if(pathGaleria == null && fileImagen == null && !nombreHistoria.getText().toString().isEmpty() && !descripcionHistoria.getText().toString().isEmpty()){
-                //Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Seleccione una imagen",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && !nombreHistoria.getText().toString().isEmpty() && descripcionHistoria.getText().toString().isEmpty()){
                 //Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();

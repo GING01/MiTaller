@@ -394,18 +394,18 @@ public class EdicionPalabraActivity extends AppCompatActivity implements View.On
                 Toast.makeText(this,"Palabra registrada", Toast.LENGTH_SHORT).show();
                 finish();
             }
-       /*     if(pathGaleria == null && fileImagen == null && !nombreHistoria.getText().toString().isEmpty() && !descripcionHistoria.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
+            if(pathGaleria == null && fileImagen == null && !palabra.getText().toString().isEmpty()){
+                Toast.makeText(getApplicationContext(),"Seleccione una imagen",Toast.LENGTH_LONG).show();
             }
-            if(pathGaleria == null && fileImagen == null && !nombreHistoria.getText().toString().isEmpty() && descripcionHistoria.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
+            if(pathGaleria == null && fileImagen == null && !palabra.getText().toString().isEmpty() ){
+                //Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
             }
-            if(pathGaleria == null && fileImagen == null && nombreHistoria.getText().toString().isEmpty() && !descripcionHistoria.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
+            if(pathGaleria == null && fileImagen == null && palabra.getText().toString().isEmpty() ){
+                //Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
             }
-            if(pathGaleria == null && fileImagen == null && nombreHistoria.getText().toString().isEmpty() && descripcionHistoria.getText().toString().isEmpty()){
+            if(pathGaleria == null && fileImagen == null && palabra.getText().toString().isEmpty() ){
                 Toast.makeText(getApplicationContext(),"Debes realizar alguna accion",Toast.LENGTH_LONG).show();
-            }*/
+            }
 
         }
     }

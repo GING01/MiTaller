@@ -106,7 +106,9 @@
                 tools:layout_conversion_absoluteHeight="45dp"
                 tools:layout_conversion_absoluteWidth="343dp"
                 tools:layout_editor_absoluteX="295dp"
-                tools:layout_editor_absoluteY="30dp" />
+                tools:layout_editor_absoluteY="30dp"
+                android:inputType="text"
+                />
 
             <EditText
                 android:id="@+id/descripcionHistoria"
@@ -121,7 +123,8 @@
                 tools:layout_conversion_absoluteHeight="156dp"
                 tools:layout_conversion_absoluteWidth="343dp"
                 tools:layout_editor_absoluteX="304dp"
-                tools:layout_editor_absoluteY="85dp" />
+                tools:layout_editor_absoluteY="85dp"
+                />
 
             <TextView
                 android:id="@+id/textoDificultad"

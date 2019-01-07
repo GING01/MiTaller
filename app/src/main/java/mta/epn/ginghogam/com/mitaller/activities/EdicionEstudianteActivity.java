@@ -268,6 +268,19 @@ public class EdicionEstudianteActivity extends AppCompatActivity {
                 Toast.makeText(this,"Estudiante registrado", Toast.LENGTH_SHORT).show();
                 finish();
             }
+
+            if(pathGaleria == null && fileImagen == null && !nombre.getText().toString().isEmpty() && !apellido.getText().toString().isEmpty()&& !edad.getText().toString().isEmpty()){
+                Toast.makeText(getApplicationContext(),"Seleccione una imagen",Toast.LENGTH_LONG).show();
+            }
+            if(pathGaleria == null && fileImagen == null && !nombre.getText().toString().isEmpty() && apellido.getText().toString().isEmpty()&& !edad.getText().toString().isEmpty()){
+                //Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
+            }
+            if(pathGaleria == null && fileImagen == null && nombre.getText().toString().isEmpty() && !apellido.getText().toString().isEmpty()&& !edad.getText().toString().isEmpty()){
+                //Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
+            }
+            if(pathGaleria == null && fileImagen == null && nombre.getText().toString().isEmpty() && apellido.getText().toString().isEmpty()&& !edad.getText().toString().isEmpty()){
+                Toast.makeText(getApplicationContext(),"Debes realizar alguna acción",Toast.LENGTH_LONG).show();
+            }
         }
 
 

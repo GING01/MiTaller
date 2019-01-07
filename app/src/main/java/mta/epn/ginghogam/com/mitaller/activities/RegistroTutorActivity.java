@@ -120,7 +120,7 @@ public class RegistroTutorActivity extends AppCompatActivity {
                 return true;
             }
             catch (Exception e){
-                Toast.makeText(RegistroTutorActivity.this, "No se encontro la cedula", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(RegistroTutorActivity.this, "No se encontro la cedula", Toast.LENGTH_SHORT).show();
 
                 return false;
             }

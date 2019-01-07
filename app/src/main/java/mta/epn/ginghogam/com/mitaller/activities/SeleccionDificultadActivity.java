@@ -108,7 +108,7 @@ public class SeleccionDificultadActivity extends AppCompatActivity implements Te
 
                 contador++;
 
-                Toast.makeText(getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "" + contador, Toast.LENGTH_SHORT).show();
                 handlerbuho = new Handler();
                 handlerbuho.postDelayed(new Runnable() {
                     @Override

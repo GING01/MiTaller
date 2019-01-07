@@ -182,7 +182,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 finish();
             }
             if(pathGaleria == null && fileImagen == null && !nombreTaller.getText().toString().isEmpty() && !descripcionTaller.getText().toString().isEmpty()){
-                //Toast.makeText(getApplicationContext(),"lol",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Seleccione una imagen",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && !nombreTaller.getText().toString().isEmpty() && descripcionTaller.getText().toString().isEmpty()){
                 //Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
@@ -191,7 +191,7 @@ public class EdicionTallerActivity extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"hola mudo",Toast.LENGTH_LONG).show();
             }
             if(pathGaleria == null && fileImagen == null && nombreTaller.getText().toString().isEmpty() && descripcionTaller.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(),"Debes realizar alguna accion",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Debes realizar alguna acción",Toast.LENGTH_LONG).show();
             }
         }
     }
