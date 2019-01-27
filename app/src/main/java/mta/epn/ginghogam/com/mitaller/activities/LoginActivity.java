@@ -999,7 +999,7 @@ if(isFirstRun){
             String pathEmpaquetado4 = fileEmpaquetado4.getPath().toString();
             secuencia.setImagenSecuencia(pathEmpaquetado4);
             secuencia.setOrdenImagenSecuencia(3);
-            secuencia.setDescripcionImagenSecuencia("poner las bolsas llenas en la gabeta");
+            secuencia.setDescripcionImagenSecuencia("Ubicar las bolsas llenas en la gabeta");
             secuencia.setIdHistoria(historia.getIdHistoria());
             secuenciaDAO.create(secuencia);
 
@@ -1343,7 +1343,7 @@ if(isFirstRun){
             historia.setNumeroLaminas("14");
             historia.setDificultad("dificil");
             historia.setImagenHistoria(preparacionMasa);
-            historia.setIdHistoria(7);
+            historia.setIdHistoria(6);
             historia.setIdTaller(1);
             historiaDAO.create(historia);
 
